@@ -38,8 +38,8 @@ class SFUtilities {
 	
 	func createCase(from record:Dictionary<String, Any>, completion: @escaping SFSinglePropertyReturnCompletionHandler) {
 		let createRequest = RestClient.shared.requestForCreate(withObjectType: "Case", fields: record)
-		RestClient.shared.send(request: createRequest, onFailure: {(_,_) in
-			SalesforceLogger.d(type(of: self), message: "Failed to create object using request: \( createRequest)")
+		RestClient.shared.send(request: createRequest, onFailure: {(err,urlResponse) in
+			SalesforceLogger.d(type(of: self), message: "Failed to create object using request: \( createRequest). Error is: \(String(describing: err))")
 		}) { (response, _) in
 			if let record = response as? Dictionary<String,Any> {
 				completion(record["id"] as! String)
@@ -93,11 +93,12 @@ class SFUtilities {
 	}
 	
 	func createImageFileUploadRequest(from image:UIImage, accountId: String, caseId: String) -> RestRequest? {
-		guard let imageData = UIImagePNGRepresentation(image) else {
+		guard let half = image.ResizeImage(),
+			let imageData = UIImageJPEGRepresentation(half, 0.75) else {
 			return nil
 		}
 		let record: Dictionary<String,Any> = [
-			"Name": NSUUID().uuidString + ".png",
+			"Name": NSUUID().uuidString + ".jpg",
 			"Body": imageData.base64EncodedString(options: .lineLength64Characters),
 			"parentId": caseId
 		]

@@ -21,13 +21,13 @@ class NewClaimCtrl: UIViewController {
 	@IBOutlet weak var transcriptionText: UITextView!
 	@IBOutlet weak var playButton: UIButton!
 	@IBOutlet weak var photoCollectionView: UICollectionView!
-	
+	@IBOutlet weak var contactList: UITableView!
 	
 	let locationManager = CLLocationManager()
 	let regionRadius = 150.0
 	let geoCoder = CLGeocoder()
 	let contactPicker = CNContactPickerViewController()
-//	let contactStore = CNContactStore()
+	let contactListData = ContactListDataSource()
 	
 	var recordingSession: AVAudioSession!
 	var incidentRecorder: AVAudioRecorder!
@@ -35,11 +35,12 @@ class NewClaimCtrl: UIViewController {
 	var meterTimer: Timer!
 	var currentLocation: CLLocation?
 	var geoCodedAddress: CLPlacemark?
+	var geoCodedAddressText: String = ""
 	var transcribedText: String = ""
 	var isPlaying = false
 	var imagePickerCtrl: UIImagePickerController!
 	var selectedImages: [UIImage] = []
-	var contacts: [CNContact] = []
+//	var contacts: [CNContact] = []
 	var sfUtils = SFUtilities()
 	var masterAccountId: String = ""
 	var caseId: String = ""
@@ -55,7 +56,13 @@ class NewClaimCtrl: UIViewController {
 		initImageExt()
 		//Setup contact access
 		initContactsExt()
-	
+		
+		// setup our Contact List data source and delegate
+		contactList.dataSource = contactListData
+		contactList.delegate = contactListData // no delegate methods are currently used.
+		// put a border arround the contact list.
+		contactList.layer.borderColor = UIColor.black.cgColor
+		contactList.layer.borderWidth = 1
 	}
 	
 	@IBAction func submitClaim(_ sender: Any) {

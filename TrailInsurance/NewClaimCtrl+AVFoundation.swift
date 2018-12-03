@@ -126,6 +126,7 @@ extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 				guard error == nil else { print("Error: \(error!)"); return }
 				guard let result = result else { print("No result!"); return }
 				self.transcriptionText.text = result.bestTranscription.formattedString
+				self.transcribedText = result.bestTranscription.formattedString
 			}
 		} else {
 			print("Device doesn't support speech recognition")
@@ -144,8 +145,8 @@ extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 	
 	func audioFileAsData() -> Data? {
 		do {
-			audioPlayer = try AVAudioPlayer(contentsOf: audioFilenameURL)
-			return audioPlayer.data
+			let audioData:Data = try Data(contentsOf: audioFilenameURL)
+			return audioData
 		} catch {
 			print("unable to load audio file")
 		}

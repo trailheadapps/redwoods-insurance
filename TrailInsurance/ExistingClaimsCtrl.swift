@@ -6,8 +6,6 @@
 //  Copyright © 2018 Salesforce. All rights reserved.
 //
 
-// tied to Trailinsurance@codefriar.com dev org
-
 import Foundation
 import UIKit
 import SalesforceSDKCore
@@ -23,10 +21,12 @@ class ExistingClaimsCtrl: UITableViewController,  SFDataSourceDelegate {
 		}
 	}
 	
-	let dataSource = SFDataSource<SFRecord>(withQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", identifier: "CasePrototype", limit: false){
+	let dataSource = SFDataSource<SFRecord>(withQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", identifier: "CasePrototype", forceMultiple: true){
 		SFRecord, cell in
-		cell.textLabel?.text = (SFRecord["Subject"] as! String)
-		cell.detailTextLabel?.text = "Case #: " + (SFRecord["CaseNumber"] as! String)
+		if let record = SFRecord {
+			cell.textLabel?.text = (SFRecord?["Subject"] as! String)
+			cell.detailTextLabel?.text = "Case #: " + (SFRecord?["CaseNumber"] as! String)
+		}
 	}
 
 	override func viewDidLoad() {
@@ -46,7 +46,7 @@ class ExistingClaimsCtrl: UITableViewController,  SFDataSourceDelegate {
 			if let destination = segue.destination as? ClaimViewCtrl {
 				if let cell = sender as? UITableViewCell,
 					let indexPath = self.tableView.indexPath(for: cell) {
-					let claimId = self.dataSource.sfRecords[indexPath.row]["Id"] as! String
+					let claimId = self.dataSource.sfRecords?[indexPath.row]["Id"] as! String
 					destination.claimId = claimId
 				}
 			}

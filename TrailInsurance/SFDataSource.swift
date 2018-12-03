@@ -13,15 +13,16 @@ import SalesforceSDKCore
 typealias SFRecord = Dictionary<String, Any>
 
 class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
-	typealias CellConfigurator = (SFRecord, UITableViewCell) -> Void
+	typealias CellConfigurator = (SFRecord?, UITableViewCell) -> Void
 	typealias StringCompletionBlock = (_ result: String) -> Void
 	private let reusableIdentifier:String
 	private let cellConfigurator:CellConfigurator
-	var sfRecords = [SFRecord]()
+	var sfRecords: [SFRecord]?
 	var sfQueryString:String
 	var limitToLoggedInUser = false
 	weak var sfDataSourceDelegate: SFDataSourceDelegate?
 	let fieldBlacklist = ["attributes", "Id"]
+	private var forceMultiple = false
 	
 	init(withQuery query:String, identifier reusable:String, limit:Bool, cellConfigurator: @escaping CellConfigurator){
 		self.sfQueryString = query
@@ -31,6 +32,12 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 		super.init()
 		fetchData()
 	}
+	
+	convenience init(withQuery query:String, identifier reusable:String, forceMultiple:Bool, cellConfigurator: @escaping CellConfigurator){
+		self.init(withQuery:query, identifier: reusable, limit:false, cellConfigurator: cellConfigurator);
+		self.forceMultiple = true
+	}
+
 	
 	init(for obj: String, id: String, identifier reusable:String, cellConfigurator: @escaping CellConfigurator) {
 		self.sfQueryString = ""
@@ -71,13 +78,14 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 	
 	// Protocol Methods
 	func tableView(_ tableView:UITableView, numberOfRowsInSection section: Int) -> Int {
-		return sfRecords.count
+		return sfRecords?.count ?? 0
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: reusableIdentifier, for: indexPath)
-		let obj = sfRecords[indexPath.row]
-		cellConfigurator(obj, cell)
+		if let obj = sfRecords?[indexPath.row]{
+			cellConfigurator(obj, cell)
+		}
 		return cell
 	}
 	
@@ -99,7 +107,7 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 			if let dictionaryResp = response as? Dictionary<String, Any> {
 				if let results = dictionaryResp["records"] as? [SFRecord] {
 					var resultsToReturn = [SFRecord]()
-					if dictionaryResp["totalSize"] as! Int == 1 {
+					if dictionaryResp["totalSize"] as! Int == 1 && self!.forceMultiple == false {
 						// a single record should return a dictionary of fields -> value
 						resultsToReturn = (self?.fields(from: results[0]))!
 				

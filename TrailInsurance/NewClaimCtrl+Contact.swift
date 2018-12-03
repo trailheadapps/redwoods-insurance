@@ -13,7 +13,6 @@ import ContactsUI
 extension NewClaimCtrl: CNContactViewControllerDelegate, CNContactPickerDelegate {
 	
 	func initContactsExt() {
-		
 	}
 	
 	@IBAction func onAddExistingContactTouched(_ sender: Any) {
@@ -23,25 +22,12 @@ extension NewClaimCtrl: CNContactViewControllerDelegate, CNContactPickerDelegate
 	
 	func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
 		contactPicker.dismiss(animated: true)
-		self.contacts = contacts
-		let sfUtils = SFUtilities()
-		
-		for contact in contacts {
-			if let name = CNContactFormatter.string(from: contact, style: .fullName){
-				print("contact data: " + name)
-				for number in contact.phoneNumbers {
-					if let phone = number.value.value(forKey: "digits") as? String {
-						print("Contact #: " + phone)
-					}
-				}
-			}
-		}
+		self.contactListData.contacts = contacts
+		self.contactList.reloadData()
 	}
 	
 	func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
-		print("Dismiss Contact")
 		viewController.dismiss(animated: true, completion: nil)
-		
 	}
 	
 	func contactViewController(_ viewController: CNContactViewController, shouldPerformDefaultActionFor property: CNContactProperty) -> Bool {

@@ -27,8 +27,8 @@ class ClaimViewCtrl: UITableViewController, SFDataSourceDelegate {
 		if let caseId = claimId {
 			self.dataSource = SFDataSource<SFRecord>(for: "Case", id: caseId, identifier: self.reuseIdentifier){
 				SFRecord, cell in
-				cell.textLabel?.text = (SFRecord["value"] as! String)
-				cell.detailTextLabel?.text = (SFRecord["label"] as! String)
+				cell.textLabel?.text = (SFRecord?["value"] as! String)
+				cell.detailTextLabel?.text = (SFRecord?["label"] as! String)
 			}
 			self.dataSource?.sfDataSourceDelegate = self
 			self.tableView.delegate = self

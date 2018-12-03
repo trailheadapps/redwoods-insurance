@@ -15,12 +15,10 @@
 		B5B254D121B1B02200CB628C /* IncidentLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B421B1B01A00CB628C /* IncidentLocationController.swift */; };
 		B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */; };
 		B5B254D321B1B02200CB628C /* AppDelegate+util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B621B1B01B00CB628C /* AppDelegate+util.swift */; };
-		B5B254D421B1B02200CB628C /* IncidentMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B254B721B1B01B00CB628C /* IncidentMap.xib */; };
 		B5B254D521B1B02200CB628C /* SFDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B821B1B01B00CB628C /* SFDataSource.swift */; };
 		B5B254D621B1B02200CB628C /* CaseCompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */; };
 		B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */; };
 		B5B254D821B1B02200CB628C /* ExistingClaimsCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BB21B1B01C00CB628C /* ExistingClaimsCtrl.swift */; };
-		B5B254D921B1B02200CB628C /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BC21B1B01C00CB628C /* AccountViewController.swift */; };
 		B5B254DA21B1B02200CB628C /* SelectedImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */; };
 		B5B254DB21B1B02200CB628C /* icons8-opened-folder-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B254BE21B1B01C00CB628C /* icons8-opened-folder-30.png */; };
 		B5B254DC21B1B02200CB628C /* ClaimViewCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BF21B1B01C00CB628C /* ClaimViewCtrl.swift */; };
@@ -39,6 +37,8 @@
 		B5B254EA21B1B02200CB628C /* SFDataSource+apiWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CE21B1B02100CB628C /* SFDataSource+apiWrappers.swift */; };
 		B5B254EB21B1B02200CB628C /* FileManager+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CF21B1B02100CB628C /* FileManager+utils.swift */; };
 		B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */; };
+		B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */; };
+		B5C3CF5221B57BB3004EBA83 /* ContactListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CF5121B57BB3004EBA83 /* ContactListDataSource.swift */; };
 		B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
@@ -60,12 +60,10 @@
 		B5B254B421B1B01A00CB628C /* IncidentLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentLocationController.swift; sourceTree = "<group>"; };
 		B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Contact.swift"; sourceTree = "<group>"; };
 		B5B254B621B1B01B00CB628C /* AppDelegate+util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+util.swift"; sourceTree = "<group>"; };
-		B5B254B721B1B01B00CB628C /* IncidentMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncidentMap.xib; sourceTree = "<group>"; };
 		B5B254B821B1B01B00CB628C /* SFDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFDataSource.swift; sourceTree = "<group>"; };
 		B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseCompactLayout.swift; sourceTree = "<group>"; };
 		B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+AVFoundation.swift"; sourceTree = "<group>"; };
 		B5B254BB21B1B01C00CB628C /* ExistingClaimsCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExistingClaimsCtrl.swift; sourceTree = "<group>"; };
-		B5B254BC21B1B01C00CB628C /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImagesCell.swift; sourceTree = "<group>"; };
 		B5B254BE21B1B01C00CB628C /* icons8-opened-folder-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-opened-folder-30.png"; sourceTree = "<group>"; };
 		B5B254BF21B1B01C00CB628C /* ClaimViewCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimViewCtrl.swift; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		B5B254CE21B1B02100CB628C /* SFDataSource+apiWrappers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFDataSource+apiWrappers.swift"; sourceTree = "<group>"; };
 		B5B254CF21B1B02100CB628C /* FileManager+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+utils.swift"; sourceTree = "<group>"; };
 		B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+MapKit.swift"; sourceTree = "<group>"; };
+		B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
+		B5C3CF5121B57BB3004EBA83 /* ContactListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListDataSource.swift; sourceTree = "<group>"; };
 		B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+SFTransaction.swift"; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
@@ -106,6 +106,7 @@
 		4FD6C46B1B754AF1002F9F90 = {
 			isa = PBXGroup;
 			children = (
+				B5C3CF5121B57BB3004EBA83 /* ContactListDataSource.swift */,
 				4FD6C4761B754AF1002F9F90 /* TrailInsurance */,
 				4FD6C4751B754AF1002F9F90 /* Products */,
 				DDFDDF0A29E4BDD114B51BBC /* Pods */,
@@ -155,7 +156,6 @@
 				B5B254CE21B1B02100CB628C /* SFDataSource+apiWrappers.swift */,
 				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
 				B5B254CB21B1B02000CB628C /* NewClaimCtrl.swift */,
-				B5B254BC21B1B01C00CB628C /* AccountViewController.swift */,
 				B5B254BF21B1B01C00CB628C /* ClaimViewCtrl.swift */,
 				B5B254B421B1B01A00CB628C /* IncidentLocationController.swift */,
 				B5B254BB21B1B01C00CB628C /* ExistingClaimsCtrl.swift */,
@@ -179,6 +179,7 @@
 		B5E6FCBB21B1B5E8005669FE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */,
 				B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */,
 				B5B254C321B1B01D00CB628C /* UIView+loading.swift */,
 				B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */,
@@ -216,7 +217,6 @@
 		B5E6FCBE21B1B638005669FE /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
-				B5B254B721B1B01B00CB628C /* IncidentMap.xib */,
 				B5B254C621B1B01E00CB628C /* Main.storyboard */,
 				B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */,
 			);
@@ -300,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B254E021B1B02200CB628C /* car.png in Resources */,
-				B5B254D421B1B02200CB628C /* IncidentMap.xib in Resources */,
 				B5B254DB21B1B02200CB628C /* icons8-opened-folder-30.png in Resources */,
 				B77BD8A321125B510036B284 /* bootconfig.plist in Resources */,
 				CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */,
@@ -398,8 +397,8 @@
 				B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */,
 				B5B254D521B1B02200CB628C /* SFDataSource.swift in Sources */,
 				B5B254EA21B1B02200CB628C /* SFDataSource+apiWrappers.swift in Sources */,
-				B5B254D921B1B02200CB628C /* AccountViewController.swift in Sources */,
 				B5B254D321B1B02200CB628C /* AppDelegate+util.swift in Sources */,
+				B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */,
 				B5B254D621B1B02200CB628C /* CaseCompactLayout.swift in Sources */,
 				B5B254D821B1B02200CB628C /* ExistingClaimsCtrl.swift in Sources */,
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
@@ -408,6 +407,7 @@
 				B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */,
 				B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */,
 				B5B254D121B1B02200CB628C /* IncidentLocationController.swift in Sources */,
+				B5C3CF5221B57BB3004EBA83 /* ContactListDataSource.swift in Sources */,
 				B5B254DC21B1B02200CB628C /* ClaimViewCtrl.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
 			);

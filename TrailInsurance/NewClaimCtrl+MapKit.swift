@@ -46,53 +46,14 @@ extension NewClaimCtrl: MKMapViewDelegate, CLLocationManagerDelegate {
 				let country = loc.isoCountryCode ?? ""
 				let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
 				self.addressLabel.text = address
-				print(address)
+				self.geoCodedAddressText = address
 			}
-			
 		})
 	}
 	
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
 		self.geoCode(location: location)
-		self.mapSnapshot = getSnapshotMap(location: location)
-	}
-	
-	private func getSnapshotMap(location: CLLocation) -> UIImage {
-		let options = MKMapSnapshotOptions()
-		let region = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
-		options.region = region
-		options.scale = UIScreen.main.scale
-		options.size = CGSize.init(width: 400, height: 400)
-		options.mapType = .standard
-		var mapSnapshot = UIImage()
-
-		let snapShotter = MKMapSnapshotter(options: options)
-		snapShotter.start() { image, error in
-			guard let snapShot = image, error == nil else {
-				return
-			}
-			UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
-			snapShot.image.draw(at: .zero)
-			
-			let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
-			let pinImage = pinView.image
-			
-			var point = snapShot.point(for: location.coordinate)
-			let pinCenterOffset = pinView.centerOffset
-			point.x -= pinView.bounds.size.width / 2
-			point.y -= pinView.bounds.size.height / 2
-			point.x += pinCenterOffset.x
-			point.y += pinCenterOffset.y
-			pinImage?.draw(at: point)
-			
-			if let img = UIGraphicsGetImageFromCurrentImageContext() {
-				mapSnapshot = img
-			}
-			UIGraphicsEndImageContext()
-			
-		}
-		return mapSnapshot
 	}
 	
 	private func centerMapOnCurrentLocation(location:CLLocation){
