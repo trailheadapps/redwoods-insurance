@@ -58,8 +58,8 @@ extension NewClaimCtrl {
 	}
 	
 	func uploadMapImg(_ caseContactIds:[String]) -> Void {
-		print("Completed creating case contact records, optionally uploading map image as attachment")
 		// in this case, we just discared the caseContactIds, as we don't need them.
+		print("Completed creating case contact records, optionally uploading map image as attachment")
 		guard let location = locationManager.location else {
 			self.uploadPhotos("")
 			return
@@ -92,8 +92,7 @@ extension NewClaimCtrl {
 			
 			guard let mapImg = UIGraphicsGetImageFromCurrentImageContext(),
 				let request = self.sfUtils.createImageFileUploadRequest(from: mapImg,
-																													 accountId: self.masterAccountId,
-																													 caseId: self.caseId) else {
+																															caseId: self.caseId) else {
 																														self.uploadPhotos("")
 																														return
 			}
@@ -112,7 +111,7 @@ extension NewClaimCtrl {
 	func uploadAudio(_ :[String]) -> Void {
 		print("Completed upload of photos. Uploading AudioFile")
 		if let audioData = audioFileAsData(){
-			let uploadRequest = sfUtils.createAudioFileUploadRequest(from: audioData , accountId: self.masterAccountId, caseId: self.caseId)
+			let uploadRequest = sfUtils.createAudioFileUploadRequest(from: audioData, caseId: self.caseId)
 			sfUtils.sendRequestAndGetSingleProperty(with: uploadRequest, completion: showConfirmation)
 		}
 	}

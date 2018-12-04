@@ -15,65 +15,66 @@ typealias SFRecord = Dictionary<String, Any>
 class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 	typealias CellConfigurator = (SFRecord?, UITableViewCell) -> Void
 	typealias StringCompletionBlock = (_ result: String) -> Void
+	typealias RequestCompletionBlock = (_ request: RestRequest) -> Void
+	typealias SFResponseDictionary = Dictionary<String,Any>
+	
 	private let reusableIdentifier:String
 	private let cellConfigurator:CellConfigurator
-	var sfRecords: [SFRecord]?
-	var sfQueryString:String
-	var limitToLoggedInUser = false
-	weak var sfDataSourceDelegate: SFDataSourceDelegate?
-	let fieldBlacklist = ["attributes", "Id"]
 	private var forceMultiple = false
+	let fieldBlacklist = ["attributes", "Id"]
 	
-	init(withQuery query:String, identifier reusable:String, limit:Bool, cellConfigurator: @escaping CellConfigurator){
+	private var sfQueryString:String = ""
+	
+	var sfRecords: [SFRecord]?
+	weak var sfDataSourceDelegate: SFDataSourceDelegate?
+
+	// Initializer for making a query
+	init(withQuery query:String, identifier reusable:String, cellConfigurator: @escaping CellConfigurator){
 		self.sfQueryString = query
-		self.limitToLoggedInUser = limit
 		self.reusableIdentifier = reusable
 		self.cellConfigurator = cellConfigurator
 		super.init()
 		fetchData()
 	}
 	
+	// Convience init for forcing a multiple record query, when the query may only return a single result
 	convenience init(withQuery query:String, identifier reusable:String, forceMultiple:Bool, cellConfigurator: @escaping CellConfigurator){
-		self.init(withQuery:query, identifier: reusable, limit:false, cellConfigurator: cellConfigurator);
+		self.init(withQuery:query, identifier: reusable, cellConfigurator: cellConfigurator);
 		self.forceMultiple = true
 	}
 
-	
+	// Initializer for querying the compact layout of the specified object.
 	init(for obj: String, id: String, identifier reusable:String, cellConfigurator: @escaping CellConfigurator) {
 		self.sfQueryString = ""
-		self.limitToLoggedInUser = false
 		self.reusableIdentifier = reusable
 		self.cellConfigurator = cellConfigurator
 		super.init()
-		self.buildQueryFromCompactLayout(for: obj, id: id) { (response) in
-			self.sfQueryString = response
-			self.fetchData()
+		self.buildQueryFromCompactLayout(for: obj, id: id) { (request) in
+			self.retrieveData(withRequest: request)
 		}
 		
 	}
 
-	func buildQueryFromCompactLayout(for obj: String, id: String, completion: @escaping StringCompletionBlock) {
-		let layoutReq = RestRequest.init(method: .GET, path: "/v44.0/compactLayouts?q=\(obj)", queryParams:nil)
-		layoutReq.parseResponse = false
-		RestClient.shared.send(request: layoutReq, onFailure: { (_,_) in
-			SalesforceLogger.d(type(of: self), message: "Error Inoking describe query with: \(layoutReq)")
-		}) { (response, _) in //removed [weak self] before (rfesponse, _)
-			if let respData = response as? Data{
-				if let jsonObj = try? JSONDecoder().decode(CaseCompactLayout.self, from: respData){
-					let fields = jsonObj.caseCompactLayoutCase.fieldItems.map({ (fieldItem) -> String in return (fieldItem.layoutComponents.first?.value)!})
-					let query = "SELECT Id, " + fields.joined(separator: ", ") + " FROM \(obj) WHERE id = '\(id)'"
-					completion(query)
-				}
-			}
-		}
+	// TrailInsurance doesn't do any sophisticated error checking. When an SDK request fails, we just log it.
+	func standardErrorHandler(err:Any, urlResp:Any) {
+		SalesforceLogger.d(type(of: self), message: "Failed to successfully complete the REST REquest. Error is: \(String(describing: err))")
 	}
 	
-	func limitQueryByLoggedInUserID(query:String) -> String {
-		var q = query
-		if let userId = UserAccountManager.shared.currentUserAccountIdentity?.userId {
-			q += "'\(userId)'"
+	// Retrieves the compact layout of the given object, and constructs a soql query from the returned metadata
+	func buildQueryFromCompactLayout(for obj: String, id: String, completion: @escaping RequestCompletionBlock) {
+		let layoutReq = RestRequest.init(method: .GET, path: "/v44.0/compactLayouts?q=\(obj)", queryParams:nil)
+		//			let query = RestClient.requestForLayout()
+
+		layoutReq.parseResponse = false
+		RestClient.shared.send(request: layoutReq, onFailure: standardErrorHandler) { (response, _) in
+			guard let responseData = response as? Data,
+				let decodedJSON = try? JSONDecoder().decode(CaseCompactLayout.self, from: responseData) else {
+					return
+			}
+			let fields = decodedJSON.caseCompactLayoutCase.fieldItems.map({ (fieldItem) -> String in return (fieldItem.layoutComponents.first?.value)!})
+			let dataRequest = RestClient.shared.requestForRetrieve(withObjectType: obj, objectId: id, fieldList: fields.joined(separator: ", "))
+			completion(dataRequest)
 		}
-		return q
 	}
 	
 	// Protocol Methods
@@ -90,36 +91,26 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 	}
 	
 	@objc func fetchData() {
-		if(limitToLoggedInUser){
-			self.sfQueryString = limitQueryByLoggedInUserID(query: sfQueryString)
-		}
 		let SFApiRequest = RestClient.shared.request(forQuery: sfQueryString)
-		RestClient.shared.send(request: SFApiRequest, onFailure: { (_,_) in
-			SalesforceLogger.d(type(of:self), message: "Error Invoking SFRestAPI request with request: \(SFApiRequest)")
-		}) { [weak self] (response, _) in
-//			[weak self] (response, urlResponse) in
-//
-//			guard let strongSelf = self,
-//				let jsonResponse = response as? Dictionary<String,Any>,
-//				let result = jsonResponse ["records"] as? [Dictionary<String,Any>]  else {
-//					return
-//			}
-			if let dictionaryResp = response as? Dictionary<String, Any> {
-				if let results = dictionaryResp["records"] as? [SFRecord] {
-					var resultsToReturn = [SFRecord]()
-					if dictionaryResp["totalSize"] as! Int == 1 && self!.forceMultiple == false {
-						// a single record should return a dictionary of fields -> value
-						resultsToReturn = (self?.fields(from: results[0]))!
-				
-					} else {
-						resultsToReturn = results
-					}
-					
-					DispatchQueue.main.async {
-						self?.sfRecords = resultsToReturn
-						self?.sfDataSourceDelegate?.dataUpdated()
-					}
-				}
+		self.retrieveData(withRequest: SFApiRequest)
+	}
+	
+	func retrieveData(withRequest request:RestRequest){
+		RestClient.shared.send(request: request, onFailure: standardErrorHandler) { [weak self] (response, _) in
+			guard let dictionaryResponse = response as? SFResponseDictionary else { return }
+
+			var resultsToReturn = [SFRecord]()
+			if let records = dictionaryResponse["records"] as? [SFRecord] {
+				// we have a query result with multiple records
+				resultsToReturn = records
+			} else {
+				// we have a retrieve result, with fields of a single record.
+				resultsToReturn = (self?.fields(from: dictionaryResponse))!
+			}
+			
+			DispatchQueue.main.async {
+				self?.sfRecords = resultsToReturn
+				self?.sfDataSourceDelegate?.dataUpdated()
 			}
 		}
 	}

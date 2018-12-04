@@ -14,7 +14,6 @@
 		78A235BD93AB7D080D67CD51 /* Pods_TrailInsurance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A29C75280BDF73123F14B4 /* Pods_TrailInsurance.framework */; };
 		B5B254D121B1B02200CB628C /* IncidentLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B421B1B01A00CB628C /* IncidentLocationController.swift */; };
 		B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */; };
-		B5B254D321B1B02200CB628C /* AppDelegate+util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B621B1B01B00CB628C /* AppDelegate+util.swift */; };
 		B5B254D521B1B02200CB628C /* SFDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B821B1B01B00CB628C /* SFDataSource.swift */; };
 		B5B254D621B1B02200CB628C /* CaseCompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */; };
 		B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */; };
@@ -59,7 +58,6 @@
 		82A29C75280BDF73123F14B4 /* Pods_TrailInsurance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrailInsurance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B254B421B1B01A00CB628C /* IncidentLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentLocationController.swift; sourceTree = "<group>"; };
 		B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Contact.swift"; sourceTree = "<group>"; };
-		B5B254B621B1B01B00CB628C /* AppDelegate+util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+util.swift"; sourceTree = "<group>"; };
 		B5B254B821B1B01B00CB628C /* SFDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFDataSource.swift; sourceTree = "<group>"; };
 		B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseCompactLayout.swift; sourceTree = "<group>"; };
 		B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+AVFoundation.swift"; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 		B5B254BE21B1B01C00CB628C /* icons8-opened-folder-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-opened-folder-30.png"; sourceTree = "<group>"; };
 		B5B254BF21B1B01C00CB628C /* ClaimViewCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimViewCtrl.swift; sourceTree = "<group>"; };
 		B5B254C021B1B01D00CB628C /* icons8-add-new-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-add-new-30.png"; sourceTree = "<group>"; };
-		B5B254C121B1B01D00CB628C /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B5B254C221B1B01D00CB628C /* UpdateSFDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateSFDatasource.swift; sourceTree = "<group>"; };
 		B5B254C321B1B01D00CB628C /* UIView+loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+loading.swift"; sourceTree = "<group>"; };
 		B5B254C421B1B01E00CB628C /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
@@ -129,7 +126,6 @@
 				B5E6FCBE21B1B638005669FE /* UI Components */,
 				B5E6FCBC21B1B5F5005669FE /* Structs */,
 				B5E6FCBB21B1B5E8005669FE /* Extensions */,
-				B5B254C121B1B01D00CB628C /* MyPlayground.playground */,
 				4FD6C4A11B755265002F9F90 /* Classes */,
 				4FD6C4771B754AF1002F9F90 /* Supporting Files */,
 			);
@@ -188,7 +184,6 @@
 				B5B254C721B1B01F00CB628C /* SingleSFRecord.swift */,
 				B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */,
 				B5B254CF21B1B02100CB628C /* FileManager+utils.swift */,
-				B5B254B621B1B01B00CB628C /* AppDelegate+util.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -397,7 +392,6 @@
 				B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */,
 				B5B254D521B1B02200CB628C /* SFDataSource.swift in Sources */,
 				B5B254EA21B1B02200CB628C /* SFDataSource+apiWrappers.swift in Sources */,
-				B5B254D321B1B02200CB628C /* AppDelegate+util.swift in Sources */,
 				B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */,
 				B5B254D621B1B02200CB628C /* CaseCompactLayout.swift in Sources */,
 				B5B254D821B1B02200CB628C /* ExistingClaimsCtrl.swift in Sources */,

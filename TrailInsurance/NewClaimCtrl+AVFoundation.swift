@@ -12,8 +12,10 @@ import Speech
 import UIKit
 
 extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+	// Computed Property that acts like a stored property
 	var audioFilenameURL: URL {
 		get {
+			// we're always going to reuse the same audiofile url
 			return FileManager.getDocumentsDir().appendingPathComponent("incident.m4a")
 		}
 	}
@@ -31,20 +33,23 @@ extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 			recordingSession.requestRecordPermission() { _ in
 				//[unowned self] allowed in
 				DispatchQueue.main.async {
+					// requestRecordPermission will ask the user for permission to record.
+					// in this block we should do something kind to the user when they say no.
+					// tbd.
 				}
 			}
 		} catch {
 			print("failed to record")
 		}
+		// attach a dismiss button to the keyboard, in case a user taps on the field, instead of using dictation
 		attachKeyboardDismissalButton()
 	}
 	
 	func attachKeyboardDismissalButton(){
 		let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
-		//create left side empty space so that done button set on right side
-		let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
-		let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NewClaimCtrl.doneButtonAction))
-		toolbar.setItems([flexSpace, doneBtn], animated: false)
+		let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+		let doneButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NewClaimCtrl.doneButtonAction))
+		toolbar.setItems([flexSpace, doneButton], animated: false)
 		toolbar.sizeToFit()
 		//setting toolbar as inputAccessoryView
 		self.transcriptionText.inputAccessoryView = toolbar

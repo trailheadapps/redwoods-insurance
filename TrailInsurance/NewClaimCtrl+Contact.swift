@@ -12,9 +12,6 @@ import ContactsUI
 
 extension NewClaimCtrl: CNContactViewControllerDelegate, CNContactPickerDelegate {
 	
-	func initContactsExt() {
-	}
-	
 	@IBAction func onAddExistingContactTouched(_ sender: Any) {
 		contactPicker.delegate = self
 		self.present(contactPicker, animated: true, completion: nil)

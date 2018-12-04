@@ -19,12 +19,15 @@ class SFUtilities {
 	
 	var masterAccountId = ""
 	
+	// TrailInsurance doesn't do any sophisticated error checking. When an SDK request fails, we just log it.
+	func standardErrorHandler(err:Any, urlResp:Any) {
+		SalesforceLogger.d(type(of: self), message: "Failed to successfully complete the REST REquest. Error is: \(String(describing: err))")
+	}
+	
 	func getMasterAccountForUser(completion: @escaping SFSinglePropertyReturnCompletionHandler) {
 		if let userId = UserAccountManager.shared.currentUserAccount?.accountIdentity.userId {
 			let accountRequest = RestClient.shared.request(forQuery: "SELECT ID FROM Account WHERE ownerId = '\(userId)' AND isMaster__c = true LIMIT 1")
-			RestClient.shared.send(request: accountRequest, onFailure: {(_,_) in
-				SalesforceLogger.d(type(of: self), message: "Error Invoking Rest API with request: \(accountRequest)")
-			}) { (response, _) in
+			RestClient.shared.send(request: accountRequest, onFailure: standardErrorHandler) { (response, _) in
 				if let dictFromResponse = response as? Dictionary<String, Any> {
 					if let records = dictFromResponse["records"] as? [Dictionary<String,Any>] {
 						if let record = records.first {
@@ -38,9 +41,7 @@ class SFUtilities {
 	
 	func createCase(from record:Dictionary<String, Any>, completion: @escaping SFSinglePropertyReturnCompletionHandler) {
 		let createRequest = RestClient.shared.requestForCreate(withObjectType: "Case", fields: record)
-		RestClient.shared.send(request: createRequest, onFailure: {(err,urlResponse) in
-			SalesforceLogger.d(type(of: self), message: "Failed to create object using request: \( createRequest). Error is: \(String(describing: err))")
-		}) { (response, _) in
+		RestClient.shared.send(request: createRequest, onFailure: standardErrorHandler) { (response, _) in
 			if let record = response as? Dictionary<String,Any> {
 				completion(record["id"] as! String)
 			}
@@ -75,9 +76,8 @@ class SFUtilities {
 	}
 	
 	func sendCompositRequest(request: RestRequest, completion: @escaping SFArrayOfIdsCompletionHandler){
-		RestClient.shared.send(request: request, onFailure: { (error, urlResp) in
-			SalesforceLogger.d(type(of: self), message: "failed to execute Rest api request. Request is: \(request) and Error is: \(String(describing: error)) and urlResp is: \(String(describing: urlResp))")
-		}) { [weak self] (response, urlResp) in
+		RestClient.shared.send(request: request, onFailure: standardErrorHandler) { (response, _) in
+			//removed unneeded  [weak self]
 			var ids: [String] = [String]()
 			guard let jsonResponse = response as? SFDict,
 				let results = jsonResponse["compositeResponse"] as? [SFDict] else {
@@ -92,24 +92,24 @@ class SFUtilities {
 		}
 	}
 	
-	func createImageFileUploadRequest(from image:UIImage, accountId: String, caseId: String) -> RestRequest? {
-		guard let half = image.ResizeImage(),
+	func createImageFileUploadRequest(from image:UIImage, caseId: String) -> RestRequest? {
+		guard let half = image.resizeImageByHalf(),
 			let imageData = UIImageJPEGRepresentation(half, 0.75) else {
 			return nil
 		}
-		let record: Dictionary<String,Any> = [
-			"Name": NSUUID().uuidString + ".jpg",
-			"Body": imageData.base64EncodedString(options: .lineLength64Characters),
-			"parentId": caseId
-		]
-		
-		return RestClient.shared.requestForCreate(withObjectType: "Attachment", fields: record)
+		let fileName = NSUUID().uuidString + ".jpg"
+		return createGenericFileUploadRequestFor(file: imageData, caseId: caseId, filename: fileName)
 	}
 	
-	func createAudioFileUploadRequest(from audioFile:Data, accountId: String, caseId: String) -> RestRequest {
+	func createAudioFileUploadRequest(from audioFile:Data, caseId: String) -> RestRequest {
+		let fileName = NSUUID().uuidString + ".m4a"
+		return createGenericFileUploadRequestFor(file: audioFile, caseId: caseId, filename: fileName)
+	}
+	
+	func createGenericFileUploadRequestFor(file: Data, caseId: String, filename: String) -> RestRequest {
 		let record: Dictionary<String,Any> = [
-			"Name": NSUUID().uuidString + ".m4a",
-			"Body": audioFile.base64EncodedString(options: .lineLength64Characters),
+			"Name": filename,
+			"Body": file.base64EncodedString(options: .lineLength64Characters),
 			"parentId": caseId
 		]
 		
@@ -117,21 +117,19 @@ class SFUtilities {
 	}
 	
 	func sendRequestAndGetSingleProperty(with request: RestRequest, completion: @escaping SFSinglePropertyReturnCompletionHandler) {
-		RestClient.shared.send(request: request, onFailure: { (error, urlResp) in
-				SalesforceLogger.d(type(of: self), message: "failed to execute Rest api request. Request is: \(request) and Error is: \(String(describing: error)) and urlResp is: \(String(describing: urlResp))")
-			}) { (response, urlResp) in
+		RestClient.shared.send(request: request, onFailure: standardErrorHandler) { (response, _) in
 				if let record = response as? Dictionary<String,Any> {
 					completion(record["id"] as! String)
 				}
 			}
 	}
 	
-	func createFileUploadRequests(from images:[UIImage], accountId: String, caseId: String) -> RestRequest { //actually a composite request
+	func createFileUploadRequests(from images:[UIImage], accountId: String, caseId: String) -> RestRequest {
 		var requests: [RestRequest] = [RestRequest]()
 		var refIds: [String] = [String]()
 		
 		for img in images {
-			if let req = createImageFileUploadRequest(from: img, accountId: accountId, caseId: caseId){
+			if let req = createImageFileUploadRequest(from: img, caseId: caseId){
 				requests.append(req)
 				refIds.append(NSUUID().uuidString)
 			}

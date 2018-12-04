@@ -54,9 +54,7 @@ class NewClaimCtrl: UIViewController {
 		initAVRecordingExt()
 		//Setup Camera, and Image access
 		initImageExt()
-		//Setup contact access
-		initContactsExt()
-		
+				
 		// setup our Contact List data source and delegate
 		contactList.dataSource = contactListData
 		contactList.delegate = contactListData // no delegate methods are currently used.
