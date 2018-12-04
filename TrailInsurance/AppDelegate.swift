@@ -45,8 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		self.window = UIWindow(frame: UIScreen.main.bounds)
-		self.initializeAppViewState()
-
 		SFPushNotificationManager.sharedInstance().registerForRemoteNotifications()
 
 		//Uncomment the code below to see how you can customize the color, textcolor, font and fontsize of the navigation bar
@@ -84,19 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return false
 	}
 
-	// MARK: - Private methods
-	func initializeAppViewState() {
-		if (!Thread.isMainThread) {
-			DispatchQueue.main.async {
-				self.initializeAppViewState()
-			}
-			return
-		}
-		
-		self.window!.rootViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "InitialView") as UIViewController
-		self.window!.makeKeyAndVisible()
-	}
-
 	func setupRootViewController() {
 		self.window!.rootViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "InitialView") as UIViewController
 	}
@@ -108,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				return
 			}
 		}
-
 		postResetBlock()
 	}
 
