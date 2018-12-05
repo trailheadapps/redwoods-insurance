@@ -11,6 +11,7 @@
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49C1B755242002F9F90 /* RootViewController.swift */; };
 		78A235BD93AB7D080D67CD51 /* Pods_TrailInsurance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A29C75280BDF73123F14B4 /* Pods_TrailInsurance.framework */; };
+		B568ABDC21B865A40006F2B1 /* ContactListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */; };
 		B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */; };
 		B5B254D521B1B02200CB628C /* SFDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B821B1B01B00CB628C /* SFDataSource.swift */; };
 		B5B254D621B1B02200CB628C /* CaseCompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */; };
@@ -35,7 +36,6 @@
 		B5B254EB21B1B02200CB628C /* FileManager+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CF21B1B02100CB628C /* FileManager+utils.swift */; };
 		B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */; };
 		B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */; };
-		B5C3CF5221B57BB3004EBA83 /* ContactListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CF5121B57BB3004EBA83 /* ContactListDataSource.swift */; };
 		B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
@@ -53,6 +53,7 @@
 		4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailInsurance.entitlements; sourceTree = "<group>"; };
 		762732C14CFE40A989C3AD70 /* Pods-TrailInsurance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrailInsurance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrailInsurance/Pods-TrailInsurance.debug.xcconfig"; sourceTree = "<group>"; };
 		82A29C75280BDF73123F14B4 /* Pods_TrailInsurance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrailInsurance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListDataSource.swift; sourceTree = "<group>"; };
 		B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Contact.swift"; sourceTree = "<group>"; };
 		B5B254B821B1B01B00CB628C /* SFDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFDataSource.swift; sourceTree = "<group>"; };
 		B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseCompactLayout.swift; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		B5B254CF21B1B02100CB628C /* FileManager+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+utils.swift"; sourceTree = "<group>"; };
 		B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+MapKit.swift"; sourceTree = "<group>"; };
 		B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
-		B5C3CF5121B57BB3004EBA83 /* ContactListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactListDataSource.swift; path = ../ContactListDataSource.swift; sourceTree = "<group>"; };
 		B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+SFTransaction.swift"; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		4FD6C4A11B755265002F9F90 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B5C3CF5121B57BB3004EBA83 /* ContactListDataSource.swift */,
+				B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */,
 				B5B254CE21B1B02100CB628C /* SFDataSource+apiWrappers.swift */,
 				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
 				B5B254CB21B1B02000CB628C /* NewClaimCtrl.swift */,
@@ -388,13 +388,13 @@
 				B5B254EA21B1B02200CB628C /* SFDataSource+apiWrappers.swift in Sources */,
 				B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */,
 				B5B254D621B1B02200CB628C /* CaseCompactLayout.swift in Sources */,
+				B568ABDC21B865A40006F2B1 /* ContactListDataSource.swift in Sources */,
 				B5B254D821B1B02200CB628C /* ExistingClaimsCtrl.swift in Sources */,
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
 				B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */,
 				B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */,
 				B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */,
-				B5C3CF5221B57BB3004EBA83 /* ContactListDataSource.swift in Sources */,
 				B5B254DC21B1B02200CB628C /* ClaimViewCtrl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

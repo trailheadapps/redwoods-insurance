@@ -63,8 +63,6 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 	// Retrieves the compact layout of the given object, and constructs a soql query from the returned metadata
 	func buildQueryFromCompactLayout(for obj: String, id: String, completion: @escaping RequestCompletionBlock) {
 		let layoutReq = RestRequest.init(method: .GET, path: "/v44.0/compactLayouts?q=\(obj)", queryParams:nil)
-		//			let query = RestClient.requestForLayout()
-
 		layoutReq.parseResponse = false
 		RestClient.shared.send(request: layoutReq, onFailure: standardErrorHandler) { (response, _) in
 			guard let responseData = response as? Data,
