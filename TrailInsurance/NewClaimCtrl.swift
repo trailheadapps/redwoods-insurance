@@ -51,9 +51,9 @@ class NewClaimCtrl: UIViewController {
 		//Setup Mapview
 		initMapViewExtension()
 		//Recording Setup
-		initAVRecordingExt()
+		initAVRecordingExtension()
 		//Setup Camera, and Image access
-		initImageExt()
+		initImageExtension()
 				
 		// setup our Contact List data source and delegate
 		contactList.dataSource = contactListData
