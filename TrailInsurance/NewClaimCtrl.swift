@@ -49,7 +49,7 @@ class NewClaimCtrl: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		//Setup Mapview
-		initMapViewExt()
+		initMapViewExtension()
 		//Recording Setup
 		initAVRecordingExt()
 		//Setup Camera, and Image access
