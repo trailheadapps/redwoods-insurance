@@ -14,9 +14,9 @@ import SalesforceSDKCore
 extension NewClaimCtrl {
 
 	func uploadClaimTransaction() {
-        SalesforceLogger.d(type(of: self), message: "Starting transaction")
+		SalesforceLogger.d(type(of: self), message: "Starting transaction")
 
-        let alert = UIAlertController(title: nil, message: "Submitting Claim", preferredStyle: .alert)
+		let alert = UIAlertController(title: nil, message: "Submitting Claim", preferredStyle: .alert)
 		let loadingModal = UIActivityIndicatorView(frame: CGRect(x:10, y:5, width:50, height:50))
 		loadingModal.hidesWhenStopped = true
 		loadingModal.activityIndicatorViewStyle = .gray
@@ -24,15 +24,15 @@ extension NewClaimCtrl {
 		alert.view.addSubview(loadingModal)
 		present(alert, animated: true, completion: nil)
 
-        sfUtils.getMasterAccountForUser { masterAccountId in
-            self.createCase(withMasterAccountId: masterAccountId)
-        }
+		sfUtils.getMasterAccountForUser { masterAccountId in
+			self.createCase(withMasterAccountId: masterAccountId)
+		}
 	}
 	
 	func createCase(withMasterAccountId masterAccountId: String) {
-        SalesforceLogger.d(type(of: self), message: "Completed fetching the Master account Id: \(masterAccountId), starting to create case")
+		SalesforceLogger.d(type(of: self), message: "Completed fetching the Master account Id: \(masterAccountId), starting to create case")
 
-        var record = [String: Any]()
+		var record = [String: Any]()
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = .full
 		record["origin"] = "TrailInsurance Mobile App"
@@ -47,36 +47,36 @@ extension NewClaimCtrl {
 		record["Incident_Location__longitude__s"] = self.mapView.centerCoordinate.longitude
 		record["PotentialLiability__c"] = true
 
-        sfUtils.createCase(from: record) { newCaseId in
-            self.createContacts(withCaseId: newCaseId)
-        }
+		sfUtils.createCase(from: record) { newCaseId in
+			self.createContacts(withCaseId: newCaseId)
+		}
 	}
 	
 	func createContacts(withCaseId caseId:String) {
-        SalesforceLogger.d(type(of: self), message: "Completed creating case. caseId: \(caseId). Uploading Contacts.")
+		SalesforceLogger.d(type(of: self), message: "Completed creating case. caseId: \(caseId). Uploading Contacts.")
 
-        let createContactsRequest = sfUtils.createContactRequest(from: self.contactListData.contacts, accountId: masterAccountId)
+		let createContactsRequest = sfUtils.createContactRequest(from: self.contactListData.contacts, accountId: masterAccountId)
 		self.caseId = caseId
 
-        sfUtils.sendCompositRequest(request: createContactsRequest) { contactIds in
-            self.createCaseContacts(withContactIds: contactIds)
-        }
+		sfUtils.sendCompositRequest(request: createContactsRequest) { contactIds in
+			self.createCaseContacts(withContactIds: contactIds)
+		}
 	}
 	
 	func createCaseContacts(withContactIds contactIds: [String]) {
-        SalesforceLogger.d(type(of: self), message: "Completed creating contacts. Creating case<->contact junction object records.")
+		SalesforceLogger.d(type(of: self), message: "Completed creating contacts. Creating case<->contact junction object records.")
 
-        let caseContactCreateRequest = sfUtils.createCaseContactsCompositeRequest(caseId: self.caseId, contactIds: contactIds)
+		let caseContactCreateRequest = sfUtils.createCaseContactsCompositeRequest(caseId: self.caseId, contactIds: contactIds)
 
-        sfUtils.sendCompositRequest(request: caseContactCreateRequest) { _ in
-            self.uploadMapImage()
-        }
+		sfUtils.sendCompositRequest(request: caseContactCreateRequest) { _ in
+			self.uploadMapImage()
+		}
 	}
 	
 	func uploadMapImage() {
-        SalesforceLogger.d(type(of: self), message: "Completed creating case contact records, optionally uploading map image as attachment.")
+		SalesforceLogger.d(type(of: self), message: "Completed creating case contact records, optionally uploading map image as attachment.")
 
-        guard let location = locationManager.location else {
+		guard let location = locationManager.location else {
 			self.uploadPhotos()
 			return
 		}
@@ -108,44 +108,44 @@ extension NewClaimCtrl {
 			
 			guard let mapImg = UIGraphicsGetImageFromCurrentImageContext(),
 				  let request = self.sfUtils.createImageFileUploadRequest(from: mapImg, caseId: self.caseId)
-                  else {
-                self.uploadPhotos()
-                return
+				  else {
+				self.uploadPhotos()
+				return
 			}
 
-            UIGraphicsEndImageContext()
+			UIGraphicsEndImageContext()
 
-            self.sfUtils.sendRequestAndGetSingleProperty(with: request) { _ in
-                self.uploadPhotos()
-            }
+			self.sfUtils.sendRequestAndGetSingleProperty(with: request) { _ in
+				self.uploadPhotos()
+			}
 		}
 	}
 	
 	func uploadPhotos() {
-        SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
+		SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
 
-        let uploadRequests = sfUtils.createFileUploadRequests(from: self.selectedImages, accountId: self.masterAccountId, caseId: self.caseId)
+		let uploadRequests = sfUtils.createFileUploadRequests(from: self.selectedImages, accountId: self.masterAccountId, caseId: self.caseId)
 
-        sfUtils.sendCompositRequest(request: uploadRequests) { _ in
-            self.uploadAudio()
-        }
+		sfUtils.sendCompositRequest(request: uploadRequests) { _ in
+			self.uploadAudio()
+		}
 	}
 	
 	func uploadAudio() {
-        SalesforceLogger.d(type(of: self), message: "Completed upload of photos. Uploading audio file.")
+		SalesforceLogger.d(type(of: self), message: "Completed upload of photos. Uploading audio file.")
 
-        if let audioData = audioFileAsData() {
+		if let audioData = audioFileAsData() {
 			let uploadRequest = sfUtils.createAudioFileUploadRequest(from: audioData, caseId: self.caseId)
-            sfUtils.sendRequestAndGetSingleProperty(with: uploadRequest) { _ in
-                self.showConfirmation()
-            }
+			sfUtils.sendRequestAndGetSingleProperty(with: uploadRequest) { _ in
+				self.showConfirmation()
+			}
 		}
 	}
 	
 	func showConfirmation() {
-        SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
+		SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
 
-        dismiss(animated: true, completion: nil)
+		dismiss(animated: true, completion: nil)
 		DispatchQueue.main.async {
 			self.tabBarController?.selectedIndex = 0
 		}
