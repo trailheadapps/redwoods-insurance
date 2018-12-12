@@ -9,15 +9,15 @@
 import Foundation
 import MapKit
 
-extension NewClaimCtrl: MKMapViewDelegate, CLLocationManagerDelegate {
-	
-	func initMapViewExt() {
+extension NewClaimCtrl {
+
+	func initMapViewExtension() {
 		//CoreLocation setup
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 		
-		if let _ = checkLocationAuthorizationStatus(), let userLocation = locationManager.location {
-			centerMapOnCurrentLocation(location: userLocation)
+		if checkLocationAuthorizationStatus() == true, let userLocation = locationManager.location {
+			centerMap(on: userLocation)
 		}
 		
 		//mapView setup
@@ -25,56 +25,52 @@ extension NewClaimCtrl: MKMapViewDelegate, CLLocationManagerDelegate {
 		mapView.mapType = .hybrid
 		mapView.isZoomEnabled = true
 		mapView.isScrollEnabled = true
-		
 	}
 	
-	func geoCode(location : CLLocation!){
-		/* Only one reverse geocoding can be in progress at a time hence we need to cancel existing
-		one if we are getting location updates */
+	func geocode(_ location: CLLocation) {
+        // Only one reverse geocoding can be in progress at a time, hence we need
+        // to cancel any existing ones if we are getting location updates.
 		geoCoder.cancelGeocode()
-		geoCoder.reverseGeocodeLocation(location, completionHandler: { (data, error) -> Void in
-			guard let placeMarks = data else {
-				return
-			}
-			if let loc = placeMarks.first {
-				self.geoCodedAddress = loc
-				let number = loc.subThoroughfare ?? ""
-				let street = loc.thoroughfare ?? ""
-				let city = loc.locality ?? ""
-				let state = loc.administrativeArea ?? ""
-				let zip = loc.postalCode ?? ""
-				let country = loc.isoCountryCode ?? ""
-				let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
-				self.addressLabel.text = address
-				self.geoCodedAddressText = address
-			}
-		})
-	}
-	
-	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-		self.geoCode(location: location)
-	}
-	
-	private func centerMapOnCurrentLocation(location:CLLocation){
-		let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
-		mapView.setRegion(coordinateRegion, animated: true)
-	}
-	
-	func checkLocationAuthorizationStatus() -> Bool? {
-		if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-			locationManager.startUpdatingLocation()
-			return true
-		} else {
-			locationManager.requestWhenInUseAuthorization()
-			return nil
+		geoCoder.reverseGeocodeLocation(location) { placemarks, error in
+            guard let placemark = placemarks?.first else { return }
+            self.geoCodedAddress = placemark
+            let number = placemark.subThoroughfare ?? ""
+            let street = placemark.thoroughfare ?? ""
+            let city = placemark.locality ?? ""
+            let state = placemark.administrativeArea ?? ""
+            let zip = placemark.postalCode ?? ""
+            let country = placemark.isoCountryCode ?? ""
+            let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
+            self.addressLabel.text = address
+            self.geoCodedAddressText = address
 		}
 	}
-	
-	// LocationManager Delegate Methods
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		let locationValue:CLLocationCoordinate2D = manager.location!.coordinate
-		defer { currentLocation = locations.last }
+
+    private func centerMap(on location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+
+    func checkLocationAuthorizationStatus() -> Bool? {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+            return true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+            return nil
+        }
+    }
+}
+
+extension NewClaimCtrl: MKMapViewDelegate {
+	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+		geocode(location)
 	}
-	
+}
+
+extension NewClaimCtrl: CLLocationManagerDelegate {
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		currentLocation = locations.last
+	}
 }

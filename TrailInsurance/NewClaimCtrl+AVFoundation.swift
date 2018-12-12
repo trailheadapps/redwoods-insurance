@@ -20,7 +20,7 @@ extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 		}
 	}
 
-	func initAVRecordingExt() {
+	func initAVRecordingExtension() {
 		recordingSession = AVAudioSession.sharedInstance()
 		playButton.isEnabled = false
 		

@@ -14,8 +14,6 @@ typealias SFRecord = Dictionary<String, Any>
 
 class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 	typealias CellConfigurator = (SFRecord?, UITableViewCell) -> Void
-	typealias StringCompletionBlock = (_ result: String) -> Void
-	typealias RequestCompletionBlock = (_ request: RestRequest) -> Void
 	typealias SFResponseDictionary = Dictionary<String,Any>
 	
 	private let reusableIdentifier:String
@@ -49,29 +47,38 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 		self.reusableIdentifier = reusable
 		self.cellConfigurator = cellConfigurator
 		super.init()
-		self.buildQueryFromCompactLayout(for: obj, id: id) { (request) in
+		self.buildQueryFromCompactLayout(forObjectType: obj, objectId: id) { request in
 			self.retrieveData(withRequest: request)
 		}
 		
 	}
 
 	// TrailInsurance doesn't do any sophisticated error checking. When an SDK request fails, we just log it.
-	func standardErrorHandler(err:Any, urlResp:Any) {
-		SalesforceLogger.d(type(of: self), message: "Failed to successfully complete the REST REquest. Error is: \(String(describing: err))")
-	}
-	
+    func handleError(_ error: Error?, urlResponse: URLResponse? = nil) {
+        let errorDescription: String
+        if let error = error {
+            errorDescription = "\(error)"
+        } else {
+            errorDescription = "An unknown error occurred."
+        }
+        SalesforceLogger.e(type(of: self), message: "Failed to successfully complete the REST request. \(errorDescription)")
+    }
+
 	// Retrieves the compact layout of the given object, and constructs a soql query from the returned metadata
-	func buildQueryFromCompactLayout(for obj: String, id: String, completion: @escaping RequestCompletionBlock) {
-		let layoutReq = RestRequest.init(method: .GET, path: "/v44.0/compactLayouts?q=\(obj)", queryParams:nil)
-		layoutReq.parseResponse = false
-		RestClient.shared.send(request: layoutReq, onFailure: standardErrorHandler) { (response, _) in
-			guard let responseData = response as? Data,
-				let decodedJSON = try? JSONDecoder().decode(CaseCompactLayout.self, from: responseData) else {
-					return
-			}
-			let fields = decodedJSON.caseCompactLayoutCase.fieldItems.map({ (fieldItem) -> String in return (fieldItem.layoutComponents.first?.value)!})
-			let dataRequest = RestClient.shared.requestForRetrieve(withObjectType: obj, objectId: id, fieldList: fields.joined(separator: ", "))
-			completion(dataRequest)
+	func buildQueryFromCompactLayout(forObjectType objectType: String, objectId: String, completionHandler: @escaping (_ request: RestRequest) -> Void) {
+		let layoutRequest = RestRequest(method: .GET, path: "/v44.0/compactLayouts?q=\(objectType)", queryParams: nil)
+		layoutRequest.parseResponse = false
+		RestClient.shared.send(request: layoutRequest, onFailure: handleError) { response, _ in
+            guard let responseData = response as? Data else { return }
+            do {
+                let decodedJSON = try JSONDecoder().decode(CaseCompactLayout.self, from: responseData)
+                let fields = decodedJSON.caseCompactLayoutCase.fieldItems.map { $0.layoutComponents.first!.value }
+                let fieldList = fields.joined(separator: ", ")
+                let dataRequest = RestClient.shared.requestForRetrieve(withObjectType: objectType, objectId: objectId, fieldList: fieldList)
+                completionHandler(dataRequest)
+            } catch {
+                self.handleError(error)
+            }
 		}
 	}
 	
@@ -94,7 +101,7 @@ class SFDataSource<SFRecord>: NSObject, UITableViewDataSource {
 	}
 	
 	func retrieveData(withRequest request:RestRequest){
-		RestClient.shared.send(request: request, onFailure: standardErrorHandler) { [weak self] (response, _) in
+		RestClient.shared.send(request: request, onFailure: handleError) { [weak self] response, _ in
 			guard let dictionaryResponse = response as? SFResponseDictionary else { return }
 
 			var resultsToReturn = [SFRecord]()

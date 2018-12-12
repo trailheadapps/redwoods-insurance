@@ -49,11 +49,11 @@ class NewClaimCtrl: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		//Setup Mapview
-		initMapViewExt()
+		initMapViewExtension()
 		//Recording Setup
-		initAVRecordingExt()
+		initAVRecordingExtension()
 		//Setup Camera, and Image access
-		initImageExt()
+		initImageExtension()
 				
 		// setup our Contact List data source and delegate
 		contactList.dataSource = contactListData
@@ -64,6 +64,6 @@ class NewClaimCtrl: UIViewController {
 	}
 	
 	@IBAction func submitClaim(_ sender: Any) {
-		UploadClaimTransaction()
+		uploadClaimTransaction()
 	}
 }
