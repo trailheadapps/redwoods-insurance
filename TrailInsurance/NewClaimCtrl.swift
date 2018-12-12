@@ -64,6 +64,6 @@ class NewClaimCtrl: UIViewController {
 	}
 	
 	@IBAction func submitClaim(_ sender: Any) {
-		UploadClaimTransaction()
+		uploadClaimTransaction()
 	}
 }
