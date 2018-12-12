@@ -131,7 +131,7 @@ extension NewClaimCtrl {
         }
 	}
 	
-	func uploadAudio() -> Void {
+	func uploadAudio() {
         SalesforceLogger.d(type(of: self), message: "Completed upload of photos. Uploading audio file.")
 
         if let audioData = audioFileAsData() {
@@ -142,7 +142,7 @@ extension NewClaimCtrl {
 		}
 	}
 	
-	func showConfirmation() -> Void {
+	func showConfirmation() {
         SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
 
         dismiss(animated: true, completion: nil)
