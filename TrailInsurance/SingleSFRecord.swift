@@ -13,12 +13,12 @@ extension SFDataSource {
 
 	func fields(from record: SFResponseDictionary) -> [SFRecord] {
 		var fieldsArray = [SFRecord]()
-		for (key,value) in record {
+		for (key, value) in record {
 			if !fieldBlacklist.contains(key) {
 				if let v = value as? String {
 					fieldsArray.append([
-						"label" : key,
-						"value" : v
+						"label": key,
+						"value": v
 						] as! SFRecord)
 				}
 			}

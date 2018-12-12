@@ -17,7 +17,7 @@ struct NewCase {
 	var dictionary: [String: Any] {
 		return [
 			"accountId": accountId,
-			"origin" : origin,
+			"origin": origin,
 			"status": status,
 			"subject": subject
 		]

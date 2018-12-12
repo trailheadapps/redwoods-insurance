@@ -13,7 +13,7 @@ import AVFoundation
 import ContactsUI
 
 class NewClaimCtrl: UIViewController {
-	
+
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet weak var recordButton: UIButton!
 	@IBOutlet weak var recordingTimerLabel: UILabel!
@@ -22,16 +22,16 @@ class NewClaimCtrl: UIViewController {
 	@IBOutlet weak var playButton: UIButton!
 	@IBOutlet weak var photoCollectionView: UICollectionView!
 	@IBOutlet weak var contactList: UITableView!
-	
+
 	let locationManager = CLLocationManager()
 	let regionRadius = 150.0
 	let geoCoder = CLGeocoder()
 	let contactPicker = CNContactPickerViewController()
 	let contactListData = ContactListDataSource()
-	
+
 	var recordingSession: AVAudioSession!
 	var incidentRecorder: AVAudioRecorder!
-	var audioPlayer : AVAudioPlayer!
+	var audioPlayer: AVAudioPlayer!
 	var meterTimer: Timer!
 	var currentLocation: CLLocation?
 	var geoCodedAddress: CLPlacemark?
@@ -54,7 +54,7 @@ class NewClaimCtrl: UIViewController {
 		initAVRecordingExtension()
 		//Setup Camera, and Image access
 		initImageExtension()
-				
+
 		// setup our Contact List data source and delegate
 		contactList.dataSource = contactListData
 		contactList.delegate = contactListData // no delegate methods are currently used.
@@ -62,7 +62,7 @@ class NewClaimCtrl: UIViewController {
 		contactList.layer.borderColor = UIColor.black.cgColor
 		contactList.layer.borderWidth = 1
 	}
-	
+
 	@IBAction func submitClaim(_ sender: Any) {
 		uploadClaimTransaction()
 	}

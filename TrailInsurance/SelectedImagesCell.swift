@@ -9,7 +9,7 @@
 import UIKit
 
 class SelectedImagesCell: UICollectionViewCell {
-    
+
 	@IBOutlet weak var imageView: UIImageView!
-	
+
 }

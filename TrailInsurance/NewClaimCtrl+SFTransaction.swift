@@ -17,7 +17,7 @@ extension NewClaimCtrl {
 		SalesforceLogger.d(type(of: self), message: "Starting transaction")
 
 		let alert = UIAlertController(title: nil, message: "Submitting Claim", preferredStyle: .alert)
-		let loadingModal = UIActivityIndicatorView(frame: CGRect(x:10, y:5, width:50, height:50))
+		let loadingModal = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
 		loadingModal.hidesWhenStopped = true
 		loadingModal.activityIndicatorViewStyle = .gray
 		loadingModal.startAnimating()
@@ -28,7 +28,7 @@ extension NewClaimCtrl {
 			self.createCase(withMasterAccountId: masterAccountId)
 		}
 	}
-	
+
 	func createCase(withMasterAccountId masterAccountId: String) {
 		SalesforceLogger.d(type(of: self), message: "Completed fetching the Master account Id: \(masterAccountId), starting to create case")
 
@@ -51,8 +51,8 @@ extension NewClaimCtrl {
 			self.createContacts(withCaseId: newCaseId)
 		}
 	}
-	
-	func createContacts(withCaseId caseId:String) {
+
+	func createContacts(withCaseId caseId: String) {
 		SalesforceLogger.d(type(of: self), message: "Completed creating case. caseId: \(caseId). Uploading Contacts.")
 
 		let createContactsRequest = sfUtils.createContactRequest(from: self.contactListData.contacts, accountId: masterAccountId)
@@ -62,7 +62,7 @@ extension NewClaimCtrl {
 			self.createCaseContacts(withContactIds: contactIds)
 		}
 	}
-	
+
 	func createCaseContacts(withContactIds contactIds: [String]) {
 		SalesforceLogger.d(type(of: self), message: "Completed creating contacts. Creating case<->contact junction object records.")
 
@@ -72,7 +72,7 @@ extension NewClaimCtrl {
 			self.uploadMapImage()
 		}
 	}
-	
+
 	func uploadMapImage() {
 		SalesforceLogger.d(type(of: self), message: "Completed creating case contact records, optionally uploading map image as attachment.")
 
@@ -85,8 +85,8 @@ extension NewClaimCtrl {
 		options.region = region
 		options.scale = UIScreen.main.scale
 		options.size = CGSize.init(width: 400, height: 400)
-		options.mapType = .hybrid
-		
+		options.mapType = .standard
+
 		let snapShotter = MKMapSnapshotter(options: options)
 		snapShotter.start { image, error in
 			guard let snapShot = image, error == nil else {
@@ -94,10 +94,10 @@ extension NewClaimCtrl {
 			}
 			UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
 			snapShot.image.draw(at: .zero)
-			
+
 			let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
 			let pinImage = pinView.image
-			
+
 			var point = snapShot.point(for: location.coordinate)
 			let pinCenterOffset = pinView.centerOffset
 			point.x -= pinView.bounds.size.width / 2
@@ -105,7 +105,7 @@ extension NewClaimCtrl {
 			point.x += pinCenterOffset.x
 			point.y += pinCenterOffset.y
 			pinImage?.draw(at: point)
-			
+
 			guard let mapImg = UIGraphicsGetImageFromCurrentImageContext(),
 				  let request = self.sfUtils.createImageFileUploadRequest(from: mapImg, caseId: self.caseId)
 				  else {
@@ -120,7 +120,7 @@ extension NewClaimCtrl {
 			}
 		}
 	}
-	
+
 	func uploadPhotos() {
 		SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
 
@@ -130,7 +130,7 @@ extension NewClaimCtrl {
 			self.uploadAudio()
 		}
 	}
-	
+
 	func uploadAudio() {
 		SalesforceLogger.d(type(of: self), message: "Completed upload of photos. Uploading audio file.")
 
@@ -141,7 +141,7 @@ extension NewClaimCtrl {
 			}
 		}
 	}
-	
+
 	func showConfirmation() {
 		SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
 

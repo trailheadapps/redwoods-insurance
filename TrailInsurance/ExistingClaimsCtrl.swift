@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 import SalesforceSDKCore
 
-class ExistingClaimsCtrl: UITableViewController,  SFDataSourceDelegate {
-	
-	
+class ExistingClaimsCtrl: UITableViewController, SFDataSourceDelegate {
+
 	func dataUpdated() {
 		DispatchQueue.main.async {
 			self.tableView.reloadData()
@@ -20,8 +19,8 @@ class ExistingClaimsCtrl: UITableViewController,  SFDataSourceDelegate {
 			self.tableView.activityIndicatorView.stopAnimating()
 		}
 	}
-	
-	let dataSource = SFDataSource<SFRecord>(withQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", identifier: "CasePrototype", forceMultiple: true){
+
+	let dataSource = SFDataSource<SFRecord>(withQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", identifier: "CasePrototype", forceMultiple: true) {
 		SFRecord, cell in
 		if let record = SFRecord {
 			cell.textLabel?.text = (SFRecord?["Subject"] as! String)
@@ -39,8 +38,7 @@ class ExistingClaimsCtrl: UITableViewController,  SFDataSourceDelegate {
 		refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControlEvents.valueChanged)
 		self.tableView.addSubview(refreshControl!)
 	}
-	
-	
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "ViewClaimDetails"{
 			if let destination = segue.destination as? ClaimViewCtrl {

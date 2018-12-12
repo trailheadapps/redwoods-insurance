@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func setupRootViewController() {
-		self.window!.rootViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "InitialView") as UIViewController
+		self.window!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InitialView") as UIViewController
 	}
 
 	func resetViewState(_ postResetBlock: @escaping () -> Void) {

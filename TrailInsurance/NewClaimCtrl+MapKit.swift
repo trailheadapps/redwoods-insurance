@@ -15,50 +15,50 @@ extension NewClaimCtrl {
 		//CoreLocation setup
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
-		
+
 		if checkLocationAuthorizationStatus() == true, let userLocation = locationManager.location {
 			centerMap(on: userLocation)
 		}
-		
+
 		//mapView setup
 		mapView.delegate = self
-		mapView.mapType = .hybrid
+		mapView.mapType = .standard
 		mapView.isZoomEnabled = true
 		mapView.isScrollEnabled = true
 	}
-	
+
 	func geocode(_ location: CLLocation) {
         // Only one reverse geocoding can be in progress at a time, hence we need
         // to cancel any existing ones if we are getting location updates.
 		geoCoder.cancelGeocode()
-		geoCoder.reverseGeocodeLocation(location) { placemarks, error in
-            guard let placemark = placemarks?.first else { return }
-            self.geoCodedAddress = placemark
-            let number = placemark.subThoroughfare ?? ""
-            let street = placemark.thoroughfare ?? ""
-            let city = placemark.locality ?? ""
-            let state = placemark.administrativeArea ?? ""
-            let zip = placemark.postalCode ?? ""
-            let country = placemark.isoCountryCode ?? ""
-            let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
-            self.addressLabel.text = address
-            self.geoCodedAddressText = address
+		geoCoder.reverseGeocodeLocation(location) { placemarks, _ in
+			guard let placemark = placemarks?.first else { return }
+			self.geoCodedAddress = placemark
+			let number = placemark.subThoroughfare ?? ""
+			let street = placemark.thoroughfare ?? ""
+			let city = placemark.locality ?? ""
+			let state = placemark.administrativeArea ?? ""
+			let zip = placemark.postalCode ?? ""
+			let country = placemark.isoCountryCode ?? ""
+			let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
+			self.addressLabel.text = address
+			self.geoCodedAddressText = address
 		}
 	}
 
     private func centerMap(on location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
+			let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
+			mapView.setRegion(coordinateRegion, animated: true)
     }
 
     func checkLocationAuthorizationStatus() -> Bool? {
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
-            return true
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-            return nil
-        }
+			if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+				locationManager.startUpdatingLocation()
+				return true
+			} else {
+				locationManager.requestWhenInUseAuthorization()
+				return nil
+			}
     }
 }
 
