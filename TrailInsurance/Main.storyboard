@@ -160,13 +160,11 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" address="YES"/>
                                             </textView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redCar.png" translatesAutoresizingMaskIntoConstraints="NO" id="tsQ-3r-Qav">
-                                                <rect key="frame" x="183.66666666666666" y="186" width="47" height="28"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedCar" translatesAutoresizingMaskIntoConstraints="NO" id="tsQ-3r-Qav">
+                                                <rect key="frame" x="182" y="183.66666666666666" width="50" height="33"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="6cU-kn-JDD"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="V18-vq-JoE"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="47" id="y5l-Bq-I3T"/>
-                                                    <constraint firstAttribute="width" constant="47" id="yQ0-fn-EDP"/>
+                                                    <constraint firstAttribute="height" constant="33" id="6cU-kn-JDD"/>
+                                                    <constraint firstAttribute="width" constant="50" id="yQ0-fn-EDP"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O51-0i-dRZ">
@@ -401,8 +399,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="RedCar" width="50" height="33"/>
         <image name="icons8-add-new-30.png" width="30" height="30"/>
         <image name="icons8-opened-folder-30.png" width="30" height="30"/>
-        <image name="redCar.png" width="640" height="403"/>
     </resources>
 </document>
