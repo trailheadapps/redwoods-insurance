@@ -2,20 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSContactsUsageDescription</key>
-	<string>Allow the app to access your contacts?</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Allow the app to access your camera to document damages</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Allow the app to transcribe your audio?</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow the app to use the Microphone to record?</string>
-	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow TrailInsurance to use your location while the app is open?</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Allow Biometric application unlock?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -42,6 +28,20 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Take photos of damages when submitting a claim.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Set contacts as parties involved in a claim.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID will be used to log you into the app without having to enter your passcode.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location will be used for setting the incident address when submitting a claim.</string>
+	<key>NSMainStoryboardFile</key>
+	<string>Main</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record a description of the damages when submitting a claim.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Transcribe your description of the damages when submitting a claim.</string>
 	<key>SFDCOAuthLoginHost</key>
 	<string>login.salesforce.com</string>
 	<key>UILaunchStoryboardName</key>
