@@ -9,7 +9,7 @@
 import UIKit
 import SalesforceSDKCore
 
-class ClaimViewCtrl: UITableViewController, SFDataSourceDelegate {
+class ClaimDetailsTableViewController: UITableViewController, SFDataSourceDelegate {
 
 	var claimId: String?
 	var dataSource: SFDataSource<SFRecord>?

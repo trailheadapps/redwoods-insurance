@@ -9,7 +9,7 @@
 import UIKit
 import SalesforceSDKCore
 
-extension NewClaimCtrl {
+extension NewClaimViewController {
     func initImageExtension() {
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
@@ -26,9 +26,9 @@ extension NewClaimCtrl {
 }
 
 // Required to be a delegate for UIImagePickerController.
-extension NewClaimCtrl: UINavigationControllerDelegate {}
+extension NewClaimViewController: UINavigationControllerDelegate {}
 
-extension NewClaimCtrl: UIImagePickerControllerDelegate {
+extension NewClaimViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         imagePickerCtrl.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -38,7 +38,7 @@ extension NewClaimCtrl: UIImagePickerControllerDelegate {
     }
 }
 
-extension NewClaimCtrl: UICollectionViewDataSource {
+extension NewClaimViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -57,4 +57,4 @@ extension NewClaimCtrl: UICollectionViewDataSource {
 }
 
 // No collection view delegate methods are currently used.
-extension NewClaimCtrl: UICollectionViewDelegate {}
+extension NewClaimViewController: UICollectionViewDelegate {}

@@ -11,7 +11,7 @@ import MapKit
 
 import SalesforceSDKCore
 
-extension NewClaimCtrl {
+extension NewClaimViewController {
 
 	func uploadClaimTransaction() {
 		SalesforceLogger.d(type(of: self), message: "Starting transaction")

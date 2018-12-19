@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-extension NewClaimCtrl {
+extension NewClaimViewController {
 
 	func initMapViewExtension() {
 		//CoreLocation setup
@@ -62,14 +62,14 @@ extension NewClaimCtrl {
     }
 }
 
-extension NewClaimCtrl: MKMapViewDelegate {
+extension NewClaimViewController: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
 		geocode(location)
 	}
 }
 
-extension NewClaimCtrl: CLLocationManagerDelegate {
+extension NewClaimViewController: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		currentLocation = locations.last
 	}

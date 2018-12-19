@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SalesforceSDKCore
 
-class ExistingClaimsCtrl: UITableViewController, SFDataSourceDelegate {
+class OpenClaimsTableViewController: UITableViewController, SFDataSourceDelegate {
 
 	func dataUpdated() {
 		DispatchQueue.main.async {
@@ -41,7 +41,7 @@ class ExistingClaimsCtrl: UITableViewController, SFDataSourceDelegate {
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "ViewClaimDetails"{
-			if let destination = segue.destination as? ClaimViewCtrl {
+			if let destination = segue.destination as? ClaimDetailsTableViewController {
 				if let cell = sender as? UITableViewCell,
 					let indexPath = self.tableView.indexPath(for: cell) {
 					let claimId = self.dataSource.sfRecords?[indexPath.row]["Id"] as! String

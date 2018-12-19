@@ -11,7 +11,7 @@ import AVFoundation
 import Speech
 import UIKit
 
-extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 	// Computed Property that acts like a stored property
 	var audioFilenameURL: URL {
 		get {
@@ -48,7 +48,7 @@ extension NewClaimCtrl: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 	func attachKeyboardDismissalButton() {
 		let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
 		let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		let doneButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NewClaimCtrl.doneButtonAction))
+		let doneButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NewClaimViewController.doneButtonAction))
 		toolbar.setItems([flexSpace, doneButton], animated: false)
 		toolbar.sizeToFit()
 		//setting toolbar as inputAccessoryView

@@ -12,7 +12,7 @@ import CoreLocation
 import AVFoundation
 import ContactsUI
 
-class NewClaimCtrl: UIViewController {
+class NewClaimViewController: UIViewController {
 
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet weak var recordButton: UIButton!

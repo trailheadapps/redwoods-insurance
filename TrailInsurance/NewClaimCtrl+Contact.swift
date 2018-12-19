@@ -10,7 +10,7 @@ import Foundation
 import Contacts
 import ContactsUI
 
-extension NewClaimCtrl: CNContactViewControllerDelegate, CNContactPickerDelegate {
+extension NewClaimViewController: CNContactViewControllerDelegate, CNContactPickerDelegate {
 
 	@IBAction func onAddExistingContactTouched(_ sender: Any) {
 		contactPicker.delegate = self
