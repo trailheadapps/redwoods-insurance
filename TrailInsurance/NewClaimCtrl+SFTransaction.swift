@@ -11,8 +11,39 @@ import MapKit
 
 import SalesforceSDKCore
 
+// Extends `NewClaimViewController` with methods for submitting the claim details
+// to the server.
+//
+// Each of these methods, starting with `uploadClaimTransaction()`, executes an
+// asynchronous request, and in the completion handler for the request, calls
+// the next method in the chain.
+//
+// The majority of the `RestClient` methods being called are from an extension
+// in RestClient+TrailInsurance.swift.
 extension NewClaimViewController {
 
+	/// Logs the given error.
+	///
+	/// TrailInsurance doesn't do any sophisticated error checking, and simply
+	/// uses this as the failure handler for `RestClient` requests. In a real-world
+	/// application, be sure to replace this with information presented to the user
+	/// that can be acted on.
+	///
+	/// - Parameters:
+	///   - error: The error to be logged.
+	///   - urlResponse: Ignored; this argument provides compatibility with
+	///     the `SFRestFailBlock` API.
+	private func handleError(_ error: Error?, urlResponse: URLResponse? = nil) {
+		let errorDescription: String
+		if let error = error {
+			errorDescription = "\(error)"
+		} else {
+			errorDescription = "An unknown error occurred."
+		}
+		SalesforceLogger.e(type(of: self), message: "Failed to successfully complete the REST request. \(errorDescription)")
+	}
+
+	/// Begins the process of uploading the claim details to the server.
 	func uploadClaimTransaction() {
 		SalesforceLogger.d(type(of: self), message: "Starting transaction")
 
@@ -24,20 +55,25 @@ extension NewClaimViewController {
 		alert.view.addSubview(loadingModal)
 		present(alert, animated: true, completion: nil)
 
-		sfUtils.getMasterAccountForUser { masterAccountId in
-			self.createCase(withMasterAccountId: masterAccountId)
+		RestClient.shared.fetchMasterAccountForUser(onFailure: handleError) { masterAccountID in
+			SalesforceLogger.d(type(of: self), message: "Completed fetching the Master account ID: \(masterAccountID). Starting to create case.")
+			self.createCase(withAccountID: masterAccountID)
 		}
 	}
 
-	func createCase(withMasterAccountId masterAccountId: String) {
-		SalesforceLogger.d(type(of: self), message: "Completed fetching the Master account Id: \(masterAccountId), starting to create case")
-
-		var record = [String: Any]()
+	/// Creates a new Case record from the transcribed text and map location.
+	/// When complete, `createContacts(relatingToAccountID:forCaseID:)` is called.
+	///
+	/// - Parameter accountID: The ID of the account with which the case is
+	///   to be associated.
+	private func createCase(withAccountID accountID: String) {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = .full
+
+		var record = [String: Any]()
 		record["origin"] = "TrailInsurance Mobile App"
 		record["status"] = "new"
-		record["accountId"] = masterAccountId
+		record["accountId"] = accountID
 		record["subject"] = "Incident on \(dateFormatter.string(from: Date()))"
 		record["Description"] = self.transcribedText
 		record["type"] = "Car Insurance"
@@ -47,58 +83,71 @@ extension NewClaimViewController {
 		record["Incident_Location__longitude__s"] = self.mapView.centerCoordinate.longitude
 		record["PotentialLiability__c"] = true
 
-		sfUtils.createCase(from: record) { newCaseId in
-			self.createContacts(withCaseId: newCaseId)
+		RestClient.shared.createCase(withFields: record, onFailure: handleError) { newCaseID in
+			SalesforceLogger.d(type(of: self), message: "Completed creating case with ID: \(newCaseID). Uploading Contacts.")
+			self.createContacts(relatingToAccountID: accountID, forCaseID: newCaseID)
 		}
 	}
 
-	func createContacts(withCaseId caseId: String) {
-		SalesforceLogger.d(type(of: self), message: "Completed creating case. caseId: \(caseId). Uploading Contacts.")
-
-		let createContactsRequest = sfUtils.createContactRequest(from: self.contactListData.contacts, accountId: masterAccountId)
-		self.caseId = caseId
-
-		sfUtils.sendCompositRequest(request: createContactsRequest) { contactIds in
-			self.createCaseContacts(withContactIds: contactIds)
+	/// Creates Contact records for each of the contacts that the user added.
+	/// When complete, `createCaseContacts(withContactIDs:forCaseID:)` is called.
+	///
+	/// - Parameters:
+	///   - accountID: The ID of the account with which the contact records are
+	///     to be associated.
+	///   - caseID: The ID of the case that is being modified.
+	private func createContacts(relatingToAccountID accountID: String, forCaseID caseID: String) {
+		let contactsRequest = RestClient.shared.compositeRequestForCreatingContacts(from: self.contactListData.contacts, relatingToAccountID: accountID)
+		RestClient.shared.sendCompositeRequest(contactsRequest, onFailure: handleError) { contactIDs in
+			SalesforceLogger.d(type(of: self), message: "Completed creating \(self.contactListData.contacts.count) contact(s). Creating case<->contact junction object records.")
+			self.createCaseContacts(withContactIDs: contactIDs, forCaseID: caseID)
 		}
 	}
 
-	func createCaseContacts(withContactIds contactIds: [String]) {
-		SalesforceLogger.d(type(of: self), message: "Completed creating contacts. Creating case<->contact junction object records.")
-
-		let caseContactCreateRequest = sfUtils.createCaseContactsCompositeRequest(caseId: self.caseId, contactIds: contactIds)
-
-		sfUtils.sendCompositRequest(request: caseContactCreateRequest) { _ in
-			self.uploadMapImage()
+	/// Associates the given Contact record IDs with the case.
+	/// When complete, `uploadMapImage(forCaseID:)` is called.
+	///
+	/// - Parameters:
+	///   - contactIDs: The IDs of the Contact records being associated with the case.
+	///   - caseID: The ID of the case that is being modified.
+	private func createCaseContacts(withContactIDs contactIDs: [String], forCaseID caseID: String) {
+		let associationRequest = RestClient.shared.compositeRequestForCreatingAssociations(fromContactIDs: contactIDs, toCaseID: caseID)
+		RestClient.shared.sendCompositeRequest(associationRequest, onFailure: handleError) { _ in
+			SalesforceLogger.d(type(of: self), message: "Completed creating \(contactIDs.count) case contact record(s). Optionally uploading map image as attachment.")
+			self.uploadMapImage(forCaseID: caseID)
 		}
 	}
 
-	func uploadMapImage() {
-		SalesforceLogger.d(type(of: self), message: "Completed creating case contact records, optionally uploading map image as attachment.")
-
+	/// Generates a snapshot image of the map view and uploads it as an attachment.
+	/// When complete, `uploadPhotos(forCaseID:)` is called.
+	///
+	/// - Parameter caseID: The ID of the case that is being modified.
+	private func uploadMapImage(forCaseID caseID: String) {
 		guard let location = locationManager.location else {
-			self.uploadPhotos()
+			SalesforceLogger.d(type(of: self), message: "Skipping map image upload. Now uploading photos.")
+			self.uploadPhotos(forCaseID: caseID)
 			return
 		}
+
 		let options = MKMapSnapshotOptions()
 		let region = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
 		options.region = region
 		options.scale = UIScreen.main.scale
-		options.size = CGSize.init(width: 400, height: 400)
+		options.size = CGSize(width: 400, height: 400)
 		options.mapType = .standard
 
-		let snapShotter = MKMapSnapshotter(options: options)
-		snapShotter.start { image, error in
-			guard let snapShot = image, error == nil else {
+		let snapshotter = MKMapSnapshotter(options: options)
+		snapshotter.start { snapshot, error in
+			guard let snapshot = snapshot, error == nil else {
 				return
 			}
 			UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
-			snapShot.image.draw(at: .zero)
+			snapshot.image.draw(at: .zero)
 
 			let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
 			let pinImage = pinView.image
 
-			var point = snapShot.point(for: location.coordinate)
+			var point = snapshot.point(for: location.coordinate)
 			let pinCenterOffset = pinView.centerOffset
 			point.x -= pinView.bounds.size.width / 2
 			point.y -= pinView.bounds.size.height / 2
@@ -106,50 +155,50 @@ extension NewClaimViewController {
 			point.y += pinCenterOffset.y
 			pinImage?.draw(at: point)
 
-			guard let mapImg = UIGraphicsGetImageFromCurrentImageContext(),
-				  let request = self.sfUtils.createImageFileUploadRequest(from: mapImg, caseId: self.caseId)
-				  else {
-				self.uploadPhotos()
-				return
-			}
+			let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
+			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID)
 
 			UIGraphicsEndImageContext()
 
-			self.sfUtils.sendRequestAndGetSingleProperty(with: request) { _ in
-				self.uploadPhotos()
+			RestClient.shared.send(request: attachmentRequest, onFailure: self.handleError) { _, _ in
+				SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
+				self.uploadPhotos(forCaseID: caseID)
 			}
 		}
 	}
 
-	func uploadPhotos() {
-		SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
-
-		let uploadRequests = sfUtils.createFileUploadRequests(from: self.selectedImages, accountId: self.masterAccountId, caseId: self.caseId)
-
-		sfUtils.sendCompositRequest(request: uploadRequests) { _ in
-			self.uploadAudio()
+	/// Uploads each photo as an attachment.
+	/// When complete, `uploadAudio(forCaseID:)` is called.
+	///
+	/// - Parameter caseID: The ID of the case that is being modified.
+	private func uploadPhotos(forCaseID caseID: String) {
+		let attachmentRequests = RestClient.shared.compositeRequestForCreatingImageAttachments(from: self.selectedImages, relatingToCaseID: caseID)
+		RestClient.shared.sendCompositeRequest(attachmentRequests, onFailure: handleError) { _ in
+			SalesforceLogger.d(type(of: self), message: "Completed upload of \(self.selectedImages.count) photo(s). Uploading audio file.")
+			self.uploadAudio(forCaseID: caseID)
 		}
 	}
 
-	func uploadAudio() {
-		SalesforceLogger.d(type(of: self), message: "Completed upload of photos. Uploading audio file.")
-
+	/// Uploads the recorded audio as an attachment.
+	/// When complete, `showConfirmation()` is called.
+	///
+	/// - Parameter caseID: The ID of the case that is being modified.
+	private func uploadAudio(forCaseID caseID: String) {
 		if let audioData = audioFileAsData() {
-			let uploadRequest = sfUtils.createAudioFileUploadRequest(from: audioData, caseId: self.caseId)
-			sfUtils.sendRequestAndGetSingleProperty(with: uploadRequest) { _ in
+			let attachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: caseID)
+			RestClient.shared.send(request: attachmentRequest, onFailure: handleError) { _, _ in
 				SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
 				self.unwindToClaims()
 			}
 		} else {
-			
 			// Complete upload if there is no audio file.
 			SalesforceLogger.d(type(of: self), message: "No audio file to upload. Transaction complete!")
-			unwindToClaims()
+			self.unwindToClaims()
 		}
 	}
 
 	/// Dismisses the current modal and returns the user to open claims.
-	func unwindToClaims() {
+	private func unwindToClaims() {
 		wasSubmitted = true
 		// Unwind back to claims. UI calls must be performed on the main thread.
 		DispatchQueue.main.async {
