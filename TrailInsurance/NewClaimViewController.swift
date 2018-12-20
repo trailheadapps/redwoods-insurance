@@ -40,10 +40,6 @@ class NewClaimViewController: UIViewController {
 	var isPlaying = false
 	var imagePickerCtrl: UIImagePickerController!
 	var selectedImages: [UIImage] = []
-//	var contacts: [CNContact] = []
-	var sfUtils = SFUtilities()
-	var masterAccountId: String = ""
-	var caseId: String = ""
 	var mapSnapshot: UIImage?
 	
 	var wasSubmitted = false
