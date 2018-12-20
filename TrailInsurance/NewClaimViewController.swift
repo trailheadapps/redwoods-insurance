@@ -57,9 +57,8 @@ class NewClaimViewController: UIViewController {
 		//Setup Camera, and Image access
 		initImageExtension()
 
-		// setup our Contact List data source and delegate
+		// setup our Contact List data source
 		contactList.dataSource = contactListData
-		contactList.delegate = contactListData // no delegate methods are currently used.
 		// put a border arround the contact list.
 		contactList.layer.borderColor = UIColor.black.cgColor
 		contactList.layer.borderWidth = 1
