@@ -9,32 +9,33 @@
 import UIKit
 import SalesforceSDKCore
 
-class ClaimDetailsTableViewController: UITableViewController, SFDataSourceDelegate {
+class ClaimDetailsTableViewController: UITableViewController {
 
 	var claimId: String?
-	var dataSource: SFDataSource<SFRecord>?
+	var dataSource: ObjectLayoutDataSource!
 	let reuseIdentifier = "CaseDetailPrototype"
-
-	func dataUpdated() {
-		DispatchQueue.main.async {
-			self.tableView.reloadData()
-			self.tableView.activityIndicatorView.stopAnimating()
-		}
-	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if let caseId = claimId {
-			self.dataSource = SFDataSource<SFRecord>(for: "Case", id: caseId, identifier: self.reuseIdentifier) {
-				SFRecord, cell in
-				cell.textLabel?.text = (SFRecord?["value"] as! String)
-				cell.detailTextLabel?.text = (SFRecord?["label"] as! String)
+			self.dataSource = ObjectLayoutDataSource(objectType: "Case", objectId: caseId, cellReuseIdentifier: self.reuseIdentifier) { field, cell in
+				cell.textLabel?.text = field.value
+				cell.detailTextLabel?.text = field.label
 			}
-			self.dataSource?.sfDataSourceDelegate = self
+			self.dataSource.delegate = self
 			self.tableView.delegate = self
 			self.tableView.activityIndicatorView.startAnimating()
 			self.tableView.dataSource = dataSource
+			self.dataSource.fetchData()
 		}
+	}
+}
 
+extension ClaimDetailsTableViewController: ObjectLayoutDataSourceDelegate {
+	func objectLayoutDataSourceDidUpdateFields(_ dataSource: ObjectLayoutDataSource) {
+		DispatchQueue.main.async {
+			self.tableView.reloadData()
+			self.tableView.activityIndicatorView.stopAnimating()
+		}
 	}
 }

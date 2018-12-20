@@ -1,5 +1,5 @@
 //
-//  AccountViewController.swift
+//  OpenClaimsTableViewController.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/9/18.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SalesforceSDKCore
 
-class OpenClaimsTableViewController: UITableViewController, SFDataSourceDelegate {
+class OpenClaimsTableViewController: UITableViewController {
 	
 	/// Used by the storyboard to unwind other scenes back
 	/// to this view controller.
@@ -25,42 +25,43 @@ class OpenClaimsTableViewController: UITableViewController, SFDataSourceDelegate
 		}
 	}
 
-	func dataUpdated() {
-		DispatchQueue.main.async {
-			self.tableView.reloadData()
-			self.refreshControl?.endRefreshing()
-			self.tableView.activityIndicatorView.stopAnimating()
-		}
-	}
-
-	let dataSource = SFDataSource<SFRecord>(withQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", identifier: "CasePrototype", forceMultiple: true) {
-		SFRecord, cell in
-		if let record = SFRecord {
-			cell.textLabel?.text = (SFRecord?["Subject"] as! String)
-			cell.detailTextLabel?.text = "Case #: " + (SFRecord?["CaseNumber"] as! String)
-		}
+	private let dataSource = ObjectListDataSource(soqlQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", cellReuseIdentifier: "CasePrototype") { record, cell in
+		let subject = record["Subject"] as? String ?? ""
+		let caseNumber = record["CaseNumber"] as? String ?? ""
+		cell.textLabel?.text = subject
+		cell.detailTextLabel?.text = "Case #: \(caseNumber)"
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.dataSource.sfDataSourceDelegate = self
+		self.dataSource.delegate = self
 		self.tableView.delegate = self
 		self.tableView.activityIndicatorView.startAnimating()
 		self.tableView.dataSource = self.dataSource
 		self.refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControlEvents.valueChanged)
 		self.tableView.addSubview(refreshControl!)
+		self.dataSource.fetchData()
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "ViewClaimDetails"{
-			if let destination = segue.destination as? ClaimDetailsTableViewController {
-				if let cell = sender as? UITableViewCell,
-					let indexPath = self.tableView.indexPath(for: cell) {
-					let claimId = self.dataSource.sfRecords?[indexPath.row]["Id"] as! String
-					destination.claimId = claimId
-				}
+		if segue.identifier == "ViewClaimDetails" {
+			let destination = segue.destination as! ClaimDetailsTableViewController
+			let cell = sender as! UITableViewCell
+			let indexPath = self.tableView.indexPath(for: cell)!
+			if let claimId = self.dataSource.records[indexPath.row]["Id"] as? String {
+				destination.claimId = claimId
 			}
+		}
+	}
+}
+
+extension OpenClaimsTableViewController: ObjectListDataSourceDelegate {
+	func objectListDataSourceDidUpdateRecords(_ dataSource: ObjectListDataSource) {
+		DispatchQueue.main.async {
+			self.tableView.reloadData()
+			self.refreshControl?.endRefreshing()
+			self.tableView.activityIndicatorView.stopAnimating()
 		}
 	}
 }

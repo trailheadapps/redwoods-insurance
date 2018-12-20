@@ -6,13 +6,14 @@
 //  Copyright © 2018 Salesforce. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import ContactsUI
 
-class ContactListDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
+class ContactListDataSource: NSObject {
+	var contacts = [CNContact]()
+}
 
-	var contacts: [CNContact] = [CNContact]()
+extension ContactListDataSource: UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return contacts.count
@@ -27,5 +28,4 @@ class ContactListDataSource: NSObject, UITableViewDelegate, UITableViewDataSourc
 		cell.detailTextLabel?.text = (obj.emailAddresses.first?.value ?? "") as String
 		return cell
 	}
-
 }
