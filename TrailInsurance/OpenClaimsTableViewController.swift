@@ -11,6 +11,19 @@ import UIKit
 import SalesforceSDKCore
 
 class OpenClaimsTableViewController: UITableViewController, SFDataSourceDelegate {
+	
+	/// Used by the storyboard to unwind other scenes back
+	/// to this view controller.
+	///
+	/// Fetches new data whenever a new claim is submitted.
+	///
+	/// - Parameter segue: The segue to unwind.
+	@IBAction func unwindFromNewClaim(segue: UIStoryboardSegue) {
+		let newClaimViewController = segue.source as! NewClaimViewController
+		if newClaimViewController.wasSubmitted {
+			dataSource.fetchData()
+		}
+	}
 
 	func dataUpdated() {
 		DispatchQueue.main.async {

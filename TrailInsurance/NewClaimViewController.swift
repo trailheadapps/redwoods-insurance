@@ -45,6 +45,8 @@ class NewClaimViewController: UIViewController {
 	var masterAccountId: String = ""
 	var caseId: String = ""
 	var mapSnapshot: UIImage?
+	
+	var wasSubmitted = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
