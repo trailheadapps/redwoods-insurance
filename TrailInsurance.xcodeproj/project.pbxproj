@@ -30,6 +30,12 @@
 		B5B254EA21B1B02200CB628C /* SFDataSource+apiWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CE21B1B02100CB628C /* SFDataSource+apiWrappers.swift */; };
 		B5B254EB21B1B02200CB628C /* FileManager+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CF21B1B02100CB628C /* FileManager+utils.swift */; };
 		B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */; };
+		B5C3645D21CBF30E003941D0 /* SalesforceAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B587811D21CBEFE100E8644B /* SalesforceAnalytics.framework */; };
+		B5C3645E21CBF30E003941D0 /* SalesforceAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B587811D21CBEFE100E8644B /* SalesforceAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5C3646221CBF324003941D0 /* SalesforceSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAD87021CAC42C00A4B9BD /* SalesforceSDKCore.framework */; };
+		B5C3646321CBF324003941D0 /* SalesforceSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAD87021CAC42C00A4B9BD /* SalesforceSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5C3646621CBF331003941D0 /* SalesforceSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B587810D21CBEFD800E8644B /* SalesforceSDKCommon.framework */; };
+		B5C3646721CBF331003941D0 /* SalesforceSDKCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B587810D21CBEFD800E8644B /* SalesforceSDKCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */; };
 		B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
@@ -37,6 +43,97 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B587810C21CBEFD800E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7136CFE216684A700F6A221;
+			remoteInfo = SalesforceSDKCommon;
+		};
+		B587810E21CBEFD800E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7136D07216684A700F6A221;
+			remoteInfo = SalesforceSDKCommonTests;
+		};
+		B587811021CBEFD800E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B716A3E4218F6EEA009D407F;
+			remoteInfo = SalesforceSDKCommonTestApp;
+		};
+		B587811221CBEFD800E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7686AD921929D3B00D4332A;
+			remoteInfo = SalesforceSDKCommonStatic;
+		};
+		B587811C21CBEFE100E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8BCF1CE900F500C6FC6A;
+			remoteInfo = SalesforceAnalytics;
+		};
+		B587811E21CBEFE100E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8BD91CE900F500C6FC6A;
+			remoteInfo = SalesforceAnalyticsTests;
+		};
+		B587812021CBEFE100E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8BFF1CE91BFA00C6FC6A;
+			remoteInfo = SalesforceAnalyticsStatic;
+		};
+		B587812221CBEFE100E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8C2A1CE9218900C6FC6A;
+			remoteInfo = SalesforceAnalyticsTestApp;
+		};
+		B587814121CBF13200E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CE2B8BCE1CE900F500C6FC6A;
+			remoteInfo = SalesforceAnalytics;
+		};
+		B587814521CBF13200E8644B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B7136CFD216684A700F6A221;
+			remoteInfo = SalesforceSDKCommon;
+		};
+		B5C3645F21CBF30E003941D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CE2B8BCE1CE900F500C6FC6A;
+			remoteInfo = SalesforceAnalytics;
+		};
+		B5C3646421CBF324003941D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5DAD86421CAC42C00A4B9BD /* SalesforceSDKCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CE4CE26A1C0E449C009F6029;
+			remoteInfo = SalesforceSDKCore;
+		};
+		B5C3646821CBF331003941D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B7136CFD216684A700F6A221;
+			remoteInfo = SalesforceSDKCommon;
+		};
 		B5DAD86F21CAC42C00A4B9BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5DAD86421CAC42C00A4B9BD /* SalesforceSDKCore.xcodeproj */;
@@ -74,6 +171,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B5C3646121CBF30F003941D0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5C3645E21CBF30E003941D0 /* SalesforceAnalytics.framework in Embed Frameworks */,
+				B5C3646721CBF331003941D0 /* SalesforceSDKCommon.framework in Embed Frameworks */,
+				B5C3646321CBF324003941D0 /* SalesforceSDKCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4F393A281C3C8BCD00B3EA13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4FD6C4741B754AF1002F9F90 /* TrailInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrailInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +197,8 @@
 		4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailInsurance.entitlements; sourceTree = "<group>"; };
 		ABBB0C5D21C977A700CFD686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListDataSource.swift; sourceTree = "<group>"; };
+		B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
+		B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Contact.swift"; sourceTree = "<group>"; };
 		B5B254B821B1B01B00CB628C /* SFDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFDataSource.swift; sourceTree = "<group>"; };
 		B5B254B921B1B01B00CB628C /* CaseCompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseCompactLayout.swift; sourceTree = "<group>"; };
@@ -114,6 +229,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C3645D21CBF30E003941D0 /* SalesforceAnalytics.framework in Frameworks */,
+				B5C3646621CBF331003941D0 /* SalesforceSDKCommon.framework in Frameworks */,
+				B5C3646221CBF324003941D0 /* SalesforceSDKCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,9 +302,33 @@
 		6B868AEB1ACA7FCA4636C7F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */,
+				B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */,
 				B5DAD86421CAC42C00A4B9BD /* SalesforceSDKCore.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B587810621CBEFD800E8644B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B587810D21CBEFD800E8644B /* SalesforceSDKCommon.framework */,
+				B587810F21CBEFD800E8644B /* SalesforceSDKCommonTests.xctest */,
+				B587811121CBEFD800E8644B /* SalesforceSDKCommonTestApp.app */,
+				B587811321CBEFD800E8644B /* libSalesforceSDKCommon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B587811521CBEFE100E8644B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B587811D21CBEFE100E8644B /* SalesforceAnalytics.framework */,
+				B587811F21CBEFE100E8644B /* SalesforceAnalyticsTests.xctest */,
+				B587812121CBEFE100E8644B /* libSalesforceAnalytics.a */,
+				B587812321CBEFE100E8644B /* SalesforceAnalyticsTestApp.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B5DAD86521CAC42C00A4B9BD /* Products */ = {
@@ -251,11 +393,17 @@
 				4FD6C4701B754AF1002F9F90 /* Sources */,
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
 				4FD6C4721B754AF1002F9F90 /* Resources */,
+				B5C3646121CBF30F003941D0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B5DAD87821CAC47600A4B9BD /* PBXTargetDependency */,
+				B587814221CBF13200E8644B /* PBXTargetDependency */,
+				B587814621CBF13200E8644B /* PBXTargetDependency */,
+				B5C3646021CBF30E003941D0 /* PBXTargetDependency */,
+				B5C3646521CBF324003941D0 /* PBXTargetDependency */,
+				B5C3646921CBF331003941D0 /* PBXTargetDependency */,
 			);
 			name = TrailInsurance;
 			productName = TrailInsurance;
@@ -296,6 +444,14 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = B587811521CBEFE100E8644B /* Products */;
+					ProjectRef = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+				},
+				{
+					ProductGroup = B587810621CBEFD800E8644B /* Products */;
+					ProjectRef = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+				},
+				{
 					ProductGroup = B5DAD86521CAC42C00A4B9BD /* Products */;
 					ProjectRef = B5DAD86421CAC42C00A4B9BD /* SalesforceSDKCore.xcodeproj */;
 				},
@@ -308,6 +464,62 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B587810D21CBEFD800E8644B /* SalesforceSDKCommon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SalesforceSDKCommon.framework;
+			remoteRef = B587810C21CBEFD800E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587810F21CBEFD800E8644B /* SalesforceSDKCommonTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SalesforceSDKCommonTests.xctest;
+			remoteRef = B587810E21CBEFD800E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587811121CBEFD800E8644B /* SalesforceSDKCommonTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SalesforceSDKCommonTestApp.app;
+			remoteRef = B587811021CBEFD800E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587811321CBEFD800E8644B /* libSalesforceSDKCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSalesforceSDKCommon.a;
+			remoteRef = B587811221CBEFD800E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587811D21CBEFE100E8644B /* SalesforceAnalytics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SalesforceAnalytics.framework;
+			remoteRef = B587811C21CBEFE100E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587811F21CBEFE100E8644B /* SalesforceAnalyticsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SalesforceAnalyticsTests.xctest;
+			remoteRef = B587811E21CBEFE100E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587812121CBEFE100E8644B /* libSalesforceAnalytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSalesforceAnalytics.a;
+			remoteRef = B587812021CBEFE100E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B587812321CBEFE100E8644B /* SalesforceAnalyticsTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SalesforceAnalyticsTestApp.app;
+			remoteRef = B587812221CBEFE100E8644B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B5DAD87021CAC42C00A4B9BD /* SalesforceSDKCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -386,6 +598,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B587814221CBF13200E8644B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SalesforceAnalytics;
+			targetProxy = B587814121CBF13200E8644B /* PBXContainerItemProxy */;
+		};
+		B587814621CBF13200E8644B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SalesforceSDKCommon;
+			targetProxy = B587814521CBF13200E8644B /* PBXContainerItemProxy */;
+		};
+		B5C3646021CBF30E003941D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SalesforceAnalytics;
+			targetProxy = B5C3645F21CBF30E003941D0 /* PBXContainerItemProxy */;
+		};
+		B5C3646521CBF324003941D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SalesforceSDKCore;
+			targetProxy = B5C3646421CBF324003941D0 /* PBXContainerItemProxy */;
+		};
+		B5C3646921CBF331003941D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SalesforceSDKCommon;
+			targetProxy = B5C3646821CBF331003941D0 /* PBXContainerItemProxy */;
+		};
 		B5DAD87821CAC47600A4B9BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SalesforceSDKCore;
