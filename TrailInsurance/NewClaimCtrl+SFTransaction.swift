@@ -137,17 +137,23 @@ extension NewClaimViewController {
 		if let audioData = audioFileAsData() {
 			let uploadRequest = sfUtils.createAudioFileUploadRequest(from: audioData, caseId: self.caseId)
 			sfUtils.sendRequestAndGetSingleProperty(with: uploadRequest) { _ in
-				self.showConfirmation()
+				SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
+				self.unwindToClaims()
 			}
+		} else {
+			
+			// Complete upload if there is no audio file.
+			SalesforceLogger.d(type(of: self), message: "No audio file to upload. Transaction complete!")
+			unwindToClaims()
 		}
 	}
 
-	func showConfirmation() {
-		SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
-
-		dismiss(animated: true, completion: nil)
+	/// Dismisses the current modal and returns the user to open claims.
+	func unwindToClaims() {
+		wasSubmitted = true
+		// Unwind back to claims. UI calls must be performed on the main thread.
 		DispatchQueue.main.async {
-			self.tabBarController?.selectedIndex = 0
+			self.performSegue(withIdentifier: "unwindFromNewClaim", sender: self)
 		}
 	}
 }

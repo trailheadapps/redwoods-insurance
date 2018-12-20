@@ -18,9 +18,7 @@
 		B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */; };
 		B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */; };
 		B5B254DA21B1B02200CB628C /* SelectedImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */; };
-		B5B254DB21B1B02200CB628C /* icons8-opened-folder-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B254BE21B1B01C00CB628C /* icons8-opened-folder-30.png */; };
 		B5B254DC21B1B02200CB628C /* ClaimDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */; };
-		B5B254DD21B1B02200CB628C /* icons8-add-new-30.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B254C021B1B01D00CB628C /* icons8-add-new-30.png */; };
 		B5B254DE21B1B02200CB628C /* UpdateSFDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254C221B1B01D00CB628C /* UpdateSFDatasource.swift */; };
 		B5B254DF21B1B02200CB628C /* UIView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254C321B1B01D00CB628C /* UIView+loading.swift */; };
 		B5B254E221B1B02200CB628C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B254C621B1B01E00CB628C /* Main.storyboard */; };
@@ -92,9 +90,7 @@
 		B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+AVFoundation.swift"; sourceTree = "<group>"; };
 		B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenClaimsTableViewController.swift; sourceTree = "<group>"; };
 		B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImagesCell.swift; sourceTree = "<group>"; };
-		B5B254BE21B1B01C00CB628C /* icons8-opened-folder-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-opened-folder-30.png"; sourceTree = "<group>"; };
 		B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDetailsTableViewController.swift; sourceTree = "<group>"; };
-		B5B254C021B1B01D00CB628C /* icons8-add-new-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-add-new-30.png"; sourceTree = "<group>"; };
 		B5B254C221B1B01D00CB628C /* UpdateSFDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateSFDatasource.swift; sourceTree = "<group>"; };
 		B5B254C321B1B01D00CB628C /* UIView+loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+loading.swift"; sourceTree = "<group>"; };
 		B5B254C621B1B01E00CB628C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -231,8 +227,6 @@
 		B5E6FCBD21B1B623005669FE /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				B5B254C021B1B01D00CB628C /* icons8-add-new-30.png */,
-				B5B254BE21B1B01C00CB628C /* icons8-opened-folder-30.png */,
 				B5B254C221B1B01D00CB628C /* UpdateSFDatasource.swift */,
 			);
 			name = Assets;
@@ -349,13 +343,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B254DB21B1B02200CB628C /* icons8-opened-folder-30.png in Resources */,
 				ABBB0C5E21C977A700CFD686 /* Assets.xcassets in Resources */,
 				B77BD8A321125B510036B284 /* bootconfig.plist in Resources */,
 				B5B254E221B1B02200CB628C /* Main.storyboard in Resources */,
 				B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */,
 				B5B254E621B1B02200CB628C /* README.md in Resources */,
-				B5B254DD21B1B02200CB628C /* icons8-add-new-30.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
