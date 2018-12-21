@@ -12,13 +12,11 @@
 		4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49C1B755242002F9F90 /* RootViewController.swift */; };
 		ABBB0C5E21C977A700CFD686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABBB0C5D21C977A700CFD686 /* Assets.xcassets */; };
 		ABBB0C6021C9D50800CFD686 /* ObjectListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */; };
-		B568ABDC21B865A40006F2B1 /* ContactListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */; };
 		B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */; };
 		B5B254D521B1B02200CB628C /* ObjectLayoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */; };
 		B5B254D621B1B02200CB628C /* CompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B921B1B01B00CB628C /* CompactLayout.swift */; };
 		B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */; };
 		B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */; };
-		B5B254DA21B1B02200CB628C /* SelectedImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */; };
 		B5B254DC21B1B02200CB628C /* ClaimDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */; };
 		B5B254DF21B1B02200CB628C /* UIView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254C321B1B01D00CB628C /* UIView+loading.swift */; };
 		B5B254E221B1B02200CB628C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B254C621B1B01E00CB628C /* Main.storyboard */; };
@@ -196,7 +194,6 @@
 		4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailInsurance.entitlements; sourceTree = "<group>"; };
 		ABBB0C5D21C977A700CFD686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListDataSource.swift; sourceTree = "<group>"; };
-		B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListDataSource.swift; sourceTree = "<group>"; };
 		B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
 		B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Contact.swift"; sourceTree = "<group>"; };
@@ -204,7 +201,6 @@
 		B5B254B921B1B01B00CB628C /* CompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactLayout.swift; sourceTree = "<group>"; };
 		B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+AVFoundation.swift"; sourceTree = "<group>"; };
 		B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenClaimsTableViewController.swift; sourceTree = "<group>"; };
-		B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImagesCell.swift; sourceTree = "<group>"; };
 		B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDetailsTableViewController.swift; sourceTree = "<group>"; };
 		B5B254C321B1B01D00CB628C /* UIView+loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+loading.swift"; sourceTree = "<group>"; };
 		B5B254C621B1B01E00CB628C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -282,7 +278,6 @@
 		4FD6C4A11B755265002F9F90 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B568ABDB21B865A40006F2B1 /* ContactListDataSource.swift */,
 				ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */,
 				B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */,
 				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
@@ -367,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				B5B254C621B1B01E00CB628C /* Main.storyboard */,
-				B5B254BD21B1B01C00CB628C /* SelectedImagesCell.swift */,
 			);
 			name = "UI Components";
 			sourceTree = "<group>";
@@ -563,7 +557,6 @@
 				B5B254EB21B1B02200CB628C /* FileManager+utils.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
 				B5B254DF21B1B02200CB628C /* UIView+loading.swift in Sources */,
-				B5B254DA21B1B02200CB628C /* SelectedImagesCell.swift in Sources */,
 				ABBB0C6021C9D50800CFD686 /* ObjectListDataSource.swift in Sources */,
 				B5B254E821B1B02200CB628C /* newCase.swift in Sources */,
 				B5B254E721B1B02200CB628C /* NewClaimViewController.swift in Sources */,
@@ -572,7 +565,6 @@
 				B5B254D521B1B02200CB628C /* ObjectLayoutDataSource.swift in Sources */,
 				B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */,
 				B5B254D621B1B02200CB628C /* CompactLayout.swift in Sources */,
-				B568ABDC21B865A40006F2B1 /* ContactListDataSource.swift in Sources */,
 				B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */,
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,

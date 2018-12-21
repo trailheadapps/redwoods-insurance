@@ -13,7 +13,6 @@ extension NewClaimViewController {
 
 	func initMapViewExtension() {
 		//CoreLocation setup
-		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
 		if checkLocationAuthorizationStatus() == true, let userLocation = locationManager.location {
@@ -25,6 +24,9 @@ extension NewClaimViewController {
 		mapView.mapType = .standard
 		mapView.isZoomEnabled = true
 		mapView.isScrollEnabled = true
+		
+		mapView.clipsToBounds = true
+		mapView.layer.cornerRadius = 6
 	}
 
 	func geocode(_ location: CLLocation) {
@@ -49,6 +51,7 @@ extension NewClaimViewController {
     private func centerMap(on location: CLLocation) {
 			let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
 			mapView.setRegion(coordinateRegion, animated: true)
+		geocode(location)
     }
 
     func checkLocationAuthorizationStatus() -> Bool? {
@@ -66,11 +69,5 @@ extension NewClaimViewController: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
 		geocode(location)
-	}
-}
-
-extension NewClaimViewController: CLLocationManagerDelegate {
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		currentLocation = locations.last
 	}
 }
