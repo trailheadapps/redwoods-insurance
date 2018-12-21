@@ -24,8 +24,10 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 		recordingSession = AVAudioSession.sharedInstance()
 		playButton.isEnabled = false
 
-		self.transcriptionText.layer.borderWidth = 1
-		self.transcriptionText.layer.borderColor = UIColor.black.cgColor
+		transcriptionTextView.layer.borderWidth = 1
+		transcriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
+		transcriptionTextView.clipsToBounds = true
+		transcriptionTextView.layer.cornerRadius = 6
 
 		do {
 			try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker )
@@ -52,14 +54,14 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 		toolbar.setItems([flexSpace, doneButton], animated: false)
 		toolbar.sizeToFit()
 		//setting toolbar as inputAccessoryView
-		self.transcriptionText.inputAccessoryView = toolbar
+		self.transcriptionTextView.inputAccessoryView = toolbar
 	}
 
 	@objc func doneButtonAction() {
 		self.view.endEditing(true)
 	}
 
-	@IBAction func onStartOrStopRecordingTouched() {
+	func toggleRecording() {
 		if incidentRecorder == nil {
 			startRecording()
 		} else {
@@ -74,37 +76,41 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 			AVNumberOfChannelsKey: 1,
 			AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
 		]
+		playButton.isEnabled = false
 
 		do {
 			incidentRecorder = try AVAudioRecorder(url: audioFilenameURL, settings: settings)
-			incidentRecorder.delegate = self
-			incidentRecorder.record()
+			incidentRecorder!.delegate = self
+			incidentRecorder!.record()
 			meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateAudioMeter(timer:)), userInfo: nil, repeats: true)
 
-			recordButton.setTitle("Tap to Stop", for: .normal)
+			recordButton.setTitle("Stop", for: .normal)
 		} catch {
 			finishRecording(success: false)
 		}
 	}
 
 	func finishRecording(success: Bool) {
-		incidentRecorder.stop()
+		incidentRecorder?.stop()
 		incidentRecorder = nil
 
 		processTextFrom(audioURL: audioFilenameURL)
-		meterTimer.invalidate()
+		meterTimer?.invalidate()
+		playButton.isEnabled = true
 
 		if success {
-			recordButton.setTitle("Tap to Re-record", for: .normal)
-			playButton.isEnabled = true
+			recordButton.setTitle("Re-record", for: .normal)
+			recordButton.tintColor = UIColor(named: "destructive")
 		} else {
-			recordButton.setTitle("Tap to Record", for: .normal)
 			// recording failed :(
+			recordButton.setTitle("Record", for: .normal)
+			recordButton.tintColor = UIApplication.shared.keyWindow!.tintColor
 		}
 	}
 
 	@objc func updateAudioMeter(timer: Timer) {
-		if incidentRecorder != nil && incidentRecorder.isRecording {
+		if let incidentRecorder = incidentRecorder,
+			incidentRecorder.isRecording {
 			let hr = Int((incidentRecorder.currentTime / 60) / 60)
 			let min = Int(incidentRecorder.currentTime / 60)
 			let sec = Int(incidentRecorder.currentTime.truncatingRemainder(dividingBy: 60))
@@ -130,7 +136,7 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 			recognizer?.recognitionTask(with: request) { [unowned self] result, error in
 				guard error == nil else { print("Error: \(error!)"); return }
 				guard let result = result else { print("No result!"); return }
-				self.transcriptionText.text = result.bestTranscription.formattedString
+				self.transcriptionTextView.text = result.bestTranscription.formattedString
 				self.transcribedText = result.bestTranscription.formattedString
 			}
 		} else {
@@ -158,11 +164,11 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 		return nil
 	}
 
-	@IBAction func playAudio(_ sender: Any) {
+	func toggleAudio() {
 		if(isPlaying) {
 			audioPlayer.stop()
 			recordButton.isEnabled = true
-			playButton.isEnabled = false
+			playButton.setTitle("Play", for: .normal)
 			isPlaying = false
 		} else {
 			if FileManager.default.fileExists(atPath: audioFilenameURL.path) {
@@ -179,6 +185,10 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		recordButton.isEnabled = true
+		
+		// Reset audio player.
+		playButton.setTitle("Play", for: .normal)
+		isPlaying = false
 	}
 
 }

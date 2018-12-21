@@ -14,35 +14,44 @@ import ContactsUI
 
 class NewClaimViewController: UIViewController {
 
+	// MARK: - Incident Location
 	@IBOutlet weak var mapView: MKMapView!
-	@IBOutlet weak var recordButton: UIButton!
-	@IBOutlet weak var recordingTimerLabel: UILabel!
 	@IBOutlet weak var addressLabel: UILabel!
-	@IBOutlet weak var transcriptionText: UITextView!
+	
+	// MARK: - Incident Description
+	@IBOutlet weak var transcriptionTextView: UITextView!
+	@IBOutlet weak var recordingTimerLabel: UILabel!
 	@IBOutlet weak var playButton: UIButton!
-	@IBOutlet weak var photoCollectionView: UICollectionView!
-	@IBOutlet weak var contactList: UITableView!
-
+	@IBOutlet weak var recordButton: UIButton!
+	
+	// MARK: - Photos of Damages
+	@IBOutlet weak var photoStackView: UIStackView!
+	@IBOutlet weak var photoStackHeightConstraint: NSLayoutConstraint!
+	
+	// MARK: - Parties Involved
+	@IBOutlet weak var partiesInvolvedStackView: UIStackView!
+	
+	// MARK: - New Claim properties
+	var wasSubmitted = false
+	
 	let locationManager = CLLocationManager()
 	let regionRadius = 150.0
 	let geoCoder = CLGeocoder()
-	let contactPicker = CNContactPickerViewController()
-	let contactListData = ContactListDataSource()
-
-	var recordingSession: AVAudioSession!
-	var incidentRecorder: AVAudioRecorder!
-	var audioPlayer: AVAudioPlayer!
-	var meterTimer: Timer!
-	var currentLocation: CLLocation?
 	var geoCodedAddress: CLPlacemark?
-	var geoCodedAddressText: String = ""
-	var transcribedText: String = ""
+	var geoCodedAddressText = ""
+	
+	var recordingSession: AVAudioSession!
+	var incidentRecorder: AVAudioRecorder?
+	var audioPlayer: AVAudioPlayer!
+	var meterTimer: Timer?
+	var transcribedText = ""
 	var isPlaying = false
+	
 	var imagePickerCtrl: UIImagePickerController!
 	var selectedImages: [UIImage] = []
-	var mapSnapshot: UIImage?
 	
-	var wasSubmitted = false
+	var contacts: [CNContact] = []
+	let contactPicker = CNContactPickerViewController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -50,17 +59,26 @@ class NewClaimViewController: UIViewController {
 		initMapViewExtension()
 		//Recording Setup
 		initAVRecordingExtension()
-		//Setup Camera, and Image access
-		initImageExtension()
-
-		// setup our Contact List data source
-		contactList.dataSource = contactListData
-		// put a border arround the contact list.
-		contactList.layer.borderColor = UIColor.black.cgColor
-		contactList.layer.borderWidth = 1
 	}
 
-	@IBAction func submitClaim(_ sender: Any) {
+	// MARK: - Actions
+	@IBAction func submitClaim(_ sender: UIBarButtonItem) {
 		uploadClaimTransaction()
+	}
+	
+	@IBAction func playPauseAudioTapped(_ sender: UIButton) {
+		toggleAudio()
+	}
+	
+	@IBAction func startOrStopRecordingTapped(_ sender: UIButton) {
+		toggleRecording()
+	}
+	
+	@IBAction func addPhotoTapped(_ sender: UIButton) {
+		addPhoto()
+	}
+	
+	@IBAction func editInvolvedPartiesTapped(_ sender: UIButton) {
+		presentContactPicker()
 	}
 }

@@ -97,9 +97,9 @@ extension NewClaimViewController {
 	///     to be associated.
 	///   - caseID: The ID of the case that is being modified.
 	private func createContacts(relatingToAccountID accountID: String, forCaseID caseID: String) {
-		let contactsRequest = RestClient.shared.compositeRequestForCreatingContacts(from: self.contactListData.contacts, relatingToAccountID: accountID)
+		let contactsRequest = RestClient.shared.compositeRequestForCreatingContacts(from: contacts, relatingToAccountID: accountID)
 		RestClient.shared.sendCompositeRequest(contactsRequest, onFailure: handleError) { contactIDs in
-			SalesforceLogger.d(type(of: self), message: "Completed creating \(self.contactListData.contacts.count) contact(s). Creating case<->contact junction object records.")
+			SalesforceLogger.d(type(of: self), message: "Completed creating \(self.contacts.count) contact(s). Creating case<->contact junction object records.")
 			self.createCaseContacts(withContactIDs: contactIDs, forCaseID: caseID)
 		}
 	}
