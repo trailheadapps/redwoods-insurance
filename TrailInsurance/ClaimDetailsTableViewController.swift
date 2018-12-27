@@ -1,5 +1,5 @@
 //
-//  ClaimViewCtrl.swift
+//  ClaimDetailsTableViewController.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/26/18.

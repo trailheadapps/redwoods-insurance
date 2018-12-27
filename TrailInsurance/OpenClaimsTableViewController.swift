@@ -6,7 +6,6 @@
 //  Copyright © 2018 Salesforce. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SalesforceSDKCore
 

@@ -1,5 +1,5 @@
 //
-//  RestClient+TrailInsurance.swift
+//  RestClient+NewClaim.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/30/18.

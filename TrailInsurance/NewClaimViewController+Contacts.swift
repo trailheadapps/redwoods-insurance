@@ -1,12 +1,12 @@
 //
-//  NewClaimCtrl+Contact.swift
+//  NewClaimViewController+Contacts.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/29/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Contacts
 import ContactsUI
 

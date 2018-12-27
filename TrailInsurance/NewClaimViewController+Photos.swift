@@ -1,5 +1,5 @@
 //
-//  NewClaimCtrl+Images.swift
+//  NewClaimViewController+Photos.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/29/18.
@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SalesforceSDKCore
 
 extension NewClaimViewController {
 
