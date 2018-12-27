@@ -1,23 +1,22 @@
 //
-//  NewClaimCtrl+AVFoundation.swift
+//  NewClaimViewController+Recording.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/29/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 import Speech
-import UIKit
 
 extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-	// Computed Property that acts like a stored property
+
+	/// Returns the URL at which the recorded audio will be temporarily saved
+	/// for the new claim.
 	var audioFilenameURL: URL {
-		get {
-			// we're always going to reuse the same audiofile url
-			return FileManager.getDocumentsDir().appendingPathComponent("incident.m4a")
-		}
+		let documentsURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+		return documentsURL.appendingPathComponent("incident.m4a")
 	}
 
 	func initAVRecordingExtension() {

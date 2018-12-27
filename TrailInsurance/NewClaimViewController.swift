@@ -1,5 +1,5 @@
 //
-//  NewClaimCtrl.swift
+//  NewClaimViewController.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 11/28/18.

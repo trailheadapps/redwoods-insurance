@@ -1,5 +1,5 @@
 //
-//  NewClaimCtrl+SFTransaction.swift
+//  NewClaimViewController+Uploading.swift
 //  TrailInsurance
 //
 //  Created by Kevin Poorman on 12/2/18.

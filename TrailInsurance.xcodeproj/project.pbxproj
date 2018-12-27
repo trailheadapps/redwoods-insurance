@@ -9,24 +9,21 @@
 /* Begin PBXBuildFile section */
 		4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F393A281C3C8BCD00B3EA13 /* main.swift */; };
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
-		4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49C1B755242002F9F90 /* RootViewController.swift */; };
 		ABBB0C5E21C977A700CFD686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABBB0C5D21C977A700CFD686 /* Assets.xcassets */; };
 		ABBB0C6021C9D50800CFD686 /* ObjectListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */; };
-		B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */; };
+		B5B254D221B1B02200CB628C /* NewClaimViewController+Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimViewController+Contacts.swift */; };
 		B5B254D521B1B02200CB628C /* ObjectLayoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */; };
 		B5B254D621B1B02200CB628C /* CompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B921B1B01B00CB628C /* CompactLayout.swift */; };
-		B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */; };
+		B5B254D721B1B02200CB628C /* NewClaimViewController+Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimViewController+Recording.swift */; };
 		B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */; };
 		B5B254DC21B1B02200CB628C /* ClaimDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */; };
 		B5B254DF21B1B02200CB628C /* UIView+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254C321B1B01D00CB628C /* UIView+loading.swift */; };
 		B5B254E221B1B02200CB628C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B254C621B1B01E00CB628C /* Main.storyboard */; };
-		B5B254E521B1B02200CB628C /* NewClaimCtrl+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254C921B1B01F00CB628C /* NewClaimCtrl+Images.swift */; };
+		B5B254E521B1B02200CB628C /* NewClaimViewController+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254C921B1B01F00CB628C /* NewClaimViewController+Photos.swift */; };
 		B5B254E621B1B02200CB628C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5B254CA21B1B02000CB628C /* README.md */; };
 		B5B254E721B1B02200CB628C /* NewClaimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CB21B1B02000CB628C /* NewClaimViewController.swift */; };
-		B5B254E821B1B02200CB628C /* newCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CC21B1B02000CB628C /* newCase.swift */; };
 		B5B254EA21B1B02200CB628C /* RestClient+NewClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CE21B1B02100CB628C /* RestClient+NewClaim.swift */; };
-		B5B254EB21B1B02200CB628C /* FileManager+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254CF21B1B02100CB628C /* FileManager+utils.swift */; };
-		B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */; };
+		B5B254EC21B1B02200CB628C /* NewClaimViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254D021B1B02100CB628C /* NewClaimViewController+Map.swift */; };
 		B5C3645D21CBF30E003941D0 /* SalesforceAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B587811D21CBEFE100E8644B /* SalesforceAnalytics.framework */; };
 		B5C3645E21CBF30E003941D0 /* SalesforceAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B587811D21CBEFE100E8644B /* SalesforceAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5C3646221CBF324003941D0 /* SalesforceSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAD87021CAC42C00A4B9BD /* SalesforceSDKCore.framework */; };
@@ -34,7 +31,7 @@
 		B5C3646621CBF331003941D0 /* SalesforceSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B587810D21CBEFD800E8644B /* SalesforceSDKCommon.framework */; };
 		B5C3646721CBF331003941D0 /* SalesforceSDKCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B587810D21CBEFD800E8644B /* SalesforceSDKCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */; };
-		B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */; };
+		B5E6FCC021B464BF005669FE /* NewClaimViewController+Uploading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6FCBF21B464BE005669FE /* NewClaimViewController+Uploading.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
 /* End PBXBuildFile section */
@@ -189,31 +186,27 @@
 		4FD6C4741B754AF1002F9F90 /* TrailInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrailInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD6C4781B754AF1002F9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4FD6C49A1B755242002F9F90 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		4FD6C49C1B755242002F9F90 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailInsurance.entitlements; sourceTree = "<group>"; };
 		ABBB0C5D21C977A700CFD686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListDataSource.swift; sourceTree = "<group>"; };
 		B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
 		B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj"; sourceTree = "<group>"; };
-		B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Contact.swift"; sourceTree = "<group>"; };
+		B5B254B521B1B01B00CB628C /* NewClaimViewController+Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Contacts.swift"; sourceTree = "<group>"; };
 		B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectLayoutDataSource.swift; sourceTree = "<group>"; };
 		B5B254B921B1B01B00CB628C /* CompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactLayout.swift; sourceTree = "<group>"; };
-		B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+AVFoundation.swift"; sourceTree = "<group>"; };
+		B5B254BA21B1B01C00CB628C /* NewClaimViewController+Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Recording.swift"; sourceTree = "<group>"; };
 		B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenClaimsTableViewController.swift; sourceTree = "<group>"; };
 		B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDetailsTableViewController.swift; sourceTree = "<group>"; };
 		B5B254C321B1B01D00CB628C /* UIView+loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+loading.swift"; sourceTree = "<group>"; };
 		B5B254C621B1B01E00CB628C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		B5B254C921B1B01F00CB628C /* NewClaimCtrl+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+Images.swift"; sourceTree = "<group>"; };
+		B5B254C921B1B01F00CB628C /* NewClaimViewController+Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Photos.swift"; sourceTree = "<group>"; };
 		B5B254CA21B1B02000CB628C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5B254CB21B1B02000CB628C /* NewClaimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewClaimViewController.swift; sourceTree = "<group>"; };
-		B5B254CC21B1B02000CB628C /* newCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newCase.swift; sourceTree = "<group>"; };
 		B5B254CE21B1B02100CB628C /* RestClient+NewClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestClient+NewClaim.swift"; sourceTree = "<group>"; };
-		B5B254CF21B1B02100CB628C /* FileManager+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+utils.swift"; sourceTree = "<group>"; };
-		B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+MapKit.swift"; sourceTree = "<group>"; };
+		B5B254D021B1B02100CB628C /* NewClaimViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Map.swift"; sourceTree = "<group>"; };
 		B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
 		B5DAD86421CAC42C00A4B9BD /* SalesforceSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCore.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj"; sourceTree = "<group>"; };
-		B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewClaimCtrl+SFTransaction.swift"; sourceTree = "<group>"; };
+		B5E6FCBF21B464BE005669FE /* NewClaimViewController+Uploading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Uploading.swift"; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +233,7 @@
 				6B868AEB1ACA7FCA4636C7F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		4FD6C4751B754AF1002F9F90 /* Products */ = {
 			isa = PBXGroup;
@@ -252,10 +246,11 @@
 		4FD6C4761B754AF1002F9F90 /* TrailInsurance */ = {
 			isa = PBXGroup;
 			children = (
-				B5E6FCBE21B1B638005669FE /* UI Components */,
-				B5E6FCBC21B1B5F5005669FE /* Structs */,
-				B5E6FCBB21B1B5E8005669FE /* Extensions */,
-				4FD6C4A11B755265002F9F90 /* Classes */,
+				B5B254C621B1B01E00CB628C /* Main.storyboard */,
+				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
+				ABBB0CBB21CD912700CFD686 /* Open Claims List */,
+				ABBB0CBC21CD913000CFD686 /* Claim Details */,
+				ABBB0CBD21CD913F00CFD686 /* New Claim */,
 				4FD6C4771B754AF1002F9F90 /* Supporting Files */,
 			);
 			path = TrailInsurance;
@@ -264,31 +259,16 @@
 		4FD6C4771B754AF1002F9F90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B5B254B921B1B01B00CB628C /* CompactLayout.swift */,
+				ABBB0C5D21C977A700CFD686 /* Assets.xcassets */,
+				B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */,
+				4F393A281C3C8BCD00B3EA13 /* main.swift */,
+				B5B254C321B1B01D00CB628C /* UIView+loading.swift */,
 				B5B254CA21B1B02000CB628C /* README.md */,
 				B77BD8A221125B510036B284 /* bootconfig.plist */,
-				B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */,
 				4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */,
-				ABBB0C5D21C977A700CFD686 /* Assets.xcassets */,
 				4FD6C4781B754AF1002F9F90 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4FD6C4A11B755265002F9F90 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */,
-				B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */,
-				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
-				B5B254CB21B1B02000CB628C /* NewClaimViewController.swift */,
-				B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */,
-				B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */,
-				4FD6C49C1B755242002F9F90 /* RootViewController.swift */,
-				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
-				4F393A281C3C8BCD00B3EA13 /* main.swift */,
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 		6B868AEB1ACA7FCA4636C7F7 /* Frameworks */ = {
@@ -299,6 +279,40 @@
 				B5DAD86421CAC42C00A4B9BD /* SalesforceSDKCore.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABBB0CBB21CD912700CFD686 /* Open Claims List */ = {
+			isa = PBXGroup;
+			children = (
+				B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */,
+				ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */,
+			);
+			name = "Open Claims List";
+			sourceTree = "<group>";
+		};
+		ABBB0CBC21CD913000CFD686 /* Claim Details */ = {
+			isa = PBXGroup;
+			children = (
+				B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */,
+				B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */,
+				B5B254B921B1B01B00CB628C /* CompactLayout.swift */,
+			);
+			name = "Claim Details";
+			sourceTree = "<group>";
+		};
+		ABBB0CBD21CD913F00CFD686 /* New Claim */ = {
+			isa = PBXGroup;
+			children = (
+				B5B254CB21B1B02000CB628C /* NewClaimViewController.swift */,
+				B5B254B521B1B01B00CB628C /* NewClaimViewController+Contacts.swift */,
+				B5B254D021B1B02100CB628C /* NewClaimViewController+Map.swift */,
+				B5B254C921B1B01F00CB628C /* NewClaimViewController+Photos.swift */,
+				B5B254BA21B1B01C00CB628C /* NewClaimViewController+Recording.swift */,
+				B5E6FCBF21B464BE005669FE /* NewClaimViewController+Uploading.swift */,
+				B5B254CE21B1B02100CB628C /* RestClient+NewClaim.swift */,
+				B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */,
+			);
+			name = "New Claim";
 			sourceTree = "<group>";
 		};
 		B587810621CBEFD800E8644B /* Products */ = {
@@ -332,38 +346,6 @@
 				B5DAD87621CAC42C00A4B9BD /* libSalesforceSDKCore.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B5E6FCBB21B1B5E8005669FE /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */,
-				B5B254BA21B1B01C00CB628C /* NewClaimCtrl+AVFoundation.swift */,
-				B5B254C321B1B01D00CB628C /* UIView+loading.swift */,
-				B5B254B521B1B01B00CB628C /* NewClaimCtrl+Contact.swift */,
-				B5B254C921B1B01F00CB628C /* NewClaimCtrl+Images.swift */,
-				B5B254D021B1B02100CB628C /* NewClaimCtrl+MapKit.swift */,
-				B5E6FCBF21B464BE005669FE /* NewClaimCtrl+SFTransaction.swift */,
-				B5B254CE21B1B02100CB628C /* RestClient+NewClaim.swift */,
-				B5B254CF21B1B02100CB628C /* FileManager+utils.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		B5E6FCBC21B1B5F5005669FE /* Structs */ = {
-			isa = PBXGroup;
-			children = (
-				B5B254CC21B1B02000CB628C /* newCase.swift */,
-			);
-			name = Structs;
-			sourceTree = "<group>";
-		};
-		B5E6FCBE21B1B638005669FE /* UI Components */ = {
-			isa = PBXGroup;
-			children = (
-				B5B254C621B1B01E00CB628C /* Main.storyboard */,
-			);
-			name = "UI Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,24 +535,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B254E521B1B02200CB628C /* NewClaimCtrl+Images.swift in Sources */,
-				B5B254EB21B1B02200CB628C /* FileManager+utils.swift in Sources */,
+				B5B254E521B1B02200CB628C /* NewClaimViewController+Photos.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
 				B5B254DF21B1B02200CB628C /* UIView+loading.swift in Sources */,
 				ABBB0C6021C9D50800CFD686 /* ObjectListDataSource.swift in Sources */,
-				B5B254E821B1B02200CB628C /* newCase.swift in Sources */,
 				B5B254E721B1B02200CB628C /* NewClaimViewController.swift in Sources */,
-				B5B254EC21B1B02200CB628C /* NewClaimCtrl+MapKit.swift in Sources */,
+				B5B254EC21B1B02200CB628C /* NewClaimViewController+Map.swift in Sources */,
 				B5B254EA21B1B02200CB628C /* RestClient+NewClaim.swift in Sources */,
 				B5B254D521B1B02200CB628C /* ObjectLayoutDataSource.swift in Sources */,
 				B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */,
 				B5B254D621B1B02200CB628C /* CompactLayout.swift in Sources */,
 				B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */,
-				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
-				B5B254D721B1B02200CB628C /* NewClaimCtrl+AVFoundation.swift in Sources */,
-				B5B254D221B1B02200CB628C /* NewClaimCtrl+Contact.swift in Sources */,
-				B5E6FCC021B464BF005669FE /* NewClaimCtrl+SFTransaction.swift in Sources */,
+				B5B254D721B1B02200CB628C /* NewClaimViewController+Recording.swift in Sources */,
+				B5B254D221B1B02200CB628C /* NewClaimViewController+Contacts.swift in Sources */,
+				B5E6FCC021B464BF005669FE /* NewClaimViewController+Uploading.swift in Sources */,
 				B5B254DC21B1B02200CB628C /* ClaimDetailsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,13 +702,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TrailInsurance/TrailInsurance.entitlements;
-				DEVELOPMENT_TEAM = 745ST2PM9F;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TrailInsurance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.force.trailinsurance.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TrailInsurance/Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -740,13 +718,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TrailInsurance/TrailInsurance.entitlements;
-				DEVELOPMENT_TEAM = 745ST2PM9F;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TrailInsurance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.force.trailinsurance.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TrailInsurance/Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
