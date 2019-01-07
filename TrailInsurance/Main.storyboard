@@ -150,8 +150,8 @@
                                                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Nob-5x-K85">
                                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="250"/>
                                                                     </mapView>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedCar" translatesAutoresizingMaskIntoConstraints="NO" id="tsQ-3r-Qav">
-                                                                        <rect key="frame" x="166" y="108.5" width="50" height="33"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueCar" translatesAutoresizingMaskIntoConstraints="NO" id="tsQ-3r-Qav">
+                                                                        <rect key="frame" x="166" y="111" width="50" height="28"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -419,7 +419,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="RedCar" width="50" height="33"/>
+        <image name="BlueCar" width="50" height="28"/>
         <image name="icons8-add-new-30.png" width="30" height="30"/>
         <image name="icons8-opened-folder-30.png" width="30" height="30"/>
     </resources>
