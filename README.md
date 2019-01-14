@@ -82,7 +82,7 @@ sfdx force:org:open
 >
 > Once you have established your connected app, copy the consumer key into the TrailIsurance/bootconfig.plist file using Xcode.
 
-Once you've created your scratch org, you'll need to login and create a user. You could use `sfdx force:user:create` however, the created user and password will be more difficult to type on your mobile device, than one of your own choosing.
+Once you've created your scratch org, you'll need to login and create a user. You could use `sfdx force:user:password:generate` and generate a password for the default user. However, the created user and password will be more difficult to type on your mobile device, than one of your own choosing.
 
 > Note! Scratch orgs authenticate via test.salesforce.com, not login.salesforce.com. When the application launches on a device or a simulator, use the gear icon in the upper right of the login screen to select 'sandbox'. Otherwise your authentication to a scratch org will fail.
 
@@ -102,7 +102,3 @@ For more information on the Salesforce Mobile SDK for iOS check out these resour
 2. [Native iOS Trailhead Module](https://trailhead.salesforce.com/en/content/learn/modules/mobile_sdk_native_ios)
 3. [Get Started with iOS App Development](https://trailhead.salesforce.com/en/content/learn/trails/start-ios-appdev)
 4. [Swift Essentials](https://trailhead.salesforce.com/en/content/learn/modules/swift-essentials)
-
-create user
-switch to sandbox
-don't toggle slow animations
