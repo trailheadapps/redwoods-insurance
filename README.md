@@ -46,10 +46,10 @@ The 'Salesforce Org Setup' folder in this repository contains the neccesary meta
 - Install Visual Studio Code
 - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
-2. If you haven't already done so, authenticate with your Spring '19 hub org and provide it with an alias (spring19hub):
+2. If you haven't already done so, authenticate with your dev hub org and provide it with an alias (devHub):
 
 ```
-sfdx force:auth:web:login -d -a spring19hub
+sfdx force:auth:web:login -d -a devHub
 ```
 
 3. cd to Salesforce Org Setup folder in a command line
