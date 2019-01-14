@@ -39,9 +39,9 @@ The 'Salesforce Org Setup' folder in this repository contains the neccesary meta
 
 > **IMPORTANT**: Because of a current issue in pre-release, make sure your project path doesn't include any of the following folder names: **lwc**, **aura**, **wave**. For example, DO NOT clone this repository in a folder called **/Projects/lwc**.
 
-1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
+1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project. The steps include:
 
-- Sign up for a Spring '19 pre-release org and enable Dev Hub
+- Sign up for a developer org and enable Dev Hub
 - Install the pre-release version of the Salesforce CLI
 - Install Visual Studio Code
 - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
