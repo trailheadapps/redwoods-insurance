@@ -82,11 +82,17 @@ sfdx force:org:open
 >
 > Once you have established your connected app, copy the consumer key into the TrailIsurance/bootconfig.plist file using Xcode.
 
+Once you've created your scratch org, you'll need to login and create a user. You could use `sfdx force:user:create` however, the created user and password will be more difficult to type on your mobile device, than one of your own choosing.
+
+> Note! Scratch orgs authenticate via test.salesforce.com, not login.salesforce.com. When the application launches on a device or a simulator, use the gear icon in the upper right of the login screen to select 'sandbox'. Otherwise your authentication to a scratch org will fail.
+
 ## Xcode Setup <a name="xcode"></a>
 
 To load the project in XCode, open the TrailInsurance.xcodeproj file.
 
 This project should build and run on the simulator 'out of the box' if the submodules have been properly initialized. However, if you would like to run this on a physical iOS device, you'll need to specify your Team name in the project's settings.
+
+> Note: If you're running this in the simulator, and everything seems really slow, check to ensure you've not accidentally toggled 'Slow Animations' in the Debug menu of the simulator app. It's hotkey is Cmd-t, so it can be accidentally toggled fairly easily.
 
 ## Additional Resources <a name="resources"></a>
 
@@ -96,3 +102,7 @@ For more information on the Salesforce Mobile SDK for iOS check out these resour
 2. [Native iOS Trailhead Module](https://trailhead.salesforce.com/en/content/learn/modules/mobile_sdk_native_ios)
 3. [Get Started with iOS App Development](https://trailhead.salesforce.com/en/content/learn/trails/start-ios-appdev)
 4. [Swift Essentials](https://trailhead.salesforce.com/en/content/learn/modules/swift-essentials)
+
+create user
+switch to sandbox
+don't toggle slow animations
