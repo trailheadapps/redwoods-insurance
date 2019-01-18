@@ -38,5 +38,9 @@
         <members>Case.*</members>
         <name>CustomField</name>
     </types>
-    <version>45.0</version>
+    <types>
+      <members>*</members>
+      <name>PermissionSet</name>
+    </types>
+    <version>44.0</version>
 </Package>
