@@ -62,7 +62,7 @@ sfdx force:source:push
 6. Assign the **trailinsurance_mobile** permission set to the default user:
 
 ```
-sfdx force:user:permset:assign -n trailInsurance
+sfdx force:user:permset:assign -n trailInsurance_mobile
 ```
 
 7. Upload sample data:
@@ -77,7 +77,7 @@ sfdx force:data:tree:import -p data/SampleDataPlan.json
 sfdx force:user:password:generate
 ```
 
-> Note! Scratch orgs authenticate via their custom domain that is auto-generated for them. When the application launches on a device or a simulator, use the gear icon in the upper right of the login screen and select custom domain. Enter your custom domain there.
+> Note! Scratch orgs authenticate via their custom domain that is auto-generated for them. When the application launches on a device or a simulator, click "use custom domain" in the lower right. Add your custom domain there.
 
 8. Get your scratch org's custom domain:
 
