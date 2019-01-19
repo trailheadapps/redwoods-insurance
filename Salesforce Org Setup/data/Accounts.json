@@ -1,0 +1,10 @@
+{
+  "records": [{
+    "attributes": {
+      "type"       : "Account",
+      "referenceId": "AccountRef1"
+    },
+    "Name"       : "MasterAccount",
+    "isMaster__c": true
+  }]
+}

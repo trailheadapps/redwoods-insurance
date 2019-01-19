@@ -37,12 +37,7 @@ git submodule update --init --recursive
 
 The 'Salesforce Org Setup' folder in this repository contains the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. To quickly establish your scratch org with this metadata:
 
-1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project. The steps include:
-
-- Sign up for a developer org and enable Dev Hub
-- Install the pre-release version of the Salesforce CLI
-- Install Visual Studio Code
-- Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
+1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project.
 
 2. If you haven't already done so, authenticate with your dev hub org and provide it with an alias (devHub):
 
@@ -64,10 +59,30 @@ sfdx force:org:create -s -f config/project-scratch-def.json -a trailInsurance
 sfdx force:source:push
 ```
 
-6. Open the scratch org:
+6. Assign the **trailinsurance_mobile** permission set to the default user:
 
 ```
-sfdx force:org:open
+sfdx force:user:permset:assign -n trailInsurance
+```
+
+7. Upload sample data:
+
+```
+sfdx force:data:tree:import -p data/SampleDataPlan.json
+```
+
+8. Generate a password for the default user:
+
+```
+sfdx force:user:password:generate
+```
+
+> Note! Scratch orgs authenticate via their custom domain that is auto-generated for them. When the application launches on a device or a simulator, use the gear icon in the upper right of the login screen and select custom domain. Enter your custom domain there.
+
+8. Get your scratch org's custom domain:
+
+```
+sfdx force:user:display -u <<Your Username Here>>
 ```
 
 > Note: The source ships with a valid connected app consumer key. However, if you'd like to use your own, ensure it has the following oAuth scopes:
@@ -79,10 +94,6 @@ sfdx force:org:open
 > - Perform requests on your behalf at any time (refresh_token, offline_access)
 >
 > Once you have established your connected app, copy the consumer key into the TrailIsurance/bootconfig.plist file using Xcode.
-
-Once you've created your scratch org, you'll need to login and create a user. You could use `sfdx force:user:password:generate` and generate a password for the default user. However, the created user and password will be more difficult to type on your mobile device, than one of your own choosing.
-
-> Note! Scratch orgs authenticate via test.salesforce.com, not login.salesforce.com. When the application launches on a device or a simulator, use the gear icon in the upper right of the login screen to select 'sandbox'. Otherwise your authentication to a scratch org will fail.
 
 ## Xcode Setup <a name="xcode"></a>
 

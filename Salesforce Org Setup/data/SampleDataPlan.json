@@ -1,0 +1,7 @@
+[{
+  "sobject" : "Account",
+  "saveRefs": false,
+  "files"   : [
+    "Accounts.json"
+  ]
+}]
