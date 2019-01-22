@@ -59,6 +59,8 @@ class NewClaimViewController: UIViewController {
 		initMapViewExtension()
 		//Recording Setup
 		initAVRecordingExtension()
+		self.transcriptionTextView.delegate = self
+	
 	}
 
 	// MARK: - Actions
@@ -80,5 +82,11 @@ class NewClaimViewController: UIViewController {
 	
 	@IBAction func editInvolvedPartiesTapped(_ sender: UIButton) {
 		presentContactPicker()
+	}
+}
+
+extension NewClaimViewController: UITextViewDelegate {
+	func textViewDidEndEditing(_ textView: UITextView) {
+		self.transcribedText = self.transcriptionTextView.text
 	}
 }

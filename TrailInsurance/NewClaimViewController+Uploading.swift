@@ -75,7 +75,7 @@ extension NewClaimViewController {
 		record["status"] = "new"
 		record["accountId"] = accountID
 		record["subject"] = "Incident on \(dateFormatter.string(from: Date()))"
-		record["Description"] = self.transcribedText
+		record["description"] = self.transcribedText
 		record["type"] = "Car Insurance"
 		record["Reason"] = "Vehicle Incident"
 		record["Incident_Location_Txt__c"] = self.geoCodedAddressText
