@@ -123,14 +123,8 @@ extension NewClaimViewController {
 	///
 	/// - Parameter caseID: The ID of the case that is being modified.
 	private func uploadMapImage(forCaseID caseID: String) {
-		guard let location = locationManager.location else {
-			SalesforceLogger.d(type(of: self), message: "Skipping map image upload. Now uploading photos.")
-			self.uploadPhotos(forCaseID: caseID)
-			return
-		}
-
 		let options = MKMapSnapshotOptions()
-		let region = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
+		let region = MKCoordinateRegionMakeWithDistance(mapView.centerCoordinate, regionRadius, regionRadius)
 		options.region = region
 		options.scale = UIScreen.main.scale
 		options.size = CGSize(width: 400, height: 400)
@@ -147,7 +141,7 @@ extension NewClaimViewController {
 			let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
 			let pinImage = pinView.image
 
-			var point = snapshot.point(for: location.coordinate)
+			var point = snapshot.point(for: self.mapView.centerCoordinate)
 			let pinCenterOffset = pinView.centerOffset
 			point.x -= pinView.bounds.size.width / 2
 			point.y -= pinView.bounds.size.height / 2
