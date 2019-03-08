@@ -24,7 +24,7 @@ class OpenClaimsTableViewController: UITableViewController {
 		}
 	}
 
-	private let dataSource = ObjectListDataSource(soqlQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed'", cellReuseIdentifier: "CasePrototype") { record, cell in
+	private let dataSource = ObjectListDataSource(soqlQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed' ORDER BY CaseNumber DESC", cellReuseIdentifier: "CasePrototype") { record, cell in
 		let subject = record["Subject"] as? String ?? ""
 		let caseNumber = record["CaseNumber"] as? String ?? ""
 		cell.textLabel?.text = subject
