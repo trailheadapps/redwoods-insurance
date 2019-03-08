@@ -1,7 +1,8 @@
 {
-  "orgName"       : "The Company",
+  "orgName"       : "TrailInsurance Demo Company",
   "edition"       : "Developer",
+  "features"      : ["Communities"],
   "orgPreferences": {
-    "enabled": ["S1DesktopEnabled"]
+    "enabled": ["S1DesktopEnabled", "NetworksEnabled"]
   }
 }
