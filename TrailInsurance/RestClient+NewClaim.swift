@@ -28,22 +28,6 @@ extension RestClient {
 			}
 		}
 	}
-
-	/// Often we'll need just the ID of the first query result. This returns that id
-	///
-	/// - Parameters:
-	///   - response: The sdk returned RestResponse.
-	func extractFirstRecordId(_ response: Any?, property: String) -> String? {
-		guard let responseDict = response as? [String:Any],
-			let records = responseDict["records"] as? [[String: Any]],
-			let firstRecord = records.first,
-			let id = firstRecord[property] as? String
-			else {
-				return ("Failed to extract Id from response")
-			}
-		return id
-	}
-	
 	
 	/// Sends a composite request for creating records and calls the completion
 	/// handler with the list of resulting IDs.
