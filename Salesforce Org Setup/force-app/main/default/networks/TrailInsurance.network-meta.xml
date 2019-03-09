@@ -5,7 +5,7 @@
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <communityRoles/>
     <disableReputationRecordConversations>false</disableReputationRecordConversations>
-    <emailSenderAddress>kpoorman@salesforce.com</emailSenderAddress>
+    <emailSenderAddress>example@gmail.com</emailSenderAddress>
     <emailSenderName>TrailInsurance</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
