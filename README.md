@@ -35,7 +35,7 @@ git submodule update --init --recursive
 
 ## Salesforce Metadata Setup <a name="sfMetadata"></a>
 
-The 'Salesforce Org Setup' folder in this repository contains the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. To quickly establish your scratch org with this metadata:
+The 'Salesforce Org Setup' folder in this repository contains _most of_ the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must acomplish using the Salesforce UI to finalize your scratch org with this metadata:
 
 1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project.
 
@@ -59,31 +59,92 @@ sfdx force:org:create -s -f config/project-scratch-def.json -a trailInsurance
 sfdx force:source:push
 ```
 
-6. Assign the **trailinsurance_mobile** permission set to the default user:
+6. Create a new Role named 'TrailInsuranceAdjuster'
+
+```
+sfdx force:data:record:create -s userRole -v Name='TrailInsuranceAdjuster'
+```
+
+_Note down the UserRoleId returned_ as USER-ROLE-ID it will start with 00E
+
+7. Find the default users' ID and assign that user the new Role
+
+```
+sfdx force:user:display
+```
+
+Identify the users' Id, it will start with 005
+
+```
+sfdx force:data:record:update -s user -i <<<USER-ID>>> -v "userRoleId=<<<USER-ROLE-ID>>>"
+```
+
+Assign the **trailinsurance_mobile** permission set to the default user:
 
 ```
 sfdx force:user:permset:assign -n trailInsurance_mobile
 ```
 
-7. Upload sample data:
+8. Open your new scratch org, to the communities setup page in a web browser
 
 ```
-sfdx force:data:tree:import -p data/SampleDataPlan.json
+sfdx force:org:open -p /lightning/setup/SetupNetworks/home
 ```
 
-8. Generate a password for the default user:
+## Manual steps you must take in your org
 
-```
-sfdx force:user:password:generate
-```
+The mobile application is configured to allow only Customer Community Login users to log in. You'll need to manually setup, activate and publish a community through the UI.
 
-> Note! Scratch orgs authenticate via their custom domain that is auto-generated for them. When the application launches on a device or a simulator, click "use custom domain" in the lower right. Add your custom domain there.
+1. Create the Community
+   1. If opening the org didn't take you to the 'All Communities' setup page, navigate there via Setup -> Feature Settings -> Communities -> All Communities.
+   2. Click the 'New Community' Button.
+   3. Select the 'Customer Account Portal' experience.
+   4. Click 'Get Started'.
+   5. When prompted, enter 'TrailInsurance' as the name.
+   6. Click next.
+   7. Allow the community wizard to finish.
+2. Adding a Profile for community users.
+   1. In the upper left-hand menu, select 'Salesforce Setup' which will open in a new tab/window.
+   2. Using either the menu, or the quick find bar, navigate to Profiles.
+      1. Click 'New Profile'.
+      2. Select _'Customer Community Login User'_ as the profile to clone from. Nb. No other base profile will work here. You _must_ select Customer Community Login User.
+      3. Give the profile the name 'TrailInsuranceMobileUser'.
+      4. On the newly created profile screen, click the edit button.
+      5. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
+3. Add the profile to your Community
+   1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Members'.
+   2. On the members page, use the drop down to select 'Customer' from the list of available profile groups.
+   3. Select 'TrailInsuranceMobileUser' on the left side, and click the Add button.
+   4. Scroll to the bottom of the page and click save!
+4. Activate the Community.
+   1. Using the menu on the left, click 'Settings'.
+   2. You'll see the URL of your community listed just above an 'Activate Community' button. _Copy that url_ as you'll need it later.
+   3. Click the 'Activate Community' button.
+5. Publish the Community.
+   1. Using the drop-down menu in the upper left, click on the 'Builder' workspace.
+   2. Click the 'Publish' button in the upper right of the Community Builder.
+   3. Click 'Publish' to confirm.
+6. Create a Community User.
+   1. From the Builder screen, click the upper left drop down menu, and select 'Salesforce Setup'.
+   2. Using the App-switcher, select 'Service'.
+   3. Click on the 'Accounts' tab, and create a new account. Populate the information as you see fit.
+   4. From your newly created Account's detail page, click 'New' button on the Contacts related list view.
+   5. Create a new contact.
+   6. From the Account detail page, click on the name of your newly created contact to navigate to the Contact detail page.
+   7. Click the disclosure icon in the upper right of the contact's Highlights Panel, and select 'Enable Customer User'.
+   8. Make sure to fill in an email address you can check, as you'll need to verify your user's email before you can login.
+   9. Select _'Customer Community Login'_ as the User License.
+   10. Select \_'TrailInsuranceMobileUser' as the Profile.
+   11. Populate all other required fields.
+   12. Click Save, and acknolwdge that the user will recieve an email.
+7. Finalize your Customer Community Login User.
+   1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
 
-8. Get your scratch org's custom domain:
+## iOS App Setup
 
-```
-sfdx force:user:display -u <<Your Username Here>>
-```
+> _Note_: Salesforce Communities Users can only authenticate to the community they're part of. The SDK defaults to authenticating users against login.salesforce.com. To login as a community menber and use this app, you _must_ use a custom login domain.
+
+1. Once the iOS app has launced on the simulator, or an iOS device, click the 'Use Custom Domain' button in the lower right corner of the screen. Enter the community url you copied down earlier.
 
 > Note: The source ships with a valid connected app consumer key. However, if you'd like to use your own, ensure it has the following oAuth scopes:
 >
