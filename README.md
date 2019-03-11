@@ -116,7 +116,7 @@ The mobile application is configured to allow only Customer Community Login user
 3. Add the profile to your Community
    1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Members'.
    2. On the members page, use the drop down to select 'Customer' from the list of available profile groups.
-   3. Select 'TrailInsuranceMobileUser' on the left side, and click the Add button.
+   3. Select 'TrailInsuranceMobileUser' on the left side, and click the 'Add' button.
    4. Scroll to the bottom of the page and click save!
 4. Activate the Community.
    1. Using the menu on the left, click 'Settings'.
