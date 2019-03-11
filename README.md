@@ -65,7 +65,7 @@ sfdx force:source:push
 sfdx force:data:record:create -s userRole -v Name='TrailInsuranceAdjuster'
 ```
 
-_Note down the UserRoleId returned_ as USER-ROLE-ID it will start with 00E
+_Take note of the UserRoleId that's returned_ it will start with 00E
 
 7. Find the default users' ID and assign that user the new Role
 
