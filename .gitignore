@@ -23,3 +23,5 @@ node_modules/
 proguard-project.txt
 xcuserdata
 package-lock.json
+/Salesforce Org Setup/.sfdx
+.vscode
