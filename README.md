@@ -82,7 +82,7 @@ sfdx force:data:record:update -s user -i <<<USER-ID>>> -v "userRoleId=<<<USER-RO
 Assign the **trailinsurance_mobile** permission set to the default user:
 
 ```
-sfdx force:user:permset:assign -n trailInsurance_mobile
+sfdx force:user:permset:assign -n trailinsurance_mobile
 ```
 
 8. Open your new scratch org, to the communities setup page in a web browser
@@ -101,16 +101,18 @@ The mobile application is configured to allow only Customer Community Login user
    3. Select the 'Customer Account Portal' experience.
    4. Click 'Get Started'.
    5. When prompted, enter 'TrailInsurance' as the name.
-   6. Click next.
+   6. Click create.
    7. Allow the community wizard to finish.
 2. Adding a Profile for community users.
    1. In the upper left-hand menu, select 'Salesforce Setup' which will open in a new tab/window.
    2. Using either the menu, or the quick find bar, navigate to Profiles.
       1. Click 'New Profile'.
-      2. Select _'Customer Community Login User'_ as the profile to clone from. Nb. No other base profile will work here. You _must_ select Customer Community Login User.
+      2. Select _'Customer Community Login User'_ as the profile to clone from.
       3. Give the profile the name 'TrailInsuranceMobileUser'.
-      4. On the newly created profile screen, click the edit button.
-      5. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
+      4. Click Save.
+      5. On the newly created profile screen, click the edit button.
+      6. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
+      7. Click Save.
 3. Add the profile to your Community
    1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Members'.
    2. On the members page, use the drop down to select 'Customer' from the list of available profile groups.
@@ -126,7 +128,7 @@ The mobile application is configured to allow only Customer Community Login user
    3. Click 'Publish' to confirm.
 6. Create a Community User.
    1. From the Builder screen, click the upper left drop down menu, and select 'Salesforce Setup'.
-   2. Using the App-switcher, select 'Service'.
+   2. Using the App-Launcher, select 'Service'.
    3. Click on the 'Accounts' tab, and create a new account. Populate the information as you see fit.
    4. From your newly created Account's detail page, click 'New' button on the Contacts related list view.
    5. Create a new contact.
@@ -136,13 +138,13 @@ The mobile application is configured to allow only Customer Community Login user
    9. Select _'Customer Community Login'_ as the User License.
    10. Select \_'TrailInsuranceMobileUser' as the Profile.
    11. Populate all other required fields.
-   12. Click Save, and acknolwdge that the user will recieve an email.
+   12. Click Save, and acknowledge that the user will recieve an email.
 7. Finalize your Customer Community Login User.
    1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
 
 ## iOS App Setup
 
-> _Note_: Salesforce Communities Users can only authenticate to the community they're part of. The SDK defaults to authenticating users against login.salesforce.com. To login as a community menber and use this app, you _must_ use a custom login domain.
+> _Note_: Salesforce Communities Users can only authenticate to the community they're part of. The SDK defaults to authenticating users against login.salesforce.com. To login as a community member and use this app, you _must_ use a custom login domain.
 
 1. Once the iOS app has launced on the simulator, or an iOS device, click the 'Use Custom Domain' button in the lower right corner of the screen. Enter the community url you copied down earlier.
 
