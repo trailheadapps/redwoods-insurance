@@ -7,6 +7,7 @@ TrailInsurance is a fictional end-user mobile application for iOS built using Sw
 1. [Prerequisites](#pre)
 1. [Source Control Setup](#download)
 1. [Salesforce Metadata Setup](#sfMetadata)
+1. [Salesforce Manual Setup](#sfManual)
 1. [Xcode Setup](#xcode)
 1. [Additional Resources](#resources)
 
@@ -45,7 +46,11 @@ The 'Salesforce Org Setup' folder in this repository contains _most of_ the necc
 sfdx force:auth:web:login -d -a devHub
 ```
 
-3. cd to Salesforce Org Setup folder in a command line
+3. cd to Salesforce Org Setup folder in a command line:
+
+```
+cd Salesforce\ Org\ Setup
+```
 
 4. Create a scratch org and provide it with an alias (trailInsurance):
 
@@ -59,74 +64,75 @@ sfdx force:org:create -s -f config/project-scratch-def.json -a trailInsurance
 sfdx force:source:push
 ```
 
-6. Create a new Role named 'TrailInsuranceAdjuster'
+6. Create a new Role named 'TrailInsuranceAdjuster':
 
 ```
 sfdx force:data:record:create -s userRole -v Name='TrailInsuranceAdjuster'
 ```
 
-_Take note of the UserRoleId that's returned_ it will start with 00E
+> _Take note of the UserRoleId that's returned_ it will start with '00E'.
 
-7. Find the default users' ID and assign that user the new Role
+7. Find the default users' ID and assign that user the new Role:
 
 ```
 sfdx force:user:display
 ```
 
-Identify the users' Id, it will start with 005
+8. Identify the users' Id, it will start with '005':
 
 ```
 sfdx force:data:record:update -s user -i <<<USER-ID>>> -v "userRoleId=<<<USER-ROLE-ID>>>"
 ```
 
-Assign the **trailinsurance_mobile** permission set to the default user:
+9. Assign the **trailinsurance_mobile** permission set to the default user:
 
 ```
 sfdx force:user:permset:assign -n trailinsurance_mobile
 ```
 
-8. Open your new scratch org, to the communities setup page in a web browser
+10. Open your new scratch org, to the communities setup page in a web browser:
 
 ```
 sfdx force:org:open -p /lightning/setup/SetupNetworks/home
 ```
 
-## Manual steps you must take in your org
+## Manual steps you must take in your org <a name="sfManual"></a>
 
 The mobile application is configured to allow only Customer Community Login users to log in. You'll need to manually setup, activate and publish a community through the UI.
 
-1. Create the Community
+1. Create the Community:
    1. If opening the org didn't take you to the 'All Communities' setup page, navigate there via Setup -> Feature Settings -> Communities -> All Communities.
    2. Click the 'New Community' Button.
    3. Select the 'Customer Account Portal' experience.
    4. Click 'Get Started'.
    5. When prompted, enter 'TrailInsurance' as the name.
-   6. Click create.
+   6. Click 'Create'.
    7. Allow the community wizard to finish.
-2. Adding a Profile for community users.
+2. Adding a Profile for community users:
    1. In the upper left-hand menu, select 'Salesforce Setup' which will open in a new tab/window.
-   2. Using either the menu, or the quick find bar, navigate to Profiles.
+   2. Using either the menu, or the quick find bar, navigate to Profiles:
       1. Click 'New Profile'.
       2. Select _'Customer Community Login User'_ as the profile to clone from.
       3. Give the profile the name 'TrailInsuranceMobileUser'.
-      4. Click Save.
-      5. On the newly created profile screen, click the edit button.
+      4. Click 'Save'.
+      5. On the newly created profile screen, click the 'Edit' button.
       6. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
-      7. Click Save.
-3. Add the profile to your Community
-   1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Members'.
-   2. On the members page, use the drop down to select 'Customer' from the list of available profile groups.
-   3. Select 'TrailInsuranceMobileUser' on the left side, and click the 'Add' button.
-   4. Scroll to the bottom of the page and click save!
-4. Activate the Community.
+      7. Click 'Save'.
+3. Add the profile to your Community:
+   1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Administration'.
+   1. Using the menu on the left hand side of the screen, select 'Members'
+   1. On the members page, use the drop down to select 'Customer' from the list of available profile groups. _If you do not see 'TrailInsuranceMobileUser' listed, please ensure you created the profile as a clone of 'Customer Community Login User' profile._
+   1. Select 'TrailInsuranceMobileUser' on the left side, and click the 'Add' button.
+   1. Scroll to the bottom of the page and click 'Save'
+4. Activate the Community:
    1. Using the menu on the left, click 'Settings'.
    2. You'll see the URL of your community listed just above an 'Activate Community' button. _Copy that url_ as you'll need it later.
    3. Click the 'Activate Community' button.
-5. Publish the Community.
+5. Publish the Community:
    1. Using the drop-down menu in the upper left, click on the 'Builder' workspace.
    2. Click the 'Publish' button in the upper right of the Community Builder.
    3. Click 'Publish' to confirm.
-6. Create a Community User.
+6. Create a Community User:
    1. From the Builder screen, click the upper left drop down menu, and select 'Salesforce Setup'.
    2. Using the App-Launcher, select 'Service'.
    3. Click on the 'Accounts' tab, and create a new account. Populate the information as you see fit.
@@ -136,10 +142,10 @@ The mobile application is configured to allow only Customer Community Login user
    7. Click the disclosure icon in the upper right of the contact's Highlights Panel, and select 'Enable Customer User'.
    8. Make sure to fill in an email address you can check, as you'll need to verify your user's email before you can login.
    9. Select _'Customer Community Login'_ as the User License.
-   10. Select \_'TrailInsuranceMobileUser' as the Profile.
+   10. Select _'TrailInsuranceMobileUser'_ as the Profile.
    11. Populate all other required fields.
-   12. Click Save, and acknowledge that the user will recieve an email.
-7. Finalize your Customer Community Login User.
+   12. Click 'Save', and click 'OK' to acknowledge that the user will recieve an email.
+7. Finalize your Customer Community Login User:
    1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
 
 ## iOS App Setup
