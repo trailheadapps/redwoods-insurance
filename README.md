@@ -36,7 +36,7 @@ git submodule update --init --recursive
 
 ## Salesforce Metadata Setup <a name="sfMetadata"></a>
 
-The 'Salesforce Org Setup' folder in this repository contains _most of_ the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must acomplish using the Salesforce UI to finalize your scratch org with this metadata:
+The 'Salesforce Org Setup' folder in this repository contains _most of_ the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must accomplish using the Salesforce UI to finalize your scratch org with this metadata:
 
 1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project.
 
@@ -70,7 +70,7 @@ sfdx force:source:push
 sfdx force:data:record:create -s userRole -v Name='TrailInsuranceAdjuster'
 ```
 
-> _Take note of the UserRoleId that's returned_ it will start with '00E'.
+> _Take note of the UserRoleId that's returned_, it will start with '00E'.
 
 7. Find the default users' ID and assign that user the new Role:
 
@@ -78,7 +78,9 @@ sfdx force:data:record:create -s userRole -v Name='TrailInsuranceAdjuster'
 sfdx force:user:display
 ```
 
-8. Identify the users' Id, it will start with '005':
+> _Identify the users' Id_, it will start with '005':
+
+8. Set the default User's Role to the newly created role:
 
 ```
 sfdx force:data:record:update -s user -i <<<USER-ID>>> -v "userRoleId=<<<USER-ROLE-ID>>>"
@@ -134,7 +136,7 @@ The mobile application is configured to allow only Customer Community Login user
    3. Click 'Publish' to confirm.
 6. Create a Community User:
    1. From the Builder screen, click the upper left drop down menu, and select 'Salesforce Setup'.
-   2. Using the App-Launcher, select 'Service'.
+   2. Using the App Launcher, select 'Service'.
    3. Click on the 'Accounts' tab, and create a new account. Populate the information as you see fit.
    4. From your newly created Account's detail page, click 'New' button on the Contacts related list view.
    5. Create a new contact.
@@ -147,6 +149,14 @@ The mobile application is configured to allow only Customer Community Login user
    12. Click 'Save', and click 'OK' to acknowledge that the user will recieve an email.
 7. Finalize your Customer Community Login User:
    1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
+8. Assign your new Customer Community Login User the 'trailinsurance_mobile' permission set:
+   1. Navigate to Setup -> Users -> Permission Sets.
+   2. Click on 'TrailInsurance Mobile'.
+   3. Click on 'Manage Assignments'.
+   4. Click on 'Add Assignment'.
+   5. Click the checkbox next to your TrailInsurance Mobile user' username.
+   6. Click 'Assign'
+   7. Click 'Done'
 
 ## iOS App Setup
 
