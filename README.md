@@ -144,9 +144,10 @@ The mobile application is configured to allow only Customer Community Login user
 
 ## iOS App Setup
 
-> _Note_: Salesforce Communities Users can only authenticate to the community they're part of. The SDK defaults to authenticating users against login.salesforce.com. To login as a community member and use this app, you _must_ use a custom login domain.
+> _Note_: Salesforce Communities Users can only authenticate to the community they're part of. Thus, when writing apps with the Salesforce mobile SDK for iOS it's best practice to manually set the login host for your application as part of your build.
 
-1. Once the iOS app has launced on the simulator, or an iOS device, click the 'Use Custom Domain' button in the lower right corner of the screen. Enter the community url you copied down earlier.
+1. Open the file 'info.plist' found in the 'Supporting Files' group in xCode.
+2. Locate the key 'SFDCOAuthLoginHost', which by default says 'login.salesforce.com'. Edit the default value, replacing it with the community url you copied down earlier. Please note, while the community url likely starts with 'https://' **DO NOT** include the https:// portion of the URL in this plist value.
 
 > Note: The source ships with a valid connected app consumer key. However, if you'd like to use your own, ensure it has the following oAuth scopes:
 >
