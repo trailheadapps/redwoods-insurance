@@ -383,7 +383,7 @@
         <scene sceneID="dDc-of-8mc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X3f-2E-ppv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Existing Claims" selectedImage="icons8-opened-folder-30.png" id="4Ly-d3-mr9"/>
+                    <tabBarItem key="tabBarItem" title="Existing Claims" selectedImage="BlueCar" id="4Ly-d3-mr9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="ue0-Jg-Fpf">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -421,6 +421,5 @@
     <resources>
         <image name="BlueCar" width="50" height="28"/>
         <image name="icons8-add-new-30.png" width="30" height="30"/>
-        <image name="icons8-opened-folder-30.png" width="30" height="30"/>
     </resources>
 </document>

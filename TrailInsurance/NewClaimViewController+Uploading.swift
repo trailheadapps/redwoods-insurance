@@ -127,7 +127,7 @@ extension NewClaimViewController {
 		let region = MKCoordinateRegionMakeWithDistance(mapView.centerCoordinate, regionRadius, regionRadius)
 		options.region = region
 		options.scale = UIScreen.main.scale
-		options.size = CGSize(width: 400, height: 400)
+		options.size = CGSize(width: 800, height: 800)
 		options.mapType = .standard
 
 		let snapshotter = MKMapSnapshotter(options: options)
@@ -153,7 +153,7 @@ extension NewClaimViewController {
 			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID)
 
 			UIGraphicsEndImageContext()
-
+		
 			RestClient.shared.send(request: attachmentRequest, onFailure: self.handleError) { _, _ in
 				SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
 				self.uploadPhotos(forCaseID: caseID)
@@ -166,11 +166,13 @@ extension NewClaimViewController {
 	///
 	/// - Parameter caseID: The ID of the case that is being modified.
 	private func uploadPhotos(forCaseID caseID: String) {
-		let attachmentRequests = RestClient.shared.compositeRequestForCreatingImageAttachments(from: self.selectedImages, relatingToCaseID: caseID)
-		RestClient.shared.sendCompositeRequest(attachmentRequests, onFailure: handleError) { _ in
-			SalesforceLogger.d(type(of: self), message: "Completed upload of \(self.selectedImages.count) photo(s). Uploading audio file.")
-			self.uploadAudio(forCaseID: caseID)
+		for (index, img) in self.selectedImages.enumerated() {
+			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: img, relatingToCaseID: caseID)
+			RestClient.shared.send(request: attachmentRequest, onFailure: self.handleError){ result, _ in
+				SalesforceLogger.d(type(of: self), message: "Completed upload of photo \(index + 1) of \(self.selectedImages.count).")
+			}
 		}
+		self.uploadAudio(forCaseID: caseID)
 	}
 
 	/// Uploads the recorded audio as an attachment.

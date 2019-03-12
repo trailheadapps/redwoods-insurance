@@ -28,7 +28,7 @@ extension RestClient {
 			}
 		}
 	}
-
+	
 	/// Sends a composite request for creating records and calls the completion
 	/// handler with the list of resulting IDs.
 	///
@@ -67,13 +67,14 @@ extension RestClient {
 	///   - accountID: The ID of the master account.
 	func fetchMasterAccountForUser(onFailure failureHandler: @escaping RestFailBlock, completionHandler: @escaping (_ accountID: String) -> Void) {
 		let userID = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
-		let accountRequest = self.request(forQuery: "SELECT ID FROM Account WHERE ownerId = '\(userID)' AND isMaster__c = true LIMIT 1")
+		let accountRequest = self.request(forQuery: "SELECT Contact.AccountID FROM User WHERE Id = '\(userID)' LIMIT 1")
 		self.send(request: accountRequest, onFailure: failureHandler) { response, urlResponse in
 			guard let responseDictionary = response as? [String: Any],
 			      let records = responseDictionary["records"] as? [[String: Any]],
-			      let accountID = records.first?["Id"] as? String
+						let contact = records.first?["Contact"] as? [String: Any],
+						let accountID = contact["AccountId"] as? String
 			else {
-				failureHandler(CaseRequestError.responseDataCorrupted(keyPath: "records.Id"), urlResponse)
+				failureHandler(CaseRequestError.responseDataCorrupted(keyPath: "Contact.AccountId"), urlResponse)
 				return
 			}
 			completionHandler(accountID)
@@ -127,7 +128,6 @@ extension RestClient {
 			let contactFields: [String: String] = [
 				"LastName": contact.familyName,
 				"FirstName": contact.givenName,
-				"AccountId": accountID,
 				"Phone": contact.phoneNumbers.first?.value.stringValue ?? "",
 				"email": (contact.emailAddresses.first?.value as String?) ?? "",
 				"MailingStreet": address?.value.street ?? "",
@@ -140,7 +140,7 @@ extension RestClient {
 		}
 		return self.compositeRequestWithSequentialRefIDs(composedOf: requests)
 	}
-
+	
 	/// Returns a request that adds an image attachment to a given case.
 	///
 	/// - Parameters:
@@ -148,22 +148,9 @@ extension RestClient {
 	///   - caseID: The ID of the case to which the attachment is to be added.
 	/// - Returns: The new request.
 	func requestForCreatingImageAttachment(from image: UIImage, relatingToCaseID caseID: String) -> RestRequest {
-		let resizedImage = image.resizedByHalf()
-		let imageData = UIImageJPEGRepresentation(resizedImage, 0.75)!
-		let fileName = UUID().uuidString + ".jpg"
+		let imageData = UIImagePNGRepresentation(image.resizedByHalf())!
+		let fileName = UUID().uuidString + ".png"
 		return self.requestForCreatingAttachment(from: imageData, withFileName: fileName, relatingToCaseID: caseID)
-	}
-
-	/// Returns a composite request that executes requests to add attachments
-	/// for each of the given images to a given case.
-	///
-	/// - Parameters:
-	///   - contacts: The images to be attached to the case.
-	///   - caseID: The ID of the case to which the attachments are to be added.
-	/// - Returns: The new composite request.
-	func compositeRequestForCreatingImageAttachments(from images: [UIImage], relatingToCaseID caseID: String) -> RestRequest {
-		let requests = images.map { requestForCreatingImageAttachment(from: $0, relatingToCaseID: caseID) }
-		return self.compositeRequestWithSequentialRefIDs(composedOf: requests)
 	}
 
 	/// Returns a request that adds an audio attachment to a given case.
@@ -186,12 +173,8 @@ extension RestClient {
 	///   - caseID: The ID of the case to which the attachment is to be added.
 	/// - Returns: The new request.
 	private func requestForCreatingAttachment(from data: Data, withFileName fileName: String, relatingToCaseID caseID: String) -> RestRequest {
-		let record: [String: String] = [
-			"Name": fileName,
-			"Body": data.base64EncodedString(options: .lineLength64Characters),
-			"parentId": caseID
-		]
-		return self.requestForCreate(withObjectType: "Attachment", fields: record)
+		let record = ["VersionData": data.base64EncodedString(options: .lineLength64Characters), "Title": fileName, "PathOnClient": fileName, "FirstPublishLocationId": caseID]
+		return self.requestForCreate(withObjectType: "ContentVersion", fields: record)
 	}
 
 	/// Returns a composite request that executes requests to associate each
@@ -205,8 +188,8 @@ extension RestClient {
 	func compositeRequestForCreatingAssociations(fromContactIDs contactIDs: [String], toCaseID caseID: String) -> RestRequest {
 		let requests = contactIDs.map { contactID -> RestRequest in
 			let associationFields: [String: String] = [
-				"CaseId__c": caseID,
-				"ContactId__c": contactID
+				"Case__c": caseID,
+				"Contact__c": contactID
 			]
 			return self.requestForCreate(withObjectType: "CaseContact__c", fields: associationFields)
 		}

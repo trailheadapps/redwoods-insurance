@@ -5,21 +5,16 @@ project.xcworkspace
 *~
 .DS_Store
 .github/
-.gradle/
 .idea/
 .metadata/
 .settings/
-Podfile.lock
-Pods/
 bin/
-bower_components/
 build/
 coverage.em
 coverage/
 instrumentation/
 junit-reports/
 local.properties
-node_modules/
-proguard-project.txt
 xcuserdata
-package-lock.json
+/Salesforce Org Setup/.sfdx
+.vscode
