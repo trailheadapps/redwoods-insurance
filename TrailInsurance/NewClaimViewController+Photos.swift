@@ -81,11 +81,11 @@ extension NewClaimViewController {
 extension NewClaimViewController: UINavigationControllerDelegate {}
 
 extension NewClaimViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        imagePickerCtrl.dismiss(animated: true, completion: nil)
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImages.append(image)
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+		imagePickerCtrl.dismiss(animated: true, completion: nil)
+		if let image = info[.originalImage] as? UIImage {
+			selectedImages.append(image)
 			addToPhotoStack(image)
-        }
-    }
+		}
+	}
 }

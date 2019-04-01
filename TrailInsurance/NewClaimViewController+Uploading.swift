@@ -50,7 +50,7 @@ extension NewClaimViewController {
 		let alert = UIAlertController(title: nil, message: "Submitting Claim", preferredStyle: .alert)
 		let loadingModal = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
 		loadingModal.hidesWhenStopped = true
-		loadingModal.activityIndicatorViewStyle = .gray
+		loadingModal.style = .gray
 		loadingModal.startAnimating()
 		alert.view.addSubview(loadingModal)
 		present(alert, animated: true, completion: nil)
@@ -123,8 +123,8 @@ extension NewClaimViewController {
 	///
 	/// - Parameter caseID: The ID of the case that is being modified.
 	private func uploadMapImage(forCaseID caseID: String) {
-		let options = MKMapSnapshotOptions()
-		let region = MKCoordinateRegionMakeWithDistance(mapView.centerCoordinate, regionRadius, regionRadius)
+		let options = MKMapSnapshotter.Options()
+		let region = MKCoordinateRegion.init(center: mapView.centerCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
 		options.region = region
 		options.scale = UIScreen.main.scale
 		options.size = CGSize(width: 800, height: 800)
