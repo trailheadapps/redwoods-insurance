@@ -40,6 +40,14 @@ extension NewClaimViewController {
 		} else {
 			errorDescription = "An unknown error occurred."
 		}
+		
+		if(alert.isViewLoaded){
+			alert.dismiss(animated: true)
+		}
+		alert = UIAlertController(title: "We're sorry, an error has occured. This Claim has not been saved.", message: errorDescription, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in self.unwindToClaims()}))
+		present(self.alert, animated: true)
+		
 		SalesforceLogger.e(type(of: self), message: "Failed to successfully complete the REST request. \(errorDescription)")
 	}
 
@@ -47,7 +55,7 @@ extension NewClaimViewController {
 	func uploadClaimTransaction() {
 		SalesforceLogger.d(type(of: self), message: "Starting transaction")
 
-		let alert = UIAlertController(title: nil, message: "Submitting Claim", preferredStyle: .alert)
+		alert = UIAlertController(title: nil, message: "Submitting Claim", preferredStyle: .alert)
 		let loadingModal = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
 		loadingModal.hidesWhenStopped = true
 		loadingModal.style = .gray
@@ -82,7 +90,7 @@ extension NewClaimViewController {
 		record["Incident_Location__latitude__s"] = self.mapView.centerCoordinate.latitude
 		record["Incident_Location__longitude__s"] = self.mapView.centerCoordinate.longitude
 		record["PotentialLiability__c"] = true
-
+		
 		RestClient.shared.createCase(withFields: record, onFailure: handleError) { newCaseID in
 			SalesforceLogger.d(type(of: self), message: "Completed creating case with ID: \(newCaseID). Uploading Contacts.")
 			self.createContacts(relatingToAccountID: accountID, forCaseID: newCaseID)

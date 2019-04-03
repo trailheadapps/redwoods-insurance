@@ -53,6 +53,8 @@ class NewClaimViewController: UIViewController {
 	var contacts: [CNContact] = []
 	let contactPicker = CNContactPickerViewController()
 
+	var alert:UIAlertController!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		//Setup Mapview
