@@ -49,7 +49,7 @@ extension NewClaimViewController {
 	}
 
     private func centerMap(on location: CLLocation) {
-			let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
+			let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
 			mapView.setRegion(coordinateRegion, animated: true)
 		geocode(location)
     }

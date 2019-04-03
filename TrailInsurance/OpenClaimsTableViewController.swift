@@ -24,6 +24,10 @@ class OpenClaimsTableViewController: UITableViewController {
 		}
 	}
 
+	@IBAction func logout(_ sender: Any) {
+		UserAccountManager.shared.logout()
+	}
+	
 	private let dataSource = ObjectListDataSource(soqlQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed' ORDER BY CaseNumber DESC", cellReuseIdentifier: "CasePrototype") { record, cell in
 		let subject = record["Subject"] as? String ?? ""
 		let caseNumber = record["CaseNumber"] as? String ?? ""
@@ -38,7 +42,7 @@ class OpenClaimsTableViewController: UITableViewController {
 		self.tableView.activityIndicatorView.startAnimating()
 		self.tableView.dataSource = self.dataSource
 		self.refreshControl = UIRefreshControl()
-		refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControlEvents.valueChanged)
+		refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControl.Event.valueChanged)
 		self.tableView.addSubview(refreshControl!)
 		self.dataSource.fetchData()
 	}

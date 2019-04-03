@@ -20,6 +20,7 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 	}
 
 	func initAVRecordingExtension() {
+//		var rs: AVAudioSession!
 		recordingSession = AVAudioSession.sharedInstance()
 		playButton.isEnabled = false
 
@@ -29,10 +30,10 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 		transcriptionTextView.layer.cornerRadius = 6
 
 		do {
-			try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker )
+			let category = AVAudioSession.Category.playAndRecord
+			try recordingSession.setCategory(category)
 			try recordingSession.setActive(true)
 			recordingSession.requestRecordPermission { _ in
-				//[unowned self] allowed in
 				DispatchQueue.main.async {
 					// requestRecordPermission will ask the user for permission to record.
 					// in this block we should do something kind to the user when they say no.

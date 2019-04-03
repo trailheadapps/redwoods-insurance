@@ -148,7 +148,7 @@ extension RestClient {
 	///   - caseID: The ID of the case to which the attachment is to be added.
 	/// - Returns: The new request.
 	func requestForCreatingImageAttachment(from image: UIImage, relatingToCaseID caseID: String) -> RestRequest {
-		let imageData = UIImagePNGRepresentation(image.resizedByHalf())!
+		let imageData = image.resizedByHalf().pngData()!
 		let fileName = UUID().uuidString + ".png"
 		return self.requestForCreatingAttachment(from: imageData, withFileName: fileName, relatingToCaseID: caseID)
 	}
