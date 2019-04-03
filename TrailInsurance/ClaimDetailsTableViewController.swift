@@ -26,6 +26,9 @@ class ClaimDetailsTableViewController: UITableViewController {
 			self.tableView.delegate = self
 			self.tableView.activityIndicatorView.startAnimating()
 			self.tableView.dataSource = dataSource
+			self.refreshControl = UIRefreshControl()
+			refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControl.Event.valueChanged)
+			self.tableView.addSubview(refreshControl!)
 			self.dataSource.fetchData()
 		}
 	}
@@ -35,6 +38,7 @@ extension ClaimDetailsTableViewController: ObjectLayoutDataSourceDelegate {
 	func objectLayoutDataSourceDidUpdateFields(_ dataSource: ObjectLayoutDataSource) {
 		DispatchQueue.main.async {
 			self.tableView.reloadData()
+			self.refreshControl?.endRefreshing()
 			self.tableView.activityIndicatorView.stopAnimating()
 		}
 	}
