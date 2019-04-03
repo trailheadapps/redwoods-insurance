@@ -20,6 +20,7 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 	}
 
 	func initAVRecordingExtension() {
+//		var rs: AVAudioSession!
 		recordingSession = AVAudioSession.sharedInstance()
 		playButton.isEnabled = false
 
