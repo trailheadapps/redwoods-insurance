@@ -44,7 +44,7 @@ extension NewClaimViewController {
 		if(alert.isViewLoaded){
 			alert.dismiss(animated: true)
 		}
-		alert = UIAlertController(title: "We're sorry, an error has occured. This Claim has not been saved.", message: errorDescription, preferredStyle: .alert)
+		alert = UIAlertController(title: "We're sorry, an error has occured. This claim has not been saved.", message: errorDescription, preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in self.unwindToClaims()}))
 		present(self.alert, animated: true)
 		
