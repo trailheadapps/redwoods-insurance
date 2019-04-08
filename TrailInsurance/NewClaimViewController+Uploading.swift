@@ -158,7 +158,7 @@ extension NewClaimViewController {
 			pinImage?.draw(at: point)
 
 			let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
-			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID)
+			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID, fileName: "MapSnapshot.png")
 
 			UIGraphicsEndImageContext()
 		
