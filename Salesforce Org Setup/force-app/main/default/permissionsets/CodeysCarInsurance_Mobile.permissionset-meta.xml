@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Gives users permission to access custom fields needed for the TrailInsurance Mobile app</description>
+    <description>Gives users permission to access custom fields needed for the CodeysCarInsurance Mobile app</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.AccountId</field>
@@ -47,7 +47,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>TrailInsurance Mobile</label>
+    <label>CodeysCarInsurance Mobile</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

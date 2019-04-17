@@ -1,6 +1,6 @@
-# TrailInsurance Salesforce Mobile SDK for iOS Sample Application
+# Codey's Car Insurance - A Salesforce Mobile SDK for iOS Sample Application
 
-TrailInsurance is a fictional end-user mobile application for iOS built using Swift and the Mobile SDK for iOS. The application shows a rich user experience for an end-user on iOS while demonstrating key features of the SDK version 7.0.
+Codey's Car Insurance is a fictional end-user mobile application for iOS built using Swift and the Mobile SDK for iOS. The application shows a rich user experience for an end-user on iOS while demonstrating key features of the SDK version 7.0.
 
 ## Table of Contents
 
@@ -25,7 +25,7 @@ In order to experience, and experiment with this sample app you'll need:
 This project makes use of [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules), in addition to Xcode build dependencies to incorporate the SDK. This means you must not only clone this repository, but the submodule repositories as well. If you have not yet cloned this repository, this clone command will clone not only this repo, but the submodules as well.
 
 ```console
-git clone --recurse-submodules https://github.com/trailheadapps/TrailInsurance.git
+git clone --recurse-submodules https://github.com/trailheadapps/codey-insurance.git
 ```
 
 If you've already cloned this repository, please initialize the submodules using this command
@@ -52,10 +52,10 @@ sfdx force:auth:web:login -d -a devHub
 cd Salesforce\ Org\ Setup
 ```
 
-4. Create a scratch org and provide it with an alias (trailInsurance):
+4. Create a scratch org and provide it with an alias (codeysCarInsurance):
 
 ```
-sfdx force:org:create -s -f config/project-scratch-def.json -a trailInsurance
+sfdx force:org:create -s -f config/project-scratch-def.json -a codeysCarInsurance
 ```
 
 5. Push the app to your scratch org:
@@ -64,10 +64,10 @@ sfdx force:org:create -s -f config/project-scratch-def.json -a trailInsurance
 sfdx force:source:push
 ```
 
-6. Create a new Role named 'TrailInsuranceAdjuster':
+6. Create a new Role named 'codeysCarInsuranceAdjuster':
 
 ```
-sfdx force:data:record:create -s userRole -v Name='TrailInsuranceAdjuster'
+sfdx force:data:record:create -s userRole -v Name='codeysCarInsuranceAdjuster'
 ```
 
 > _Take note of the UserRoleId that's returned_, it will start with '00E'.
@@ -86,10 +86,10 @@ sfdx force:user:display
 sfdx force:data:record:update -s user -i <<<USER-ID>>> -v "userRoleId=<<<USER-ROLE-ID>>>"
 ```
 
-9. Assign the **trailinsurance_mobile** permission set to the default user:
+9. Assign the **CodeysCarInsurance_mobile** permission set to the default user:
 
 ```
-sfdx force:user:permset:assign -n trailinsurance_mobile
+sfdx force:user:permset:assign -n CodeysCarInsurance_mobile
 ```
 
 10. Open your new scratch org, to the communities setup page in a web browser:
@@ -107,7 +107,7 @@ The mobile application is configured to allow only Customer Community Login user
    2. Click the 'New Community' Button.
    3. Select the 'Customer Account Portal' experience.
    4. Click 'Get Started'.
-   5. When prompted, enter 'TrailInsurance' as the name.
+   5. When prompted, enter 'Codey\'s Car Insurance' as the name.
    6. Click 'Create'.
    7. Allow the community wizard to finish.
 2. Adding a Profile for community users:
@@ -115,7 +115,7 @@ The mobile application is configured to allow only Customer Community Login user
    2. Using either the menu, or the quick find bar, navigate to Profiles:
       1. Click 'New Profile'.
       2. Select _'Customer Community Login User'_ as the profile to clone from.
-      3. Give the profile the name 'TrailInsuranceMobileUser'.
+      3. Give the profile the name 'CodeysCarInsuranceMobileUser'.
       4. Click 'Save'.
       5. On the newly created profile screen, click the 'Edit' button.
       6. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
@@ -123,8 +123,8 @@ The mobile application is configured to allow only Customer Community Login user
 3. Add the profile to your Community:
    1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Administration'.
    1. Using the menu on the left hand side of the screen, select 'Members'
-   1. On the members page, use the drop down to select 'Customer' from the list of available profile groups. _If you do not see 'TrailInsuranceMobileUser' listed, please ensure you created the profile as a clone of 'Customer Community Login User' profile._
-   1. Select 'TrailInsuranceMobileUser' on the left side, and click the 'Add' button.
+   1. On the members page, use the drop down to select 'Customer' from the list of available profile groups. _If you do not see 'CodeysCarInsuranceMobileUser' listed, please ensure you created the profile as a clone of 'Customer Community Login User' profile._
+   1. Select 'CodeysCarInsuranceMobileUser' on the left side, and click the 'Add' button.
    1. Scroll to the bottom of the page and click 'Save'
 4. Activate the Community:
    1. Using the menu on the left, click 'Settings'.
@@ -144,17 +144,17 @@ The mobile application is configured to allow only Customer Community Login user
    7. Click the disclosure icon in the upper right of the contact's Highlights Panel, and select 'Enable Customer User'.
    8. Make sure to fill in an email address you can check, as you'll need to verify your user's email before you can login.
    9. Select _'Customer Community Login'_ as the User License.
-   10. Select _'TrailInsuranceMobileUser'_ as the Profile.
+   10. Select _'CodeysCarInsuranceMobileUser'_ as the Profile.
    11. Populate all other required fields.
    12. Click 'Save', and click 'OK' to acknowledge that the user will recieve an email.
 7. Finalize your Customer Community Login User:
    1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
-8. Assign your new Customer Community Login User the 'trailinsurance_mobile' permission set:
+8. Assign your new Customer Community Login User the 'CodeysCarInsurance_mobile' permission set:
    1. Navigate to Setup -> Users -> Permission Sets.
-   2. Click on 'TrailInsurance Mobile'.
+   2. Click on 'CodeysCarInsurance Mobile'.
    3. Click on 'Manage Assignments'.
    4. Click on 'Add Assignment'.
-   5. Click the checkbox next to your TrailInsurance Mobile user' username.
+   5. Click the checkbox next to your CodeysCarInsurance Mobile' username.
    6. Click 'Assign'
    7. Click 'Done'
 
@@ -177,7 +177,7 @@ The mobile application is configured to allow only Customer Community Login user
 
 ## Xcode Setup <a name="xcode"></a>
 
-To load the project in XCode, open the TrailInsurance.xcodeproj file.
+To load the project in XCode, open the CodeysCarInsurance.xcodeproj file.
 
 This project should build and run on the simulator 'out of the box' if the submodules have been properly initialized. However, if you would like to run this on a physical iOS device, you'll need to specify your Team name in the project's settings.
 
