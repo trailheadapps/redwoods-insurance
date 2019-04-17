@@ -371,7 +371,6 @@
 				B5C3646921CBF331003941D0 /* PBXTargetDependency */,
 			);
 			name = CodeysCarInsurance;
-			productName = TrailInsurance;
 			productReference = 4FD6C4741B754AF1002F9F90 /* CodeysCarInsurance.app */;
 			productType = "com.apple.product-type.application";
 		};
