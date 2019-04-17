@@ -14,7 +14,7 @@
         <!--Open Claims-->
         <scene sceneID="ydr-jZ-UTh">
             <objects>
-                <tableViewController storyboardIdentifier="AccountView" id="UHa-EE-CUE" customClass="OpenClaimsTableViewController" customModule="TrailInsurance" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AccountView" id="UHa-EE-CUE" customClass="OpenClaimsTableViewController" customModule="CodeysCarInsurance" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LqA-eG-HsY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Claim Details-->
         <scene sceneID="3Ys-SH-XyR">
             <objects>
-                <tableViewController storyboardIdentifier="Claim View Scene" id="jrS-RH-i40" customClass="ClaimDetailsTableViewController" customModule="TrailInsurance" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Claim View Scene" id="jrS-RH-i40" customClass="ClaimDetailsTableViewController" customModule="CodeysCarInsurance" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZFn-8q-i0p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,7 +119,7 @@
         <!--New Claim-->
         <scene sceneID="MXW-ie-Td7">
             <objects>
-                <viewController id="YCe-7d-XrJ" customClass="NewClaimViewController" customModule="TrailInsurance" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YCe-7d-XrJ" customClass="NewClaimViewController" customModule="CodeysCarInsurance" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LMA-K4-bEo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
