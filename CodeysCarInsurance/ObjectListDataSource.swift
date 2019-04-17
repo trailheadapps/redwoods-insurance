@@ -1,6 +1,6 @@
 //
 //  ObjectListDataSource.swift
-//  TrailInsurance
+//  Codey's Car Insurance Project
 //
 //  Created by Kevin Poorman on 11/9/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
@@ -64,7 +64,7 @@ class ObjectListDataSource: NSObject {
 
 	/// Logs the given error.
 	///
-	/// TrailInsurance doesn't do any sophisticated error checking, and simply
+	/// Codey's Car Insurance doesn't do any sophisticated error checking, and simply
 	/// uses this as the failure handler for `RestClient` requests. In a real-world
 	/// application, be sure to replace this with information presented to the user
 	/// that can be acted on.

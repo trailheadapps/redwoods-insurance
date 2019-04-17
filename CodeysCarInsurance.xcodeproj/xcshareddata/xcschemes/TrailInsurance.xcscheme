@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FD6C4731B754AF1002F9F90"
-               BuildableName = "TrailInsurance.app"
-               BlueprintName = "TrailInsurance"
-               ReferencedContainer = "container:TrailInsurance.xcodeproj">
+               BuildableName = "CodeysCarInsurance.app"
+               BlueprintName = "CodeysCarInsurance"
+               ReferencedContainer = "container:CodeysCarInsurance.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FD6C4731B754AF1002F9F90"
-            BuildableName = "TrailInsurance.app"
-            BlueprintName = "TrailInsurance"
-            ReferencedContainer = "container:TrailInsurance.xcodeproj">
+            BuildableName = "CodeysCarInsurance.app"
+            BlueprintName = "CodeysCarInsurance"
+            ReferencedContainer = "container:CodeysCarInsurance.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FD6C4731B754AF1002F9F90"
-            BuildableName = "TrailInsurance.app"
-            BlueprintName = "TrailInsurance"
-            ReferencedContainer = "container:TrailInsurance.xcodeproj">
+            BuildableName = "CodeysCarInsurance.app"
+            BlueprintName = "CodeysCarInsurance"
+            ReferencedContainer = "container:CodeysCarInsurance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FD6C4731B754AF1002F9F90"
-            BuildableName = "TrailInsurance.app"
-            BlueprintName = "TrailInsurance"
-            ReferencedContainer = "container:TrailInsurance.xcodeproj">
+            BuildableName = "CodeysCarInsurance.app"
+            BlueprintName = "CodeysCarInsurance"
+            ReferencedContainer = "container:CodeysCarInsurance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

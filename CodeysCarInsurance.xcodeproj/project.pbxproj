@@ -183,10 +183,10 @@
 
 /* Begin PBXFileReference section */
 		4F393A281C3C8BCD00B3EA13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		4FD6C4741B754AF1002F9F90 /* TrailInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrailInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD6C4741B754AF1002F9F90 /* CodeysCarInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeysCarInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD6C4781B754AF1002F9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailInsurance.entitlements; sourceTree = "<group>"; };
+		4FF12F8A1DCA91F5004D9EF9 /* CodeysCarInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CodeysCarInsurance.entitlements; sourceTree = "<group>"; };
 		ABBB0C5D21C977A700CFD686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABBB0C5F21C9D50800CFD686 /* ObjectListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListDataSource.swift; sourceTree = "<group>"; };
 		B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 		4FD6C46B1B754AF1002F9F90 = {
 			isa = PBXGroup;
 			children = (
-				4FD6C4761B754AF1002F9F90 /* TrailInsurance */,
+				4FD6C4761B754AF1002F9F90 /* CodeysCarInsurance */,
 				4FD6C4751B754AF1002F9F90 /* Products */,
 				6B868AEB1ACA7FCA4636C7F7 /* Frameworks */,
 			);
@@ -238,12 +238,12 @@
 		4FD6C4751B754AF1002F9F90 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FD6C4741B754AF1002F9F90 /* TrailInsurance.app */,
+				4FD6C4741B754AF1002F9F90 /* CodeysCarInsurance.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FD6C4761B754AF1002F9F90 /* TrailInsurance */ = {
+		4FD6C4761B754AF1002F9F90 /* CodeysCarInsurance */ = {
 			isa = PBXGroup;
 			children = (
 				B5B254C621B1B01E00CB628C /* Main.storyboard */,
@@ -253,7 +253,7 @@
 				ABBB0CBD21CD913F00CFD686 /* New Claim */,
 				4FD6C4771B754AF1002F9F90 /* Supporting Files */,
 			);
-			path = TrailInsurance;
+			path = CodeysCarInsurance;
 			sourceTree = "<group>";
 		};
 		4FD6C4771B754AF1002F9F90 /* Supporting Files */ = {
@@ -265,7 +265,7 @@
 				B5B254C321B1B01D00CB628C /* UIView+loading.swift */,
 				B5B254CA21B1B02000CB628C /* README.md */,
 				B77BD8A221125B510036B284 /* bootconfig.plist */,
-				4FF12F8A1DCA91F5004D9EF9 /* TrailInsurance.entitlements */,
+				4FF12F8A1DCA91F5004D9EF9 /* CodeysCarInsurance.entitlements */,
 				4FD6C4781B754AF1002F9F90 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -351,9 +351,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FD6C4731B754AF1002F9F90 /* TrailInsurance */ = {
+		4FD6C4731B754AF1002F9F90 /* CodeysCarInsurance */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "TrailInsurance" */;
+			buildConfigurationList = 4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "CodeysCarInsurance" */;
 			buildPhases = (
 				4FD6C4701B754AF1002F9F90 /* Sources */,
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
@@ -370,9 +370,9 @@
 				B5C3646521CBF324003941D0 /* PBXTargetDependency */,
 				B5C3646921CBF331003941D0 /* PBXTargetDependency */,
 			);
-			name = TrailInsurance;
+			name = CodeysCarInsurance;
 			productName = TrailInsurance;
-			productReference = 4FD6C4741B754AF1002F9F90 /* TrailInsurance.app */;
+			productReference = 4FD6C4741B754AF1002F9F90 /* CodeysCarInsurance.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -396,7 +396,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "TrailInsurance" */;
+			buildConfigurationList = 4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "CodeysCarInsurance" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -424,7 +424,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				4FD6C4731B754AF1002F9F90 /* TrailInsurance */,
+				4FD6C4731B754AF1002F9F90 /* CodeysCarInsurance */,
 			);
 		};
 /* End PBXProject section */
@@ -704,12 +704,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TrailInsurance/TrailInsurance.entitlements;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = TrailInsurance/Info.plist;
+				CODE_SIGN_ENTITLEMENTS = CodeysCarInsurance/CodeysCarInsurance.entitlements;
+				DEVELOPMENT_TEAM = 745ST2PM9F;
+				INFOPLIST_FILE = CodeysCarInsurance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.force.trailinsurance.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.force.codeyscarinsurance.CodeysCarInsurance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -719,12 +719,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TrailInsurance/TrailInsurance.entitlements;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = TrailInsurance/Info.plist;
+				CODE_SIGN_ENTITLEMENTS = CodeysCarInsurance/CodeysCarInsurance.entitlements;
+				DEVELOPMENT_TEAM = 745ST2PM9F;
+				INFOPLIST_FILE = CodeysCarInsurance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.force.trailinsurance.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.force.codeyscarinsurance.CodeysCarInsurance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -733,7 +733,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "TrailInsurance" */ = {
+		4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "CodeysCarInsurance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FD6C4911B754AF1002F9F90 /* Debug */,
@@ -742,7 +742,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "TrailInsurance" */ = {
+		4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "CodeysCarInsurance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FD6C4941B754AF1002F9F90 /* Debug */,

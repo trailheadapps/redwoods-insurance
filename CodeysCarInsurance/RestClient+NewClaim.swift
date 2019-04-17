@@ -1,6 +1,6 @@
 //
 //  RestClient+NewClaim.swift
-//  TrailInsurance
+//  Codey's Car Insurance Project
 //
 //  Created by Kevin Poorman on 11/30/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
