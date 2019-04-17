@@ -1,6 +1,6 @@
 //
 //  RestClient+NewClaim.swift
-//  TrailInsurance
+//  Codey's Car Insurance Project
 //
 //  Created by Kevin Poorman on 11/30/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
@@ -147,10 +147,10 @@ extension RestClient {
 	///   - image: The image to be attached to the case.
 	///   - caseID: The ID of the case to which the attachment is to be added.
 	/// - Returns: The new request.
-	func requestForCreatingImageAttachment(from image: UIImage, relatingToCaseID caseID: String) -> RestRequest {
+	func requestForCreatingImageAttachment(from image: UIImage, relatingToCaseID caseID: String, fileName: String? = nil) -> RestRequest {
 		let imageData = image.resizedByHalf().pngData()!
-		let fileName = UUID().uuidString + ".png"
-		return self.requestForCreatingAttachment(from: imageData, withFileName: fileName, relatingToCaseID: caseID)
+		let uploadFileName = fileName ?? UUID().uuidString + ".png"
+		return self.requestForCreatingAttachment(from: imageData, withFileName: uploadFileName, relatingToCaseID: caseID)
 	}
 
 	/// Returns a request that adds an audio attachment to a given case.

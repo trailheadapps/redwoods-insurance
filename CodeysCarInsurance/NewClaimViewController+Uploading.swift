@@ -1,6 +1,6 @@
 //
 //  NewClaimViewController+Uploading.swift
-//  TrailInsurance
+//  Codey's Car Insurance Project
 //
 //  Created by Kevin Poorman on 12/2/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
@@ -19,12 +19,12 @@ import SalesforceSDKCore
 // the next method in the chain.
 //
 // The majority of the `RestClient` methods being called are from an extension
-// in RestClient+TrailInsurance.swift.
+// in RestClient+NewClaim.swift.
 extension NewClaimViewController {
 
 	/// Logs the given error.
 	///
-	/// TrailInsurance doesn't do any sophisticated error checking, and simply
+	/// Codey's Car Insurance doesn't do any sophisticated error checking, and simply
 	/// uses this as the failure handler for `RestClient` requests. In a real-world
 	/// application, be sure to replace this with information presented to the user
 	/// that can be acted on.
@@ -79,7 +79,7 @@ extension NewClaimViewController {
 		dateFormatter.dateStyle = .full
 
 		var record = [String: Any]()
-		record["origin"] = "TrailInsurance Mobile App"
+		record["origin"] = "Codey's Car Insurance Mobile App"
 		record["status"] = "new"
 		record["accountId"] = accountID
 		record["subject"] = "Incident on \(dateFormatter.string(from: Date()))"
@@ -158,7 +158,7 @@ extension NewClaimViewController {
 			pinImage?.draw(at: point)
 
 			let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
-			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID)
+			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID, fileName: "MapSnapshot.png")
 
 			UIGraphicsEndImageContext()
 		

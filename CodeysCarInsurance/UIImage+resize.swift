@@ -1,6 +1,6 @@
 //
 //  UIImage+resize.swift
-//  TrailInsurance
+//  Codey's Car Insurance Project
 //
 //  Created by Kevin Poorman on 12/2/18.
 //  Copyright © 2018 Salesforce. All rights reserved.

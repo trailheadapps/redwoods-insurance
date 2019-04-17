@@ -1,6 +1,6 @@
 //
 //  OpenClaimsTableViewController.swift
-//  TrailInsurance
+//  Codey's Car Insurance Project
 //
 //  Created by Kevin Poorman on 11/9/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
