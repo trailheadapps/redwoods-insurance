@@ -81,7 +81,6 @@ extension NewClaimViewController {
 		var record = [String: Any]()
 		record["origin"] = "Codey's Car Insurance Mobile App"
 		record["status"] = "new"
-		record["accountId"] = accountID
 		record["subject"] = "Incident on \(dateFormatter.string(from: Date()))"
 		record["description"] = self.transcribedText
 		record["type"] = "Car Insurance"
