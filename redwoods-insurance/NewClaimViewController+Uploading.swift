@@ -1,6 +1,6 @@
 //
 //  NewClaimViewController+Uploading.swift
-//  Codey's Car Insurance Project
+//  Redwoods Insurance Project
 //
 //  Created by Kevin Poorman on 12/2/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
@@ -24,7 +24,7 @@ extension NewClaimViewController {
 
 	/// Logs the given error.
 	///
-	/// Codey's Car Insurance doesn't do any sophisticated error checking, and simply
+	/// Redwoods Insurance doesn't do any sophisticated error checking, and simply
 	/// uses this as the failure handler for `RestClient` requests. In a real-world
 	/// application, be sure to replace this with information presented to the user
 	/// that can be acted on.
@@ -79,7 +79,7 @@ extension NewClaimViewController {
 		dateFormatter.dateStyle = .full
 
 		var record = [String: Any]()
-		record["origin"] = "Codey's Car Insurance Mobile App"
+		record["origin"] = "Redwoods Car Insurance Mobile App"
 		record["status"] = "new"
 		record["subject"] = "Incident on \(dateFormatter.string(from: Date()))"
 		record["description"] = self.transcribedText

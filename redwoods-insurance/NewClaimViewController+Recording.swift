@@ -1,6 +1,6 @@
 //
 //  NewClaimViewController+Recording.swift
-//  Codey's Car Insurance Project
+//  Redwoods Insurance Project
 //
 //  Created by Kevin Poorman on 11/29/18.
 //  Copyright © 2018 Salesforce. All rights reserved.
