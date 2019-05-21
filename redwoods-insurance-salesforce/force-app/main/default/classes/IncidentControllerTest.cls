@@ -1,9 +1,10 @@
 @isTest
-private class IncidentCtrlTest {
+private class IncidentControllerTest {
 
-    private static testmethod void Test1(){
+    @isTest
+    private static void findRelatedFilesPositive(){
         Case c = new Case(subject='test');
-		insert c;
+        insert c;
         
         ContentVersion contentVersionImage = new ContentVersion(
             Title = 'Test',
@@ -23,8 +24,10 @@ private class IncidentCtrlTest {
         );
         insert contentVersionAudio;
         
-        IncidentCtrl.findRelatedFiles(c.id, 'AUDIO');
-        IncidentCtrl.findRelatedFiles(c.id, 'IMAGE');
+        List<ContentVersion> audio = IncidentCtrl.findRelatedFiles(c.id, 'AUDIO');
+        List<ContentVersion> images = IncidentCtrl.findRelatedFiles(c.id, 'IMAGE');
+        System.assertNotEquals(0, audio.size(), 'expected to find at least one audio file');
+        System.assertNotEquals(0, images.size(), 'expected to find at least one audio file');
     }    
     
 }

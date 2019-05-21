@@ -1,18 +1,18 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 
-const FIELDS = [
+const fields = [
     'Case.Incident_Location__Latitude__s',
     'Case.Incident_Location__Longitude__s'
 ];
 
-export default class LightningExampleMapSingleMarker extends LightningElement {
+export default class IncidentMap extends LightningElement {
     @api recordId;
     @track mapMarkers;
     @track error;
     @wire(getRecord, {
         recordId: '$recordId',
-        fields: FIELDS
+        fields
     })
     wiredMarker({ error, data }) {
         if (data) {

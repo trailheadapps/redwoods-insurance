@@ -1,4 +1,4 @@
-public with sharing class IncidentCtrl {
+public with sharing class IncidentController {
   
   @AuraEnabled(cacheable=true)
   public static List<ContentVersion> findRelatedFiles(Id caseId, String fileType){

@@ -5,7 +5,7 @@
             <template if:true={urls}>
                 <template for:each={urls} for:item="url">
                     <audio src={url} type="audio/x-m4a" key={url} controls>
-                        <code> Your browser doesn't support audio tags</code>
+                        <code>Your browser doesn't support audio tags.</code>
                     </audio>
                 </template>
             </template>
