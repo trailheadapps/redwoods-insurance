@@ -16,5 +16,5 @@ instrumentation/
 junit-reports/
 local.properties
 xcuserdata
-/Salesforce Org Setup/.sfdx
+/redwoods-insurance-salesforce/.sfdx
 .vscode

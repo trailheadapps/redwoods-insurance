@@ -1,6 +1,6 @@
-# Redwoods Car Insurance - A Salesforce Mobile SDK for iOS Sample Application
+# Redwoods Insurance - A Salesforce Mobile SDK for iOS Sample Application
 
-Redwoods Car Insurance is a fictional end-user mobile application for iOS built using Swift and the Mobile SDK for iOS. The application shows a rich user experience for an end-user on iOS while demonstrating key features of the SDK version 7.0.
+Redwoods Insurance is a fictional end-user mobile application for iOS built using Swift and the Mobile SDK for iOS. The application shows a rich user experience for an end-user on iOS while demonstrating key features of the SDK version 7.0.
 
 ## Table of Contents
 
@@ -36,7 +36,7 @@ git submodule update --init --recursive
 
 ## Salesforce Metadata Setup <a name="sfMetadata"></a>
 
-The 'Salesforce Org Setup' folder in this repository contains _most of_ the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must accomplish using the Salesforce UI to finalize your scratch org with this metadata:
+The 'redwoods-insurance-salesforce' folder in this repository contains _most of_ the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must accomplish using the Salesforce UI to finalize your scratch org with this metadata:
 
 1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project.
 
@@ -46,7 +46,7 @@ The 'Salesforce Org Setup' folder in this repository contains _most of_ the necc
 sfdx force:auth:web:login -d -a devHub
 ```
 
-3. cd to Salesforce Org Setup folder in a command line:
+3. cd to redwoods-insurance-salesforce folder in a command line:
 
 ```
 cd Salesforce\ Org\ Setup
