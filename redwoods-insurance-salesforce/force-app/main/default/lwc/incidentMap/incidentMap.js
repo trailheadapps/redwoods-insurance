@@ -9,7 +9,6 @@ const fields = [
 export default class IncidentMap extends LightningElement {
     @api recordId;
     @track mapMarkers;
-    @track error;
     @wire(getRecord, {
         recordId: '$recordId',
         fields

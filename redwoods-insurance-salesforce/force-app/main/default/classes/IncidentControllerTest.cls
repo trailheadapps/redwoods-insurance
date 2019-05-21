@@ -24,8 +24,8 @@ private class IncidentControllerTest {
         );
         insert contentVersionAudio;
         
-        List<ContentVersion> audio = IncidentCtrl.findRelatedFiles(c.id, 'AUDIO');
-        List<ContentVersion> images = IncidentCtrl.findRelatedFiles(c.id, 'IMAGE');
+        List<ContentVersion> audio = IncidentController.findRelatedFiles(c.id, 'AUDIO');
+        List<ContentVersion> images = IncidentController.findRelatedFiles(c.id, 'IMAGE');
         System.assertNotEquals(0, audio.size(), 'expected to find at least one audio file');
         System.assertNotEquals(0, images.size(), 'expected to find at least one audio file');
     }    
