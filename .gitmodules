@@ -1,0 +1,3 @@
+[submodule "redwoods-insurance-mobile/mobile_sdk"]
+	path = redwoods-insurance-mobile/mobile_sdk
+	url = https://github.com/forcedotcom/SalesforceMobileSDK-iOS
