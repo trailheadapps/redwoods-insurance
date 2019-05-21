@@ -1,0 +1,9 @@
+//
+//  Packaging-Dynamic.xcconfig
+//  
+//
+//  Created by Bharath Hariharan on 12/11/15.
+//
+//
+
+IPHONEOS_DEPLOYMENT_TARGET = 10.0
