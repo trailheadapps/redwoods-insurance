@@ -16,5 +16,17 @@ instrumentation/
 junit-reports/
 local.properties
 xcuserdata
-/Salesforce Org Setup/.sfdx
+/redwoods-insurance-salesforce/.sfdx
 .vscode
+.classpath
+.settings
+.sfdx/
+.tern-project
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+jsconfig.json
+node_modules/
+selenium-client-jars/
+test/artifacts/
+node_modules

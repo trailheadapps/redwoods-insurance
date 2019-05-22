@@ -1,0 +1,24 @@
+<template>
+    <div class="slds-m-around_medium">
+        <template if:true={urls}>
+            <lightning-carousel>
+                <template for:each={urls} for:item="url">
+                    <lightning-carousel-image
+                        key={url}
+                        src={url}
+                    ></lightning-carousel-image>
+                </template>
+            </lightning-carousel>
+        </template>
+        <template if:false={urls}>
+            <lightning-icon
+                icon-name="utility:photo"
+                size="medium"
+                class="slds-align_absolute-center"
+            ></lightning-icon>
+            <p class="slds-text-color--weak">
+                There are currently no images of damage for this case.
+            </p>
+        </template>
+    </div>
+</template>

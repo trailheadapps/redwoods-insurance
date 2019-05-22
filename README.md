@@ -155,8 +155,8 @@ The mobile application is configured to allow only Customer Community Login user
    3. Click on 'Manage Assignments'.
    4. Click on 'Add Assignment'.
    5. Click the checkbox next to your Redwoods-Insurance Mobile' username.
-   6. Click 'Assign'
-   7. Click 'Done'
+   6. Click 'Assign'.
+   7. Click 'Done'.
 
 ## iOS App Setup
 

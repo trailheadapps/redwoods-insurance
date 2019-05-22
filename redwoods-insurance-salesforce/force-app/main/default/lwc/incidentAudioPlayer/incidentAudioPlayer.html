@@ -1,0 +1,24 @@
+<template>
+    <lightning-card icon-name="custom:custom35">
+        <span slot="title">Incident audio from user</span>
+        <div class="slds-m-around_medium">
+            <template if:true={urls}>
+                <template for:each={urls} for:item="url">
+                    <audio src={url} type="audio/x-m4a" key={url} controls>
+                        <code>Your browser doesn't support audio tags.</code>
+                    </audio>
+                </template>
+            </template>
+            <template if:false={urls}>
+                <lightning-icon
+                    icon-name="utility:attach"
+                    size="medium"
+                    class="slds-align_absolute-center"
+                ></lightning-icon>
+                <p class="slds-text-color--weak">
+                    There are currently no audio files for this case.
+                </p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
