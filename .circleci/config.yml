@@ -109,14 +109,13 @@ jobs:
                   name: Decrypt certificate
                   command: |
                       openssl enc -nosalt -aes-256-cbc -d -in .circleci/server.key.enc -out .circleci/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
-                  working_directory: ~/project/redwoods-insurance-salesforce
             - run:
                   name: Authenticate DevHub
                   command: |
                       if [[ $CIRCLE_BRANCH == prerelease* ]]; then
-                        node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY_PRERELEASE --jwtkeyfile .circleci/server.key --username $USERNAME_PRERELEASE --setdefaultdevhubusername -a HubOrg
+                        node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY_PRERELEASE --jwtkeyfile ../circleci/server.key --username $USERNAME_PRERELEASE --setdefaultdevhubusername -a HubOrg
                       else
-                        node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile .circleci/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
+                        node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile ../.circleci/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
                       fi
                   working_directory: ~/project/redwoods-insurance-salesforce
             - run:
