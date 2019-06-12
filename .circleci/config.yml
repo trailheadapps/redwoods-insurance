@@ -2,9 +2,8 @@ version: 2
 
 # Defining default values for all jobs
 defaults: &defaults
-    working_directory: ~/project/redwoods-insurance-salesforce
     docker:
-        - image: circleci/node:lts-browsers
+        - image: circleci/node:lts-browsers    
 
 jobs:
     setup_tooling:
@@ -16,6 +15,7 @@ jobs:
                   name: Install package dependencies
                   command: |
                       npm install
+                  working_directory: ~/project/redwoods-insurance-salesforce
             - persist_to_workspace:
                   # This is an important step. If we don't store the project data (cloned GitHub source and node_modules)
                   # we'd have to re-run installation for every workflow step.
@@ -32,6 +32,7 @@ jobs:
                   name: Verify Prettier formatting
                   command: |
                       npm run prettier:verify
+                  working_directory: ~/project/redwoods-insurance-salesforce
     lint_lwc:
         # This lints Lightning Web Components.
         <<: *defaults
@@ -42,6 +43,7 @@ jobs:
                   name: Lint Lightning Web Components
                   command: |
                       npm run lint:lwc
+                  working_directory: ~/project/redwoods-insurance-salesforce
     unit_test_lwc:
         # This unit tests Lightning Web Components.
         <<: *defaults
@@ -52,6 +54,7 @@ jobs:
                   name: Unit test Lightning Web Components
                   command: |
                       npm run test:unit:coverage -- -- --runInBand
+                  working_directory: ~/project/redwoods-insurance-salesforce
             - persist_to_workspace:
                   # We're saving the generated coverage results (folder 'coverage', a sub-folder to 'project') so
                   # that we can upload them in another step to Codecov.io.
@@ -78,6 +81,7 @@ jobs:
                   root: ~/
                   paths:
                       - project/*
+                  working_directory: ~/project/redwoods-insurance-salesforce
     lint_aura:
         # This lints Aura components.
         <<: *defaults
@@ -88,6 +92,7 @@ jobs:
                   name: Lint Aura Components
                   command: |
                       npm run lint:aura
+                  working_directory: ~/project/redwoods-insurance-salesforce
     setup_dx_orgs:
         # This authenticates the Dev Hub, packaging org, and creates a scratch org.
         #
@@ -98,6 +103,7 @@ jobs:
         # Keep it simple!
         <<: *defaults
         steps:
+            - working_directory: ~/project/redwoods-insurance-salesforce
             - attach_workspace:
                   at: ~/
             - run:
@@ -141,6 +147,7 @@ jobs:
                   name: Push Source
                   command: |
                       node_modules/sfdx-cli/bin/run force:source:push -u ciorg
+                  working_directory: ~/project/redwoods-insurance-salesforce
     create_and_test_package:
         <<: *defaults
         steps:
@@ -153,6 +160,7 @@ jobs:
                         bin/packagingDeployment.sh
                       fi
                   no_output_timeout: 15m
+                  working_directory: ~/project/redwoods-insurance-salesforce
     run_apex_tests:
         <<: *defaults
         steps:
@@ -170,6 +178,7 @@ jobs:
                   root: ~/
                   paths:
                       - project/*
+                  working_directory: ~/project/redwoods-insurance-salesforce
     upload_code_coverage:
         <<: *defaults
         steps:
@@ -189,6 +198,7 @@ jobs:
                   name: Clean Up
                   command: |
                       node_modules/sfdx-cli/bin/run force:org:delete -u ciorg -p
+                  working_directory: ~/project/redwoods-insurance-salesforce
 
 workflows:
     version: 2
