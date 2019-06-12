@@ -103,13 +103,13 @@ jobs:
         # Keep it simple!
         <<: *defaults
         steps:
-            - working_directory: ~/project/redwoods-insurance-salesforce
             - attach_workspace:
                   at: ~/
             - run:
                   name: Decrypt certificate
                   command: |
                       openssl enc -nosalt -aes-256-cbc -d -in .circleci/server.key.enc -out .circleci/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
+                  working_directory: ~/project/redwoods-insurance-salesforce
             - run:
                   name: Authenticate DevHub
                   command: |
@@ -118,6 +118,7 @@ jobs:
                       else
                         node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile .circleci/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
                       fi
+                  working_directory: ~/project/redwoods-insurance-salesforce
             - run:
                   name: Define CI Org
                   # We define the to be used CI org. Based on the branch we either create a new scratch org
@@ -128,6 +129,7 @@ jobs:
                       echo $SFDX_AUTH_PACKAGING > ~/auth.url
                       node_modules/sfdx-cli/bin/run force:auth:sfdxurl:store -s -a packagingorg -f ~/auth.url
                       node_modules/sfdx-cli/bin/run force:org:create -v HubOrg -s -f config/project-scratch-def.json -a ciorg -d 1
+                  working_directory: ~/project/redwoods-insurance-salesforce
             - persist_to_workspace:
                   # This is an important step. If we don't store the project data (cloned GitHub source and node_modules from the CLI installation)
                   # we'd have to re-run installation for every workflow step.
