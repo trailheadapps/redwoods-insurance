@@ -1,5 +1,7 @@
 # Redwoods Car Insurance - A Salesforce Mobile SDK for iOS Sample Application
 
+[![CircleCI](https://circleci.com/gh/trailheadapps/redwoods-insurance.svg?style=svg)](https://circleci.com/gh/trailheadapps/redwoods-insurance)
+
 Redwoods Car Insurance is a fictional end-user mobile application for iOS built using Swift and the Mobile SDK for iOS. The application shows a rich user experience for an end-user on iOS while demonstrating key features of the SDK version 7.0.
 
 ## Table of Contents

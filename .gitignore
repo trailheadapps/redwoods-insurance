@@ -8,7 +8,6 @@ project.xcworkspace
 .idea/
 .metadata/
 .settings/
-bin/
 build/
 coverage.em
 coverage/
