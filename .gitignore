@@ -16,6 +16,7 @@ junit-reports/
 local.properties
 xcuserdata
 /redwoods-insurance-salesforce/.sfdx
+/redwoods-insurance-salesforce/.localdevserver/
 .vscode
 .classpath
 .settings
