@@ -97,7 +97,7 @@ class ObjectLayoutDataSource: NSObject {
 	@objc func fetchData() {
 		guard !self.objectId.isEmpty else { return }
 		let queryParams: [String: Any] = ["layoutTypes": "Compact"]
-		let layoutRequest = RestRequest(method: .GET, path: "/v46.0/ui-api/record-ui/\(self.objectId)",
+		let layoutRequest = RestRequest(method: .GET, path: "/\(RestClient.APIVERSION)/ui-api/record-ui/\(self.objectId)",
 			queryParams: queryParams)
 
 		RestClient.shared.send(request: layoutRequest, onFailure: handleError) { [weak self] response, _ in
