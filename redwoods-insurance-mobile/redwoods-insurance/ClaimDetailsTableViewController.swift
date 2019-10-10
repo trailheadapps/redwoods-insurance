@@ -23,7 +23,6 @@ class ClaimDetailsTableViewController: UITableViewController {
 				objectId: caseId,
 				cellReuseIdentifier: self.reuseIdentifier
 			) { field, cell in
-				print(field)
 				guard
 					// swiftlint:disable:next identifier_name
 					let key = field.first?.key,
