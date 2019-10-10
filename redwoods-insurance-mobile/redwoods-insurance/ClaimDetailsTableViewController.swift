@@ -18,16 +18,29 @@ class ClaimDetailsTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if let caseId = claimId {
-			self.dataSource = ObjectLayoutDataSource(objectType: "Case", objectId: caseId, cellReuseIdentifier: self.reuseIdentifier) { field, cell in
-				cell.textLabel?.text = field.value
-				cell.detailTextLabel?.text = field.label
+			self.dataSource = ObjectLayoutDataSource(
+				objectType: "Case",
+				objectId: caseId,
+				cellReuseIdentifier: self.reuseIdentifier
+			) { field, cell in
+				print(field)
+				guard
+					// swiftlint:disable:next identifier_name
+					let key = field.first?.key,
+					let value = field[key] as? String else {return}
+				cell.textLabel?.text = key
+				cell.detailTextLabel?.text = value
 			}
 			self.dataSource.delegate = self
 			self.tableView.delegate = self
 			self.tableView.activityIndicatorView.startAnimating()
 			self.tableView.dataSource = dataSource
 			self.refreshControl = UIRefreshControl()
-			refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControl.Event.valueChanged)
+			refreshControl?.addTarget(
+				self.dataSource,
+				action: #selector(self.dataSource.fetchData),
+				for: UIControl.Event.valueChanged
+			)
 			self.tableView.addSubview(refreshControl!)
 			self.dataSource.fetchData()
 		}

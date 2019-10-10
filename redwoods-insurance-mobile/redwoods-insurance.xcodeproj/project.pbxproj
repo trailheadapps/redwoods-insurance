@@ -16,7 +16,6 @@
 		B5702D5022988DFA009A3F12 /* SalesforceSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5702D4622988DE9009A3F12 /* SalesforceSDKCore.framework */; };
 		B5B254D221B1B02200CB628C /* NewClaimViewController+Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B521B1B01B00CB628C /* NewClaimViewController+Contacts.swift */; };
 		B5B254D521B1B02200CB628C /* ObjectLayoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */; };
-		B5B254D621B1B02200CB628C /* CompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254B921B1B01B00CB628C /* CompactLayout.swift */; };
 		B5B254D721B1B02200CB628C /* NewClaimViewController+Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BA21B1B01C00CB628C /* NewClaimViewController+Recording.swift */; };
 		B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */; };
 		B5B254DC21B1B02200CB628C /* ClaimDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */; };
@@ -35,6 +34,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B54CDE72234E2D6C005CD350 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7136CFE216684A700F6A221;
+			remoteInfo = SalesforceSDKCommon;
+		};
+		B54CDE74234E2D6C005CD350 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7136D07216684A700F6A221;
+			remoteInfo = SalesforceSDKCommonTests;
+		};
+		B54CDE76234E2D6C005CD350 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B716A3E4218F6EEA009D407F;
+			remoteInfo = SalesforceSDKCommonTestApp;
+		};
+		B54CDE78234E2D6C005CD350 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7686AD921929D3B00D4332A;
+			remoteInfo = SalesforceSDKCommonStatic;
+		};
 		B5702D3422988DD3009A3F12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
@@ -119,7 +146,6 @@
 		B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = mobile_sdk/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj; sourceTree = "<group>"; };
 		B5B254B521B1B01B00CB628C /* NewClaimViewController+Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Contacts.swift"; sourceTree = "<group>"; };
 		B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectLayoutDataSource.swift; sourceTree = "<group>"; };
-		B5B254B921B1B01B00CB628C /* CompactLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactLayout.swift; sourceTree = "<group>"; };
 		B5B254BA21B1B01C00CB628C /* NewClaimViewController+Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewClaimViewController+Recording.swift"; sourceTree = "<group>"; };
 		B5B254BB21B1B01C00CB628C /* OpenClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenClaimsTableViewController.swift; sourceTree = "<group>"; };
 		B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDetailsTableViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +250,6 @@
 			children = (
 				B5B254BF21B1B01C00CB628C /* ClaimDetailsTableViewController.swift */,
 				B5B254B821B1B01B00CB628C /* ObjectLayoutDataSource.swift */,
-				B5B254B921B1B01B00CB628C /* CompactLayout.swift */,
 			);
 			name = "Claim Details";
 			sourceTree = "<group>";
@@ -242,6 +267,17 @@
 				B5C3CF4F21B4C9E7004EBA83 /* UIImage+resize.swift */,
 			);
 			name = "New Claim";
+			sourceTree = "<group>";
+		};
+		B54CDE67234E2D6B005CD350 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B54CDE73234E2D6C005CD350 /* SalesforceSDKCommon.framework */,
+				B54CDE75234E2D6C005CD350 /* SalesforceSDKCommonTests.xctest */,
+				B54CDE77234E2D6C005CD350 /* SalesforceSDKCommonTestApp.app */,
+				B54CDE79234E2D6C005CD350 /* libSalesforceSDKCommon.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B5702D2D22988DD3009A3F12 /* Products */ = {
@@ -277,6 +313,7 @@
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
 				4FD6C4721B754AF1002F9F90 /* Resources */,
 				B5C3646121CBF30F003941D0 /* Embed Frameworks */,
+				B52CBAB1234EE05100B921F2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -311,10 +348,9 @@
 			};
 			buildConfigurationList = 4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "redwoods-insurance" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -325,6 +361,10 @@
 				{
 					ProductGroup = B5702D2D22988DD3009A3F12 /* Products */;
 					ProjectRef = B587811421CBEFE100E8644B /* SalesforceAnalytics.xcodeproj */;
+				},
+				{
+					ProductGroup = B54CDE67234E2D6B005CD350 /* Products */;
+					ProjectRef = B587810521CBEFD800E8644B /* SalesforceSDKCommon.xcodeproj */;
 				},
 				{
 					ProductGroup = B5702D3E22988DE9009A3F12 /* Products */;
@@ -339,6 +379,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B54CDE73234E2D6C005CD350 /* SalesforceSDKCommon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SalesforceSDKCommon.framework;
+			remoteRef = B54CDE72234E2D6C005CD350 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B54CDE75234E2D6C005CD350 /* SalesforceSDKCommonTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SalesforceSDKCommonTests.xctest;
+			remoteRef = B54CDE74234E2D6C005CD350 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B54CDE77234E2D6C005CD350 /* SalesforceSDKCommonTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SalesforceSDKCommonTestApp.app;
+			remoteRef = B54CDE76234E2D6C005CD350 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B54CDE79234E2D6C005CD350 /* libSalesforceSDKCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSalesforceSDKCommon.a;
+			remoteRef = B54CDE78234E2D6C005CD350 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B5702D3522988DD3009A3F12 /* SalesforceAnalytics.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -413,6 +481,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B52CBAB1234EE05100B921F2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4FD6C4701B754AF1002F9F90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -427,7 +515,6 @@
 				B5B254EA21B1B02200CB628C /* RestClient+NewClaim.swift in Sources */,
 				B5B254D521B1B02200CB628C /* ObjectLayoutDataSource.swift in Sources */,
 				B5C3CF5021B4C9E7004EBA83 /* UIImage+resize.swift in Sources */,
-				B5B254D621B1B02200CB628C /* CompactLayout.swift in Sources */,
 				B5B254D821B1B02200CB628C /* OpenClaimsTableViewController.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
 				B5B254D721B1B02200CB628C /* NewClaimViewController+Recording.swift in Sources */,

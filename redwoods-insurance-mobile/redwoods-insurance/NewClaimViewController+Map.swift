@@ -24,7 +24,6 @@ extension NewClaimViewController {
 		mapView.mapType = .standard
 		mapView.isZoomEnabled = true
 		mapView.isScrollEnabled = true
-		
 		mapView.clipsToBounds = true
 		mapView.layer.cornerRadius = 6
 	}
@@ -40,6 +39,7 @@ extension NewClaimViewController {
 			let street = placemark.thoroughfare ?? ""
 			let city = placemark.locality ?? ""
 			let state = placemark.administrativeArea ?? ""
+			// swiftlint:disable:next identifier_name
 			let zip = placemark.postalCode ?? ""
 			let country = placemark.isoCountryCode ?? ""
 			let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
@@ -49,7 +49,9 @@ extension NewClaimViewController {
 	}
 
     private func centerMap(on location: CLLocation) {
-			let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+			let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate,
+												latitudinalMeters: regionRadius,
+											   longitudinalMeters: regionRadius)
 			mapView.setRegion(coordinateRegion, animated: true)
 		geocode(location)
     }

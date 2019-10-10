@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-private var ActivityIndicatorViewAssociativeKey = "ActivityIndicatorViewAssociativeKey"
+private var activityIndicatorViewAssociativeKey = "ActivityIndicatorViewAssociativeKey"
 
 extension UIView {
 	var activityIndicatorView: UIActivityIndicatorView {
 		get {
-			if let activityIndicatorView = objc_getAssociatedObject(self, &ActivityIndicatorViewAssociativeKey) as? UIActivityIndicatorView {
+			if let activityIndicatorView = objc_getAssociatedObject(self,
+																	&activityIndicatorViewAssociativeKey) as? UIActivityIndicatorView {
 				return activityIndicatorView
 			} else {
 				let activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -24,14 +25,16 @@ extension UIView {
 				activityIndicatorView.hidesWhenStopped = true
 				addSubview(activityIndicatorView)
 
-				objc_setAssociatedObject(self, &ActivityIndicatorViewAssociativeKey, activityIndicatorView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+				objc_setAssociatedObject(self, &activityIndicatorViewAssociativeKey,
+										 activityIndicatorView,
+										 .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 				return activityIndicatorView
 			}
 		}
 
 		set {
 			addSubview(newValue)
-			objc_setAssociatedObject(self, &ActivityIndicatorViewAssociativeKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+			objc_setAssociatedObject(self, &activityIndicatorViewAssociativeKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		}
 
 	}

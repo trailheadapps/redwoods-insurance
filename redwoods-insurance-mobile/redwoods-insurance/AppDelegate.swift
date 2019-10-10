@@ -43,11 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	// MARK: - App delegate lifecycle
 
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	func application(
+		_ application: UIApplication,
+		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		SFPushNotificationManager.sharedInstance().registerForRemoteNotifications()
 
-		//Uncomment the code below to see how you can customize the color, textcolor, font and fontsize of the navigation bar
+		//Uncomment the code below to see how you can customize the color, textcolor,
+		//  font and fontsize of the navigation bar
 		//var loginViewConfig = LoginViewControllerConfig()
 		//Set showSettingsIcon to NO if you want to hide the settings icon on the nav bar
 		//loginViewConfig.showSettingsIcon = false
@@ -64,18 +67,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 
-	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+	func application(
+		_ application: UIApplication,
+		didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 
 		SFPushNotificationManager.sharedInstance().didRegisterForRemoteNotifications(withDeviceToken: deviceToken)
-		if (UserAccountManager.shared.currentUserAccount?.credentials.accessToken != nil) {
+		if UserAccountManager.shared.currentUserAccount?.credentials.accessToken != nil {
 			SFPushNotificationManager.sharedInstance().registerSalesforceNotifications(completionBlock: nil, fail: nil)
 		}
 	}
 
-	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error ) {
+	func application(
+		_ application: UIApplication,
+		didFailToRegisterForRemoteNotificationsWithError error: Error ) {
 		// Respond to any push notification registration errors here.
 	}
 
+	// swiftlint:disable:next identifier_name
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
 		// Uncomment following block to enable IDP Login flow
 		// return  UserAccountManager.sharedInstance().handleIDPAuthenticationResponse(url, options: options)
@@ -90,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func resetViewState(_ postResetBlock: @escaping () -> Void) {
 		if let rootViewController = self.window!.rootViewController {
-			if let _ = rootViewController.presentedViewController {
+			if rootViewController.presentedViewController != nil {
 				rootViewController.dismiss(animated: false, completion: postResetBlock)
 				return
 			}

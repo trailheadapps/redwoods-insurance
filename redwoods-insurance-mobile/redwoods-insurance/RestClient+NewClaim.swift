@@ -14,6 +14,7 @@ import SalesforceSDKCore
 // Extends SalesforceSDKCore.RestClient with convenience methods for working
 // with `Case` records.
 extension RestClient {
+	static let APIVERSION = "v46.0" // what api version to use for rest calls
 
 	/// An error that may occur while sending a request related to `Case` records.
 	enum CaseRequestError: LocalizedError {
@@ -24,11 +25,12 @@ extension RestClient {
 		/// A localized message describing what error occurred.
 		var errorDescription: String? {
 			switch self {
-			case .responseDataCorrupted(let keyPath): return "The response dictionary did not contain the expected fields: \(keyPath)"
+			case .responseDataCorrupted(let keyPath):
+				return "The response dictionary did not contain the expected fields: \(keyPath)"
 			}
 		}
 	}
-	
+
 	/// Sends a composite request for creating records and calls the completion
 	/// handler with the list of resulting IDs.
 	///
@@ -39,7 +41,10 @@ extension RestClient {
 	///   - completionHandler: The closure to call if the request successfully
 	///     completes.
 	///   - ids: The list of IDs for the created records.
-	func sendCompositeRequest(_ compositeRequest: RestRequest, onFailure failureHandler: @escaping RestFailBlock, completionHandler: @escaping (_ ids: [String]) -> Void) {
+	func sendCompositeRequest(
+		_ compositeRequest: RestRequest,
+		onFailure failureHandler: @escaping RestFailBlock,
+		completionHandler: @escaping (_ ids: [String]) -> Void) {
 		self.send(request: compositeRequest, onFailure: failureHandler) { response, urlResponse in
 			guard let responseDictionary = response as? [String: Any],
 			      let results = responseDictionary["compositeResponse"] as? [[String: Any]]
@@ -47,11 +52,11 @@ extension RestClient {
 				failureHandler(CaseRequestError.responseDataCorrupted(keyPath: "compositeResponse"), urlResponse)
 				return
 			}
-			let ids = results.compactMap { result -> String? in
+			let resultIds = results.compactMap { result -> String? in
 				guard let resultBody = result["body"] as? [String: Any] else { return nil }
 				return resultBody["id"] as? String
 			}
-			completionHandler(ids)
+			completionHandler(resultIds)
 		}
 	}
 
@@ -65,9 +70,14 @@ extension RestClient {
 	///   - completionHandler: The closure to call if the request successfully
 	///     completes.
 	///   - accountID: The ID of the master account.
-	func fetchMasterAccountForUser(onFailure failureHandler: @escaping RestFailBlock, completionHandler: @escaping (_ accountID: String) -> Void) {
+	func fetchMasterAccountForUser(
+		onFailure failureHandler: @escaping RestFailBlock,
+		completionHandler: @escaping (_ accountID: String) -> Void) {
 		let userID = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
-		let accountRequest = self.request(forQuery: "SELECT Contact.AccountID FROM User WHERE Id = '\(userID)' LIMIT 1")
+		let accountRequest = self.request(
+			forQuery: "SELECT Contact.AccountID FROM User WHERE Id = '\(userID)' LIMIT 1",
+			apiVersion: RestClient.APIVERSION
+		)
 		self.send(request: accountRequest, onFailure: failureHandler) { response, urlResponse in
 			guard let responseDictionary = response as? [String: Any],
 			      let records = responseDictionary["records"] as? [[String: Any]],
@@ -91,8 +101,11 @@ extension RestClient {
 	///   - completionHandler: The closure to call if the request successfully
 	///     completes.
 	///   - caseID: The ID of the created Case record.
-	func createCase(withFields fields: [String: Any], onFailure failureHandler: @escaping RestFailBlock, completionHandler: @escaping (_ caseID: String) -> Void) {
-		let createRequest = self.requestForCreate(withObjectType: "Case", fields: fields)
+	func createCase(
+		withFields fields: [String: Any],
+		onFailure failureHandler: @escaping RestFailBlock,
+		completionHandler: @escaping (_ caseID: String) -> Void) {
+		let createRequest = self.requestForCreate(withObjectType: "Case", fields: fields, apiVersion: RestClient.APIVERSION)
 		self.send(request: createRequest, onFailure: failureHandler) { response, urlResponse in
 			guard let record = response as? [String: Any],
 			      let caseID = record["id"] as? String
@@ -111,7 +124,7 @@ extension RestClient {
 	/// - Returns: The new composite request.
 	private func compositeRequestWithSequentialRefIDs(composedOf requests: [RestRequest]) -> RestRequest {
 		let refIDs = (0..<requests.count).map { "RefID-\($0)" }
-		return self.compositeRequest(requests, refIds: refIDs, allOrNone: false)
+		return self.compositeRequest(requests, refIds: refIDs, allOrNone: false, apiVersion: RestClient.APIVERSION)
 	}
 
 	/// Returns a composite request that executes requests to create records
@@ -122,7 +135,9 @@ extension RestClient {
 	///   - accountID: The ID of the account with to which the contact records
 	///     should be related.
 	/// - Returns: The new composite request.
-	func compositeRequestForCreatingContacts(from contacts: [CNContact], relatingToAccountID accountID: String) -> RestRequest {
+	func compositeRequestForCreatingContacts(
+		from contacts: [CNContact],
+		relatingToAccountID accountID: String) -> RestRequest {
 		let requests = contacts.map { contact -> RestRequest in
 			let address = contact.postalAddresses.first
 			let contactFields: [String: String] = [
@@ -136,18 +151,21 @@ extension RestClient {
 				"MailingPostalCode": address?.value.postalCode ?? "",
 				"MailingCountry": address?.value.country ?? ""
 			]
-			return self.requestForCreate(withObjectType: "Contact", fields: contactFields)
+			return self.requestForCreate(withObjectType: "Contact", fields: contactFields, apiVersion: RestClient.APIVERSION)
 		}
 		return self.compositeRequestWithSequentialRefIDs(composedOf: requests)
 	}
-	
+
 	/// Returns a request that adds an image attachment to a given case.
 	///
 	/// - Parameters:
 	///   - image: The image to be attached to the case.
 	///   - caseID: The ID of the case to which the attachment is to be added.
 	/// - Returns: The new request.
-	func requestForCreatingImageAttachment(from image: UIImage, relatingToCaseID caseID: String, fileName: String? = nil) -> RestRequest {
+	func requestForCreatingImageAttachment(
+		from image: UIImage,
+		relatingToCaseID caseID: String,
+		fileName: String? = nil) -> RestRequest {
 		let imageData = image.resizedByHalf().pngData()!
 		let uploadFileName = fileName ?? UUID().uuidString + ".png"
 		return self.requestForCreatingAttachment(from: imageData, withFileName: uploadFileName, relatingToCaseID: caseID)
@@ -172,9 +190,13 @@ extension RestClient {
 	///     a file extension).
 	///   - caseID: The ID of the case to which the attachment is to be added.
 	/// - Returns: The new request.
-	private func requestForCreatingAttachment(from data: Data, withFileName fileName: String, relatingToCaseID caseID: String) -> RestRequest {
-		let record = ["VersionData": data.base64EncodedString(options: .lineLength64Characters), "Title": fileName, "PathOnClient": fileName, "FirstPublishLocationId": caseID]
-		return self.requestForCreate(withObjectType: "ContentVersion", fields: record)
+	private func requestForCreatingAttachment(
+		from data: Data,
+		withFileName fileName: String,
+		relatingToCaseID caseID: String) -> RestRequest {
+		let record = ["VersionData": data.base64EncodedString(options: .lineLength64Characters),
+					  "Title": fileName, "PathOnClient": fileName, "FirstPublishLocationId": caseID]
+		return self.requestForCreate(withObjectType: "ContentVersion", fields: record, apiVersion: RestClient.APIVERSION)
 	}
 
 	/// Returns a composite request that executes requests to associate each
@@ -185,14 +207,16 @@ extension RestClient {
 	///     the case.
 	///   - caseID: The ID of the case with which the contacts are to be associated.
 	/// - Returns: The new composite request.
-	func compositeRequestForCreatingAssociations(fromContactIDs contactIDs: [String], toCaseID caseID: String) -> RestRequest {
+	func compositeRequestForCreatingAssociations(
+		fromContactIDs contactIDs: [String],
+		toCaseID caseID: String) -> RestRequest {
 		let requests = contactIDs.map { contactID -> RestRequest in
 			let associationFields: [String: String] = [
 				"Case__c": caseID,
 				"Contact__c": contactID
 			]
-			return self.requestForCreate(withObjectType: "CaseContact__c", fields: associationFields)
+			return self.requestForCreate(withObjectType: "CaseContact__c", fields: associationFields, apiVersion: RestClient.APIVERSION)
 		}
-		return self.compositeRequest(requests, refIds: contactIDs, allOrNone: false)
+		return self.compositeRequest(requests, refIds: contactIDs, allOrNone: false, apiVersion: RestClient.APIVERSION)
 	}
 }
