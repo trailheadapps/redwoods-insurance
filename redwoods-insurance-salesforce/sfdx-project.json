@@ -2,10 +2,13 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true
+            "default": true,
+            "package": "RedwoodsInsurance",
+            "versionName": "Winter '20",
+            "versionNumber": "2.0.0"
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "46.0"
+    "sourceApiVersion": "47.0"
 }
