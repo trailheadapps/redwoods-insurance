@@ -10,7 +10,7 @@ import UIKit
 import SalesforceSDKCore
 
 class OpenClaimsTableViewController: UITableViewController {
-	
+
 	/// Used by the storyboard to unwind other scenes back
 	/// to this view controller.
 	///
@@ -18,17 +18,20 @@ class OpenClaimsTableViewController: UITableViewController {
 	///
 	/// - Parameter segue: The segue to unwind.
 	@IBAction func unwindFromNewClaim(segue: UIStoryboardSegue) {
-		let newClaimViewController = segue.source as! NewClaimViewController
-		if newClaimViewController.wasSubmitted {
-			dataSource.fetchData()
+		if let newClaimViewController = segue.source as? NewClaimViewController {
+			if newClaimViewController.wasSubmitted {
+				dataSource.fetchData()
+			}
 		}
 	}
 
 	@IBAction func logout(_ sender: Any) {
 		UserAccountManager.shared.logout()
 	}
-	
-	private let dataSource = ObjectListDataSource(soqlQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed' ORDER BY CaseNumber DESC", cellReuseIdentifier: "CasePrototype") { record, cell in
+
+	private let dataSource = ObjectListDataSource(
+		soqlQuery: "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed' ORDER BY CaseNumber DESC",
+		cellReuseIdentifier: "CasePrototype") { record, cell in
 		let subject = record["Subject"] as? String ?? ""
 		let caseNumber = record["CaseNumber"] as? String ?? ""
 		cell.textLabel?.text = subject
@@ -42,15 +45,18 @@ class OpenClaimsTableViewController: UITableViewController {
 		self.tableView.activityIndicatorView.startAnimating()
 		self.tableView.dataSource = self.dataSource
 		self.refreshControl = UIRefreshControl()
-		refreshControl?.addTarget(self.dataSource, action: #selector(self.dataSource.fetchData), for: UIControl.Event.valueChanged)
+		refreshControl?.addTarget(
+			self.dataSource,
+			action: #selector(self.dataSource.fetchData),
+			for: UIControl.Event.valueChanged)
 		self.tableView.addSubview(refreshControl!)
 		self.dataSource.fetchData()
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "ViewClaimDetails" {
-			let destination = segue.destination as! ClaimDetailsTableViewController
-			let cell = sender as! UITableViewCell
+			guard let destination = segue.destination as? ClaimDetailsTableViewController,
+				let cell = sender as? UITableViewCell else {return}
 			let indexPath = self.tableView.indexPath(for: cell)!
 			if let claimId = self.dataSource.records[indexPath.row]["Id"] as? String {
 				destination.claimId = claimId

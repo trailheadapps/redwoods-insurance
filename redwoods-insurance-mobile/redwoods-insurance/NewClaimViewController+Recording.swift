@@ -15,8 +15,18 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 	/// Returns the URL at which the recorded audio will be temporarily saved
 	/// for the new claim.
 	var audioFilenameURL: URL {
-		let documentsURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-		return documentsURL.appendingPathComponent("incident.m4a")
+		do {
+			let documentsURL = try FileManager.default.url(
+				for: .documentDirectory,
+				in: .userDomainMask,
+				appropriateFor: nil,
+				create: true
+			)
+			return documentsURL.appendingPathComponent("incident.m4a")
+		} catch {
+			print("unable to get documents URL")
+		}
+		return URL(fileURLWithPath: "")
 	}
 
 	func initAVRecordingExtension() {
@@ -50,7 +60,12 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 	func attachKeyboardDismissalButton() {
 		let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
 		let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		let doneButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NewClaimViewController.doneButtonAction))
+		let doneButton: UIBarButtonItem = UIBarButtonItem(
+			title: "Done",
+			style: .done,
+			target: self,
+			action: #selector(NewClaimViewController.doneButtonAction)
+		)
 		toolbar.setItems([flexSpace, doneButton], animated: false)
 		toolbar.sizeToFit()
 		//setting toolbar as inputAccessoryView
@@ -82,7 +97,13 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 			incidentRecorder = try AVAudioRecorder(url: audioFilenameURL, settings: settings)
 			incidentRecorder!.delegate = self
 			incidentRecorder!.record()
-			meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateAudioMeter(timer:)), userInfo: nil, repeats: true)
+			meterTimer = Timer.scheduledTimer(
+				timeInterval: 0.1,
+				target: self,
+				selector: #selector(self.updateAudioMeter(timer:)),
+				userInfo: nil,
+				repeats: true
+			)
 
 			recordButton.setTitle("Stop", for: .normal)
 		} catch {
@@ -111,10 +132,10 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 	@objc func updateAudioMeter(timer: Timer) {
 		if let incidentRecorder = incidentRecorder,
 			incidentRecorder.isRecording {
-			let hr = Int((incidentRecorder.currentTime / 60) / 60)
-			let min = Int(incidentRecorder.currentTime / 60)
-			let sec = Int(incidentRecorder.currentTime.truncatingRemainder(dividingBy: 60))
-			let totalTimeString = String(format: "%02d:%02d:%02d", hr, min, sec)
+			let hour = Int((incidentRecorder.currentTime / 60) / 60)
+			let minute = Int(incidentRecorder.currentTime / 60)
+			let second = Int(incidentRecorder.currentTime.truncatingRemainder(dividingBy: 60))
+			let totalTimeString = String(format: "%02d:%02d:%02d", hour, minute, second)
 			recordingTimerLabel.text = totalTimeString
 			incidentRecorder.updateMeters()
 		}
@@ -165,7 +186,7 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 	}
 
 	func toggleAudio() {
-		if(isPlaying) {
+		if isPlaying {
 			audioPlayer.stop()
 			recordButton.isEnabled = true
 			playButton.setTitle("Play", for: .normal)
@@ -185,7 +206,7 @@ extension NewClaimViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate
 
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		recordButton.isEnabled = true
-		
+
 		// Reset audio player.
 		playButton.setTitle("Play", for: .normal)
 		isPlaying = false

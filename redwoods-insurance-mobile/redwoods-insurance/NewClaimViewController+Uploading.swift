@@ -40,14 +40,18 @@ extension NewClaimViewController {
 		} else {
 			errorDescription = "An unknown error occurred."
 		}
-		
-		if(alert.isViewLoaded){
+
+		if alert.isViewLoaded {
 			alert.dismiss(animated: true)
 		}
-		alert = UIAlertController(title: "We're sorry, an error has occured. This claim has not been saved.", message: errorDescription, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in self.unwindToClaims()}))
+		alert = UIAlertController(
+			title: "We're sorry, an error has occured. This claim has not been saved.",
+			message: errorDescription,
+			preferredStyle: .alert
+		)
+		alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in self.unwindToClaims()}))
 		present(self.alert, animated: true)
-		
+
 		SalesforceLogger.e(type(of: self), message: "Failed to successfully complete the REST request. \(errorDescription)")
 	}
 
@@ -64,7 +68,10 @@ extension NewClaimViewController {
 		present(alert, animated: true, completion: nil)
 
 		RestClient.shared.fetchMasterAccountForUser(onFailure: handleError) { masterAccountID in
-			SalesforceLogger.d(type(of: self), message: "Completed fetching the Master account ID: \(masterAccountID). Starting to create case.")
+			SalesforceLogger.d(
+				type(of: self),
+				message: "Completed fetching the Master account ID: \(masterAccountID). Starting to create case."
+			)
 			self.createCase(withAccountID: masterAccountID)
 		}
 	}
@@ -89,7 +96,7 @@ extension NewClaimViewController {
 		record["Incident_Location__latitude__s"] = self.mapView.centerCoordinate.latitude
 		record["Incident_Location__longitude__s"] = self.mapView.centerCoordinate.longitude
 		record["PotentialLiability__c"] = true
-		
+
 		RestClient.shared.createCase(withFields: record, onFailure: handleError) { newCaseID in
 			SalesforceLogger.d(type(of: self), message: "Completed creating case with ID: \(newCaseID). Uploading Contacts.")
 			self.createContacts(relatingToAccountID: accountID, forCaseID: newCaseID)
@@ -104,9 +111,15 @@ extension NewClaimViewController {
 	///     to be associated.
 	///   - caseID: The ID of the case that is being modified.
 	private func createContacts(relatingToAccountID accountID: String, forCaseID caseID: String) {
-		let contactsRequest = RestClient.shared.compositeRequestForCreatingContacts(from: contacts, relatingToAccountID: accountID)
+		let contactsRequest = RestClient.shared.compositeRequestForCreatingContacts(
+			from: contacts,
+			relatingToAccountID: accountID
+		)
 		RestClient.shared.sendCompositeRequest(contactsRequest, onFailure: handleError) { contactIDs in
-			SalesforceLogger.d(type(of: self), message: "Completed creating \(self.contacts.count) contact(s). Creating case<->contact junction object records.")
+			SalesforceLogger.d(
+				type(of: self),
+				message: "Completed creating \(self.contacts.count) contact(s). Creating case<->contact junction object records."
+			)
 			self.createCaseContacts(withContactIDs: contactIDs, forCaseID: caseID)
 		}
 	}
@@ -118,9 +131,16 @@ extension NewClaimViewController {
 	///   - contactIDs: The IDs of the Contact records being associated with the case.
 	///   - caseID: The ID of the case that is being modified.
 	private func createCaseContacts(withContactIDs contactIDs: [String], forCaseID caseID: String) {
-		let associationRequest = RestClient.shared.compositeRequestForCreatingAssociations(fromContactIDs: contactIDs, toCaseID: caseID)
+		let associationRequest = RestClient.shared.compositeRequestForCreatingAssociations(
+			fromContactIDs: contactIDs,
+			toCaseID: caseID
+		)
 		RestClient.shared.sendCompositeRequest(associationRequest, onFailure: handleError) { _ in
-			SalesforceLogger.d(type(of: self), message: "Completed creating \(contactIDs.count) case contact record(s). Optionally uploading map image as attachment.")
+			SalesforceLogger.d(
+				type(of: self),
+				message: "Completed creating \(contactIDs.count) case contact record(s). " +
+				"Optionally uploading map image as attachment."
+			)
 			self.uploadMapImage(forCaseID: caseID)
 		}
 	}
@@ -131,7 +151,11 @@ extension NewClaimViewController {
 	/// - Parameter caseID: The ID of the case that is being modified.
 	private func uploadMapImage(forCaseID caseID: String) {
 		let options = MKMapSnapshotter.Options()
-		let region = MKCoordinateRegion.init(center: mapView.centerCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+		let region = MKCoordinateRegion.init(
+			center: mapView.centerCoordinate,
+			latitudinalMeters: regionRadius,
+			longitudinalMeters: regionRadius
+		)
 		options.region = region
 		options.scale = UIScreen.main.scale
 		options.size = CGSize(width: 800, height: 800)
@@ -157,10 +181,14 @@ extension NewClaimViewController {
 			pinImage?.draw(at: point)
 
 			let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
-			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: mapImage, relatingToCaseID: caseID, fileName: "MapSnapshot.png")
+			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(
+				from: mapImage,
+				relatingToCaseID: caseID,
+				fileName: "MapSnapshot.png"
+			)
 
 			UIGraphicsEndImageContext()
-		
+
 			RestClient.shared.send(request: attachmentRequest, onFailure: self.handleError) { _, _ in
 				SalesforceLogger.d(type(of: self), message: "Completed uploading map image. Now uploading photos.")
 				self.uploadPhotos(forCaseID: caseID)
@@ -173,10 +201,13 @@ extension NewClaimViewController {
 	///
 	/// - Parameter caseID: The ID of the case that is being modified.
 	private func uploadPhotos(forCaseID caseID: String) {
-		for (index, img) in self.selectedImages.enumerated() {
-			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: img, relatingToCaseID: caseID)
-			RestClient.shared.send(request: attachmentRequest, onFailure: self.handleError){ result, _ in
-				SalesforceLogger.d(type(of: self), message: "Completed upload of photo \(index + 1) of \(self.selectedImages.count).")
+		for (index, image) in self.selectedImages.enumerated() {
+			let attachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: image, relatingToCaseID: caseID)
+			RestClient.shared.send(request: attachmentRequest, onFailure: self.handleError) { _, _ in
+				SalesforceLogger.d(
+					type(of: self),
+					message: "Completed upload of photo \(index + 1) of \(self.selectedImages.count)."
+				)
 			}
 		}
 		self.uploadAudio(forCaseID: caseID)
@@ -188,7 +219,10 @@ extension NewClaimViewController {
 	/// - Parameter caseID: The ID of the case that is being modified.
 	private func uploadAudio(forCaseID caseID: String) {
 		if let audioData = audioFileAsData() {
-			let attachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: caseID)
+			let attachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(
+				from: audioData,
+				relatingToCaseID: caseID
+			)
 			RestClient.shared.send(request: attachmentRequest, onFailure: handleError) { _, _ in
 				SalesforceLogger.d(type(of: self), message: "Completed uploading audio file. Transaction complete!")
 				self.unwindToClaims()

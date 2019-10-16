@@ -89,7 +89,7 @@ class ObjectListDataSource: NSObject {
 	/// results, and the delegate is notified of the update.
 	@objc func fetchData() {
 		guard !soqlQuery.isEmpty else { return }
-		let request = RestClient.shared.request(forQuery: soqlQuery)
+		let request = RestClient.shared.request(forQuery: soqlQuery, apiVersion: RestClient.APIVERSION)
 		RestClient.shared.send(request: request, onFailure: handleError) { [weak self] response, _ in
 			guard let self = self else { return }
 			var resultsToReturn = [SFRecord]()

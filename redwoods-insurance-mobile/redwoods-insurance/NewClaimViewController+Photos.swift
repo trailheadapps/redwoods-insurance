@@ -13,25 +13,25 @@ extension NewClaimViewController {
 	func addPhoto() {
         imagePickerCtrl = UIImagePickerController()
         imagePickerCtrl.delegate = self
-		
+
 		if UIImagePickerController.isSourceTypeAvailable(.camera) {
 			imagePickerCtrl.sourceType = .camera
 		} else {
-			
+
 			// Device camera is not available. Use photo album instead.
 			imagePickerCtrl.sourceType = .savedPhotosAlbum
 		}
-		
+
         present(imagePickerCtrl, animated: true, completion: nil)
     }
-	
+
 	func stackViewForNewRowOfPhotos() -> UIStackView {
 		let stackView = UIStackView(arrangedSubviews: [])
 		stackView.axis = .horizontal
 		stackView.alignment = .center
 		stackView.distribution = .fillEqually
 		stackView.spacing = 1
-		
+
 		// Fill with blank views to preserve image ratios when
 		// adding image views to the stack.
 		for _ in 1...4 {
@@ -39,14 +39,14 @@ extension NewClaimViewController {
 		}
 		return stackView
 	}
-	
+
 	/// Compute and adjust the height for the stackView so there are
 	/// 4 square images on each row.
 	private func adjustPhotoStackViewHeight() {
 		let numberOfRows = selectedImages.count / 4 + 1
 		photoStackHeightConstraint.constant =  CGFloat(numberOfRows) * photoStackView.frame.width / 4
 	}
-	
+
 	private func addToPhotoStack(_ photo: UIImage) {
 		var rowStack: UIStackView
 		if let lastRowStack = photoStackView.arrangedSubviews.last as? UIStackView,
@@ -57,12 +57,12 @@ extension NewClaimViewController {
 			photoStackView.addArrangedSubview(rowStack)
 			adjustPhotoStackViewHeight()
 		}
-		
+
 		// Remove filler view.
 		let fillerView = rowStack.arrangedSubviews.last!
 		rowStack.removeArrangedSubview(fillerView)
 		fillerView.removeFromSuperview()
-		
+
 		// Insert image view with the photo after the last image in this row.
 		let imageView = UIImageView(image: photo)
 		imageView.clipsToBounds = true
@@ -73,7 +73,7 @@ extension NewClaimViewController {
 			nextImageViewIndex = lastImageViewIndex + 1
 		}
 		rowStack.insertArrangedSubview(imageView, at: nextImageViewIndex)
-		
+
 	}
 }
 
@@ -81,7 +81,10 @@ extension NewClaimViewController {
 extension NewClaimViewController: UINavigationControllerDelegate {}
 
 extension NewClaimViewController: UIImagePickerControllerDelegate {
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+	func imagePickerController(
+		_ picker: UIImagePickerController,
+		didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+	) {
 		imagePickerCtrl.dismiss(animated: true, completion: nil)
 		if let image = info[.originalImage] as? UIImage {
 			selectedImages.append(image)
