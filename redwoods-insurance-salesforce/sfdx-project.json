@@ -2,10 +2,7 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true,
-            "package": "RedwoodsInsurance",
-            "versionName": "Winter '20",
-            "versionNumber": "2.0.0"
+            "default": true
         }
     ],
     "namespace": "",
