@@ -14,7 +14,7 @@ import SalesforceSDKCore
 // Extends SalesforceSDKCore.RestClient with convenience methods for working
 // with `Case` records.
 extension RestClient {
-	static let APIVERSION = "v47.0" // what api version to use for rest calls
+	static let APIVERSION = "v48.0" // what api version to use for rest calls
 
 	/// An error that may occur while sending a request related to `Case` records.
 	enum CaseRequestError: LocalizedError {
