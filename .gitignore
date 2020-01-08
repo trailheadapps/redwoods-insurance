@@ -4,7 +4,6 @@ project.xcworkspace
 *.xcworkspace/
 *~
 .DS_Store
-.github/
 .idea/
 .metadata/
 .settings/
