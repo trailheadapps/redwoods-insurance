@@ -13,6 +13,7 @@ struct NewClaim: View {
   var body: some View {
     VStack{
       IncidentLocationCmp()
+      Spacer()
     }
   }
 }
