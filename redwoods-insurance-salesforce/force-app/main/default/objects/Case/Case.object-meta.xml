@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -54,7 +54,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <comment>
+            Action override created by Lightning App Builder during activation.
+        </comment>
         <content>Case_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -63,25 +65,61 @@
     <compactLayoutAssignment>mobile</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <searchLayouts>
-        <customTabListAdditionalFields>CASES.CASE_NUMBER</customTabListAdditionalFields>
-        <customTabListAdditionalFields>CASES.SUBJECT</customTabListAdditionalFields>
-        <customTabListAdditionalFields>CASES.CREATED_DATE</customTabListAdditionalFields>
-        <customTabListAdditionalFields>CASES.PRIORITY</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>CASES.CASE_NUMBER</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>CASES.SUBJECT</lookupDialogsAdditionalFields>
+        <customTabListAdditionalFields>
+            CASES.CASE_NUMBER
+        </customTabListAdditionalFields>
+        <customTabListAdditionalFields>
+            CASES.SUBJECT
+        </customTabListAdditionalFields>
+        <customTabListAdditionalFields>
+            CASES.CREATED_DATE
+        </customTabListAdditionalFields>
+        <customTabListAdditionalFields>
+            CASES.PRIORITY
+        </customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>
+            CASES.CASE_NUMBER
+        </lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>
+            CASES.SUBJECT
+        </lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>NAME</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>CASES.STATUS</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>CASES.CASE_NUMBER</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>CASES.SUBJECT</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CASES.SUBJECT</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CASES.STATUS</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CASES.CREATED_DATE</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+        <lookupDialogsAdditionalFields>
+            ACCOUNT.NAME
+        </lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>
+            CASES.STATUS
+        </lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>
+            CASES.CASE_NUMBER
+        </lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>
+            CASES.SUBJECT
+        </lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>
+            NAME
+        </lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>
+            ACCOUNT.NAME
+        </lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>
+            CASES.STATUS
+        </lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>
+            CASES.CASE_NUMBER
+        </searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>
+            CASES.SUBJECT
+        </searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>
+            CASES.STATUS
+        </searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>
+            CASES.CREATED_DATE
+        </searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>
+            CORE.USERS.ALIAS
+        </searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWriteTransfer</sharingModel>
 </CustomObject>
