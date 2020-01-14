@@ -53,7 +53,7 @@ extension NewClaimViewController {
 												latitudinalMeters: regionRadius,
 											   longitudinalMeters: regionRadius)
 			mapView.setRegion(coordinateRegion, animated: true)
-		geocode(location)
+			geocode(location)
     }
 
     func checkLocationAuthorizationStatus() -> Bool? {
