@@ -10,10 +10,6 @@
         {
             "files": "*.{cmp,page,component}",
             "options": { "parser": "html" }
-        },
-        {
-            "files": "*.*-meta.xml",
-            "options": { "parser": "xml" }
         }
     ]
 }
