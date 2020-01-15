@@ -3,5 +3,7 @@
 #
 
 **/staticresources/**
-.sfdx
 .localdevserver
+.sfdx
+.vscode
+coverage/
