@@ -6,8 +6,8 @@
     "scripts": {
         "lint": "npm run lint:lwc",
         "lint:lwc": "eslint **/lwc/**",
-        "prettier": "prettier --write '**/*.{cls,cmp,component,html,js,json,md,page,trigger,xml,yaml,yml}'",
-        "prettier:verify": "prettier --list-different '**/*.{cls,cmp,component,html,js,json,md,page,trigger,xml,yaml,yml}'",
+        "prettier": "prettier --write \"**/*.{cls,cmp,component,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
