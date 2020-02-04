@@ -13,9 +13,9 @@ import MapKit
 struct MapView: UIViewRepresentable {
   
   @Binding var geoCodedAddressText: String
+  @Binding var mapView: MKMapView
   
   func makeUIView(context: Context) -> MKMapView {
-    let mapView = MKMapView()
     mapView.delegate = context.coordinator
     return mapView
   }
@@ -31,29 +31,27 @@ struct MapView: UIViewRepresentable {
   class Coordinator: NSObject, MKMapViewDelegate {
     var parent: MapView
     let locationManager = CLLocationManager()
-    var mkMapView: MKMapView?
+    var mkMapView: MKMapView!
     let regionRadius = 150.0
     let geoCoder = CLGeocoder()
     var geoCodedAddress: CLPlacemark?
     
     init(_ parent: MapView) {
       self.parent = parent
-    }
-    
-    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-      self.mkMapView = mapView
+      self.mkMapView = self.parent.mapView
+      super.init()
+
       locationManager.desiredAccuracy = kCLLocationAccuracyBest
       
       if checkLocationAuthorizationStatus() == true, let userLocation = locationManager.location {
         centerMap(on: userLocation)
       }
       
-      mapView.mapType = .standard
-      mapView.isZoomEnabled = true
-      mapView.isScrollEnabled = true
-      mapView.clipsToBounds = true
-      mapView.layer.cornerRadius = 6
-      
+      mkMapView.mapType = .standard
+      mkMapView.isZoomEnabled = true
+      mkMapView.isScrollEnabled = true
+      mkMapView.clipsToBounds = true
+      mkMapView.layer.cornerRadius = 6
     }
     
     func checkLocationAuthorizationStatus() -> Bool? {

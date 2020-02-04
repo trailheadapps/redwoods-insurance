@@ -23,8 +23,22 @@
 		B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F5823C7C12A006F1EEA /* NewClaim.swift */; };
 		B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */; };
 		B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5316F5E23C8DDE3006F1EEA /* MapKit.framework */; };
+		B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540647123DB9E3600DA3EF6 /* Collection.swift */; };
 		B54A393423CD0EF0004F8274 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A393323CD0EF0004F8274 /* MapView.swift */; };
+		B559245623D019B20051B99C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559245523D019B20051B99C /* GridView.swift */; };
+		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
+		B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */; };
+		B59D2B3D23DB942600C780D2 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D2B3C23DB942600C780D2 /* Array.swift */; };
+		B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F915423E6280100FB363D /* ClaimUpload.swift */; };
+		B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916123E8C2D600FB363D /* NewClaimModel.swift */; };
+		B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916323E91BC000FB363D /* UIImageExtensions.swift */; };
 		B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */; };
+		B5B6FE1F23DF3E7800140A06 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */; };
+		B5D0A3CE23CF685500ACB9FC /* DescriptionCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */; };
+		B5D0A3E723CF752400ACB9FC /* PhotosCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */; };
+		B5D0A3F423CF772E00ACB9FC /* PartiesInvolvedCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */; };
+		B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */; };
+		B5EFD61223DF9853009D368D /* UITextViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
@@ -130,8 +144,22 @@
 		B5316F5823C7C12A006F1EEA /* NewClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaim.swift; sourceTree = "<group>"; };
 		B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDetails.swift; sourceTree = "<group>"; };
 		B5316F5E23C8DDE3006F1EEA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B540647123DB9E3600DA3EF6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		B54A393323CD0EF0004F8274 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B559245523D019B20051B99C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
+		B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
+		B59D2B3C23DB942600C780D2 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B59F915423E6280100FB363D /* ClaimUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimUpload.swift; sourceTree = "<group>"; };
+		B59F916123E8C2D600FB363D /* NewClaimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaimModel.swift; sourceTree = "<group>"; };
+		B59F916323E91BC000FB363D /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentLocationCmp.swift; sourceTree = "<group>"; };
+		B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCmp.swift; sourceTree = "<group>"; };
+		B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCmp.swift; sourceTree = "<group>"; };
+		B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiesInvolvedCmp.swift; sourceTree = "<group>"; };
+		B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewWrapper.swift; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
@@ -201,6 +229,8 @@
 				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
 				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
 				4F393A281C3C8BCD00B3EA13 /* main.swift */,
+				B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */,
+				B59F915423E6280100FB363D /* ClaimUpload.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -261,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */,
+				B59F916123E8C2D600FB363D /* NewClaimModel.swift */,
 				B5316F4D23C77503006F1EEA /* Claim.swift */,
 			);
 			path = Models;
@@ -270,6 +301,9 @@
 			isa = PBXGroup;
 			children = (
 				B5316F5623C7777E006F1EEA /* RestClientExtentions.swift */,
+				B59D2B3C23DB942600C780D2 /* Array.swift */,
+				B540647123DB9E3600DA3EF6 /* Collection.swift */,
+				B59F916323E91BC000FB363D /* UIImageExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -279,6 +313,14 @@
 			children = (
 				B54A393323CD0EF0004F8274 /* MapView.swift */,
 				B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */,
+				B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */,
+				B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */,
+				B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */,
+				B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */,
+				B559245523D019B20051B99C /* GridView.swift */,
+				B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */,
+				B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */,
+				B564A30323E141A40004FFD1 /* ContactListRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -444,15 +486,29 @@
 				B5316F4E23C77503006F1EEA /* Claim.swift in Sources */,
 				B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */,
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
+				B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */,
 				B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */,
+				B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */,
 				B54A393423CD0EF0004F8274 /* MapView.swift in Sources */,
+				B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */,
 				B5316F5723C7777E006F1EEA /* RestClientExtentions.swift in Sources */,
+				B5D0A3CE23CF685500ACB9FC /* DescriptionCmp.swift in Sources */,
+				B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */,
+				B5D0A3E723CF752400ACB9FC /* PhotosCmp.swift in Sources */,
+				B5D0A3F423CF772E00ACB9FC /* PartiesInvolvedCmp.swift in Sources */,
+				B59D2B3D23DB942600C780D2 /* Array.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
+				B559245623D019B20051B99C /* GridView.swift in Sources */,
 				B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */,
+				B5B6FE1F23DF3E7800140A06 /* AudioRecorder.swift in Sources */,
 				B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */,
+				B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */,
 				B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */,
+				B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
+				B5EFD61223DF9853009D368D /* UITextViewWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

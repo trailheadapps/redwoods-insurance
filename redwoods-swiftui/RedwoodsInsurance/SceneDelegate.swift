@@ -30,6 +30,7 @@ import SalesforceSDKCore
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+  var newClaim = NewClaimModel()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -90,9 +91,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
    }
    
    func setupRootViewController() {
-
        self.window?.rootViewController = UIHostingController(
-           rootView: ExistingClaims()
+           rootView: ExistingClaims().environmentObject(newClaim)
        )
    }
    

@@ -12,10 +12,10 @@ import SwiftUI
 import Combine
 
 struct Claim: Hashable, Identifiable, Decodable {
-  let id: String
-  let subject: String
-  let caseNumber: String
-  
+  var id: String
+  var subject: String
+  var caseNumber: String
+    
   static func generateDemoClaims(numberOfClaims: Int) -> [Claim] {
     var demoClaims = [Claim]()
     for idx in 1...numberOfClaims {
@@ -24,6 +24,14 @@ struct Claim: Hashable, Identifiable, Decodable {
       )
     }
     return demoClaims
+  }
+  
+  static func fromJson(record: RestClient.SalesforceRecord) -> Claim {
+    return .init(
+      id: record["Id"] as? String ?? "9999999",
+      subject: record["Subject"] as? String ?? "None Listed",
+      caseNumber: record["CaseNumber"] as? String ?? "0"
+    )
   }
   
 }
