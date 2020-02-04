@@ -26,7 +26,7 @@ struct PartiesInvolvedCmp: View {
           Text("Edit")
         }.padding(.trailing)
       }
-      List(newClaim.contacts) { contact in
+      List(newClaim.contacts, id: \.self) { contact in
         ContactListRow(contact: contact)
       }
 //      List(self.newClaim.contacts.indices, id: \.self ){ idx in

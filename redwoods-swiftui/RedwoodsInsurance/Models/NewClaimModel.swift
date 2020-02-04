@@ -19,10 +19,10 @@ class NewClaimModel: ObservableObject {
   let uploader = ClaimUpload()
   let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
   
-  public var images: [UIImage] = [UIImage]()
-  public var contacts: [CNContact] = [CNContact]()
+  @Published var images: [UIImage] = [UIImage]()
+  @Published var contacts: [CNContact] = [CNContact]()
   private let compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
-  public var mapView: MKMapView = MKMapView()
+  @Published var mapView: MKMapView = MKMapView()
   
   @Published var accountId = "" {
     didSet {
