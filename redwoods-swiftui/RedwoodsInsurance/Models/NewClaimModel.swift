@@ -16,11 +16,10 @@ import MapKit
 class NewClaimModel: ObservableObject {
   
   let newClaim = PassthroughSubject<NewClaimModel, Never>()
-  let uploader = ClaimUpload()
   let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
   
   @Published var images: [UIImage] = [UIImage]()
-  @Published var contacts: [CNContact] = [CNContact]()
+  @Published var selectedContacts = [CNContact]()
   private let compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
   @Published var mapView: MKMapView = MKMapView()
   
@@ -90,7 +89,7 @@ class NewClaimModel: ObservableObject {
   }
   
   func createContactRequests() {
-    self.contacts.enumerated().forEach { (index, contact) -> Void in
+    self.selectedContacts.enumerated().forEach { (index, contact) -> Void in
       let address = contact.postalAddresses.first
       let contactFields: [String: String] = [
         "LastName": contact.familyName,

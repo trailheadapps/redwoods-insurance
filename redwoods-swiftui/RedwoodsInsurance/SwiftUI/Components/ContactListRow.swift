@@ -11,7 +11,8 @@ import ContactsUI
 
 struct ContactListRow: View {
   
-  @Binding var contact: CNContact
+  var contact: CNContact
+  @EnvironmentObject var newClaim: NewClaimModel
   
   var body: some View {
     HStack{
@@ -32,7 +33,7 @@ struct ContactListRow: View {
 
 struct ContactListRow_Previews: PreviewProvider {
   
-  @State static var contact = CNContact()
+  static var contact = CNContact()
   init(){
     let newContact = CNMutableContact()
     let homePhone = CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue :"555 555 5555"))
@@ -43,7 +44,7 @@ struct ContactListRow_Previews: PreviewProvider {
   }
   
   static var previews: some View {
-    ContactListRow(contact: self.$contact)
+    ContactListRow(contact: self.contact)
   }
   
   

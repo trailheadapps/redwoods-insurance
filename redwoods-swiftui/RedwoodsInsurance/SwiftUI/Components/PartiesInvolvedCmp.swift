@@ -12,7 +12,7 @@ import ContactsUI
 struct PartiesInvolvedCmp: View {
   
   @State var showingContactPicker = false
-//  @State var selectedContacts: [CNContact]
+  @State var selectedContacts: [CNContact]  = []
   @EnvironmentObject var newClaim: NewClaimModel
   
   var body: some View {
@@ -26,14 +26,16 @@ struct PartiesInvolvedCmp: View {
           Text("Edit")
         }.padding(.trailing)
       }
-      List(newClaim.contacts, id: \.self) { contact in
+      List(newClaim.selectedContacts) { contact in
         ContactListRow(contact: contact)
       }
-//      List(self.newClaim.contacts.indices, id: \.self ){ idx in
-//        ContactListRow(contact: self.newClaim.contacts[idx])
-//      }
-    }.sheet(isPresented: $showingContactPicker){
-      EmbeddedContactPicker()
+    }
+    .sheet(isPresented: $showingContactPicker){
+      ContactPicker(selectedContacts: self.$selectedContacts, sheetDisplayed: self.$showingContactPicker )
+        .onDisappear(){
+          print("closing sheet")
+          self.newClaim.selectedContacts = self.selectedContacts
+      }
     }
   }
 }
