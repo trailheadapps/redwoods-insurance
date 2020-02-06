@@ -30,6 +30,7 @@ class NewClaimModel: ObservableObject {
   }
   
   private var accountIdCancellable: AnyCancellable?
+  private var mapSnapshotCancellable: AnyCancellable?
   private var compositeCancellable: AnyCancellable?
   
   func fetchAccountId() -> AnyPublisher<String,Never> {
@@ -115,7 +116,7 @@ class NewClaimModel: ObservableObject {
     }
   }
   
-  func createMapAttachment() {
+  func generateMapSnapshot() -> AnyPublisher<UIImage, Error> {
     let regionRadius = 150.0
     let options = MKMapSnapshotter.Options()
     let region = MKCoordinateRegion.init(
@@ -127,35 +128,51 @@ class NewClaimModel: ObservableObject {
     options.scale = UIScreen.main.scale
     options.size = CGSize(width: 800, height: 800)
     options.mapType = .standard
-
+    
     let snapshotter = MKMapSnapshotter(options: options)
-    snapshotter.start { snapshot, error in
-      guard let snapshot = snapshot, error == nil else {
-        return
+    
+    let futureSnapshot = Future<UIImage, Error> { promise in
+      snapshotter.start {snapshot, error in
+        if let err = error {
+          return promise(.failure(err))
+        }
+        
+        guard let snapshot = snapshot, error == nil else {
+          return
+        }
+        UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
+        snapshot.image.draw(at: .zero)
+        
+        let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
+        let pinImage = pinView.image
+        
+        var point = snapshot.point(for: self.mapView.centerCoordinate)
+        let pinCenterOffset = pinView.centerOffset
+        point.x -= pinView.bounds.size.width / 2
+        point.y -= pinView.bounds.size.height / 2
+        point.x += pinCenterOffset.x
+        point.y += pinCenterOffset.y
+        pinImage?.draw(at: point)
+        
+        let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return promise(.success(mapImage))
       }
-      UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
-      snapshot.image.draw(at: .zero)
-
-      let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
-      let pinImage = pinView.image
-
-      var point = snapshot.point(for: self.mapView.centerCoordinate)
-      let pinCenterOffset = pinView.centerOffset
-      point.x -= pinView.bounds.size.width / 2
-      point.y -= pinView.bounds.size.height / 2
-      point.x += pinCenterOffset.x
-      point.y += pinCenterOffset.y
-      pinImage?.draw(at: point)
-
-      let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
-      UIGraphicsEndImageContext()
-      
+    }
+    return futureSnapshot.eraseToAnyPublisher()
+  }
+  
+  func createMapAttachment() {
+    mapSnapshotCancellable = self.generateMapSnapshot()
+      .map({$0})
+      .replaceError(with: UIImage())
+      .sink(receiveValue: { mapImage in
       self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
         from: mapImage,
         relatingToCaseID: "refCase",
         fileName: "MapSnapshot.png"
       ), referenceId: "mapSnapshot")
-    }
+    })
   }
   
   func createImageAttachments() {
