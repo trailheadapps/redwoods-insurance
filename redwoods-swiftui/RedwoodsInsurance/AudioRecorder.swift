@@ -15,18 +15,18 @@ import Speech
 class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   
   let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
-  
   var audioRecorder: AVAudioRecorder!
   var audioPlayer: AVAudioPlayer!
   var meterTimer: Timer?
   let recordingSession = AVAudioSession.sharedInstance()
-  
   let avSessionSettings = [
     AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
     AVSampleRateKey: 12000,
     AVNumberOfChannelsKey: 1,
     AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
   ]
+  
+  var newClaim: NewClaimModel?
   
   var playbackDisabled = true {
     didSet {
@@ -156,7 +156,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       recognizer?.recognitionTask(with: request) { [unowned self] result, error in
         guard error == nil else { print("Error: \(error!)"); return }
         guard let result = result else { print("No result!"); return }
-        self.transcribedText = result.bestTranscription.formattedString
+        self.newClaim?.transcribedText = result.bestTranscription.formattedString
       }
     } else {
       print("Device doesn't support speech recognition")

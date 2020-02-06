@@ -10,13 +10,14 @@ import SwiftUI
 import AVFoundation
 
 struct DescriptionCmp: View {
-  
+  @EnvironmentObject var newClaim: NewClaimModel
   @ObservedObject var audioRecorder = AudioRecorder()
   
   let recordingSession = AVAudioSession.sharedInstance()
   
   var body: some View {
-    VStack(alignment: .leading) {
+    audioRecorder.newClaim = newClaim
+    return VStack(alignment: .leading) {
       Text("Description of incident").font(.headline).padding(.leading)
       HStack{
         Text("\(self.audioRecorder.meterTimerText)")
@@ -33,13 +34,19 @@ struct DescriptionCmp: View {
           }.padding(.trailing)
             .disabled(self.audioRecorder.isPlaying)
         } else {
-          Button(action: {self.audioRecorder.finishRecording(success: true)}){
+          Button(action: {
+            self.audioRecorder.finishRecording(success: true)
+            if let audioData = self.audioRecorder.audioFileAsData() {
+              self.newClaim.audioData = audioData
+            }
+          }){
             Text("Stop")
           }.padding(.trailing)
         }
       }
       MultiLineTextField("Enter description or press Record for voice transcription", text: self.$audioRecorder.transcribedText, onCommit: {
         print("Final Text: \(self.$audioRecorder.transcribedText)")
+        self.newClaim.transcribedText = self.audioRecorder.transcribedText
       }).overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black))
         .padding(.horizontal)
     }

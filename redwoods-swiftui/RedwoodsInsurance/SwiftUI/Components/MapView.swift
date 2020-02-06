@@ -11,6 +11,7 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
+  @EnvironmentObject var newClaim: NewClaimModel
   
   @Binding var geoCodedAddressText: String
   @Binding var mapView: MKMapView
@@ -88,6 +89,7 @@ struct MapView: UIViewRepresentable {
         let country = placemark.isoCountryCode ?? ""
         let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
         self.parent.geoCodedAddressText = address
+        self.parent.newClaim.geolocationText = address
       }
     }
     

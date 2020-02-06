@@ -18,9 +18,12 @@ class NewClaimModel: ObservableObject {
   let newClaim = PassthroughSubject<NewClaimModel, Never>()
   let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
   
+  @Published var geolocationText: String?
   @Published var images: [UIImage] = [UIImage]()
   @Published var selectedContacts = [CNContact]()
-  private let compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
+  var audioData: Data?
+  var transcribedText: String?
+  private var compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
   @Published var mapView: MKMapView = MKMapView()
   
   @Published var accountId = "" {
@@ -32,11 +35,11 @@ class NewClaimModel: ObservableObject {
   private var accountIdCancellable: AnyCancellable?
   private var mapSnapshotCancellable: AnyCancellable?
   private var compositeCancellable: AnyCancellable?
+  private var uploadCancellable: AnyCancellable?
   
   func fetchAccountId() -> AnyPublisher<String,Never> {
     let accountIdQuery = RestClient.shared.request(forQuery: "SELECT contact.accountId FROM User WHERE ID = '\(userId)' LIMIT 1", apiVersion: RestClient.apiVersion)
     return RestClient.shared.publisher(for: accountIdQuery)
-      .print("AccountID Query")
       .tryMap{ try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
       .map{ $0["records"] as? RestClient.SalesforceRecords ?? [] }
       .mapError { dump($0) }
@@ -52,6 +55,8 @@ class NewClaimModel: ObservableObject {
   }
   
   func uploadClaimToSalesforce(map: MKMapView){
+    //reset
+    compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
     self.mapView = map
     accountIdCancellable = fetchAccountId()
       .receive(on: RunLoop.main)
@@ -61,12 +66,34 @@ class NewClaimModel: ObservableObject {
         // Add create case request to composite request
         self.compositeRequestBuilder.add(self.createCase(), referenceId: "refCase")
         self.createContactRequests()
-        self.createMapAttachment()
         self.createImageAttachments()
-        
-        let compositeRequest = self.compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
-        print(compositeRequest.allSubRequests)
-        print(compositeRequest.allOrNone)
+        self.createAudioAttachments()
+        self.mapSnapshotCancellable = self.generateMapSnapshot()
+          .map({$0})
+          .replaceError(with: UIImage())
+          .sink(receiveValue: { mapImage in
+            self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
+              from: mapImage,
+              relatingToCaseID: "refCase",
+              fileName: "MapSnapshot.png"
+            ), referenceId: "mapSnapshot")
+            
+            let compositeRequest = self.compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
+            print(compositeRequest.allSubRequests)
+            
+            self.uploadCancellable = RestClient.shared.publisher(for: compositeRequest)
+              .print("Composite Request Response: ")
+              .tryMap{ try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
+              .map{
+                print("foo", $0)
+                return $0["records"] as? RestClient.SalesforceRecords ?? []
+              }
+              .mapError { dump($0) }
+              .replaceError(with: [])
+              .sink{ results in
+                print(results)
+            }
+          })
       }
   }
   
@@ -79,10 +106,10 @@ class NewClaimModel: ObservableObject {
     record["origin"] = "Redwoods Car Insurance Mobile App"
     record["status"] = "new"
     record["subject"] = "Incident on \(dateFormatter.string(from: Date()))"
-    record["description"] = "Testing 123 - should be transcribed text"
+    record["description"] = self.transcribedText ?? "No description provided"
     record["type"] = "Car Insurance"
     record["Reason"] = "Vehicle Incident"
-    record["Incident_Location_Txt__c"] = "Testing 123 - should be geolocation text"
+    record["Incident_Location_Txt__c"] = self.geolocationText ?? "No address provided"
     record["Incident_Location__latitude__s"] = self.mapView.centerCoordinate.latitude
     record["Incident_Location__longitude__s"] = self.mapView.centerCoordinate.longitude
     record["PotentialLiability__c"] = true
@@ -116,7 +143,7 @@ class NewClaimModel: ObservableObject {
     }
   }
   
-  func generateMapSnapshot() -> AnyPublisher<UIImage, Error> {
+  func generateMapSnapshot() -> Future<UIImage, Error> {
     let regionRadius = 150.0
     let options = MKMapSnapshotter.Options()
     let region = MKCoordinateRegion.init(
@@ -159,20 +186,7 @@ class NewClaimModel: ObservableObject {
         return promise(.success(mapImage))
       }
     }
-    return futureSnapshot.eraseToAnyPublisher()
-  }
-  
-  func createMapAttachment() {
-    mapSnapshotCancellable = self.generateMapSnapshot()
-      .map({$0})
-      .replaceError(with: UIImage())
-      .sink(receiveValue: { mapImage in
-      self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
-        from: mapImage,
-        relatingToCaseID: "refCase",
-        fileName: "MapSnapshot.png"
-      ), referenceId: "mapSnapshot")
-    })
+    return futureSnapshot
   }
   
   func createImageAttachments() {
@@ -182,6 +196,9 @@ class NewClaimModel: ObservableObject {
   }
   
   func createAudioAttachments() {
-    
+    if let audioData = audioData {
+      let audioAttachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: "refCase")
+      self.compositeRequestBuilder.add(audioAttachmentRequest, referenceId: "audioAttachment")
+    }
   }
 }

@@ -13,13 +13,13 @@ struct UITextViewWrapper: UIViewRepresentable {
   
   @Binding var text: String
   @Binding var calculatedHeight: CGFloat
+  @EnvironmentObject var newClaim: NewClaimModel
   
   var onCompletion: (()-> Void)?
   
   func makeUIView(context: Context) -> UITextView {
     let textField = UITextView()
     textField.delegate = context.coordinator
-    
     textField.isEditable = true
     textField.backgroundColor = UIColor.clear
     textField.isSelectable = true
@@ -91,6 +91,7 @@ struct UITextViewWrapper: UIViewRepresentable {
 struct MultiLineTextField: View {
   private var placeholder: String
   private var onCommit: (() -> Void)?
+  @EnvironmentObject var newClaim: NewClaimModel
   
   @Binding private var text: String
   private var internalText: Binding<String> {
