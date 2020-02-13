@@ -12,9 +12,9 @@ import Combine
 import UIKit
 
 class ContactsPickerViewModel: ObservableObject {
-  
+
   @Published var allContacts: [CNContact] = []
-  
+
   let store = CNContactStore()
   private var retrieveCancellable: AnyCancellable?
 
@@ -29,24 +29,24 @@ class ContactsPickerViewModel: ObservableObject {
     }
   }
 
-  func fetchContacts(){
+  func fetchContacts() {
     retrieveCancellable = requestPermission()
       .receive(on: RunLoop.main)
-      .map{ granted -> [CNContact] in
+      .map { _ -> [CNContact] in
         var retrieved = [CNContact]()
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactMiddleNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey, CNContactPostalAddressesKey, CNContactImageDataKey, CNContactImageDataAvailableKey, CNContactThumbnailImageDataKey,
-                    CNContactFormatter.descriptorForRequiredKeys(for: .fullName)] as! [CNKeyDescriptor]
-        
-        
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactMiddleNameKey, CNContactPhoneNumbersKey,
+                    CNContactEmailAddressesKey, CNContactPostalAddressesKey, CNContactImageDataKey,
+                    CNContactImageDataAvailableKey, CNContactThumbnailImageDataKey,
+                    CNContactFormatter.descriptorForRequiredKeys(for: .fullName)] as! [CNKeyDescriptor] // swiftlint:disable:this force_cast
+
         let fetchRequest = CNContactFetchRequest(keysToFetch: keys )
         fetchRequest.sortOrder = CNContactSortOrder.userDefault
-        
+
         do {
           let containerId = self.store.defaultContainerIdentifier()
           let predicate = CNContact.predicateForContactsInContainer(withIdentifier: containerId)
           retrieved = try self.store.unifiedContacts(matching: predicate, keysToFetch: keys as [CNKeyDescriptor])
-        }
-        catch let error as NSError {
+        } catch let error as NSError {
           print(error.localizedDescription)
         }
         return retrieved
@@ -55,9 +55,7 @@ class ContactsPickerViewModel: ObservableObject {
     .replaceError(with: [])
     .map({$0})
     .assign(to: \.allContacts, on: self)
-    
+
   }
-  
+
 }
-
-

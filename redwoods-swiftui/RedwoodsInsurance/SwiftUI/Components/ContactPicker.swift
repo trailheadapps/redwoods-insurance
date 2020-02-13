@@ -17,7 +17,7 @@ struct ContactPicker: View {
   @State var editMode: EditMode = .active
 
   var body: some View {
-   NavigationView{
+   NavigationView {
       List(contactsModel.allContacts, selection: $selected) { contact in
         ContactListRow(contact: contact)
       }
@@ -30,12 +30,12 @@ struct ContactPicker: View {
       .environment(\.editMode, .constant(EditMode.active))
       .navigationBarTitle(Text("Select Contacts \(selected.count)"))
     }
-    .onAppear(){
+    .onAppear {
       self.contactsModel.fetchContacts()
     }
   }
-  
-  func getSelectedContactsById() -> [CNContact]{
+
+  func getSelectedContactsById() -> [CNContact] {
     var contacts: [CNContact] = []
     for id in selected {
       if let contact = contactsModel.allContacts.first(where: {$0.id == id}) {
@@ -44,7 +44,7 @@ struct ContactPicker: View {
     }
     return contacts
   }
-  
+
 }
 
 struct ContactPicker_Previews: PreviewProvider {

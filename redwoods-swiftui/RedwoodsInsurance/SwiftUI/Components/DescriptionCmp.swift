@@ -12,18 +12,18 @@ import AVFoundation
 struct DescriptionCmp: View {
   @EnvironmentObject var newClaim: NewClaimModel
   @ObservedObject var audioRecorder = AudioRecorder()
-  
+
   let recordingSession = AVAudioSession.sharedInstance()
-  
+
   var body: some View {
     audioRecorder.newClaim = newClaim
     return VStack(alignment: .leading) {
       Text("Description of incident").font(.headline).padding(.leading)
-      HStack{
+      HStack {
         Text("\(self.audioRecorder.meterTimerText)")
           .padding(.leading)
         Spacer()
-        Button("Play"){
+        Button("Play") {
           print("Play pressed")
           self.audioRecorder.toggleAudio()
         }.disabled(self.audioRecorder.playbackDisabled)
@@ -39,7 +39,7 @@ struct DescriptionCmp: View {
             if let audioData = self.audioRecorder.audioFileAsData() {
               self.newClaim.audioData = audioData
             }
-          }){
+          }) {
             Text("Stop")
           }.padding(.trailing)
         }
@@ -50,13 +50,10 @@ struct DescriptionCmp: View {
       }).overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black))
         .padding(.horizontal)
     }
-    .onAppear{
+    .onAppear {
       self.audioRecorder.setupAudioRecorder()
     }
   }
-  
-  /// Private
-  
 }
 
 struct DescriptionCmp_Previews: PreviewProvider {
@@ -64,4 +61,3 @@ struct DescriptionCmp_Previews: PreviewProvider {
         DescriptionCmp()
     }
 }
-

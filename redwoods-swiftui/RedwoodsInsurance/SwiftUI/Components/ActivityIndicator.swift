@@ -11,21 +11,21 @@ import SwiftUI
 struct ActivityIndicator: UIViewRepresentable {
   @Binding var isAnimating: Bool
   let style: UIActivityIndicatorView.Style
-  
+
   func makeUIView(context: Context) -> UIActivityIndicatorView {
     return UIActivityIndicatorView(style: style)
   }
-  
+
   func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
     isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
   }
-  
+
 }
 
 struct ActivityIndicatorView<Content>: View where Content: View {
   @Binding var isShowing: Bool
   var content: () -> Content
-  
+
   var body: some View {
     GeometryReader { geometry in
       ZStack(alignment: .center) {
@@ -44,5 +44,5 @@ struct ActivityIndicatorView<Content>: View where Content: View {
       }
     }
   }
-  
+
 }

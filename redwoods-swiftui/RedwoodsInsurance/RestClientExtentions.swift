@@ -13,31 +13,32 @@ import Combine
 extension RestClient {
   static let apiVersion = "v47.0"
 
-  typealias JSONKeyValuePairs = [String:Any]
-  typealias SalesforceRecord = [String:Any]
+  typealias JSONKeyValuePairs = [String: Any]
+  typealias SalesforceRecord = [String: Any]
   typealias SalesforceRecords = [SalesforceRecord]
-  
-  func records(fromQuery query: String) -> AnyPublisher<SalesforceRecords, Never>{
+
+  func records(fromQuery query: String) -> AnyPublisher<SalesforceRecords, Never> {
     let queryRequest = RestClient.shared.request(forQuery: query, apiVersion: RestClient.apiVersion)
     return self.publisher(for: queryRequest)
-      .tryMap{ try $0.asJson() as? JSONKeyValuePairs ?? [:] }
-      .map{ $0["records"] as? SalesforceRecords ?? [] }
+      .tryMap { try $0.asJson() as? JSONKeyValuePairs ?? [:] }
+      .map { $0["records"] as? SalesforceRecords ?? [] }
       .mapError { dump($0) }
       .replaceError(with: [])
       .eraseToAnyPublisher()
   }
-  
-  func records<Record>(fromQuery query: String, returningModel model: @escaping (SalesforceRecord) throws -> Record) -> AnyPublisher<[Record], Never> {
+
+  func records<Record>(fromQuery query: String,
+                       returningModel model: @escaping (SalesforceRecord) throws -> Record) -> AnyPublisher<[Record], Never> {
     let queryRequest = RestClient.shared.request(forQuery: query, apiVersion: RestClient.apiVersion)
     return self.publisher(for: queryRequest)
-      .tryMap{ try $0.asJson() as? JSONKeyValuePairs ?? [:] }
-      .map{ $0["records"] as? SalesforceRecords ?? [] }
-      .tryMap{ try $0.map { try model($0)}}
+      .tryMap { try $0.asJson() as? JSONKeyValuePairs ?? [:] }
+      .map { $0["records"] as? SalesforceRecords ?? [] }
+      .tryMap { try $0.map { try model($0)}}
       .mapError { dump($0) }
       .replaceError(with: [])
       .eraseToAnyPublisher()
   }
-  
+
   /// Returns a request that adds an image attachment to a given case.
   ///
   /// - Parameters:
@@ -52,7 +53,7 @@ extension RestClient {
     let uploadFileName = fileName ?? UUID().uuidString + ".png"
     return self.requestForCreatingAttachment(from: imageData, withFileName: uploadFileName, relatingToCaseID: caseID)
   }
-  
+
   /// Returns a request that adds an audio attachment to a given case.
   ///
   /// - Parameters:
@@ -63,7 +64,7 @@ extension RestClient {
     let fileName = UUID().uuidString + ".m4a"
     return self.requestForCreatingAttachment(from: m4aAudioData, withFileName: fileName, relatingToCaseID: caseID)
   }
-  
+
   /// Returns a request that adds an attachment to a given case.
   ///
   /// - Parameters:

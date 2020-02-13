@@ -14,138 +14,108 @@ import ContactsUI
 import MapKit
 
 class NewClaimModel: ObservableObject {
-  
+
   let newClaim = PassthroughSubject<NewClaimModel, Never>()
   let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
-  
+
   @Published var geolocationText: String?
   @Published var images: [UIImage] = [UIImage]()
   @Published var selectedContacts = [CNContact]()
   @Published var showActivityIndicator: Bool = false
-  
+  @State var complete: String = ""
+  let completedPublisher = PassthroughSubject<Bool, Never>()
+
   var audioData: Data?
   var transcribedText: String?
   private var compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
   @Published var mapView: MKMapView = MKMapView()
-  
+
   @Published var accountId = "" {
     didSet {
       newClaim.send(self)
     }
   }
-  
+
   private var accountIdCancellable: AnyCancellable?
   private var mapSnapshotCancellable: AnyCancellable?
   private var compositeCancellable: AnyCancellable?
   private var uploadCancellable: AnyCancellable?
-  
-  func fetchAccountId() -> AnyPublisher<String,Never> {
-    let accountIdQuery = RestClient.shared.request(forQuery: "SELECT contact.accountId FROM User WHERE ID = '\(userId)' LIMIT 1", apiVersion: RestClient.apiVersion)
+
+  func fetchAccountId() -> AnyPublisher<String, Never> {
+    let accountIdQuery = RestClient.shared.request(forQuery: "SELECT contact.accountId FROM User WHERE ID = '\(userId)' LIMIT 1",
+                                                  apiVersion: RestClient.apiVersion)
     return RestClient.shared.publisher(for: accountIdQuery)
-      .tryMap{ try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
-      .map{ $0["records"] as? RestClient.SalesforceRecords ?? [] }
+      .tryMap { try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
+      .map { $0["records"] as? RestClient.SalesforceRecords ?? [] }
       .mapError { dump($0) }
       .replaceError(with: [])
       .receive(on: RunLoop.main)
-      .map{records in
+      .map {records in
         let accountRecord = records.first!
-        let contact = accountRecord["Contact"] as! RestClient.SalesforceRecord
-        let accountId = contact["AccountId"] as! String
+        let contact = accountRecord["Contact"] as! RestClient.SalesforceRecord // swiftlint:disable:this force_cast
+        let accountId = contact["AccountId"] as! String // swiftlint:disable:this force_cast
         return accountId
-      }.eraseToAnyPublisher()
-    
+    }.eraseToAnyPublisher()
+
   }
-  
+
   func uploadClaimToSalesforce(map: MKMapView) -> Future<Bool, Never> {
-    //reset
     compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(true)
     self.mapView = map
-    accountIdCancellable = fetchAccountId()
-      .receive(on: RunLoop.main)
-      .map({$0})
-      .sink{ accountId in
-        print("Uploading to Salesforce: fetched accountId: ", accountId)
-        // Add create case request to composite request
-        self.compositeRequestBuilder.add(self.createCase(), referenceId: "refCase")
-        self.createContactRequests()
-        self.createImageAttachments()
-        self.createAudioAttachments()
-        self.mapSnapshotCancellable = self.generateMapSnapshot()
-          .map({$0})
-          .replaceError(with: UIImage())
-          .sink(receiveValue: { mapImage in
-            self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
-              from: mapImage,
-              relatingToCaseID: "@{refCase.id}",
-              fileName: "MapSnapshot.png"
-            ), referenceId: "mapSnapshot")
-            
-            
-            let compositeRequest = self.compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
-//            print(compositeRequest.allSubRequests)
-            
-            
-//            RestClient.shared.send(compositeRequest: compositeRequest, {result in
-//              switch(result){
-//                case .success(let resp):
-//                  print(resp)
-//                case .failure(let resp):
-//                  print(resp)
-//              }
-//            })
-            
-            
-            self.uploadCancellable = RestClient.shared.publisher(for: compositeRequest)
-              .receive(on: RunLoop.main)
-              .replaceError(with: CompositeResponse())
-              .sink{ value in
-                print(value)
-                self.showActivityIndicator = false
+    return Future { promise in
+      self.accountIdCancellable = self.fetchAccountId()
+        .receive(on: RunLoop.main)
+        .map({$0})
+        .sink { accountId in
+          print("Uploading to Salesforce: fetched accountId: ", accountId)
+          // Add create case request to composite request
+          self.compositeRequestBuilder.add(self.createCase(), referenceId: "refCase")
+          self.createContactRequests()
+          self.createImageAttachments()
+          self.createAudioAttachments()
+          self.mapSnapshotCancellable = self.generateMapSnapshot()
+            .map({$0})
+            .replaceError(with: UIImage())
+            .sink(receiveValue: { mapImage in
+              self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
+                from: mapImage,
+                relatingToCaseID: "@{refCase.id}",
+                fileName: "MapSnapshot.png"
+              ), referenceId: "mapSnapshot")
+
+              let compositeRequest = self.compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
+              self.uploadCancellable = RestClient.shared.publisher(for: compositeRequest)
+                .receive(on: RunLoop.main)
+                .replaceError(with: CompositeResponse())
+                .sink { value in
+                  print(value)
+                  self.showActivityIndicator = false
+//                  self.complete = "true"
+                  self.completedPublisher.send(true)
+                  promise(.success(true))
               }
-//              //.print("Composite Request Response: ")
-//              .handleEvents(receiveSubscription: { (subscription) in
-//                print("Receive subscription")
-//              }, receiveOutput: { output in
-//                print("Received output: \(output)")
-//              }, receiveCompletion: { value in
-//                print("Value: ", value)
-//                print("Receive completion")
-//              }, receiveCancel: {
-//                print("Receive cancel")
-//              }, receiveRequest: { demand in
-//                print("Receive request: \(demand)")
-//              })
-//              .tryMap{
-//                try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
-//              .map{
-//                print("foo", $0)
-//                return $0["records"] as? RestClient.SalesforceRecords ?? []
-//              }
-//              .mapError { dump($0) }
-//              .replaceError(with: [])
-//              .sink{ results in
-//                print(results)
-//            }
-          })
+            })
       }
-  }
-  
-    private func handleError(_ error: Error?, urlResponse: URLResponse? = nil) {
-      let errorDescription: String
-      if let error = error {
-        errorDescription = "\(error)"
-      } else {
-        errorDescription = "An unknown error occurred."
-      }
-      
-      print(errorDescription)
     }
-    
+
+  }
+
+  private func handleError(_ error: Error?, urlResponse: URLResponse? = nil) {
+    let errorDescription: String
+    if let error = error {
+      errorDescription = "\(error)"
+    } else {
+      errorDescription = "An unknown error occurred."
+    }
+
+    print(errorDescription)
+  }
+
   func createCase() -> RestRequest {
     // Create Case
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .full
-    
+
     var record = RestClient.SalesforceRecord()
     record["origin"] = "Redwoods Car Insurance Mobile App"
     record["status"] = "new"
@@ -159,7 +129,7 @@ class NewClaimModel: ObservableObject {
     record["PotentialLiability__c"] = true
     return RestClient.shared.requestForCreate(withObjectType: "Case", fields: record, apiVersion: RestClient.apiVersion)
   }
-  
+
   func createContactRequests() {
     self.selectedContacts.enumerated().forEach { (index, contact) -> Void in
       let address = contact.postalAddresses.first
@@ -174,19 +144,25 @@ class NewClaimModel: ObservableObject {
         "MailingPostalCode": address?.value.postalCode ?? "",
         "MailingCountry": address?.value.country ?? ""
       ]
-      
-      compositeRequestBuilder.add(RestClient.shared.requestForCreate(withObjectType: "Contact", fields: contactFields, apiVersion: RestClient.apiVersion), referenceId: "contact\(index)")
-      
+
+      let contactRequest =  RestClient.shared.requestForCreate(withObjectType: "Contact",
+                                                               fields: contactFields,
+                                                               apiVersion: RestClient.apiVersion)
+      compositeRequestBuilder.add(contactRequest, referenceId: "contact\(index)")
+
       let associationFields: RestClient.SalesforceRecord = [
         "Case__c": "@{refCase.id}",
         "Contact__c": "@{contact\(index).id}"
       ]
-      
+
       // Create CaseContacts__c
-      compositeRequestBuilder.add(RestClient.shared.requestForCreate(withObjectType: "CaseContact__c", fields: associationFields, apiVersion: RestClient.apiVersion), referenceId: "caseContact\(index)")
+      let caseContactRequest = RestClient.shared.requestForCreate(withObjectType: "CaseContact__c",
+                                                                  fields: associationFields,
+                                                                  apiVersion: RestClient.apiVersion)
+      compositeRequestBuilder.add(caseContactRequest, referenceId: "caseContact\(index)")
     }
   }
-  
+
   func generateMapSnapshot() -> Future<UIImage, Error> {
     let regionRadius = 150.0
     let options = MKMapSnapshotter.Options()
@@ -199,24 +175,24 @@ class NewClaimModel: ObservableObject {
     options.scale = UIScreen.main.scale
     options.size = CGSize(width: 800, height: 800)
     options.mapType = .standard
-    
+
     let snapshotter = MKMapSnapshotter(options: options)
-    
+
     let futureSnapshot = Future<UIImage, Error> { promise in
       snapshotter.start {snapshot, error in
         if let err = error {
           return promise(.failure(err))
         }
-        
+
         guard let snapshot = snapshot, error == nil else {
           return
         }
         UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
         snapshot.image.draw(at: .zero)
-        
+
         let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
         let pinImage = pinView.image
-        
+
         var point = snapshot.point(for: self.mapView.centerCoordinate)
         let pinCenterOffset = pinView.centerOffset
         point.x -= pinView.bounds.size.width / 2
@@ -224,7 +200,7 @@ class NewClaimModel: ObservableObject {
         point.x += pinCenterOffset.x
         point.y += pinCenterOffset.y
         pinImage?.draw(at: point)
-        
+
         let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return promise(.success(mapImage))
@@ -232,16 +208,17 @@ class NewClaimModel: ObservableObject {
     }
     return futureSnapshot
   }
-  
+
   func createImageAttachments() {
     self.$images
-      .sink{ images in
+      .sink { images in
         for(index, image) in images.enumerated() {
-          self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(from: image, relatingToCaseID: "@{refCase.id}"), referenceId: "imageAttachment\(index)")
+          let imageAttachmentRequest = RestClient.shared.requestForCreatingImageAttachment(from: image, relatingToCaseID: "@{refCase.id}")
+          self.compositeRequestBuilder.add(imageAttachmentRequest, referenceId: "imageAttachment\(index)")
         }
     }.cancel()
   }
-  
+
   func createAudioAttachments() {
     if let audioData = audioData {
       let audioAttachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: "@{refCase.id}")

@@ -10,14 +10,14 @@ import SwiftUI
 import ContactsUI
 
 struct PartiesInvolvedCmp: View {
-  
+
   @State var showingContactPicker = false
   @State var selectedContacts: [CNContact]  = []
   @EnvironmentObject var newClaim: NewClaimModel
-  
+
   var body: some View {
-    VStack(alignment: .leading){
-      HStack{
+    VStack(alignment: .leading) {
+      HStack {
         Text("Parties Involved").font(.headline).padding(.leading)
         Spacer()
         Button(action: {
@@ -30,9 +30,9 @@ struct PartiesInvolvedCmp: View {
         ContactListRow(contact: contact)
       }
     }
-    .sheet(isPresented: $showingContactPicker){
+    .sheet(isPresented: $showingContactPicker) {
       ContactPicker(selectedContacts: self.$selectedContacts, sheetDisplayed: self.$showingContactPicker )
-        .onDisappear(){
+        .onDisappear {
           print("closing sheet")
           self.newClaim.selectedContacts = self.selectedContacts
       }

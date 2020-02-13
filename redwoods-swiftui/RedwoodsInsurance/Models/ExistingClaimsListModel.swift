@@ -12,16 +12,16 @@ import SwiftUI
 import Combine
 
 class ExistingClaimsListModel: ObservableObject {
-  
+
   @Published var claims: [Claim] = []
   private var caseCancellable: AnyCancellable?
 
   let existingClaimQuery = "SELECT Id, Subject, CaseNumber FROM Case WHERE Status != 'Closed' ORDER BY CaseNumber DESC"
-  
-  func fetchDataFromSalesforce(){
+
+  func fetchDataFromSalesforce() {
     caseCancellable = RestClient.shared.records(fromQuery: existingClaimQuery, returningModel: Claim.fromJson(record:))
       .receive(on: RunLoop.main)
-      .map{$0}
+      .map {$0}
       .assign(to: \.claims, on: self)
   }
 }

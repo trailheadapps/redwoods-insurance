@@ -13,24 +13,29 @@ import SalesforceSDKCore
 import MapKit
 
 struct NewClaim: View {
+  @EnvironmentObject var newClaim: NewClaimModel
+
   @State var geoCodedAddressText: String = "Start"
   @State var mapView: MKMapView = MKMapView()
-  @EnvironmentObject var newClaim: NewClaimModel
+  @State var uploadComplete: AnyCancellable?
+
   @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-  
+
   var body: some View {
     ActivityIndicatorView(isShowing: self.$newClaim.showActivityIndicator) {
-      VStack{
+      VStack {
         IncidentLocationCmp(geoCodedAddressText: self.$geoCodedAddressText, mapView: self.$mapView)
         DescriptionCmp()
         PhotosCmp(selectedImages: self.newClaim.images)
         PartiesInvolvedCmp()
         .navigationBarItems(
-          trailing: Button("Submit"){
+          trailing: Button("Submit") {
             self.newClaim.showActivityIndicator = true
             print("Submitting")
-            self.newClaim.uploadClaimToSalesforce(map: self.mapView)
-            self.mode.wrappedValue.dismiss()
+            self.uploadComplete = self.newClaim.uploadClaimToSalesforce(map: self.mapView)
+              .sink { _ in
+                self.mode.wrappedValue.dismiss()
+            }
           }
         )
       }

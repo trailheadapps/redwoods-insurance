@@ -13,9 +13,9 @@ import MapKit
 struct IncidentLocationCmp: View {
   @Binding var geoCodedAddressText: String
   @Binding var mapView: MKMapView
-  
+
   var body: some View {
-    VStack(alignment: .leading){
+    VStack(alignment: .leading) {
       Text("Incident Location").font(.headline).padding(.leading)
       Text(geoCodedAddressText).padding(.leading).scaledToFit()
       ZStack {

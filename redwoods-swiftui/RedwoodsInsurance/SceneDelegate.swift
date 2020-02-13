@@ -31,13 +31,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
   var newClaim = NewClaimModel()
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
-       
+
         AuthHelper.registerBlock(forCurrentUserChangeNotifications: {
            self.resetViewState {
                self.setupRootViewController()
@@ -76,29 +76,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
+
     // MARK: - Private methods
    func initializeAppViewState() {
-       if (!Thread.isMainThread) {
+       if !Thread.isMainThread {
            DispatchQueue.main.async {
                self.initializeAppViewState()
            }
            return
        }
-       
+
        self.window?.rootViewController = InitialViewController(nibName: nil, bundle: nil)
        self.window?.makeKeyAndVisible()
    }
-   
+
    func setupRootViewController() {
        self.window?.rootViewController = UIHostingController(
            rootView: ExistingClaims().environmentObject(newClaim)
        )
    }
-   
-   func resetViewState(_ postResetBlock: @escaping () -> ()) {
+
+   func resetViewState(_ postResetBlock: @escaping () -> Void) {
        if let rootViewController = self.window?.rootViewController {
-           if let _ = rootViewController.presentedViewController {
+           if rootViewController.presentedViewController != nil {
                rootViewController.dismiss(animated: false, completion: postResetBlock)
                return
            }
