@@ -77,7 +77,11 @@ extension RestClient {
     withFileName fileName: String,
     relatingToCaseID caseID: String) -> RestRequest {
     let record = ["VersionData": data.base64EncodedString(options: .lineLength64Characters),
-                  "Title": fileName, "PathOnClient": fileName, "FirstPublishLocationId": caseID]
+                  "Title": fileName,
+                  "PathOnClient": fileName,
+                  "FirstPublishLocationId": caseID,
+                  "NetworkId": UserAccountManager.shared.currentUserAccount?.credentials.communityId ?? ""
+    ]
     return self.requestForCreate(withObjectType: "ContentVersion", fields: record, apiVersion: RestClient.apiVersion)
   }
 }

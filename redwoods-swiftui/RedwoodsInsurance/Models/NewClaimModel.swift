@@ -21,6 +21,8 @@ class NewClaimModel: ObservableObject {
   @Published var geolocationText: String?
   @Published var images: [UIImage] = [UIImage]()
   @Published var selectedContacts = [CNContact]()
+  @Published var showActivityIndicator: Bool = false
+  
   var audioData: Data?
   var transcribedText: String?
   private var compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
@@ -54,9 +56,9 @@ class NewClaimModel: ObservableObject {
     
   }
   
-  func uploadClaimToSalesforce(map: MKMapView){
+  func uploadClaimToSalesforce(map: MKMapView) -> Future<Bool, Never> {
     //reset
-    compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
+    compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(true)
     self.mapView = map
     accountIdCancellable = fetchAccountId()
       .receive(on: RunLoop.main)
@@ -74,29 +76,71 @@ class NewClaimModel: ObservableObject {
           .sink(receiveValue: { mapImage in
             self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
               from: mapImage,
-              relatingToCaseID: "refCase",
+              relatingToCaseID: "@{refCase.id}",
               fileName: "MapSnapshot.png"
             ), referenceId: "mapSnapshot")
             
+            
             let compositeRequest = self.compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
-            print(compositeRequest.allSubRequests)
+//            print(compositeRequest.allSubRequests)
+            
+            
+//            RestClient.shared.send(compositeRequest: compositeRequest, {result in
+//              switch(result){
+//                case .success(let resp):
+//                  print(resp)
+//                case .failure(let resp):
+//                  print(resp)
+//              }
+//            })
+            
             
             self.uploadCancellable = RestClient.shared.publisher(for: compositeRequest)
-              .print("Composite Request Response: ")
-              .tryMap{ try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
-              .map{
-                print("foo", $0)
-                return $0["records"] as? RestClient.SalesforceRecords ?? []
+              .receive(on: RunLoop.main)
+              .replaceError(with: CompositeResponse())
+              .sink{ value in
+                print(value)
+                self.showActivityIndicator = false
               }
-              .mapError { dump($0) }
-              .replaceError(with: [])
-              .sink{ results in
-                print(results)
-            }
+//              //.print("Composite Request Response: ")
+//              .handleEvents(receiveSubscription: { (subscription) in
+//                print("Receive subscription")
+//              }, receiveOutput: { output in
+//                print("Received output: \(output)")
+//              }, receiveCompletion: { value in
+//                print("Value: ", value)
+//                print("Receive completion")
+//              }, receiveCancel: {
+//                print("Receive cancel")
+//              }, receiveRequest: { demand in
+//                print("Receive request: \(demand)")
+//              })
+//              .tryMap{
+//                try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
+//              .map{
+//                print("foo", $0)
+//                return $0["records"] as? RestClient.SalesforceRecords ?? []
+//              }
+//              .mapError { dump($0) }
+//              .replaceError(with: [])
+//              .sink{ results in
+//                print(results)
+//            }
           })
       }
   }
   
+    private func handleError(_ error: Error?, urlResponse: URLResponse? = nil) {
+      let errorDescription: String
+      if let error = error {
+        errorDescription = "\(error)"
+      } else {
+        errorDescription = "An unknown error occurred."
+      }
+      
+      print(errorDescription)
+    }
+    
   func createCase() -> RestRequest {
     // Create Case
     let dateFormatter = DateFormatter()
@@ -134,8 +178,8 @@ class NewClaimModel: ObservableObject {
       compositeRequestBuilder.add(RestClient.shared.requestForCreate(withObjectType: "Contact", fields: contactFields, apiVersion: RestClient.apiVersion), referenceId: "contact\(index)")
       
       let associationFields: RestClient.SalesforceRecord = [
-        "Case__c": "refCase",
-        "Contact__c": "contact\(index)"
+        "Case__c": "@{refCase.id}",
+        "Contact__c": "@{contact\(index).id}"
       ]
       
       // Create CaseContacts__c
@@ -190,14 +234,17 @@ class NewClaimModel: ObservableObject {
   }
   
   func createImageAttachments() {
-    for(index, image) in self.images.enumerated() {
-      self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(from: image, relatingToCaseID: "refCase"), referenceId: "imageAttachment\(index)")
-    }
+    self.$images
+      .sink{ images in
+        for(index, image) in images.enumerated() {
+          self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(from: image, relatingToCaseID: "@{refCase.id}"), referenceId: "imageAttachment\(index)")
+        }
+    }.cancel()
   }
   
   func createAudioAttachments() {
     if let audioData = audioData {
-      let audioAttachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: "refCase")
+      let audioAttachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: "@{refCase.id}")
       self.compositeRequestBuilder.add(audioAttachmentRequest, referenceId: "audioAttachment")
     }
   }

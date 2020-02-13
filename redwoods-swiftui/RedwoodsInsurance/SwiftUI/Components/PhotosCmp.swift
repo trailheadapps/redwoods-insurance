@@ -11,6 +11,7 @@ import SwiftUI
 struct PhotosCmp: View {
   @State private var showingImagePicker = false
   @State var selectedImages: [UIImage]
+  @EnvironmentObject var newClaim: NewClaimModel
   
   var body: some View {
     VStack{
@@ -21,10 +22,10 @@ struct PhotosCmp: View {
           self.showingImagePicker = true
         }.padding(.trailing)
       }
-      GridView(images: self.selectedImages)
+      GridView(images: self.newClaim.images)
     }
     .sheet(isPresented: $showingImagePicker) {
-      ImagePicker(selectedImages: self.$selectedImages)
+      ImagePicker(selectedImages: self.$newClaim.images)
     }
   }
 }

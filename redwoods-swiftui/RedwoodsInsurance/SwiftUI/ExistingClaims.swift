@@ -12,7 +12,8 @@ import SalesforceSDKCore
 
 struct ExistingClaims: View {
   @ObservedObject var viewModel = ExistingClaimsListModel()
-  
+  @State var showNewClaimView: Bool = false
+
   var body: some View {
     NavigationView{
       List(viewModel.claims) { dataItem in
@@ -33,7 +34,9 @@ struct ExistingClaims: View {
           self.viewModel.claims = []
           UserAccountManager.shared.logout()
         },
-        trailing: NavigationLink(destination: NewClaim()) {
+        trailing:
+        NavigationLink(
+        destination: NewClaim(), isActive: self.$showNewClaimView) {
           Image(systemName: "plus")
         }
       )

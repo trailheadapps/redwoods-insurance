@@ -15,30 +15,32 @@ import MapKit
 struct NewClaim: View {
   @State var geoCodedAddressText: String = "Start"
   @State var mapView: MKMapView = MKMapView()
-  
   @EnvironmentObject var newClaim: NewClaimModel
+  @Environment(\.presentationMode) var mode: Binding<PresentationMode>
   
   var body: some View {
-    VStack{
-      IncidentLocationCmp(geoCodedAddressText: $geoCodedAddressText, mapView: $mapView)
-      DescriptionCmp()
-      PhotosCmp(selectedImages: newClaim.images)
-      PartiesInvolvedCmp()
-    }
-    .navigationBarItems(
-      trailing: Button("Submit"){
-        print("Submitting")
-        self.newClaim.uploadClaimToSalesforce(map: self.mapView)
+    ActivityIndicatorView(isShowing: self.$newClaim.showActivityIndicator) {
+      VStack{
+        IncidentLocationCmp(geoCodedAddressText: self.$geoCodedAddressText, mapView: self.$mapView)
+        DescriptionCmp()
+        PhotosCmp(selectedImages: self.newClaim.images)
+        PartiesInvolvedCmp()
+        .navigationBarItems(
+          trailing: Button("Submit"){
+            self.newClaim.showActivityIndicator = true
+            print("Submitting")
+            self.newClaim.uploadClaimToSalesforce(map: self.mapView)
+            self.mode.wrappedValue.dismiss()
+          }
+        )
       }
-    )
+    }
   }
-  
-  
-  
 }
 
 struct NewClaim_Previews: PreviewProvider {
-    static var previews: some View {
-        NewClaim()
-    }
+  static let env = NewClaimModel()
+  static var previews: some View {
+    NewClaim().environmentObject(env)
+  }
 }

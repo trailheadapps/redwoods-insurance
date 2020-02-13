@@ -28,7 +28,7 @@ struct ContactPicker: View {
         Text("Done")
       })
       .environment(\.editMode, .constant(EditMode.active))
-        .navigationBarTitle(Text("Select Contacts \(selected.count)"))
+      .navigationBarTitle(Text("Select Contacts \(selected.count)"))
     }
     .onAppear(){
       self.contactsModel.fetchContacts()
