@@ -23,14 +23,6 @@ struct ClaimDetailsModel: Identifiable, Hashable, Decodable {
       value: record.values.first as! String
     )
   }
-
-  static func fromTupple(_ tupple: (key:String, value:String)) -> ClaimDetailsModel {
-    return .init(
-      id: UUID(),
-      key: tupple.key,
-      value: tupple.value
-    )
-  }
 }
 
 class ClaimDetialsViewModel: ObservableObject {
@@ -41,7 +33,6 @@ class ClaimDetialsViewModel: ObservableObject {
 
   func fetchClaimDetailsFromSalesforce(caseId: String) {
     claimDetailCancellable = RestClient.shared.fetchData(fromLayout: "Compact", for: caseId)
-      .print("claimDetails: ")
       .receive(on: RunLoop.main)
       .sink { records in
         var temp = [ClaimDetailsModel]()
@@ -50,7 +41,6 @@ class ClaimDetialsViewModel: ObservableObject {
         }
         self.claimDetails = temp
       }
-//      .assign(to: \.claimDetailRecords, on: self)
   }
 
 }

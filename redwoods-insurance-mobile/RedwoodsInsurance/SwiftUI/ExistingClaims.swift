@@ -37,7 +37,10 @@ struct ExistingClaims: View {
           },
           trailing: NavigationLink(
           destination: NewClaim()) {
-            Image(systemName: "plus")
+            HStack {
+              Text("New ")
+              Image(systemName: "plus")
+            }
           }
         )
         .onAppear {
