@@ -57,7 +57,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
     }
   }
 
-  var transcribedText = "Enter description or press Record for voice transcription" {
+  var transcribedText = "" {
     didSet {
       objectWillChange.send(self)
     }
@@ -135,13 +135,8 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
     if success {
       recording = false
       playbackDisabled = false
-//      recordButton.setTitle("Re-record", for: .normal)
-//      recordButton.tintColor = UIColor(named: "destructive")
     } else {
-      // recording failed :(
       recording = false
-//      recordButton.setTitle("Record", for: .normal)
-//      recordButton.tintColor = UIApplication.shared.keyWindow!.tintColor
     }
   }
 
@@ -156,11 +151,18 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       recognizer?.recognitionTask(with: request) { [unowned self] result, error in
         guard error == nil else { print("Error: \(error!)"); return }
         guard let result = result else { print("No result!"); return }
-        self.newClaim?.transcribedText = result.bestTranscription.formattedString
+        print("hmm, recognizing finished?")
+
+        if result.isFinal {
+          self.newClaim?.transcribedText = result.bestTranscription.formattedString
+          self.transcribedText = result.bestTranscription.formattedString
+        }
+
       }
     } else {
       print("Device doesn't support speech recognition")
     }
+    print("testing stop here")
   }
 
   func prepAudioPlayer() {

@@ -42,7 +42,7 @@ struct DescriptionCmp: View {
           }.padding(.trailing)
         }
       }
-      MultiLineTextField("Enter description or press Record for voice transcription", text: self.$audioRecorder.transcribedText, onCommit: {
+      MultiLineTextField("", text: self.$audioRecorder.transcribedText, onCommit: {
         print("Final Text: \(self.$audioRecorder.transcribedText)")
         self.newClaim.transcribedText = self.audioRecorder.transcribedText
       }).overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black))

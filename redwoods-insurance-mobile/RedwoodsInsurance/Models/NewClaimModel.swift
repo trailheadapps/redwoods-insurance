@@ -21,11 +21,11 @@ class NewClaimModel: ObservableObject {
   @Published var images: [UIImage] = [UIImage]()
   @Published var selectedContacts = [CNContact]()
   @Published var showActivityIndicator: Bool = false
-  @State var complete: String = ""
+  @Published var transcribedText: String?
+
   let completedPublisher = PassthroughSubject<Bool, Never>()
 
   var audioData: Data?
-  var transcribedText: String?
   private var compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
   @Published var mapView: MKMapView = MKMapView()
 
@@ -90,7 +90,6 @@ class NewClaimModel: ObservableObject {
                 .sink { value in
                   print(value)
                   self.showActivityIndicator = false
-//                  self.complete = "true"
                   self.completedPublisher.send(true)
                   promise(.success(true))
               }
