@@ -20,10 +20,8 @@ struct PartiesInvolvedCmp: View {
       HStack {
         Text("Parties Involved").font(.headline).padding(.leading)
         Spacer()
-        Button(action: {
+        Button("Edit") {
           self.showingContactPicker = true
-        }) {
-          Text("Edit")
         }.padding(.trailing)
       }
       List(newClaim.selectedContacts) { contact in

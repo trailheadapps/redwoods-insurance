@@ -95,7 +95,7 @@ struct MultiLineTextField: View {
 
   @Binding private var text: String
   private var internalText: Binding<String> {
-    Binding<String>(get: { self.text}) {
+    Binding<String>(get: {self.text}) { // swiftlint:disable:this multiple_closures_with_trailing_closure
       self.text = $0
       self.showingPlaceholder = $0.isEmpty
     }

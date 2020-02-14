@@ -21,12 +21,11 @@ struct ContactPicker: View {
       List(contactsModel.allContacts, selection: $selected) { contact in
         ContactListRow(contact: contact)
       }
-      .navigationBarItems(trailing: Button(action: {
-        self.selectedContacts = self.getSelectedContactsById()
-        self.sheetDisplayed = false
-      }) {
-        Text("Done")
-      })
+      .navigationBarItems(trailing:
+        Button("Done") {
+          self.selectedContacts = self.getSelectedContactsById()
+          self.sheetDisplayed = false
+        })
       .environment(\.editMode, .constant(EditMode.active))
       .navigationBarTitle(Text("Select Contacts \(selected.count)"))
     }

@@ -30,6 +30,8 @@
 		B552819F23EA25D300A7D743 /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552819E23EA25D300A7D743 /* ContactPicker.swift */; };
 		B559245623D019B20051B99C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559245523D019B20051B99C /* GridView.swift */; };
 		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
+		B56D5A1123F5FA72008223D3 /* ClaimDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */; };
+		B56D5A1E23F60437008223D3 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56D5A1D23F60437008223D3 /* State.swift */; };
 		B59D2B3D23DB942600C780D2 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D2B3C23DB942600C780D2 /* Array.swift */; };
 		B59ECECF23F4AD950047FAA9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */; };
 		B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916123E8C2D600FB363D /* NewClaimModel.swift */; };
@@ -153,6 +155,8 @@
 		B552819E23EA25D300A7D743 /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		B559245523D019B20051B99C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
+		B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDetailsViewModel.swift; sourceTree = "<group>"; };
+		B56D5A1D23F60437008223D3 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		B59D2B3C23DB942600C780D2 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B59F916123E8C2D600FB363D /* NewClaimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaimModel.swift; sourceTree = "<group>"; };
@@ -295,8 +299,10 @@
 			children = (
 				B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */,
 				B59F916123E8C2D600FB363D /* NewClaimModel.swift */,
+				B56D5A1D23F60437008223D3 /* State.swift */,
 				B5316F4D23C77503006F1EEA /* Claim.swift */,
 				B552819C23EA1EC300A7D743 /* ContactsPickerViewModel.swift */,
+				B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -501,7 +507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --path ./\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect --path ./\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -512,6 +518,7 @@
 			files = (
 				B5316F4E23C77503006F1EEA /* Claim.swift in Sources */,
 				B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */,
+				B56D5A1123F5FA72008223D3 /* ClaimDetailsViewModel.swift in Sources */,
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
 				B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */,
 				B59ECECF23F4AD950047FAA9 /* ActivityIndicator.swift in Sources */,
@@ -532,6 +539,7 @@
 				B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */,
 				B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */,
 				B50D07EA23EBDACD00757E9A /* CNContactExtensions.swift in Sources */,
+				B56D5A1E23F60437008223D3 /* State.swift in Sources */,
 				B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */,
 				B552819F23EA25D300A7D743 /* ContactPicker.swift in Sources */,
 				B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */,

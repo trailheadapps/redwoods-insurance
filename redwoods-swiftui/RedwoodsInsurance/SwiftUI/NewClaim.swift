@@ -23,21 +23,27 @@ struct NewClaim: View {
 
   var body: some View {
     ActivityIndicatorView(isShowing: self.$newClaim.showActivityIndicator) {
-      VStack {
-        IncidentLocationCmp(geoCodedAddressText: self.$geoCodedAddressText, mapView: self.$mapView)
-        DescriptionCmp()
-        PhotosCmp(selectedImages: self.newClaim.images)
-        PartiesInvolvedCmp()
-        .navigationBarItems(
-          trailing: Button("Submit") {
-            self.newClaim.showActivityIndicator = true
-            print("Submitting")
-            self.uploadComplete = self.newClaim.uploadClaimToSalesforce(map: self.mapView)
-              .sink { _ in
-                self.mode.wrappedValue.dismiss()
-            }
-          }
-        )
+      ScrollView {
+        VStack {
+          IncidentLocationCmp(geoCodedAddressText: self.$geoCodedAddressText, mapView: self.$mapView)
+          DescriptionCmp()
+            .frame(height: 200.0)
+          PhotosCmp(selectedImages: self.newClaim.images)
+            .frame(height: 200.0)
+          PartiesInvolvedCmp()
+            .frame(height: 200.0)
+            .navigationBarItems(
+              trailing: Button("Submit") {
+                self.newClaim.showActivityIndicator = true
+                print("Submitting")
+                self.uploadComplete = self.newClaim.uploadClaimToSalesforce(map: self.mapView)
+                  .sink { _ in
+                    self.mode.wrappedValue.dismiss()
+                }
+              }
+          )
+        }
+
       }
     }
   }

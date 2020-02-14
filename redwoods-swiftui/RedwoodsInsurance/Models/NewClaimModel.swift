@@ -134,7 +134,7 @@ class NewClaimModel: ObservableObject {
     self.selectedContacts.enumerated().forEach { (index, contact) -> Void in
       let address = contact.postalAddresses.first
       let contactFields: [String: String] = [
-        "LastName": contact.familyName,
+        "LastName": (contact.familyName.isEmpty) ? "No Last Name Given" : contact.familyName,
         "FirstName": contact.givenName,
         "Phone": contact.phoneNumbers.first?.value.stringValue ?? "",
         "email": (contact.emailAddresses.first?.value as String?) ?? "",

@@ -13,11 +13,12 @@ import SalesforceSDKCore
 struct ExistingClaims: View {
   @ObservedObject var viewModel = ExistingClaimsListModel()
   @EnvironmentObject var newClaim: NewClaimModel
+  @EnvironmentObject var customState: CustomState
 
   var body: some View {
     NavigationView {
       List(viewModel.claims) { dataItem in
-        NavigationLink(destination: ClaimDetails()) {
+        NavigationLink(destination: ClaimDetails(activeClaimId: dataItem.id)) {
           HStack(spacing: 10) {
             VStack(alignment: .leading, spacing: 3) {
               Text(dataItem.subject)
@@ -43,10 +44,10 @@ struct ExistingClaims: View {
           print("On Appear firing for ExistingClaims()")
           self.viewModel.fetchDataFromSalesforce()
       }
-//      .onReceive(self.newClaim.completedPublisher){ _ in
-//        print("On Receive firing for existing claims")
-//        //self.viewModel.fetchDataFromSalesforce()
-//      }
+      .onReceive(self.newClaim.completedPublisher) { _ in
+        print("On Receive firing for existing claims")
+        self.viewModel.fetchDataFromSalesforce()
+      }
 
     }
   }
