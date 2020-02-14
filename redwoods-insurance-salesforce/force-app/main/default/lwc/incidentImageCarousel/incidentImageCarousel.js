@@ -1,10 +1,10 @@
-import { LightningElement, track, wire, api } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import getRelatedPictures from '@salesforce/apex/IncidentController.findRelatedFiles';
 
 export default class IncidentImageCarousel extends LightningElement {
     @api recordId;
-    @track urls;
+    urls;
     pictures;
 
     @wire(getRecord, {
