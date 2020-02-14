@@ -16,7 +16,6 @@ import MapKit
 class NewClaimModel: ObservableObject {
 
   let newClaim = PassthroughSubject<NewClaimModel, Never>()
-  let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
 
   @Published var geolocationText: String?
   @Published var images: [UIImage] = [UIImage]()
@@ -42,6 +41,7 @@ class NewClaimModel: ObservableObject {
   private var uploadCancellable: AnyCancellable?
 
   func fetchAccountId() -> AnyPublisher<String, Never> {
+    let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
     let accountIdQuery = RestClient.shared.request(forQuery: "SELECT contact.accountId FROM User WHERE ID = '\(userId)' LIMIT 1",
                                                   apiVersion: RestClient.apiVersion)
     return RestClient.shared.publisher(for: accountIdQuery)
