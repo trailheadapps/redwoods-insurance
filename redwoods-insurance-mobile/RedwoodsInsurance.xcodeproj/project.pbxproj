@@ -11,6 +11,12 @@
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
 		B50D07EA23EBDACD00757E9A /* CNContactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D07E923EBDACD00757E9A /* CNContactExtensions.swift */; };
+		B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; };
+		B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; };
+		B5242AA623C69BC40091AF8A /* SalesforceSDKCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5242AA723C69BC40091AF8A /* SalesforceSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */; };
+		B5242AA823C69BC40091AF8A /* SalesforceSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4823C77305006F1EEA /* ExistingClaims.swift */; };
 		B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */; };
 		B5316F4E23C77503006F1EEA /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4D23C77503006F1EEA /* Claim.swift */; };
@@ -26,7 +32,6 @@
 		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
 		B56D5A1123F5FA72008223D3 /* ClaimDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */; };
 		B56D5A1E23F60437008223D3 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56D5A1D23F60437008223D3 /* State.swift */; };
-		B595C33523FC4153000B207B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B595C33423FC4153000B207B /* Assets.xcassets */; };
 		B59D2B3D23DB942600C780D2 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D2B3C23DB942600C780D2 /* Array.swift */; };
 		B59ECECF23F4AD950047FAA9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */; };
 		B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916123E8C2D600FB363D /* NewClaimModel.swift */; };
@@ -41,7 +46,7 @@
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
-		F93100C1ED32D96A3AA7537C /* Pods_RedwoodsInsurance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890C7209A9FE511E6B6591AA /* Pods_RedwoodsInsurance.framework */; };
+		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,15 +115,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B5D05A6C23C6992100380B9E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5242AA823C69BC40091AF8A /* SalesforceSDKCore.framework in Embed Frameworks */,
+				B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */,
+				B5242AA623C69BC40091AF8A /* SalesforceSDKCommon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1231304B6220AA54B7D153ED /* Pods-RedwoodsInsurance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedwoodsInsurance.debug.xcconfig"; path = "Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance.debug.xcconfig"; sourceTree = "<group>"; };
 		4F393A281C3C8BCD00B3EA13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4FD6C4741B754AF1002F9F90 /* RedwoodsInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedwoodsInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD6C4781B754AF1002F9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FD6C49D1B755242002F9F90 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		4FF12F8A1DCA91F5004D9EF9 /* RedwoodsInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedwoodsInsurance.entitlements; sourceTree = "<group>"; };
-		890C7209A9FE511E6B6591AA /* Pods_RedwoodsInsurance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedwoodsInsurance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50D07E923EBDACD00757E9A /* CNContactExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactExtensions.swift; sourceTree = "<group>"; };
 		B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCore.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj"; sourceTree = "<group>"; };
 		B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
@@ -138,7 +157,6 @@
 		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
 		B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDetailsViewModel.swift; sourceTree = "<group>"; };
 		B56D5A1D23F60437008223D3 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		B595C33423FC4153000B207B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B59D2B3C23DB942600C780D2 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B59F916123E8C2D600FB363D /* NewClaimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaimModel.swift; sourceTree = "<group>"; };
@@ -153,7 +171,7 @@
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
-		D8DA031C249F15C877C8C142 /* Pods-RedwoodsInsurance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedwoodsInsurance.release.xcconfig"; path = "Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance.release.xcconfig"; sourceTree = "<group>"; };
+		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,31 +179,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5242AA723C69BC40091AF8A /* SalesforceSDKCore.framework in Frameworks */,
+				B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */,
 				B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */,
-				F93100C1ED32D96A3AA7537C /* Pods_RedwoodsInsurance.framework in Frameworks */,
+				B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23CB8E1BFFE79610A6BB2AE0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1231304B6220AA54B7D153ED /* Pods-RedwoodsInsurance.debug.xcconfig */,
-				D8DA031C249F15C877C8C142 /* Pods-RedwoodsInsurance.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		4FD6C46B1B754AF1002F9F90 = {
 			isa = PBXGroup;
 			children = (
 				4FD6C4761B754AF1002F9F90 /* RedwoodsInsurance */,
 				4FD6C4751B754AF1002F9F90 /* Products */,
 				6B868AEB1ACA7FCA4636C7F7 /* Frameworks */,
-				23CB8E1BFFE79610A6BB2AE0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,10 +222,10 @@
 		4FD6C4771B754AF1002F9F90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B595C33423FC4153000B207B /* Assets.xcassets */,
 				B73B520C234FA65F001B069B /* SceneDelegate.swift */,
 				B77BD8A221125B510036B284 /* bootconfig.plist */,
 				B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */,
+				CEA8CA031F071B2300448B51 /* Images.xcassets */,
 				4FD6C4781B754AF1002F9F90 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -240,7 +249,6 @@
 				B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */,
 				B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */,
 				B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */,
-				890C7209A9FE511E6B6591AA /* Pods_RedwoodsInsurance.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -336,12 +344,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "RedwoodsInsurance" */;
 			buildPhases = (
-				F7ADF0E9288288738C681CEE /* [CP] Check Pods Manifest.lock */,
 				4FD6C4701B754AF1002F9F90 /* Sources */,
 				B5468F2223F5B44700622905 /* ShellScript */,
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
 				4FD6C4721B754AF1002F9F90 /* Resources */,
-				0B92A73AB4B097EC3B0FEBA8 /* [CP] Embed Pods Frameworks */,
+				B5D05A6C23C6992100380B9E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -477,7 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B77BD8A321125B510036B284 /* bootconfig.plist in Resources */,
-				B595C33523FC4153000B207B /* Assets.xcassets in Resources */,
+				CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */,
 				B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,23 +492,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B92A73AB4B097EC3B0FEBA8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B5468F2223F5B44700622905 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,28 +508,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect --path ./\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		F7ADF0E9288288738C681CEE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RedwoodsInsurance-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -694,7 +662,6 @@
 		};
 		4FD6C4941B754AF1002F9F90 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1231304B6220AA54B7D153ED /* Pods-RedwoodsInsurance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
@@ -715,7 +682,6 @@
 		};
 		4FD6C4951B754AF1002F9F90 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8DA031C249F15C877C8C142 /* Pods-RedwoodsInsurance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
