@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2550901D0865BF21C53109BE /* Pods_RedwoodsInsurance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5620A0E63832556A230A5C60 /* Pods_RedwoodsInsurance.framework */; };
 		4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F393A281C3C8BCD00B3EA13 /* main.swift */; };
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
@@ -119,7 +118,6 @@
 		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FD6C49D1B755242002F9F90 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		4FF12F8A1DCA91F5004D9EF9 /* RedwoodsInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedwoodsInsurance.entitlements; sourceTree = "<group>"; };
-		5620A0E63832556A230A5C60 /* Pods_RedwoodsInsurance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedwoodsInsurance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFF189C04BE6D56D644538E7 /* Pods-RedwoodsInsurance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedwoodsInsurance.debug.xcconfig"; path = "Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance.debug.xcconfig"; sourceTree = "<group>"; };
 		B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCore.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj"; sourceTree = "<group>"; };
 		B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */,
-				2550901D0865BF21C53109BE /* Pods_RedwoodsInsurance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +239,6 @@
 				B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */,
 				B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */,
 				B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */,
-				5620A0E63832556A230A5C60 /* Pods_RedwoodsInsurance.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
