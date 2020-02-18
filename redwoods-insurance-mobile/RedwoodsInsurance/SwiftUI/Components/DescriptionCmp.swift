@@ -12,6 +12,7 @@ import AVFoundation
 struct DescriptionCmp: View {
   @EnvironmentObject var newClaim: NewClaimModel
   @ObservedObject var audioRecorder = AudioRecorder()
+  
   let recordingSession = AVAudioSession.sharedInstance()
 
   var body: some View {

@@ -7,6 +7,7 @@
     <columns>CASES.STATUS</columns>
     <columns>CASES.PRIORITY</columns>
     <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
     <filterScope>Everything</filterScope>
     <label>All Cases</label>
 </ListView>

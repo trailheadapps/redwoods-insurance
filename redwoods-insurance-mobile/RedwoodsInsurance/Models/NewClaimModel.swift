@@ -19,6 +19,7 @@ class NewClaimModel: ObservableObject {
 
   @Published var geolocationText: String?
   @Published var images: [UIImage] = [UIImage]()
+  public var images: [UIImage] = [UIImage]()
   @Published var selectedContacts = [CNContact]()
   @Published var showActivityIndicator: Bool = false
   @Published var transcribedText: String?
@@ -45,6 +46,7 @@ class NewClaimModel: ObservableObject {
     let accountIdQuery = RestClient.shared.request(forQuery: "SELECT contact.accountId FROM User WHERE ID = '\(userId)' LIMIT 1",
                                                   apiVersion: RestClient.apiVersion)
     return RestClient.shared.publisher(for: accountIdQuery)
+      .print("AccountID Query")
       .tryMap { try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
       .map { $0["records"] as? RestClient.SalesforceRecords ?? [] }
       .mapError { dump($0) }
@@ -114,7 +116,7 @@ class NewClaimModel: ObservableObject {
     // Create Case
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .full
-
+    
     var record = RestClient.SalesforceRecord()
     record["origin"] = "Redwoods Car Insurance Mobile App"
     record["status"] = "new"
@@ -202,7 +204,11 @@ class NewClaimModel: ObservableObject {
 
         let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+      
+      self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
         return promise(.success(mapImage))
+        relatingToCaseID: "refCase",
+        fileName: "MapSnapshot.png"
       }
     }
     return futureSnapshot

@@ -93,7 +93,7 @@ extension RestClient {
     let fileName = UUID().uuidString + ".m4a"
     return self.requestForCreatingAttachment(from: m4aAudioData, withFileName: fileName, relatingToCaseID: caseID)
   }
-
+  
   /// Returns a request that adds an attachment to a given case.
   ///
   /// - Parameters:

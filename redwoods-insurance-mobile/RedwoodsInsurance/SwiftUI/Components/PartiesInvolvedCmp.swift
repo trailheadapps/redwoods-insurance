@@ -22,6 +22,8 @@ struct PartiesInvolvedCmp: View {
         Spacer()
         Button("Edit") {
           self.showingContactPicker = true
+        }) {
+          Text("Edit")
         }.padding(.trailing)
       }
       List(newClaim.selectedContacts) { contact in
@@ -31,6 +33,8 @@ struct PartiesInvolvedCmp: View {
     .sheet(isPresented: $showingContactPicker) {
       ContactPicker(selectedContacts: self.$selectedContacts, sheetDisplayed: self.$showingContactPicker )
         .onDisappear {
+//      }
+    }.sheet(isPresented: $showingContactPicker){
           print("closing sheet")
           self.newClaim.selectedContacts = self.selectedContacts
       }

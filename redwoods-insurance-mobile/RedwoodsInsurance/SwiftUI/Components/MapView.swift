@@ -84,6 +84,7 @@ struct MapView: UIViewRepresentable {
         let street = placemark.thoroughfare ?? ""
         let city = placemark.locality ?? ""
         let state = placemark.administrativeArea ?? ""
+        // swiftlint:disable:next identifier_name
         let zip = placemark.postalCode ?? ""
         let country = placemark.isoCountryCode ?? ""
         let address = number + " " + street + " " + city + " " + state + ". " + zip + " " + country
@@ -97,5 +98,5 @@ struct MapView: UIViewRepresentable {
       geocode(location)
     }
   }
-
+  
 }

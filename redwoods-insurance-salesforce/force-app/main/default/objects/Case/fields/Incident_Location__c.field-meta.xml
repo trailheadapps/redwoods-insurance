@@ -3,7 +3,7 @@
     <fullName>Incident_Location__c</fullName>
     <displayLocationInDecimal>false</displayLocationInDecimal>
     <externalId>false</externalId>
-    <label>Incident Location</label>
+    <label>Incident Location (Lat/Long)</label>
     <required>false</required>
     <scale>5</scale>
     <trackFeedHistory>false</trackFeedHistory>

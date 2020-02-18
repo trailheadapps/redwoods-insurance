@@ -20,6 +20,7 @@ struct UITextViewWrapper: UIViewRepresentable {
   func makeUIView(context: Context) -> UITextView {
     let textField = UITextView()
     textField.delegate = context.coordinator
+    
     textField.isEditable = true
     textField.backgroundColor = UIColor.clear
     textField.isSelectable = true
@@ -42,7 +43,7 @@ struct UITextViewWrapper: UIViewRepresentable {
     if uiView.text != self.text {
       uiView.text = self.text
     }
-
+    
     if uiView.window != nil, uiView.window!.isFocused, !uiView.isFirstResponder {
       uiView.becomeFirstResponder()
     }
