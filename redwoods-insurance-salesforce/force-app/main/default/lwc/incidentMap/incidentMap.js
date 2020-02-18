@@ -1,4 +1,4 @@
-import { LightningElement, wire, api, track } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 
 const fields = [
@@ -8,7 +8,7 @@ const fields = [
 
 export default class IncidentMap extends LightningElement {
     @api recordId;
-    @track mapMarkers;
+    mapMarkers;
     @wire(getRecord, {
         recordId: '$recordId',
         fields
