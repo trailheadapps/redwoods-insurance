@@ -10,11 +10,11 @@ import SwiftUI
 import ContactsUI
 
 struct PartiesInvolvedCmp: View {
-
+  
   @State var showingContactPicker = false
   @State var selectedContacts: [CNContact]  = []
   @EnvironmentObject var newClaim: NewClaimModel
-
+  
   var body: some View {
     VStack(alignment: .leading) {
       HStack {
@@ -22,8 +22,6 @@ struct PartiesInvolvedCmp: View {
         Spacer()
         Button("Edit") {
           self.showingContactPicker = true
-        }) {
-          Text("Edit")
         }.padding(.trailing)
       }
       List(newClaim.selectedContacts) { contact in
@@ -33,8 +31,6 @@ struct PartiesInvolvedCmp: View {
     .sheet(isPresented: $showingContactPicker) {
       ContactPicker(selectedContacts: self.$selectedContacts, sheetDisplayed: self.$showingContactPicker )
         .onDisappear {
-//      }
-    }.sheet(isPresented: $showingContactPicker){
           print("closing sheet")
           self.newClaim.selectedContacts = self.selectedContacts
       }
@@ -43,7 +39,7 @@ struct PartiesInvolvedCmp: View {
 }
 
 struct PartiesInvolvedCmp_Previews: PreviewProvider {
-    static var previews: some View {
-      PartiesInvolvedCmp().environmentObject(NewClaimModel())
-    }
+  static var previews: some View {
+    PartiesInvolvedCmp().environmentObject(NewClaimModel())
+  }
 }

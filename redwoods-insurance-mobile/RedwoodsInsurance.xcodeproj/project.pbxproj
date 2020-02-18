@@ -7,15 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2550901D0865BF21C53109BE /* Pods_RedwoodsInsurance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5620A0E63832556A230A5C60 /* Pods_RedwoodsInsurance.framework */; };
 		4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F393A281C3C8BCD00B3EA13 /* main.swift */; };
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
-		B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; };
-		B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; };
-		B5242AA623C69BC40091AF8A /* SalesforceSDKCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5242AA723C69BC40091AF8A /* SalesforceSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */; };
-		B5242AA823C69BC40091AF8A /* SalesforceSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4823C77305006F1EEA /* ExistingClaims.swift */; };
 		B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */; };
 		B5316F4E23C77503006F1EEA /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4D23C77503006F1EEA /* Claim.swift */; };
@@ -24,12 +19,16 @@
 		B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */; };
 		B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5316F5E23C8DDE3006F1EEA /* MapKit.framework */; };
 		B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540647123DB9E3600DA3EF6 /* Collection.swift */; };
+		B545949B23FC73B6002ED235 /* ContactsPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949823FC73B6002ED235 /* ContactsPickerViewModel.swift */; };
+		B545949C23FC73B6002ED235 /* CustomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949923FC73B6002ED235 /* CustomState.swift */; };
+		B545949D23FC73B6002ED235 /* ClaimDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949A23FC73B6002ED235 /* ClaimDetailsViewModel.swift */; };
+		B54594A023FC7541002ED235 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949E23FC7541002ED235 /* ActivityIndicator.swift */; };
+		B54594A123FC7541002ED235 /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949F23FC7541002ED235 /* ContactPicker.swift */; };
+		B54594A323FC75AF002ED235 /* CNContactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54594A223FC75AE002ED235 /* CNContactExtensions.swift */; };
 		B54A393423CD0EF0004F8274 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A393323CD0EF0004F8274 /* MapView.swift */; };
 		B559245623D019B20051B99C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559245523D019B20051B99C /* GridView.swift */; };
 		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
-		B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */; };
 		B59D2B3D23DB942600C780D2 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D2B3C23DB942600C780D2 /* Array.swift */; };
-		B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F915423E6280100FB363D /* ClaimUpload.swift */; };
 		B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916123E8C2D600FB363D /* NewClaimModel.swift */; };
 		B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916323E91BC000FB363D /* UIImageExtensions.swift */; };
 		B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */; };
@@ -111,29 +110,16 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		B5D05A6C23C6992100380B9E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B5242AA823C69BC40091AF8A /* SalesforceSDKCore.framework in Embed Frameworks */,
-				B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */,
-				B5242AA623C69BC40091AF8A /* SalesforceSDKCommon.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		3A987181CEF26EDC8A61A39C /* Pods-RedwoodsInsurance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedwoodsInsurance.release.xcconfig"; path = "Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance.release.xcconfig"; sourceTree = "<group>"; };
 		4F393A281C3C8BCD00B3EA13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4FD6C4741B754AF1002F9F90 /* RedwoodsInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedwoodsInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD6C4781B754AF1002F9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FD6C49D1B755242002F9F90 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		4FF12F8A1DCA91F5004D9EF9 /* RedwoodsInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedwoodsInsurance.entitlements; sourceTree = "<group>"; };
+		5620A0E63832556A230A5C60 /* Pods_RedwoodsInsurance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedwoodsInsurance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFF189C04BE6D56D644538E7 /* Pods-RedwoodsInsurance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedwoodsInsurance.debug.xcconfig"; path = "Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance.debug.xcconfig"; sourceTree = "<group>"; };
 		B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCore.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj"; sourceTree = "<group>"; };
 		B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
 		B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj"; sourceTree = "<group>"; };
@@ -145,12 +131,16 @@
 		B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDetails.swift; sourceTree = "<group>"; };
 		B5316F5E23C8DDE3006F1EEA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B540647123DB9E3600DA3EF6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		B545949823FC73B6002ED235 /* ContactsPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPickerViewModel.swift; sourceTree = "<group>"; };
+		B545949923FC73B6002ED235 /* CustomState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomState.swift; sourceTree = "<group>"; };
+		B545949A23FC73B6002ED235 /* ClaimDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDetailsViewModel.swift; sourceTree = "<group>"; };
+		B545949E23FC7541002ED235 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B545949F23FC7541002ED235 /* ContactPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
+		B54594A223FC75AE002ED235 /* CNContactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNContactExtensions.swift; sourceTree = "<group>"; };
 		B54A393323CD0EF0004F8274 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B559245523D019B20051B99C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
-		B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		B59D2B3C23DB942600C780D2 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		B59F915423E6280100FB363D /* ClaimUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimUpload.swift; sourceTree = "<group>"; };
 		B59F916123E8C2D600FB363D /* NewClaimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaimModel.swift; sourceTree = "<group>"; };
 		B59F916323E91BC000FB363D /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentLocationCmp.swift; sourceTree = "<group>"; };
@@ -171,22 +161,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5242AA723C69BC40091AF8A /* SalesforceSDKCore.framework in Frameworks */,
-				B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */,
 				B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */,
-				B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */,
+				2550901D0865BF21C53109BE /* Pods_RedwoodsInsurance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26BEEFD6D8B0DE95C6A41F97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AFF189C04BE6D56D644538E7 /* Pods-RedwoodsInsurance.debug.xcconfig */,
+				3A987181CEF26EDC8A61A39C /* Pods-RedwoodsInsurance.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4FD6C46B1B754AF1002F9F90 = {
 			isa = PBXGroup;
 			children = (
 				4FD6C4761B754AF1002F9F90 /* RedwoodsInsurance */,
 				4FD6C4751B754AF1002F9F90 /* Products */,
 				6B868AEB1ACA7FCA4636C7F7 /* Frameworks */,
+				26BEEFD6D8B0DE95C6A41F97 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,7 +228,6 @@
 				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
 				4F393A281C3C8BCD00B3EA13 /* main.swift */,
 				B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */,
-				B59F915423E6280100FB363D /* ClaimUpload.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -242,6 +239,7 @@
 				B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */,
 				B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */,
 				B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */,
+				5620A0E63832556A230A5C60 /* Pods_RedwoodsInsurance.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -290,6 +288,9 @@
 		B5316F4A23C774A8006F1EEA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B545949A23FC73B6002ED235 /* ClaimDetailsViewModel.swift */,
+				B545949823FC73B6002ED235 /* ContactsPickerViewModel.swift */,
+				B545949923FC73B6002ED235 /* CustomState.swift */,
 				B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */,
 				B59F916123E8C2D600FB363D /* NewClaimModel.swift */,
 				B5316F4D23C77503006F1EEA /* Claim.swift */,
@@ -300,6 +301,7 @@
 		B5316F5523C77759006F1EEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B54594A223FC75AE002ED235 /* CNContactExtensions.swift */,
 				B5316F5623C7777E006F1EEA /* RestClientExtentions.swift */,
 				B59D2B3C23DB942600C780D2 /* Array.swift */,
 				B540647123DB9E3600DA3EF6 /* Collection.swift */,
@@ -311,6 +313,8 @@
 		B54A393223CD0EBE004F8274 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B545949E23FC7541002ED235 /* ActivityIndicator.swift */,
+				B545949F23FC7541002ED235 /* ContactPicker.swift */,
 				B54A393323CD0EF0004F8274 /* MapView.swift */,
 				B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */,
 				B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */,
@@ -319,7 +323,6 @@
 				B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */,
 				B559245523D019B20051B99C /* GridView.swift */,
 				B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */,
-				B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */,
 				B564A30323E141A40004FFD1 /* ContactListRow.swift */,
 			);
 			path = Components;
@@ -332,10 +335,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "RedwoodsInsurance" */;
 			buildPhases = (
+				50D863AB6BFC1CFF95020851 /* [CP] Check Pods Manifest.lock */,
 				4FD6C4701B754AF1002F9F90 /* Sources */,
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
 				4FD6C4721B754AF1002F9F90 /* Resources */,
-				B5D05A6C23C6992100380B9E /* Embed Frameworks */,
+				698E126726A50D66F0E7DDA3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,6 +482,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		50D863AB6BFC1CFF95020851 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RedwoodsInsurance-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		698E126726A50D66F0E7DDA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RedwoodsInsurance/Pods-RedwoodsInsurance-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4FD6C4701B754AF1002F9F90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -485,12 +531,15 @@
 			files = (
 				B5316F4E23C77503006F1EEA /* Claim.swift in Sources */,
 				B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */,
+				B545949D23FC73B6002ED235 /* ClaimDetailsViewModel.swift in Sources */,
+				B54594A323FC75AF002ED235 /* CNContactExtensions.swift in Sources */,
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
-				B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */,
 				B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */,
 				B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */,
 				B54A393423CD0EF0004F8274 /* MapView.swift in Sources */,
+				B545949B23FC73B6002ED235 /* ContactsPickerViewModel.swift in Sources */,
 				B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */,
+				B54594A123FC7541002ED235 /* ContactPicker.swift in Sources */,
 				B5316F5723C7777E006F1EEA /* RestClientExtentions.swift in Sources */,
 				B5D0A3CE23CF685500ACB9FC /* DescriptionCmp.swift in Sources */,
 				B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */,
@@ -506,7 +555,8 @@
 				B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */,
 				B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
-				B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */,
+				B545949C23FC73B6002ED235 /* CustomState.swift in Sources */,
+				B54594A023FC7541002ED235 /* ActivityIndicator.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
 				B5EFD61223DF9853009D368D /* UITextViewWrapper.swift in Sources */,
 			);
@@ -625,6 +675,7 @@
 		};
 		4FD6C4941B754AF1002F9F90 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFF189C04BE6D56D644538E7 /* Pods-RedwoodsInsurance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
@@ -645,6 +696,7 @@
 		};
 		4FD6C4951B754AF1002F9F90 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A987181CEF26EDC8A61A39C /* Pods-RedwoodsInsurance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
