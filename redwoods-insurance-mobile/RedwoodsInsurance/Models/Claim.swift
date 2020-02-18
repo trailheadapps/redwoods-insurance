@@ -15,19 +15,17 @@ struct Claim: Hashable, Identifiable, Decodable {
   var id: String
   var subject: String
   var caseNumber: String
-
+    
   static func generateDemoClaims(numberOfClaims: Int) -> [Claim] {
     var demoClaims = [Claim]()
-    for indexCounter in 1...numberOfClaims {
+    for idx in 1...numberOfClaims {
       demoClaims.append(
-        Claim(id: "PRE1234\(indexCounter)",
-          subject: "Demo Subject - \(indexCounter)",
-          caseNumber: String(Int.random(in: 0 ..< 1000000)))
+        Claim(id: "PRE1234\(idx)", subject: "Demo Subject - \(idx)", caseNumber: String(Int.random(in: 0 ..< 1000000)))
       )
     }
     return demoClaims
   }
-
+  
   static func fromJson(record: RestClient.SalesforceRecord) -> Claim {
     return .init(
       id: record["Id"] as? String ?? "9999999",
@@ -35,5 +33,5 @@ struct Claim: Hashable, Identifiable, Decodable {
       caseNumber: record["CaseNumber"] as? String ?? "0"
     )
   }
-
+  
 }

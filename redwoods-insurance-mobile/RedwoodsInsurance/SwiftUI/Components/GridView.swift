@@ -25,7 +25,7 @@ struct GridViewRow: View {
   var row: Int
   var geo: GeometryProxy
   var body: some View {
-    HStack {
+    HStack{
       ForEach(0..<4) { col in
         GridViewCell(images: self.images, idx: col)
           .frame(width: self.geo.size.width / 4)
@@ -37,7 +37,7 @@ struct GridViewRow: View {
 struct GridViewCell: View {
   var images: [UIImage]
   var idx: Int
-
+  
   var body: some View {
     if let image = self.images.get(at: self.idx) {
       return AnyView(Image(uiImage: image)

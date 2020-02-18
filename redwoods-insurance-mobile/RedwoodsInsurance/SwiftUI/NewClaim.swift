@@ -13,45 +13,32 @@ import SalesforceSDKCore
 import MapKit
 
 struct NewClaim: View {
-  @EnvironmentObject var newClaim: NewClaimModel
-
   @State var geoCodedAddressText: String = "Start"
   @State var mapView: MKMapView = MKMapView()
-  @State var uploadComplete: AnyCancellable?
-
-  @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-
+  
+  @EnvironmentObject var newClaim: NewClaimModel
+  
   var body: some View {
-    ActivityIndicatorView(isShowing: self.$newClaim.showActivityIndicator) {
-      ScrollView {
-        VStack {
-          IncidentLocationCmp(geoCodedAddressText: self.$geoCodedAddressText, mapView: self.$mapView)
-          DescriptionCmp()
-            .frame(height: 200.0)
-          PhotosCmp(selectedImages: self.newClaim.images)
-            .frame(height: 200.0)
-          PartiesInvolvedCmp()
-            .frame(height: 200.0)
-            .navigationBarItems(
-              trailing: Button("Submit") {
-                self.newClaim.showActivityIndicator = true
-                print("Submitting")
-                self.uploadComplete = self.newClaim.uploadClaimToSalesforce(map: self.mapView)
-                  .sink { _ in
-                    self.mode.wrappedValue.dismiss()
-                }
-              }
-          )
-        }
-
-      }
+    VStack{
+      IncidentLocationCmp(geoCodedAddressText: $geoCodedAddressText, mapView: $mapView)
+      DescriptionCmp()
+      PhotosCmp(selectedImages: newClaim.images)
+      PartiesInvolvedCmp()
     }
+    .navigationBarItems(
+      trailing: Button("Submit"){
+        print("Submitting")
+        self.newClaim.uploadClaimToSalesforce(map: self.mapView)
+      }
+    )
   }
+  
+  
+  
 }
 
 struct NewClaim_Previews: PreviewProvider {
-  static let env = NewClaimModel()
-  static var previews: some View {
-    NewClaim().environmentObject(env)
-  }
+    static var previews: some View {
+        NewClaim()
+    }
 }

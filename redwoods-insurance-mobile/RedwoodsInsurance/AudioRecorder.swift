@@ -13,35 +13,35 @@ import AVFoundation
 import Speech
 
 class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-
+  
   let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
+  
   var audioRecorder: AVAudioRecorder!
   var audioPlayer: AVAudioPlayer!
   var meterTimer: Timer?
   let recordingSession = AVAudioSession.sharedInstance()
+  
   let avSessionSettings = [
     AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
     AVSampleRateKey: 12000,
     AVNumberOfChannelsKey: 1,
     AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
   ]
-
-  var newClaim: NewClaimModel?
-
+  
   var playbackDisabled = true {
     didSet {
       objectWillChange.send(self)
     }
   }
-
+  
   var recordingDisabled = true {
     didSet {
       objectWillChange.send(self)
     }
   }
-
+  
   var isPlaying = false {
-    didSet {
+    didSet{
       objectWillChange.send(self)
     }
   }
@@ -56,19 +56,19 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       objectWillChange.send(self)
     }
   }
-
-  var transcribedText = "" {
+  
+  var transcribedText = "Enter description or press Record for voice transcription" {
     didSet {
       objectWillChange.send(self)
     }
   }
-
+  
   var meterTimerText = "00:00:00" {
     didSet {
       objectWillChange.send(self)
     }
   }
-
+  
   func setupAudioRecorder() {
     do {
       let category = AVAudioSession.Category.playAndRecord
@@ -85,7 +85,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       print("failed to record")
     }
   }
-
+  
   func updateTimerText() {
     if self.audioRecorder.isRecording {
       let hour = Int((self.audioRecorder.currentTime / 60) / 60)
@@ -95,20 +95,20 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       self.meterTimerText = totalTimeString
     }
   }
-
-  func startTimer() {
+  
+  func startTimer(){
     self.meterTimer?.invalidate()
-    self.meterTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+    self.meterTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats:true){ _ in
       self.updateTimerText()
     }
   }
-
-  func stopTimer() {
+  
+  func stopTimer(){
     self.updateTimerText()
     self.meterTimer?.invalidate()
   }
-
-  func startRecording() {
+  
+  func startRecording(){
     do {
       audioRecorder = try AVAudioRecorder(url: audioFilenameURL, settings: avSessionSettings)
       audioRecorder.delegate = self
@@ -120,14 +120,14 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       finishRecording(success: false)
     }
   }
-
+  
   func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
     print("audioRecorder finished")
     if !flag {
       finishRecording(success: false)
     }
   }
-
+  
   func finishRecording(success: Bool) {
     audioRecorder.stop()
     stopTimer()
@@ -135,37 +135,35 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
     if success {
       recording = false
       playbackDisabled = false
+//      recordButton.setTitle("Re-record", for: .normal)
+//      recordButton.tintColor = UIColor(named: "destructive")
     } else {
+      // recording failed :(
       recording = false
+//      recordButton.setTitle("Record", for: .normal)
+//      recordButton.tintColor = UIApplication.shared.keyWindow!.tintColor
     }
   }
-
+  
   func processTextFrom(audioURL: URL) {
     transcribedText = "Transcribing..."
     let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     let request = SFSpeechURLRecognitionRequest(url: audioURL)
-
+    
     request.shouldReportPartialResults = true
-
+    
     if (recognizer?.isAvailable)! {
       recognizer?.recognitionTask(with: request) { [unowned self] result, error in
         guard error == nil else { print("Error: \(error!)"); return }
         guard let result = result else { print("No result!"); return }
-        print("hmm, recognizing finished?")
-
-        if result.isFinal {
-          self.newClaim?.transcribedText = result.bestTranscription.formattedString
-          self.transcribedText = result.bestTranscription.formattedString
-        }
-
+        self.transcribedText = result.bestTranscription.formattedString
       }
     } else {
       print("Device doesn't support speech recognition")
     }
-    print("testing stop here")
   }
-
-  func prepAudioPlayer() {
+  
+  func prepAudioPlayer(){
     do {
       audioPlayer = try AVAudioPlayer(contentsOf: audioFilenameURL)
       audioPlayer.delegate = self
@@ -174,7 +172,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       print("Unable to prepare to play audio")
     }
   }
-
+  
   func audioFileAsData() -> Data? {
     do {
       let audioData: Data = try Data(contentsOf: audioFilenameURL)
@@ -184,7 +182,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
     }
     return nil
   }
-
+  
   func toggleAudio() {
     if isPlaying {
       audioPlayer.stop()
@@ -201,7 +199,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
       }
     }
   }
-
+  
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
     recordingDisabled = false
     isPlaying = false
@@ -222,5 +220,5 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
     }
     return URL(fileURLWithPath: "")
   }
-
+  
 }

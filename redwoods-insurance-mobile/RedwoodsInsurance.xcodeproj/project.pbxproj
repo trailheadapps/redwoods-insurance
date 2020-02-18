@@ -10,7 +10,6 @@
 		4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F393A281C3C8BCD00B3EA13 /* main.swift */; };
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
-		B50D07EA23EBDACD00757E9A /* CNContactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D07E923EBDACD00757E9A /* CNContactExtensions.swift */; };
 		B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; };
 		B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; };
@@ -26,14 +25,11 @@
 		B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5316F5E23C8DDE3006F1EEA /* MapKit.framework */; };
 		B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540647123DB9E3600DA3EF6 /* Collection.swift */; };
 		B54A393423CD0EF0004F8274 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A393323CD0EF0004F8274 /* MapView.swift */; };
-		B552819D23EA1EC300A7D743 /* ContactsPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552819C23EA1EC300A7D743 /* ContactsPickerViewModel.swift */; };
-		B552819F23EA25D300A7D743 /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552819E23EA25D300A7D743 /* ContactPicker.swift */; };
 		B559245623D019B20051B99C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559245523D019B20051B99C /* GridView.swift */; };
 		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
-		B56D5A1123F5FA72008223D3 /* ClaimDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */; };
-		B56D5A1E23F60437008223D3 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56D5A1D23F60437008223D3 /* State.swift */; };
+		B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */; };
 		B59D2B3D23DB942600C780D2 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D2B3C23DB942600C780D2 /* Array.swift */; };
-		B59ECECF23F4AD950047FAA9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */; };
+		B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F915423E6280100FB363D /* ClaimUpload.swift */; };
 		B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916123E8C2D600FB363D /* NewClaimModel.swift */; };
 		B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916323E91BC000FB363D /* UIImageExtensions.swift */; };
 		B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */; };
@@ -138,7 +134,6 @@
 		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FD6C49D1B755242002F9F90 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		4FF12F8A1DCA91F5004D9EF9 /* RedwoodsInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedwoodsInsurance.entitlements; sourceTree = "<group>"; };
-		B50D07E923EBDACD00757E9A /* CNContactExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactExtensions.swift; sourceTree = "<group>"; };
 		B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCore.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj"; sourceTree = "<group>"; };
 		B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
 		B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj"; sourceTree = "<group>"; };
@@ -151,14 +146,11 @@
 		B5316F5E23C8DDE3006F1EEA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B540647123DB9E3600DA3EF6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		B54A393323CD0EF0004F8274 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		B552819C23EA1EC300A7D743 /* ContactsPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPickerViewModel.swift; sourceTree = "<group>"; };
-		B552819E23EA25D300A7D743 /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		B559245523D019B20051B99C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
-		B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDetailsViewModel.swift; sourceTree = "<group>"; };
-		B56D5A1D23F60437008223D3 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		B59D2B3C23DB942600C780D2 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B59F915423E6280100FB363D /* ClaimUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimUpload.swift; sourceTree = "<group>"; };
 		B59F916123E8C2D600FB363D /* NewClaimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaimModel.swift; sourceTree = "<group>"; };
 		B59F916323E91BC000FB363D /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentLocationCmp.swift; sourceTree = "<group>"; };
@@ -238,6 +230,7 @@
 				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
 				4F393A281C3C8BCD00B3EA13 /* main.swift */,
 				B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */,
+				B59F915423E6280100FB363D /* ClaimUpload.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -299,10 +292,7 @@
 			children = (
 				B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */,
 				B59F916123E8C2D600FB363D /* NewClaimModel.swift */,
-				B56D5A1D23F60437008223D3 /* State.swift */,
 				B5316F4D23C77503006F1EEA /* Claim.swift */,
-				B552819C23EA1EC300A7D743 /* ContactsPickerViewModel.swift */,
-				B56D5A1023F5FA72008223D3 /* ClaimDetailsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,7 +304,6 @@
 				B59D2B3C23DB942600C780D2 /* Array.swift */,
 				B540647123DB9E3600DA3EF6 /* Collection.swift */,
 				B59F916323E91BC000FB363D /* UIImageExtensions.swift */,
-				B50D07E923EBDACD00757E9A /* CNContactExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -328,11 +317,10 @@
 				B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */,
 				B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */,
 				B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */,
-				B552819E23EA25D300A7D743 /* ContactPicker.swift */,
 				B559245523D019B20051B99C /* GridView.swift */,
 				B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */,
+				B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */,
 				B564A30323E141A40004FFD1 /* ContactListRow.swift */,
-				B59ECECE23F4AD950047FAA9 /* ActivityIndicator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -345,7 +333,6 @@
 			buildConfigurationList = 4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "RedwoodsInsurance" */;
 			buildPhases = (
 				4FD6C4701B754AF1002F9F90 /* Sources */,
-				B5468F2223F5B44700622905 /* ShellScript */,
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
 				4FD6C4721B754AF1002F9F90 /* Resources */,
 				B5D05A6C23C6992100380B9E /* Embed Frameworks */,
@@ -491,26 +478,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		B5468F2223F5B44700622905 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect --path ./\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		4FD6C4701B754AF1002F9F90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -518,10 +485,9 @@
 			files = (
 				B5316F4E23C77503006F1EEA /* Claim.swift in Sources */,
 				B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */,
-				B56D5A1123F5FA72008223D3 /* ClaimDetailsViewModel.swift in Sources */,
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
+				B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */,
 				B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */,
-				B59ECECF23F4AD950047FAA9 /* ActivityIndicator.swift in Sources */,
 				B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */,
 				B54A393423CD0EF0004F8274 /* MapView.swift in Sources */,
 				B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */,
@@ -533,17 +499,14 @@
 				B59D2B3D23DB942600C780D2 /* Array.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
 				B559245623D019B20051B99C /* GridView.swift in Sources */,
-				B552819D23EA1EC300A7D743 /* ContactsPickerViewModel.swift in Sources */,
 				B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */,
 				B5B6FE1F23DF3E7800140A06 /* AudioRecorder.swift in Sources */,
 				B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */,
 				B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */,
-				B50D07EA23EBDACD00757E9A /* CNContactExtensions.swift in Sources */,
-				B56D5A1E23F60437008223D3 /* State.swift in Sources */,
 				B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */,
-				B552819F23EA25D300A7D743 /* ContactPicker.swift in Sources */,
 				B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
 				B5EFD61223DF9853009D368D /* UITextViewWrapper.swift in Sources */,
 			);

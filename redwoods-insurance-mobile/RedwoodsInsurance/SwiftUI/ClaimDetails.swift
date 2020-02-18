@@ -9,24 +9,13 @@
 import SwiftUI
 
 struct ClaimDetails: View {
-  let activeClaimId: String
-  @ObservedObject var viewModel = ClaimDetialsViewModel()
-
-  var body: some View {
-    List(viewModel.claimDetails) { row in
-      VStack(alignment: .leading, spacing: 3) {
-        Text(row.value)
-        Text(row.key).font(.subheadline).italic()
-      }
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
-    .onAppear {
-      self.viewModel.fetchClaimDetailsFromSalesforce(caseId: self.activeClaimId)
-    }
-  }
 }
 
 struct ClaimDetails_Previews: PreviewProvider {
-  static var previews: some View {
-    ClaimDetails(activeClaimId: "1234")
-  }
+    static var previews: some View {
+        ClaimDetails()
+    }
 }
