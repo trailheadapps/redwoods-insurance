@@ -12,7 +12,7 @@ struct PhotosCmp: View {
   @State private var showingImagePicker = false
   @State var selectedImages: [UIImage]
   @EnvironmentObject var newClaim: NewClaimModel
-
+  
   var body: some View {
     VStack {
       HStack {
@@ -31,7 +31,7 @@ struct PhotosCmp: View {
 }
 
 struct PhotosCmp_Previews: PreviewProvider {
-    static var previews: some View {
-      PhotosCmp(selectedImages: [UIImage]())
-    }
+  static var previews: some View {
+    PhotosCmp(selectedImages: [UIImage]())
+  }
 }

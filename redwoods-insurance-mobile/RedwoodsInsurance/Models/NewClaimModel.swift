@@ -14,39 +14,37 @@ import ContactsUI
 import MapKit
 
 class NewClaimModel: ObservableObject {
-
+  
   let newClaim = PassthroughSubject<NewClaimModel, Never>()
-
+  
   @Published var geolocationText: String?
   @Published var images: [UIImage] = [UIImage]()
-  public var images: [UIImage] = [UIImage]()
   @Published var selectedContacts = [CNContact]()
   @Published var showActivityIndicator: Bool = false
   @Published var transcribedText: String?
-
+  
   let completedPublisher = PassthroughSubject<Bool, Never>()
-
+  
   var audioData: Data?
   private var compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(false)
   @Published var mapView: MKMapView = MKMapView()
-
+  
   @Published var accountId = "" {
     didSet {
       newClaim.send(self)
     }
   }
-
+  
   private var accountIdCancellable: AnyCancellable?
   private var mapSnapshotCancellable: AnyCancellable?
   private var compositeCancellable: AnyCancellable?
   private var uploadCancellable: AnyCancellable?
-
+  
   func fetchAccountId() -> AnyPublisher<String, Never> {
     let userId = UserAccountManager.shared.currentUserAccount!.accountIdentity.userId
     let accountIdQuery = RestClient.shared.request(forQuery: "SELECT contact.accountId FROM User WHERE ID = '\(userId)' LIMIT 1",
-                                                  apiVersion: RestClient.apiVersion)
+      apiVersion: RestClient.apiVersion)
     return RestClient.shared.publisher(for: accountIdQuery)
-      .print("AccountID Query")
       .tryMap { try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:] }
       .map { $0["records"] as? RestClient.SalesforceRecords ?? [] }
       .mapError { dump($0) }
@@ -58,9 +56,9 @@ class NewClaimModel: ObservableObject {
         let accountId = contact["AccountId"] as! String // swiftlint:disable:this force_cast
         return accountId
     }.eraseToAnyPublisher()
-
+    
   }
-
+  
   func uploadClaimToSalesforce(map: MKMapView) -> Future<Bool, Never> {
     compositeRequestBuilder = CompositeRequestBuilder().setAllOrNone(true)
     self.mapView = map
@@ -84,7 +82,7 @@ class NewClaimModel: ObservableObject {
                 relatingToCaseID: "@{refCase.id}",
                 fileName: "MapSnapshot.png"
               ), referenceId: "mapSnapshot")
-
+              
               let compositeRequest = self.compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
               self.uploadCancellable = RestClient.shared.publisher(for: compositeRequest)
                 .receive(on: RunLoop.main)
@@ -98,9 +96,9 @@ class NewClaimModel: ObservableObject {
             })
       }
     }
-
+    
   }
-
+  
   private func handleError(_ error: Error?, urlResponse: URLResponse? = nil) {
     let errorDescription: String
     if let error = error {
@@ -108,10 +106,10 @@ class NewClaimModel: ObservableObject {
     } else {
       errorDescription = "An unknown error occurred."
     }
-
+    
     print(errorDescription)
   }
-
+  
   func createCase() -> RestRequest {
     // Create Case
     let dateFormatter = DateFormatter()
@@ -130,7 +128,7 @@ class NewClaimModel: ObservableObject {
     record["PotentialLiability__c"] = true
     return RestClient.shared.requestForCreate(withObjectType: "Case", fields: record, apiVersion: RestClient.apiVersion)
   }
-
+  
   func createContactRequests() {
     self.selectedContacts.enumerated().forEach { (index, contact) -> Void in
       let address = contact.postalAddresses.first
@@ -145,17 +143,17 @@ class NewClaimModel: ObservableObject {
         "MailingPostalCode": address?.value.postalCode ?? "",
         "MailingCountry": address?.value.country ?? ""
       ]
-
+      
       let contactRequest =  RestClient.shared.requestForCreate(withObjectType: "Contact",
                                                                fields: contactFields,
                                                                apiVersion: RestClient.apiVersion)
       compositeRequestBuilder.add(contactRequest, referenceId: "contact\(index)")
-
+      
       let associationFields: RestClient.SalesforceRecord = [
         "Case__c": "@{refCase.id}",
         "Contact__c": "@{contact\(index).id}"
       ]
-
+      
       // Create CaseContacts__c
       let caseContactRequest = RestClient.shared.requestForCreate(withObjectType: "CaseContact__c",
                                                                   fields: associationFields,
@@ -163,7 +161,7 @@ class NewClaimModel: ObservableObject {
       compositeRequestBuilder.add(caseContactRequest, referenceId: "caseContact\(index)")
     }
   }
-
+  
   func generateMapSnapshot() -> Future<UIImage, Error> {
     let regionRadius = 150.0
     let options = MKMapSnapshotter.Options()
@@ -176,24 +174,24 @@ class NewClaimModel: ObservableObject {
     options.scale = UIScreen.main.scale
     options.size = CGSize(width: 800, height: 800)
     options.mapType = .standard
-
+    
     let snapshotter = MKMapSnapshotter(options: options)
-
+    
     let futureSnapshot = Future<UIImage, Error> { promise in
       snapshotter.start {snapshot, error in
         if let err = error {
           return promise(.failure(err))
         }
-
+        
         guard let snapshot = snapshot, error == nil else {
           return
         }
         UIGraphicsBeginImageContextWithOptions(options.size, true, 0)
         snapshot.image.draw(at: .zero)
-
+        
         let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
         let pinImage = pinView.image
-
+        
         var point = snapshot.point(for: self.mapView.centerCoordinate)
         let pinCenterOffset = pinView.centerOffset
         point.x -= pinView.bounds.size.width / 2
@@ -201,19 +199,15 @@ class NewClaimModel: ObservableObject {
         point.x += pinCenterOffset.x
         point.y += pinCenterOffset.y
         pinImage?.draw(at: point)
-
+        
         let mapImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-      
-      self.compositeRequestBuilder.add(RestClient.shared.requestForCreatingImageAttachment(
         return promise(.success(mapImage))
-        relatingToCaseID: "refCase",
-        fileName: "MapSnapshot.png"
       }
     }
     return futureSnapshot
   }
-
+  
   func createImageAttachments() {
     self.$images
       .sink { images in
@@ -223,7 +217,7 @@ class NewClaimModel: ObservableObject {
         }
     }.cancel()
   }
-
+  
   func createAudioAttachments() {
     if let audioData = audioData {
       let audioAttachmentRequest = RestClient.shared.requestForCreatingAudioAttachment(from: audioData, relatingToCaseID: "@{refCase.id}")
