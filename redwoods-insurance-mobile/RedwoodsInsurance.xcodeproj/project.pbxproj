@@ -1,0 +1,689 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F393A281C3C8BCD00B3EA13 /* main.swift */; };
+		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
+		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
+		B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; };
+		B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; };
+		B5242AA623C69BC40091AF8A /* SalesforceSDKCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5242AA723C69BC40091AF8A /* SalesforceSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */; };
+		B5242AA823C69BC40091AF8A /* SalesforceSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4823C77305006F1EEA /* ExistingClaims.swift */; };
+		B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */; };
+		B5316F4E23C77503006F1EEA /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F4D23C77503006F1EEA /* Claim.swift */; };
+		B5316F5723C7777E006F1EEA /* RestClientExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F5623C7777E006F1EEA /* RestClientExtentions.swift */; };
+		B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F5823C7C12A006F1EEA /* NewClaim.swift */; };
+		B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */; };
+		B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5316F5E23C8DDE3006F1EEA /* MapKit.framework */; };
+		B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540647123DB9E3600DA3EF6 /* Collection.swift */; };
+		B54A393423CD0EF0004F8274 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A393323CD0EF0004F8274 /* MapView.swift */; };
+		B559245623D019B20051B99C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559245523D019B20051B99C /* GridView.swift */; };
+		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
+		B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */; };
+		B59D2B3D23DB942600C780D2 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59D2B3C23DB942600C780D2 /* Array.swift */; };
+		B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F915423E6280100FB363D /* ClaimUpload.swift */; };
+		B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916123E8C2D600FB363D /* NewClaimModel.swift */; };
+		B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F916323E91BC000FB363D /* UIImageExtensions.swift */; };
+		B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */; };
+		B5B6FE1F23DF3E7800140A06 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */; };
+		B5D0A3CE23CF685500ACB9FC /* DescriptionCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */; };
+		B5D0A3E723CF752400ACB9FC /* PhotosCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */; };
+		B5D0A3F423CF772E00ACB9FC /* PartiesInvolvedCmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */; };
+		B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */; };
+		B5EFD61223DF9853009D368D /* UITextViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */; };
+		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
+		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
+		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
+		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5242A7223C69B790091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE4CE26B1C0E449C009F6029;
+			remoteInfo = SalesforceSDKCore;
+		};
+		B5242A7423C69B790091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 82D4642419C7C8170006BDFE;
+			remoteInfo = SalesforceSDKCoreTestApp;
+		};
+		B5242A7623C69B790091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F7EB4151BFFC88200768720;
+			remoteInfo = SalesforceSDKCoreTests;
+		};
+		B5242A7E23C69B810091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7136CFE216684A700F6A221;
+			remoteInfo = SalesforceSDKCommon;
+		};
+		B5242A8023C69B810091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7136D07216684A700F6A221;
+			remoteInfo = SalesforceSDKCommonTests;
+		};
+		B5242A8223C69B810091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B716A3E4218F6EEA009D407F;
+			remoteInfo = SalesforceSDKCommonTestApp;
+		};
+		B5242A9D23C69BB80091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8BCF1CE900F500C6FC6A;
+			remoteInfo = SalesforceAnalytics;
+		};
+		B5242A9F23C69BB80091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8BD91CE900F500C6FC6A;
+			remoteInfo = SalesforceAnalyticsTests;
+		};
+		B5242AA123C69BB80091AF8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE2B8C2A1CE9218900C6FC6A;
+			remoteInfo = SalesforceAnalyticsTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B5D05A6C23C6992100380B9E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5242AA823C69BC40091AF8A /* SalesforceSDKCore.framework in Embed Frameworks */,
+				B5242AA423C69BC40091AF8A /* SalesforceAnalytics.framework in Embed Frameworks */,
+				B5242AA623C69BC40091AF8A /* SalesforceSDKCommon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4F393A281C3C8BCD00B3EA13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4FD6C4741B754AF1002F9F90 /* RedwoodsInsurance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedwoodsInsurance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD6C4781B754AF1002F9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4FD6C49D1B755242002F9F90 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		4FF12F8A1DCA91F5004D9EF9 /* RedwoodsInsurance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedwoodsInsurance.entitlements; sourceTree = "<group>"; };
+		B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCore.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj"; sourceTree = "<group>"; };
+		B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceSDKCommon.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj"; sourceTree = "<group>"; };
+		B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SalesforceAnalytics.xcodeproj; path = "mobile_sdk/SalesforceMobileSDK-iOS/libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj"; sourceTree = "<group>"; };
+		B5316F4823C77305006F1EEA /* ExistingClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingClaims.swift; sourceTree = "<group>"; };
+		B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingClaimsListModel.swift; sourceTree = "<group>"; };
+		B5316F4D23C77503006F1EEA /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
+		B5316F5623C7777E006F1EEA /* RestClientExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientExtentions.swift; sourceTree = "<group>"; };
+		B5316F5823C7C12A006F1EEA /* NewClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaim.swift; sourceTree = "<group>"; };
+		B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDetails.swift; sourceTree = "<group>"; };
+		B5316F5E23C8DDE3006F1EEA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B540647123DB9E3600DA3EF6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		B54A393323CD0EF0004F8274 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B559245523D019B20051B99C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
+		B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
+		B59D2B3C23DB942600C780D2 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B59F915423E6280100FB363D /* ClaimUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimUpload.swift; sourceTree = "<group>"; };
+		B59F916123E8C2D600FB363D /* NewClaimModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClaimModel.swift; sourceTree = "<group>"; };
+		B59F916323E91BC000FB363D /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentLocationCmp.swift; sourceTree = "<group>"; };
+		B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCmp.swift; sourceTree = "<group>"; };
+		B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCmp.swift; sourceTree = "<group>"; };
+		B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartiesInvolvedCmp.swift; sourceTree = "<group>"; };
+		B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewWrapper.swift; sourceTree = "<group>"; };
+		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
+		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4FD6C4711B754AF1002F9F90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5242AA723C69BC40091AF8A /* SalesforceSDKCore.framework in Frameworks */,
+				B5242AA323C69BC40091AF8A /* SalesforceAnalytics.framework in Frameworks */,
+				B5316F5F23C8DDE3006F1EEA /* MapKit.framework in Frameworks */,
+				B5242AA523C69BC40091AF8A /* SalesforceSDKCommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4FD6C46B1B754AF1002F9F90 = {
+			isa = PBXGroup;
+			children = (
+				4FD6C4761B754AF1002F9F90 /* RedwoodsInsurance */,
+				4FD6C4751B754AF1002F9F90 /* Products */,
+				6B868AEB1ACA7FCA4636C7F7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4FD6C4751B754AF1002F9F90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4FD6C4741B754AF1002F9F90 /* RedwoodsInsurance.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4FD6C4761B754AF1002F9F90 /* RedwoodsInsurance */ = {
+			isa = PBXGroup;
+			children = (
+				B5316F5523C77759006F1EEA /* Extensions */,
+				B5316F4A23C774A8006F1EEA /* Models */,
+				B5316F4623C7729F006F1EEA /* SwiftUI */,
+				4FF12F8A1DCA91F5004D9EF9 /* RedwoodsInsurance.entitlements */,
+				4FD6C4A11B755265002F9F90 /* Classes */,
+				4FD6C4771B754AF1002F9F90 /* Supporting Files */,
+			);
+			path = RedwoodsInsurance;
+			sourceTree = "<group>";
+		};
+		4FD6C4771B754AF1002F9F90 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B73B520C234FA65F001B069B /* SceneDelegate.swift */,
+				B77BD8A221125B510036B284 /* bootconfig.plist */,
+				B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */,
+				CEA8CA031F071B2300448B51 /* Images.xcassets */,
+				4FD6C4781B754AF1002F9F90 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4FD6C4A11B755265002F9F90 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
+				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
+				4F393A281C3C8BCD00B3EA13 /* main.swift */,
+				B5B6FE1E23DF3E7800140A06 /* AudioRecorder.swift */,
+				B59F915423E6280100FB363D /* ClaimUpload.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		6B868AEB1ACA7FCA4636C7F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5316F5E23C8DDE3006F1EEA /* MapKit.framework */,
+				B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */,
+				B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */,
+				B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5242A6923C69B780091AF8A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */,
+				B5242A7523C69B790091AF8A /* SalesforceSDKCoreTestApp.app */,
+				B5242A7723C69B790091AF8A /* SalesforceSDKCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5242A7923C69B810091AF8A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */,
+				B5242A8123C69B810091AF8A /* SalesforceSDKCommonTests.xctest */,
+				B5242A8323C69B810091AF8A /* SalesforceSDKCommonTestApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5242A9723C69BB80091AF8A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */,
+				B5242AA023C69BB80091AF8A /* SalesforceAnalyticsTests.xctest */,
+				B5242AA223C69BB80091AF8A /* SalesforceAnalyticsTestApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5316F4623C7729F006F1EEA /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				B54A393223CD0EBE004F8274 /* Components */,
+				B5316F4823C77305006F1EEA /* ExistingClaims.swift */,
+				B5316F5A23C8DA46006F1EEA /* ClaimDetails.swift */,
+				B5316F5823C7C12A006F1EEA /* NewClaim.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		B5316F4A23C774A8006F1EEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5316F4B23C774F9006F1EEA /* ExistingClaimsListModel.swift */,
+				B59F916123E8C2D600FB363D /* NewClaimModel.swift */,
+				B5316F4D23C77503006F1EEA /* Claim.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B5316F5523C77759006F1EEA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5316F5623C7777E006F1EEA /* RestClientExtentions.swift */,
+				B59D2B3C23DB942600C780D2 /* Array.swift */,
+				B540647123DB9E3600DA3EF6 /* Collection.swift */,
+				B59F916323E91BC000FB363D /* UIImageExtensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		B54A393223CD0EBE004F8274 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B54A393323CD0EF0004F8274 /* MapView.swift */,
+				B5B3588823CE48AD00812A13 /* IncidentLocationCmp.swift */,
+				B5D0A3CD23CF685500ACB9FC /* DescriptionCmp.swift */,
+				B5D0A3E623CF752400ACB9FC /* PhotosCmp.swift */,
+				B5D0A3F523CF7B9C00ACB9FC /* ImagePicker.swift */,
+				B5D0A3F323CF772E00ACB9FC /* PartiesInvolvedCmp.swift */,
+				B559245523D019B20051B99C /* GridView.swift */,
+				B5EFD61123DF9853009D368D /* UITextViewWrapper.swift */,
+				B56E128223E13558005CC664 /* EmbeddedContactPicker.swift */,
+				B564A30323E141A40004FFD1 /* ContactListRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4FD6C4731B754AF1002F9F90 /* RedwoodsInsurance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "RedwoodsInsurance" */;
+			buildPhases = (
+				4FD6C4701B754AF1002F9F90 /* Sources */,
+				4FD6C4711B754AF1002F9F90 /* Frameworks */,
+				4FD6C4721B754AF1002F9F90 /* Resources */,
+				B5D05A6C23C6992100380B9E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RedwoodsInsurance;
+			productName = RedwoodsInsurance;
+			productReference = 4FD6C4741B754AF1002F9F90 /* RedwoodsInsurance.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4FD6C46C1B754AF1002F9F90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = RedwoodsInsuranceOrganizationName;
+				TargetAttributes = {
+					4FD6C4731B754AF1002F9F90 = {
+						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "RedwoodsInsurance" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4FD6C46B1B754AF1002F9F90;
+			productRefGroup = 4FD6C4751B754AF1002F9F90 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B5242A9723C69BB80091AF8A /* Products */;
+					ProjectRef = B5242A9623C69BB80091AF8A /* SalesforceAnalytics.xcodeproj */;
+				},
+				{
+					ProductGroup = B5242A7923C69B810091AF8A /* Products */;
+					ProjectRef = B5242A7823C69B810091AF8A /* SalesforceSDKCommon.xcodeproj */;
+				},
+				{
+					ProductGroup = B5242A6923C69B780091AF8A /* Products */;
+					ProjectRef = B5242A6823C69B780091AF8A /* SalesforceSDKCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				4FD6C4731B754AF1002F9F90 /* RedwoodsInsurance */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B5242A7323C69B790091AF8A /* SalesforceSDKCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SalesforceSDKCore.framework;
+			remoteRef = B5242A7223C69B790091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242A7523C69B790091AF8A /* SalesforceSDKCoreTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SalesforceSDKCoreTestApp.app;
+			remoteRef = B5242A7423C69B790091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242A7723C69B790091AF8A /* SalesforceSDKCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SalesforceSDKCoreTests.xctest;
+			remoteRef = B5242A7623C69B790091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242A7F23C69B810091AF8A /* SalesforceSDKCommon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SalesforceSDKCommon.framework;
+			remoteRef = B5242A7E23C69B810091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242A8123C69B810091AF8A /* SalesforceSDKCommonTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SalesforceSDKCommonTests.xctest;
+			remoteRef = B5242A8023C69B810091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242A8323C69B810091AF8A /* SalesforceSDKCommonTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SalesforceSDKCommonTestApp.app;
+			remoteRef = B5242A8223C69B810091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242A9E23C69BB80091AF8A /* SalesforceAnalytics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SalesforceAnalytics.framework;
+			remoteRef = B5242A9D23C69BB80091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242AA023C69BB80091AF8A /* SalesforceAnalyticsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SalesforceAnalyticsTests.xctest;
+			remoteRef = B5242A9F23C69BB80091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5242AA223C69BB80091AF8A /* SalesforceAnalyticsTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SalesforceAnalyticsTestApp.app;
+			remoteRef = B5242AA123C69BB80091AF8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4FD6C4721B754AF1002F9F90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B77BD8A321125B510036B284 /* bootconfig.plist in Resources */,
+				CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */,
+				B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4FD6C4701B754AF1002F9F90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5316F4E23C77503006F1EEA /* Claim.swift in Sources */,
+				B5316F5923C7C12A006F1EEA /* NewClaim.swift in Sources */,
+				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
+				B56E128323E13558005CC664 /* EmbeddedContactPicker.swift in Sources */,
+				B5316F4923C77305006F1EEA /* ExistingClaims.swift in Sources */,
+				B59F916423E91BC000FB363D /* UIImageExtensions.swift in Sources */,
+				B54A393423CD0EF0004F8274 /* MapView.swift in Sources */,
+				B59F916223E8C2D600FB363D /* NewClaimModel.swift in Sources */,
+				B5316F5723C7777E006F1EEA /* RestClientExtentions.swift in Sources */,
+				B5D0A3CE23CF685500ACB9FC /* DescriptionCmp.swift in Sources */,
+				B540647223DB9E3600DA3EF6 /* Collection.swift in Sources */,
+				B5D0A3E723CF752400ACB9FC /* PhotosCmp.swift in Sources */,
+				B5D0A3F423CF772E00ACB9FC /* PartiesInvolvedCmp.swift in Sources */,
+				B59D2B3D23DB942600C780D2 /* Array.swift in Sources */,
+				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
+				B559245623D019B20051B99C /* GridView.swift in Sources */,
+				B5B3588923CE48AD00812A13 /* IncidentLocationCmp.swift in Sources */,
+				B5B6FE1F23DF3E7800140A06 /* AudioRecorder.swift in Sources */,
+				B5316F4C23C774F9006F1EEA /* ExistingClaimsListModel.swift in Sources */,
+				B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */,
+				B5316F5B23C8DA47006F1EEA /* ClaimDetails.swift in Sources */,
+				B5D0A3F623CF7B9C00ACB9FC /* ImagePicker.swift in Sources */,
+				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				B59F915523E6280100FB363D /* ClaimUpload.swift in Sources */,
+				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
+				B5EFD61223DF9853009D368D /* UITextViewWrapper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4FD6C4911B754AF1002F9F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4FD6C4921B754AF1002F9F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4FD6C4941B754AF1002F9F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
+				DEVELOPMENT_TEAM = 745ST2PM9F;
+				INFOPLIST_FILE = RedwoodsInsurance/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "-DSIGNPOST_ENABLED";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.force.redwoods-insurance.redwoods-insurance.swiftui";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RedwoodsInsurance/Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4FD6C4951B754AF1002F9F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
+				DEVELOPMENT_TEAM = 745ST2PM9F;
+				INFOPLIST_FILE = RedwoodsInsurance/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.force.redwoods-insurance.redwoods-insurance.swiftui";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RedwoodsInsurance/Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4FD6C46F1B754AF1002F9F90 /* Build configuration list for PBXProject "RedwoodsInsurance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FD6C4911B754AF1002F9F90 /* Debug */,
+				4FD6C4921B754AF1002F9F90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FD6C4931B754AF1002F9F90 /* Build configuration list for PBXNativeTarget "RedwoodsInsurance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FD6C4941B754AF1002F9F90 /* Debug */,
+				4FD6C4951B754AF1002F9F90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4FD6C46C1B754AF1002F9F90 /* Project object */;
+}

@@ -3,16 +3,16 @@
     xmlns="http://soap.sforce.com/2006/04/metadata"
     fqn="incidentImageCarousel"
 >
-    <apiVersion>47.0</apiVersion>
-    <isExposed>true</isExposed>
-    <targets>
-        <target>lightning__RecordPage</target>
-    </targets>
-    <targetConfigs>
-        <targetConfig targets="lightning__RecordPage">
-            <objects>
-                <object>Case</object>
-            </objects>
-        </targetConfig>
-    </targetConfigs>
+  <apiVersion>48.0</apiVersion>
+  <isExposed>true</isExposed>
+  <targets>
+    <target>lightning__RecordPage</target>
+  </targets>
+  <targetConfigs>
+    <targetConfig targets="lightning__RecordPage">
+      <objects>
+        <object>Case</object>
+      </objects>
+    </targetConfig>
+  </targetConfigs>
 </LightningComponentBundle>
