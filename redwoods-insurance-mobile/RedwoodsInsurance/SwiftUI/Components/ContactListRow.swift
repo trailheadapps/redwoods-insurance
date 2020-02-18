@@ -10,18 +10,19 @@ import SwiftUI
 import ContactsUI
 
 struct ContactListRow: View {
-  
-  @Binding var contact: CNContact
-  
+
+  var contact: CNContact
+  @EnvironmentObject var newClaim: NewClaimModel
+
   var body: some View {
-    HStack{
+    HStack {
       if contact.imageDataAvailable {
         Image(uiImage: UIImage(data: contact.thumbnailImageData!)!)
           .resizable()
           .aspectRatio(contentMode: .fill)
           .scaledToFit()
       }
-      VStack{
+      VStack {
         Text(CNContactFormatter.string(from: contact, style: .fullName) ?? "")
         Text(contact.phoneNumbers.first?.value.stringValue ?? "" as String)
       }
@@ -31,21 +32,19 @@ struct ContactListRow: View {
 }
 
 struct ContactListRow_Previews: PreviewProvider {
-  
-  @State static var contact = CNContact()
-  init(){
+
+  static var contact = CNContact()
+  init() {
     let newContact = CNMutableContact()
-    let homePhone = CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue :"555 555 5555"))
+    let homePhone = CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue: "555 555 5555"))
     newContact.phoneNumbers = [homePhone]
     newContact.familyName = "Test"
     newContact.givenName = "Bob"
     ContactListRow_Previews.contact = newContact
   }
-  
+
   static var previews: some View {
-    ContactListRow(contact: self.$contact)
+    ContactListRow(contact: self.contact)
   }
-  
-  
-  
+
 }

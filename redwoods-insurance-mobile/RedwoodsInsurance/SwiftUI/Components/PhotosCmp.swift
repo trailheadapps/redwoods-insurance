@@ -11,20 +11,21 @@ import SwiftUI
 struct PhotosCmp: View {
   @State private var showingImagePicker = false
   @State var selectedImages: [UIImage]
-  
+  @EnvironmentObject var newClaim: NewClaimModel
+
   var body: some View {
-    VStack{
-      HStack{
+    VStack {
+      HStack {
         Text("Photos of Damages").font(.headline).padding(.leading)
         Spacer()
-        Button("Add Photo"){
+        Button("Add Photo") {
           self.showingImagePicker = true
         }.padding(.trailing)
       }
-      GridView(images: self.selectedImages)
+      GridView(images: self.newClaim.images)
     }
     .sheet(isPresented: $showingImagePicker) {
-      ImagePicker(selectedImages: self.$selectedImages)
+      ImagePicker(selectedImages: self.$newClaim.images)
     }
   }
 }
