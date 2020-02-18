@@ -21,6 +21,7 @@
         "npm": ">= 6.5.0"
     },
     "devDependencies": {
+        "@prettier/plugin-xml": "^0.3.0",
         "@salesforce/eslint-config-lwc": "^0.4.0",
         "@salesforce/lwc-jest": "^0.6.2",
         "eslint": "^5.15.1",
