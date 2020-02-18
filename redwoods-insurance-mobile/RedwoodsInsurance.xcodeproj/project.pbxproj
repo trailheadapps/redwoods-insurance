@@ -25,6 +25,7 @@
 		B54594A023FC7541002ED235 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949E23FC7541002ED235 /* ActivityIndicator.swift */; };
 		B54594A123FC7541002ED235 /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545949F23FC7541002ED235 /* ContactPicker.swift */; };
 		B54594A323FC75AF002ED235 /* CNContactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54594A223FC75AE002ED235 /* CNContactExtensions.swift */; };
+		B54594A523FC762F002ED235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B54594A423FC762F002ED235 /* Assets.xcassets */; };
 		B54A393423CD0EF0004F8274 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A393323CD0EF0004F8274 /* MapView.swift */; };
 		B559245623D019B20051B99C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559245523D019B20051B99C /* GridView.swift */; };
 		B564A30423E141A40004FFD1 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564A30323E141A40004FFD1 /* ContactListRow.swift */; };
@@ -137,6 +138,7 @@
 		B545949E23FC7541002ED235 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B545949F23FC7541002ED235 /* ContactPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		B54594A223FC75AE002ED235 /* CNContactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNContactExtensions.swift; sourceTree = "<group>"; };
+		B54594A423FC762F002ED235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B54A393323CD0EF0004F8274 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B559245523D019B20051B99C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		B564A30323E141A40004FFD1 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		4FD6C4771B754AF1002F9F90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B54594A423FC762F002ED235 /* Assets.xcassets */,
 				B73B520C234FA65F001B069B /* SceneDelegate.swift */,
 				B77BD8A221125B510036B284 /* bootconfig.plist */,
 				B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */,
@@ -476,6 +479,7 @@
 			files = (
 				B77BD8A321125B510036B284 /* bootconfig.plist in Resources */,
 				CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */,
+				B54594A523FC762F002ED235 /* Assets.xcassets in Resources */,
 				B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
