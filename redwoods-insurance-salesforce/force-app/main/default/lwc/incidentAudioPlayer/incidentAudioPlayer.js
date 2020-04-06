@@ -22,7 +22,8 @@ export default class IncidentAudioPlayer extends LightningElement {
             const files = audioFiles.data;
             if (Array.isArray(files) && files.length) {
                 this.urls = files.map(
-                    file => '/sfc/servlet.shepherd/version/download/' + file.Id
+                    (file) =>
+                        '/sfc/servlet.shepherd/version/download/' + file.Id
                 );
             } else {
                 this.urls = null;
