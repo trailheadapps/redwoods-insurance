@@ -1,5 +1,5 @@
 <template>
-    <div class="slds-m-around_medium">
+    <div class="slds-var-m-around_medium">
         <template if:true={urls}>
             <lightning-carousel>
                 <template for:each={urls} for:item="url">
@@ -16,7 +16,7 @@
                 size="medium"
                 class="slds-align_absolute-center"
             ></lightning-icon>
-            <p class="slds-text-color--weak">
+            <p class="slds-text-color_weak">
                 There are currently no images of damage for this case.
             </p>
         </template>
