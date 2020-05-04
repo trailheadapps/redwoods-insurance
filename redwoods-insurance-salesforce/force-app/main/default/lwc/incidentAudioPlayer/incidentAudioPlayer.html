@@ -4,7 +4,13 @@
         <div class="slds-var-m-around_medium">
             <template if:true={urls}>
                 <template for:each={urls} for:item="url">
-                    <audio src={url} type="audio/x-m4a" key={url} controls>
+                    <audio
+                        class="slds-large-size_1-of-1"
+                        src={url}
+                        type="audio/x-m4a"
+                        key={url}
+                        controls
+                    >
                         <code>Your browser doesn't support audio tags.</code>
                     </audio>
                 </template>
