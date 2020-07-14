@@ -16,7 +16,7 @@ export default class IncidentAudioPlayer extends LightningElement {
         caseId: '$recordId',
         fileType: 'AUDIO'
     })
-    wiredPictures(audioFiles) {
+    wiredAudio(audioFiles) {
         this.audioFiles = audioFiles;
         if (audioFiles.data) {
             const files = audioFiles.data;
