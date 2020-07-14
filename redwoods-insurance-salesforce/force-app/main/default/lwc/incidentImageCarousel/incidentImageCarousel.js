@@ -1,17 +1,10 @@
 import { LightningElement, wire, api } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
 import getRelatedPictures from '@salesforce/apex/IncidentController.findRelatedFiles';
 
 export default class IncidentImageCarousel extends LightningElement {
     @api recordId;
     urls;
     pictures;
-
-    @wire(getRecord, {
-        recordId: '$recordId'
-    })
-    kase;
-
     @wire(getRelatedPictures, {
         caseId: '$recordId',
         fileType: 'IMAGE'

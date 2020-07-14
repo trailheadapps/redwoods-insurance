@@ -1,9 +1,7 @@
 import { createElement } from 'lwc';
 import IncidentImageCarousel from 'c/incidentImageCarousel';
 import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
-import { getRecord } from 'lightning/uiRecordApi';
 import { getRelatedPictures } from '@salesforce/apex/IncidentController.findRelatedFiles';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Realistic data with two images.
 const mockTwoImages = require('./data/twoImages.json');
@@ -12,14 +10,28 @@ const getRelatedPicturesAdapter = registerApexTestWireAdapter(
     getRelatedPictures
 );
 
-const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
-
 describe('c-incident-image-carousel', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
+    });
+
+    it('invokes the wire adapter with default properties', () => {
+        // Create initial element
+        const element = createElement('c-incident-image-carousel', {
+            is: IncidentImageCarousel
+        });
+        element.recordId = 'mockRecordId';
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => {
+            expect(getRelatedPicturesAdapter.getLastConfig()).toEqual({
+                caseId: 'mockRecordId',
+                fileType: 'IMAGE'
+            });
+        });
     });
 
     it('renders no pictures by default', () => {
@@ -43,7 +55,6 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRecordAdapter.emit('mockRecordId');
         getRelatedPicturesAdapter.emit(mockTwoImages);
 
         return Promise.resolve().then(() => {
@@ -51,6 +62,12 @@ describe('c-incident-image-carousel', () => {
                 'lightning-carousel-image'
             );
             expect(imageEls.length).toEqual(mockTwoImages.length);
+            imageEls.forEach(function (value, index) {
+                expect.stringMatching(
+                    imageEls[index].src,
+                    /mockTwoImages[index].Id$/
+                );
+            });
         });
     });
 
@@ -61,8 +78,6 @@ describe('c-incident-image-carousel', () => {
         });
         document.body.appendChild(element);
 
-        // Emit data from @wire
-        getRecordAdapter.emit('mockRecordId');
         // forcibly emit an object, instead of an array.
         getRelatedPicturesAdapter.emit({});
 
