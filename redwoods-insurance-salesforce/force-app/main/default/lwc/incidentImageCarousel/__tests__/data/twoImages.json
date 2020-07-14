@@ -1,1 +1,1 @@
-["file1", "file2"]
+[{ "Id": "file1" }, { "Id": "file2" }]

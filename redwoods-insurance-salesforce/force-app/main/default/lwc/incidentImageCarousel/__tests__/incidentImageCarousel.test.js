@@ -30,26 +30,47 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         const labelElement = element.shadowRoot.querySelector('p');
-        expect(labelElement.textContent).toContain('no images');
+        expect(labelElement.textContent).toContain(
+            'There are currently no images of damage for this case.'
+        );
     });
 
-    it('renders a picture when one is present', () => {
-        // Emit data from @wire
-        getRecordAdapter.emit('mockRecordId');
-        getRelatedPicturesAdapter.emit(mockTwoImages);
-
+    it('renders two pictures when the wire mock returns two', () => {
         // Create initial element
         const element = createElement('c-incident-image-carousel', {
             is: IncidentImageCarousel
         });
         document.body.appendChild(element);
 
+        // Emit data from @wire
+        getRecordAdapter.emit('mockRecordId');
+        getRelatedPicturesAdapter.emit(mockTwoImages);
+
         return Promise.resolve().then(() => {
             const imageEls = element.shadowRoot.querySelectorAll(
                 'lightning-carousel-image'
             );
-            console.log(JSON.stringify(imageEls));
-            expect(imageEls).not.toBe(null);
+            expect(imageEls.length).toEqual(mockTwoImages.length);
+        });
+    });
+
+    it('renders no pictures when the wire adapter returns something other than an aray', () => {
+        // Create initial element
+        const element = createElement('c-incident-image-carousel', {
+            is: IncidentImageCarousel
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.emit('mockRecordId');
+        // forcibly emit an object, instead of an array.
+        getRelatedPicturesAdapter.emit({});
+
+        return Promise.resolve().then(() => {
+            const labelElement = element.shadowRoot.querySelector('p');
+            expect(labelElement.textContent).toContain(
+                'There are currently no images of damage for this case.'
+            );
         });
     });
 });
