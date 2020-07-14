@@ -36,8 +36,10 @@ describe('c-incident-map', () => {
         getRecordAdapter.emit(mockMapMarkers);
 
         return Promise.resolve().then(() => {
-            const mapEl = element.shadowRoot.querySelector('lightning-card');
-            console.log(JSON.stringify(mapEl));
+            //const mapEl = element.shadowRoot.querySelector('lightning-card');
+            const mapEl = element.shadowRoot
+                .querySelector('lightning-card')
+                .querySelector('lightning-map');
             expect(mapEl).not.toBe(null);
         });
     });
