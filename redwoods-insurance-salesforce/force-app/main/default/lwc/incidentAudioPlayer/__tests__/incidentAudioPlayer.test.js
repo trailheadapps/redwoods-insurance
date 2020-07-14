@@ -1,9 +1,11 @@
 import { createElement } from 'lwc';
 import IncidentAudioPlayer from 'c/incidentAudioPlayer';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
+import {
+    registerApexTestWireAdapter,
+    registerLdsTestWireAdapter
+} from '@salesforce/sfdx-lwc-jest';
 import { getRecord } from 'lightning/uiRecordApi';
 import { getAudio } from '@salesforce/apex/IncidentController.findRelatedFiles';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 const mockAudioFile = require('./data/mockAudioFile.json');
 const getRelatedAudioAdapter = registerApexTestWireAdapter(getAudio);
