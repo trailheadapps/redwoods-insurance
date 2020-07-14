@@ -35,7 +35,8 @@
         "lint-staged": "^10.2.11",
         "prettier": "^2.0.5",
         "prettier-plugin-apex": "^1.5.0",
-        "semver": "^7.3.2"
+        "semver": "^7.3.2",
+        "jest": "25.5.4"
     },
     "husky": {
         "hooks": {
@@ -49,5 +50,6 @@
         "**/lwc/**": [
             "eslint"
         ]
-    }
+    },
+    "dependencies": {}
 }

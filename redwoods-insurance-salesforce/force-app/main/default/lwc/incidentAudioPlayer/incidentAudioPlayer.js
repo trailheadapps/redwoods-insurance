@@ -7,11 +7,6 @@ export default class IncidentAudioPlayer extends LightningElement {
     urls;
     audioFiles;
 
-    @wire(getRecord, {
-        recordId: '$recordId'
-    })
-    kase;
-
     @wire(getAudio, {
         caseId: '$recordId',
         fileType: 'AUDIO'

@@ -1,15 +1,11 @@
 import { createElement } from 'lwc';
 import IncidentAudioPlayer from 'c/incidentAudioPlayer';
-import {
-    registerApexTestWireAdapter,
-    registerLdsTestWireAdapter
-} from '@salesforce/sfdx-lwc-jest';
-import { getRecord } from 'lightning/uiRecordApi';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getAudio } from '@salesforce/apex/IncidentController.findRelatedFiles';
 
 const mockAudioFile = require('./data/mockAudioFile.json');
+const multipleMockAudioFiles = require('./data/multipleMockAudioFiles.json');
 const getRelatedAudioAdapter = registerApexTestWireAdapter(getAudio);
-const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
 
 describe('c-incident-audio-player', () => {
     afterEach(() => {
@@ -17,6 +13,22 @@ describe('c-incident-audio-player', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
+    });
+
+    it('invokes the wire adapter with default properties', () => {
+        // Create initial element
+        const element = createElement('c-incident-audio-player', {
+            is: IncidentAudioPlayer
+        });
+        element.recordId = 'mockRecordId';
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => {
+            expect(getRelatedAudioAdapter.getLastConfig()).toEqual({
+                caseId: 'mockRecordId',
+                fileType: 'AUDIO'
+            });
+        });
     });
 
     it('does not show the player when no audio file is provided.', () => {
@@ -38,12 +50,36 @@ describe('c-incident-audio-player', () => {
         });
         document.body.appendChild(element);
 
-        getRecordAdapter.emit('mockRecordId');
         getRelatedAudioAdapter.emit(mockAudioFile);
 
         return Promise.resolve().then(() => {
             const audioPlayerEl = element.shadowRoot.querySelector('audio');
             expect(audioPlayerEl).not.toBe(null);
+            expect.stringMatching(audioPlayerEl.src, /mockAudioFile.Id$/);
+        });
+    });
+
+    it('displays one audio player for each file the wire adapter returns', () => {
+        const element = createElement('c-incident-audio-player', {
+            is: IncidentAudioPlayer
+        });
+        document.body.appendChild(element);
+
+        getRelatedAudioAdapter.emit(multipleMockAudioFiles);
+
+        return Promise.resolve().then(() => {
+            const audioPlayerEls = element.shadowRoot.querySelectorAll('audio');
+            expect(audioPlayerEls.length).toEqual(
+                multipleMockAudioFiles.length
+            );
+            for (const key in audioPlayerEls) {
+                if (audioPlayerEls.hasOwnProperty(key)) {
+                    expect.stringMatching(
+                        audioPlayerEls[key].src,
+                        /mockAudioFile.Id$/
+                    );
+                }
+            }
         });
     });
 
@@ -53,7 +89,6 @@ describe('c-incident-audio-player', () => {
         });
         document.body.appendChild(element);
 
-        getRecordAdapter.emit('mockRecordId');
         // force the wire adapter mock to emit an obj instead of an array
         getRelatedAudioAdapter.emit({});
 
