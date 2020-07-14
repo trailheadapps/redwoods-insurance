@@ -14,7 +14,24 @@ describe('c-incident-map', () => {
         }
     });
 
-    beforeEach(() => {});
+    it('invokes the wire adapter with default properties', () => {
+        // Create initial element
+        const element = createElement('c-incident-map', {
+            is: IncidentMap
+        });
+        element.recordId = 'mockRecordId';
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => {
+            expect(getRecordAdapter.getLastConfig()).toEqual({
+                recordId: 'mockRecordId',
+                fields: [
+                    'Case.Incident_Location__Latitude__s',
+                    'Case.Incident_Location__Longitude__s'
+                ]
+            });
+        });
+    });
 
     it('does not render the map component when no map markers are set', () => {
         // Create initial element
