@@ -1,5 +1,4 @@
 import { LightningElement, wire, api } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
 import getAudio from '@salesforce/apex/IncidentController.findRelatedFiles';
 
 export default class IncidentAudioPlayer extends LightningElement {

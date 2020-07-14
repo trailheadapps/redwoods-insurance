@@ -73,7 +73,7 @@ describe('c-incident-audio-player', () => {
                 multipleMockAudioFiles.length
             );
             for (const key in audioPlayerEls) {
-                if (audioPlayerEls.hasOwnProperty(key)) {
+                if (Object.prototype.hasOwnProperty.call(audioPlayerEls, key)) {
                     expect.stringMatching(
                         audioPlayerEls[key].src,
                         /mockAudioFile.Id$/
