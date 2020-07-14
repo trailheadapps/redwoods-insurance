@@ -72,14 +72,12 @@ describe('c-incident-audio-player', () => {
             expect(audioPlayerEls.length).toEqual(
                 multipleMockAudioFiles.length
             );
-            for (const key in audioPlayerEls) {
-                if (Object.prototype.hasOwnProperty.call(audioPlayerEls, key)) {
-                    expect.stringMatching(
-                        audioPlayerEls[key].src,
-                        /mockAudioFile.Id$/
-                    );
-                }
-            }
+            audioPlayerEls.forEach(function (value, index) {
+                expect.stringMatching(
+                    audioPlayerEls[index].src,
+                    /multipeMockAudioFiles[index].Id$/
+                );
+            });
         });
     });
 
