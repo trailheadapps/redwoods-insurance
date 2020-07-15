@@ -4,13 +4,12 @@ import getRelatedPictures from '@salesforce/apex/IncidentController.findRelatedF
 export default class IncidentImageCarousel extends LightningElement {
     @api recordId;
     urls;
-    pictures;
+
     @wire(getRelatedPictures, {
         caseId: '$recordId',
         fileType: 'IMAGE'
     })
     wiredPictures(pictures) {
-        this.pictures = pictures;
         if (pictures.data) {
             const files = pictures.data;
             if (Array.isArray(files) && files.length) {
