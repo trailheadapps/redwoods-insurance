@@ -53,11 +53,11 @@ describe('c-incident-map', () => {
         getRecordAdapter.emit(mockMapMarkers);
 
         return Promise.resolve().then(() => {
-            //const mapEl = element.shadowRoot.querySelector('lightning-card');
-            const mapEl = element.shadowRoot
-                .querySelector('lightning-card')
-                .querySelector('lightning-map');
+            const mapEl = element.shadowRoot.querySelector('lightning-map');
             expect(mapEl).not.toBe(null);
+            expect(mapEl.mapMarkers).toEqual([
+                { location: { Latitude: 'x', Longitude: 'y' } }
+            ]);
         });
     });
 
