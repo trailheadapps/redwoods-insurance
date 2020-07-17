@@ -4,14 +4,12 @@ import getAudio from '@salesforce/apex/IncidentController.findRelatedFiles';
 export default class IncidentAudioPlayer extends LightningElement {
     @api recordId;
     urls;
-    audioFiles;
 
     @wire(getAudio, {
         caseId: '$recordId',
         fileType: 'AUDIO'
     })
     wiredAudio(audioFiles) {
-        this.audioFiles = audioFiles;
         if (audioFiles.data) {
             const files = audioFiles.data;
             if (Array.isArray(files) && files.length) {
