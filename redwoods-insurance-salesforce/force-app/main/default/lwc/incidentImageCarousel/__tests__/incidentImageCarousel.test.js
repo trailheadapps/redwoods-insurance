@@ -9,6 +9,7 @@ const mockTwoImages = require('./data/twoImages.json');
 const getRelatedPicturesAdapter = registerApexTestWireAdapter(
     getRelatedPictures
 );
+const mockRecordId = '5001700000pJRRTAA4';
 
 describe('c-incident-image-carousel', () => {
     afterEach(() => {
@@ -23,12 +24,12 @@ describe('c-incident-image-carousel', () => {
         const element = createElement('c-incident-image-carousel', {
             is: IncidentImageCarousel
         });
-        element.recordId = 'mockRecordId';
+        element.recordId = mockRecordId;
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
             expect(getRelatedPicturesAdapter.getLastConfig()).toEqual({
-                caseId: 'mockRecordId',
+                caseId: mockRecordId,
                 fileType: 'IMAGE'
             });
         });
