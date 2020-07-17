@@ -5,6 +5,7 @@ import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
 const mockMapMarkers = require('./data/mockMapMarkers.json');
+const mockRecordId = '5001700000pJRRTAA4';
 
 describe('c-incident-map', () => {
     afterEach(() => {
@@ -19,12 +20,12 @@ describe('c-incident-map', () => {
         const element = createElement('c-incident-map', {
             is: IncidentMap
         });
-        element.recordId = 'mockRecordId';
+        element.recordId = mockRecordId;
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
             expect(getRecordAdapter.getLastConfig()).toEqual({
-                recordId: 'mockRecordId',
+                recordId: mockRecordId,
                 fields: [
                     'Case.Incident_Location__Latitude__s',
                     'Case.Incident_Location__Longitude__s'
@@ -40,7 +41,7 @@ describe('c-incident-map', () => {
         });
         document.body.appendChild(element);
 
-        const mapEl = element.shadowRoot.querySelector('lightning-card');
+        const mapEl = element.shadowRoot.querySelector('lightning-map');
         expect(mapEl).toBe(null);
     });
 
@@ -56,7 +57,7 @@ describe('c-incident-map', () => {
             const mapEl = element.shadowRoot.querySelector('lightning-map');
             expect(mapEl).not.toBe(null);
             expect(mapEl.mapMarkers).toEqual([
-                { location: { Latitude: 'x', Longitude: 'y' } }
+                { location: { Latitude: '51.524723', Longitude: '6.922778' } }
             ]);
         });
     });
@@ -69,7 +70,7 @@ describe('c-incident-map', () => {
         document.body.appendChild(element);
         getRecordAdapter.error();
 
-        const mapEl = element.shadowRoot.querySelector('lightning-card');
-        expect(mapEl).toBe(null);
+        const cardEl = element.shadowRoot.querySelector('lightning-card');
+        expect(cardEl).toBe(null);
     });
 });
