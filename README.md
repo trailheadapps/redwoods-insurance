@@ -18,9 +18,9 @@ Redwoods Car Insurance is a fictional end-user mobile application for iOS built 
 In order to experience, and experiment with this sample app you'll need:
 
 1. A working installation of Git.
-1. An Apple Computer with Xcode 10.1 (or possibly higher) installed.
-1. If you want to install the sample app on a physical iOS device, you'll need an Apple Developer Account.
-1. A Salesforce Scratch Org. (More info on that later)
+2. An Apple Computer with Xcode 10.1 (or higher) installed.
+3. If you want to install the sample app on a physical iOS device, you'll need an Apple Developer Account.
+4. A Salesforce Scratch Org. (More info on that later)
 
 ## Source Control Setup <a name="download"></a>
 
@@ -94,78 +94,66 @@ The `redwoods-insurance-salesforce` folder in this repository contains _most of_
     sfdx force:user:permset:assign -n redwoods_insurance_mobile
     ```
 
-1. Open your new scratch org, to the communities setup page in a web browser:
-
-    ```
-    sfdx force:org:open -p /lightning/setup/SetupNetworks/home
-    ```
-
 ## Manual steps you must take in your org <a name="sfManual"></a>
 
 The mobile application is configured to allow only Customer Community Login users to log in. You'll need to manually setup, activate and publish a community through the UI.
 
-1. Create the Community:
-    1. If opening the org didn't take you to the 'All Communities' setup page, navigate there via Setup -> Feature Settings -> Communities -> All Communities.
-    1. Click the 'New Community' Button.
-    1. Select the 'Customer Account Portal' experience.
-    1. Click 'Get Started'.
-    1. When prompted, enter 'Redwoods Car Insurance' as the name.
-    1. Click 'Create'.
-    1. Allow the community wizard to finish.
 1. Adding a Profile for community users:
     1. In the upper left-hand menu, select 'Salesforce Setup' which will open in a new tab/window.
-    1. Using either the menu, or the quick find bar, navigate to Profiles:
+    2. Using either the menu, or the quick find bar, navigate to Profiles:
         1. Click 'New Profile'.
-        1. Select _'Customer Community Login User'_ as the profile to clone from.
-        1. Give the profile the name 'redwoods_insurance_mobileUser'.
-        1. Click 'Save'.
-        1. On the newly created profile screen, click the 'Edit' button.
-        1. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
-        1. Click 'Save'.
-1. Add the profile to your Community:
+        2. Select _'Customer Community Login User'_ as the profile to clone from.
+        3. Give the profile the name 'redwoods_insurance_mobileUser'.
+        4. Click 'Save'.
+        5. On the newly created profile screen, click the 'Edit' button.
+        6. Under 'Administrative Permissions' find the checkbox labeled: 'API Enabled' and check it.
+        7. Click 'Save'.
+2. Add the profile to your Community:
     1. Navigate to your original tab -- where you're configuring your community -- and using the menu on the left, click 'Administration'.
-    1. Using the menu on the left hand side of the screen, select 'Members'
-    1. On the members page, use the drop down to select 'Customer' from the list of available profile groups. _If you do not see 'redwoods_insurance_mobileUser' listed, please ensure you created the profile as a clone of 'Customer Community Login User' profile._
-    1. Select 'redwoods_insurance_mobileUser' on the left side, and click the 'Add' button.
-    1. Scroll to the bottom of the page and click 'Save'
-1. Activate the Community:
+    2. Using the menu on the left hand side of the screen, select 'Members'
+    3. On the members page, use the drop down to select 'Customer' from the list of available profile groups. _If you do not see 'redwoods_insurance_mobileUser' listed, please ensure you created the profile as a clone of 'Customer Community Login User' profile._
+    4. Select 'redwoods_insurance_mobileUser' on the left side, and click the 'Add' button.
+    5. Scroll to the bottom of the page and click 'Save'
+3. Activate the Community:
     1. Using the menu on the left, click 'Settings'.
-    1. You'll see the URL of your community listed just above an 'Activate Community' button. _Copy that url_ as you'll need it later.
-    1. Click the 'Activate Community' button.
-1. Publish the Community:
-    1. Using the drop-down menu in the upper left, click on the 'Builder' workspace.
-    1. Click the 'Publish' button in the upper right of the Community Builder.
-    1. Click 'Publish' to confirm.
-1. Create a Community User:
+    2. You'll see the URL of your community listed just above an 'Activate Community' button. _Copy that url_ as you'll need it later.
+    3. Click the 'Activate Community' button.
+4. Publish the Community:
+   1. From your command line,
+   ```
+    sfdx force:community:publish --name "Redwoods Insurance Customer Auth"
+    ```
+    Note the URL returned, you'll need this later.
+5. Create a Community User:
     1. From the Builder screen, click the upper left drop down menu, and select 'Salesforce Setup'.
-    1. Using the App Launcher, select 'Service'.
-    1. Click on the 'Accounts' tab, and create a new account. Populate the information as you see fit.
-    1. From your newly created Account's detail page, click 'New' button on the Contacts related list view.
-    1. Create a new contact.
-    1. From the Account detail page, click on the name of your newly created contact to navigate to the Contact detail page.
-    1. Click the disclosure icon in the upper right of the contact's Highlights Panel, and select 'Enable Customer User'.
-    1. Make sure to fill in an email address you can check, as you'll need to verify your user's email before you can login.
-    1. Select _'Customer Community Login'_ as the User License.
-    1. Select _'redwoods_insurance_mobileUser'_ as the Profile.
-    1. Populate all other required fields.
-    1. Click 'Save', and click 'OK' to acknowledge that the user will recieve an email.
-1. Finalize your Customer Community Login User:
+    2. Using the App Launcher, select 'Service'.
+    3. Click on the 'Accounts' tab, and create a new account. Populate the information as you see fit.
+    4. From your newly created Account's detail page, click 'New' button on the Contacts related list view.
+    5. Create a new contact.
+    6. From the Account detail page, click on the name of your newly created contact to navigate to the Contact detail page.
+    7. Click the disclosure icon in the upper right of the contact's Highlights Panel, and select 'Enable Customer User'.
+    8. Make sure to fill in an email address you can check, as you'll need to verify your user's email before you can login.
+    9. Select _'Customer Community Login'_ as the User License.
+    10. Select _'redwoods_insurance_mobileUser'_ as the Profile.
+    11. Populate all other required fields.
+    12. Click 'Save', and click 'OK' to acknowledge that the user will recieve an email.
+6. Finalize your Customer Community Login User:
     1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
-1. Assign your new Customer Community Login User the 'Redwoods-Insurance Mobile' permission set:
+7. Assign your new Customer Community Login User the 'Redwoods-Insurance Mobile' permission set:
     1. Navigate to Setup -> Users -> Permission Sets.
-    1. Click on 'Redwoods-Insurance Mobile'.
-    1. Click on 'Manage Assignments'.
-    1. Click on 'Add Assignment'.
-    1. Click the checkbox next to your Redwoods-Insurance Mobile' username.
-    1. Click 'Assign'.
-    1. Click 'Done'.
-
+    2. Click on 'Redwoods-Insurance Mobile'.
+    3. Click on 'Manage Assignments'.
+    4. Click on 'Add Assignment'.
+    5. Click the checkbox next to your Redwoods-Insurance Mobile' username.
+    6. Click 'Assign'.
+    7. Click 'Done'.
+  
 ## iOS App Setup
 
 > _Note_: Salesforce Communities Users can only authenticate to the community they're part of. Thus, when writing apps with the Salesforce mobile SDK for iOS it's best practice to manually set the login host for your application as part of your build.
 
 1. Open the file `info.plist` found in the 'Supporting Files' group in Xcode.
-1. Locate the key `SFDCOAuthLoginHost`, which by default says `login.salesforce.com`. Edit the default value, replacing it with the community url you copied down earlier. Please note, while the community url likely starts with `https://` **DO NOT** include the `https://` portion of the URL in this `plist` value.
+1. Locate the key `SFDCOAuthLoginHost`, which by default says `login.salesforce.com`. Edit the default value, replacing it with the community url you recieved when publishing your community from the command line. Please note, while the community url likely starts with `https://` **DO NOT** include the `https://` portion of the URL in this `plist` value.
 
 > Note: The source ships with a valid connected app consumer key. However, if you'd like to use your own, ensure it has the following oAuth scopes:
 >
