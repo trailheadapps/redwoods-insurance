@@ -6,6 +6,7 @@ import { getAudio } from '@salesforce/apex/IncidentController.findRelatedFiles';
 const mockAudioFile = require('./data/mockAudioFile.json');
 const multipleMockAudioFiles = require('./data/multipleMockAudioFiles.json');
 const getRelatedAudioAdapter = registerApexTestWireAdapter(getAudio);
+const mockRecordId = '5001700000pJRRUAA4';
 
 describe('c-incident-audio-player', () => {
     afterEach(() => {
@@ -20,12 +21,12 @@ describe('c-incident-audio-player', () => {
         const element = createElement('c-incident-audio-player', {
             is: IncidentAudioPlayer
         });
-        element.recordId = 'mockRecordId';
+        element.recordId = mockRecordId;
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
             expect(getRelatedAudioAdapter.getLastConfig()).toEqual({
-                caseId: 'mockRecordId',
+                caseId: mockRecordId,
                 fileType: 'AUDIO'
             });
         });
