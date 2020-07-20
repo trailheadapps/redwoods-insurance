@@ -1,0 +1,10 @@
+{
+    "fields": {
+        "Incident_Location__Latitude__s": {
+            "value": "51.524723"
+        },
+        "Incident_Location__Longitude__s": {
+            "value": "6.922778"
+        }
+    }
+}

@@ -40,10 +40,21 @@ jobs:
               run: npm run prettier:verify
               working-directory: redwoods-insurance-salesforce
 
-            # ESlint
+            # Lint LWC
             - name: 'Lint Lightning Web Components'
               run: npm run lint:lwc
               working-directory: redwoods-insurance-salesforce
+
+            # Unit tests
+            - name: 'Unit test Lightning Web Components'
+              run: npm run test:unit:coverage
+              working-directory: redwoods-insurance-salesforce
+
+            # Upload code coverage data
+            - name: 'Upload code coverage for LWC to Codecov.io'
+              uses: codecov/codecov-action@v1
+              with:
+                  flags: LWC
 
     scratch-org-test:
         runs-on: ubuntu-latest
@@ -94,7 +105,7 @@ jobs:
             - name: 'Upload code coverage for Apex to Codecov.io'
               uses: codecov/codecov-action@v1
               with:
-                  token: ${{ secrets.CODECOV_TOKEN }}
+                  flags: Apex
 
             # Housekeeping
             - name: 'Delete scratch org'
