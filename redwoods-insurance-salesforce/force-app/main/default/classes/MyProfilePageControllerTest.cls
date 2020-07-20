@@ -10,7 +10,7 @@ public with sharing class MyProfilePageControllerTest {
         List<User> existingPortalUsers = [
             SELECT id, profileId, userRoleId
             FROM User
-            WHERE UserRoleId != null AND UserType = 'CustomerSuccess'
+            WHERE UserRoleId != NULL AND UserType = 'CustomerSuccess'
         ];
 
         if (existingPortalUsers.isEmpty()) {

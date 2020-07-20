@@ -58,7 +58,7 @@ public with sharing class IncidentController {
         return [
             SELECT Id, Title
             FROM ContentVersion
-            WHERE ContentDocumentId IN :fileIds AND IsLatest = true
+            WHERE ContentDocumentId IN :fileIds AND IsLatest = TRUE
             WITH SECURITY_ENFORCED
             ORDER BY CreatedDate
         ];
