@@ -107,9 +107,8 @@ describe('c-incident-audio-player', () => {
         document.body.appendChild(element);
         getRelatedAudioAdapter.emit(multipleMockAudioFiles);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        ç;
     });
 
     it('is accessible when no audio files', () => {
@@ -122,8 +121,7 @@ describe('c-incident-audio-player', () => {
         // force the wire adapter mock to emit an obj instead of an array
         getRelatedAudioAdapter.emit({});
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        ç;
     });
 });

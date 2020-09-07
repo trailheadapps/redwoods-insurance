@@ -100,9 +100,8 @@ describe('c-incident-image-carousel', () => {
         // Emit data from @wire
         getRelatedPicturesAdapter.emit(mockTwoImages);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        ç;
     });
 
     it('is accessible when no urls', () => {
@@ -115,8 +114,7 @@ describe('c-incident-image-carousel', () => {
         // forcibly emit an object, instead of an array.
         getRelatedPicturesAdapter.emit({});
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        ç;
     });
 });
