@@ -108,7 +108,6 @@ describe('c-incident-audio-player', () => {
         getRelatedAudioAdapter.emit(multipleMockAudioFiles);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
-        ç;
     });
 
     it('is accessible when no audio files', () => {
@@ -122,6 +121,5 @@ describe('c-incident-audio-player', () => {
         getRelatedAudioAdapter.emit({});
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
-        ç;
     });
 });

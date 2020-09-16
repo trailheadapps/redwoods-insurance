@@ -101,7 +101,6 @@ describe('c-incident-image-carousel', () => {
         getRelatedPicturesAdapter.emit(mockTwoImages);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
-        ç;
     });
 
     it('is accessible when no urls', () => {
@@ -115,6 +114,5 @@ describe('c-incident-image-carousel', () => {
         getRelatedPicturesAdapter.emit({});
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
-        ç;
     });
 });

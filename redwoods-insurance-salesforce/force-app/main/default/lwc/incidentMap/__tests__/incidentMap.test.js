@@ -83,6 +83,5 @@ describe('c-incident-map', () => {
         getRecordAdapter.emit(mockMapMarkers);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
-        ç;
     });
 });
