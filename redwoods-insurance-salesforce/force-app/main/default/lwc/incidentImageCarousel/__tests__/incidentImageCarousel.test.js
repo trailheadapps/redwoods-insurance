@@ -90,7 +90,7 @@ describe('c-incident-image-carousel', () => {
         });
     });
 
-    it('is accessible when multiple urls', () => {
+    it('is accessible when one or more urls present', () => {
         const element = createElement('c-incident-image-carousel', {
             is: IncidentImageCarousel
         });
