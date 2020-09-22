@@ -89,4 +89,30 @@ describe('c-incident-image-carousel', () => {
             );
         });
     });
+
+    it('is accessible when one or more urls present', () => {
+        const element = createElement('c-incident-image-carousel', {
+            is: IncidentImageCarousel
+        });
+
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRelatedPicturesAdapter.emit(mockTwoImages);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when no urls', () => {
+        const element = createElement('c-incident-image-carousel', {
+            is: IncidentImageCarousel
+        });
+
+        document.body.appendChild(element);
+
+        // forcibly emit an object, instead of an array.
+        getRelatedPicturesAdapter.emit({});
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

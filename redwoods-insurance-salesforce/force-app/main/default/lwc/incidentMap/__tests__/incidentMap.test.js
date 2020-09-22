@@ -73,4 +73,15 @@ describe('c-incident-map', () => {
         const cardEl = element.shadowRoot.querySelector('lightning-card');
         expect(cardEl).toBe(null);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-incident-map', {
+            is: IncidentMap
+        });
+
+        document.body.appendChild(element);
+        getRecordAdapter.emit(mockMapMarkers);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

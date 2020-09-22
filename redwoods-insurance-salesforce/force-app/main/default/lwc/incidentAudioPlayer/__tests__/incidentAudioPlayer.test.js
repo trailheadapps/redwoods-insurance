@@ -98,4 +98,30 @@ describe('c-incident-audio-player', () => {
             );
         });
     });
+
+    // NOTE: there's an issue while testing audio / video tags with sa11y.
+    // Uncomment this test when the issue is fixed.
+    /* it('is accessible when multiple audio files', () => {
+        const element = createElement('c-incident-audio-player', {
+            is: IncidentAudioPlayer
+        });
+
+        document.body.appendChild(element);
+        getRelatedAudioAdapter.emit(multipleMockAudioFiles);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });*/
+
+    it('is accessible when no audio files', () => {
+        const element = createElement('c-incident-audio-player', {
+            is: IncidentAudioPlayer
+        });
+
+        document.body.appendChild(element);
+
+        // force the wire adapter mock to emit an obj instead of an array
+        getRelatedAudioAdapter.emit({});
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });
