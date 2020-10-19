@@ -41,7 +41,7 @@
                                         <apex:pageMessages id="error" />
                                         <apex:panelGrid
                                             columns="2"
-                                            style="margin-top: 1em;"
+                                            style="margin-top: 1em"
                                         >
                                             <apex:outputLabel
                                                 value="{!$Label.site.username}"
