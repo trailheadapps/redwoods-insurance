@@ -1,18 +1,10 @@
 /**
  * @File Name          : IncidentController.cls
- * @Description        :
- * @Author             : Kevin Poorman  - Kpoorman@salesforce.com - @Codefriar
- * @Group              :
- * @Last Modified By   : Kevin Poorman  - Kpoorman@salesforce.com - @Codefriar
- * @Last Modified On   : 2/14/2020, 9:45:26 AM
- * @Modification Log   :
- * Ver       Date            Author      		    Modification
- * 1.0    2/14/2020   Kevin Poorman  - Kpoorman@salesforce.com - @Codefriar     Initial Version
+ * @Description        : LWC Controller for the Redwoods app
  **/
 public with sharing class IncidentController {
     /**
      * @description - returns a list of files (content versions) associated with the case ID and limited to the fileType
-     * @author Kevin Poorman  - Kpoorman@salesforce.com - @Codefriar | 2/14/2020
      * @param caseId - ID of related case
      * @param fileType - [AUDIO, IMAGE]
      * @return List<ContentVersion> (files)

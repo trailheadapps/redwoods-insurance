@@ -5,12 +5,12 @@
         width="98%"
         border="0"
         columns="2"
-        style="text-align: left;"
+        style="text-align: left"
         id="theHeader"
     >
         <apex:image
             url="{!$Site.Prefix}/img/sites/force_logo.png"
-            style="align: left;"
+            style="align: left"
             alt="Salesforce"
             width="233"
             height="55"
@@ -22,7 +22,7 @@
             width="100%"
             border="0"
             columns="1"
-            style="text-align: right;"
+            style="text-align: right"
             id="Links"
         >
             <apex:panelGroup

@@ -5,7 +5,7 @@
                 <apex:panelGrid
                     bgcolor="white"
                     columns="1"
-                    style="align: center;"
+                    style="align: center"
                 >
                     <br />
                     <br />

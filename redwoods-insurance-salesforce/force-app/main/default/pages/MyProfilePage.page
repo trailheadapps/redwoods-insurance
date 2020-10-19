@@ -8,7 +8,7 @@
         <apex:define name="body">
             <apex:form id="theForm">
                 <apex:outputPanel
-                    style="padding: 50px 50px 50px 50px;"
+                    style="padding: 50px 50px 50px 50px"
                     id="userDetail"
                 >
                     <apex:pageBlock

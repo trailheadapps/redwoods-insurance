@@ -2,7 +2,7 @@
     <apex:form id="loginForm" forceSSL="true">
         <apex:outputPanel layout="block">
             <apex:pageMessages id="error" />
-            <apex:panelGrid columns="2" style="margin-top: 1em;">
+            <apex:panelGrid columns="2" style="margin-top: 1em">
                 <apex:outputLabel
                     value="{!$Label.site.username}"
                     for="username"

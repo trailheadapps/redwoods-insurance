@@ -8,7 +8,7 @@
         <center>
             <apex:form id="theForm" forceSSL="true">
                 <apex:pageMessages id="error" />
-                <apex:panelGrid columns="2" style="margin-top: 1em;">
+                <apex:panelGrid columns="2" style="margin-top: 1em">
                     <apex:outputLabel value="First Name" for="firstName" />
                     <apex:inputText
                         required="true"
