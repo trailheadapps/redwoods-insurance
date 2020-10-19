@@ -25,3 +25,9 @@ class ExistingClaimsListModel: ObservableObject {
       .assign(to: \.claims, on: self)
   }
 }
+
+struct ExistingClaimsListModel_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}

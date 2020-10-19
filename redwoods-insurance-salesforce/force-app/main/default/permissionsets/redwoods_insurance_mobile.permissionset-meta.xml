@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>IncidentController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description
     >Gives users permission to access custom fields needed for the Redwoods Insurance Mobile app</description>
     <fieldPermissions>
