@@ -45,7 +45,7 @@ The `redwoods-insurance-salesforce` folder in this repository contains _most of_
 1. If you haven't already done so, authenticate with your dev hub org and provide it with an alias (devHub):
 
     ```
-    sfdx force:auth:web:login -d -a devHub
+    sfdx auth:web:login -d -a devHub
     ```
 
 1. cd to Salesforce Org Setup folder in a command line:
