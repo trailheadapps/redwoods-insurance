@@ -38,7 +38,7 @@ git submodule update --init --recursive
 
 ## Salesforce Metadata Setup <a name="sfMetadata"></a>
 
-The `redwoods-insurance-salesforce` folder in this repository contains _most of_ the neccesary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must accomplish using the Salesforce UI to finalize your scratch org with this metadata:
+The `redwoods-insurance-salesforce` folder in this repository contains _most of_ the necessary metadata to setup a Salesforce Scratch Org for use with this mobile app. However, there are several manual steps you must accomplish using the Salesforce UI to finalize your scratch org with this metadata:
 
 1. Set up your environment. Follow the steps in the [Quick Start: Salesforce DX](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-salesforce-dx) Trailhead Project.
 
@@ -148,9 +148,9 @@ The mobile application is configured to allow only Customer Community Login user
     1. Select _'Customer Community Login'_ as the User License.
     1. Select _'redwoods_insurance_mobileUser'_ as the Profile.
     1. Populate all other required fields.
-    1. Click 'Save', and click 'OK' to acknowledge that the user will recieve an email.
+    1. Click 'Save', and click 'OK' to acknowledge that the user will receive an email.
 1. Finalize your Customer Community Login User:
-    1. You'll soon recieve an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
+    1. You'll soon receive an email from Salesforce welcoming your user to the community. Click the provided link to verify your email and set your user's password.
 1. Assign your new Customer Community Login User the 'Redwoods-Insurance Mobile' permission set:
     1. Navigate to Setup -> Users -> Permission Sets.
     1. Click on 'Redwoods-Insurance Mobile'.
