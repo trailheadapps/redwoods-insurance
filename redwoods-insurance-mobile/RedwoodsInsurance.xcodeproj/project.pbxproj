@@ -555,7 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
-				DEVELOPMENT_TEAM = 745ST2PM9F;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "RedwoodsInsurance/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -576,7 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RedwoodsInsurance/RedwoodsInsurance.entitlements;
-				DEVELOPMENT_TEAM = 745ST2PM9F;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "RedwoodsInsurance/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
