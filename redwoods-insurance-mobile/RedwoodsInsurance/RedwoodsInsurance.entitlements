@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.forcedotcom.redwoods.swiftui.RedwoodsInsurance</string>
+		<string>$(AppIdentifierPrefix)com.force.redwoods-insurance.redwoods-insurance.RedwoodsInsurance</string>
 	</array>
 </dict>
 </plist>
