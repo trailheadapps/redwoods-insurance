@@ -13,11 +13,12 @@
         "test:unit:coverage": "sfdx-lwc-jest --coverage",
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-        "postinstall": "node bin/check-version.js",
         "prettier:apex:local": "npm run apex:local:start & sleep 1 && prettier --apex-standalone-parser built-in --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"  && npm run apex:local:stop",
         "prettier:verify:apex:local": "npm run apex:local:start & sleep 1 && prettier --apex-standalone-parser built-in --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\" && npm run apex:local:stop",
         "apex:local:start": "node node_modules/prettier-plugin-apex/bin/start-apex-server.js",
-        "apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js"
+        "apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
+        "postinstall": "node bin/check-version.js && cd .. && husky install",
+        "precommit": "npm run prettier && npm run test"
     },
     "author": "salesforce.com",
     "license": "CC0-1.0",
@@ -32,29 +33,15 @@
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^0.11.0",
         "@prettier/plugin-xml": "^0.13.0",
-        "@sa11y/jest": "^0.2.1",
+        "@sa11y/jest": "^0.3.0",
         "@salesforce/eslint-config-lwc": "^0.9.0",
         "@salesforce/sfdx-lwc-jest": "^0.10.4",
         "babel-eslint": "^10.1.0",
-        "eslint": "^7.19.0",
-        "eslint-config-prettier": "^7.2.0",
-        "husky": "^4.3.8",
-        "lint-staged": "^10.5.3",
+        "eslint": "^7.21.0",
+        "eslint-config-prettier": "^8.1.0",
+        "husky": "^5.1.3",
         "prettier": "^2.2.1",
         "prettier-plugin-apex": "^1.8.0",
         "semver": "^7.3.4"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
-            "prettier --write"
-        ],
-        "**/lwc/**": [
-            "eslint"
-        ]
     }
 }
