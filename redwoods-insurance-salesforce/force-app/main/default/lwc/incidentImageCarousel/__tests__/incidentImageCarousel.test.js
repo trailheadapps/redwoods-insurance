@@ -6,9 +6,8 @@ import { getRelatedPictures } from '@salesforce/apex/IncidentController.findRela
 // Realistic data with two images.
 const mockTwoImages = require('./data/twoImages.json');
 // Register an Apex Wire adapter.
-const getRelatedPicturesAdapter = registerApexTestWireAdapter(
-    getRelatedPictures
-);
+const getRelatedPicturesAdapter =
+    registerApexTestWireAdapter(getRelatedPictures);
 const mockRecordId = '5001700000pJRRTAA4';
 
 describe('c-incident-image-carousel', () => {
