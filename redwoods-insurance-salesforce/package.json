@@ -17,7 +17,7 @@
         "prettier:verify:apex:local": "npm run apex:local:start & sleep 1 && prettier --apex-standalone-parser built-in --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\" && npm run apex:local:stop",
         "apex:local:start": "node node_modules/prettier-plugin-apex/bin/start-apex-server.js",
         "apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
-        "postinstall": "node bin/check-version.js && cd .. && husky install",
+        "postinstall": "cd .. && husky install",
         "precommit": "lint-staged"
     },
     "author": "salesforce.com",
@@ -25,10 +25,6 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/trailheadapps/redwoods-insurance"
-    },
-    "engines": {
-        "node": ">= 10.13.0",
-        "npm": ">= 6.5.0"
     },
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.0.1",
@@ -46,8 +42,7 @@
         "jest-canvas-mock": "^2.3.1",
         "lint-staged": "^11.0.0",
         "prettier": "^2.3.0",
-        "prettier-plugin-apex": "^1.9.1",
-        "semver": "^7.3.5"
+        "prettier-plugin-apex": "^1.9.1"
     },
     "lint-staged": {
         "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
@@ -59,5 +54,9 @@
         "**/lwc/**": [
             "sfdx-lwc-jest --skipApiVersionCheck -- --bail --findRelatedTests"
         ]
+    },
+    "volta": {
+        "node": "14.17.3",
+        "npm": "6.14.13"
     }
 }
