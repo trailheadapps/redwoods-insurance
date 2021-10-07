@@ -11,7 +11,7 @@ import SalesforceSDKCore
 import Combine
 
 extension RestClient {
-  static let apiVersion = "v51.0"
+  static let apiVersion = "v53.0"
 
   typealias JSONKeyValuePairs = [String: Any]
   typealias SalesforceRecord = [String: Any]

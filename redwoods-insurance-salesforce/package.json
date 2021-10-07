@@ -1,7 +1,7 @@
 {
     "name": "redwoods-insurance",
     "private": true,
-    "version": "0.2.0",
+    "version": "1.0.0",
     "description": "Redwoods Insurance Sample app",
     "scripts": {
         "lint": "npm run lint:lwc",
@@ -27,22 +27,21 @@
         "url": "git+https://github.com/trailheadapps/redwoods-insurance"
     },
     "devDependencies": {
-        "@lwc/eslint-plugin-lwc": "^1.0.1",
-        "@prettier/plugin-xml": "^0.13.1",
-        "@sa11y/jest": "^0.3.0",
-        "@salesforce/eslint-config-lwc": "^2.0.0",
+        "@lwc/eslint-plugin-lwc": "^1.1.0",
+        "@prettier/plugin-xml": "^1.1.0",
+        "@sa11y/jest": "^3.0.0",
+        "@salesforce/eslint-config-lwc": "^3.0.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/eslint-plugin-lightning": "^0.1.1",
-        "@salesforce/sfdx-lwc-jest": "^0.10.4",
-        "eslint": "^7.25.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-jest": "^23.8.2",
-        "husky": "^5.2.0",
+        "@salesforce/sfdx-lwc-jest": "^1.0.1",
+        "eslint": "^7.32.0",
+        "eslint-plugin-import": "^2.24.2",
+        "eslint-plugin-jest": "^24.5.2",
+        "husky": "^7.0.2",
         "jest-canvas-mock": "^2.3.1",
-        "lint-staged": "^11.0.0",
-        "prettier": "^2.3.0",
-        "prettier-plugin-apex": "^1.9.1"
+        "lint-staged": "^11.2.0",
+        "prettier": "^2.4.1",
+        "prettier-plugin-apex": "^1.10.0"
     },
     "lint-staged": {
         "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [

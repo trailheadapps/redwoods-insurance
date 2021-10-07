@@ -7,7 +7,7 @@
   <communityRoles />
   <disableReputationRecordConversations
     >true</disableReputationRecordConversations>
-  <emailSenderAddress>kpoorman@salesforce.com</emailSenderAddress>
+  <emailSenderAddress>no-reply@salesforce.com</emailSenderAddress>
   <emailSenderName>Redwoods Insurance Customer Auth</emailSenderName>
   <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
   <enableDirectMessages>true</enableDirectMessages>
