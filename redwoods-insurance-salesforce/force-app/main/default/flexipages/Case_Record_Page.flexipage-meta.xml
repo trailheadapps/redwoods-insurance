@@ -23,6 +23,7 @@
                     <value>3</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
+                <identifier>highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -42,11 +43,13 @@
                 </componentInstanceProperties>
                 <componentName
                 >runtime_sales_pathassistant:pathAssistant</componentName>
+                <identifier>pathAssistant</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>force:detailPanel</componentName>
+                <identifier>detailPanel</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-08981b2d-59ab-4398-8998-a340d7c2b539</name>
@@ -60,6 +63,7 @@
                     <value>NONE</value>
                 </componentInstanceProperties>
                 <componentName>force:relatedListContainer</componentName>
+                <identifier>relatedListContainer</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -69,6 +73,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <identifier>incidentImageCarousel</identifier>
                 <componentName>incidentImageCarousel</componentName>
             </componentInstance>
         </itemInstances>
@@ -87,6 +92,7 @@
                     <value>Standard.Tab.detail</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
+                <identifier>tab3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -100,6 +106,7 @@
                     <value>Standard.Tab.relatedLists</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
+                <identifier>tab2</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -113,6 +120,7 @@
                     <value>Incident Images</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
+                <identifier>tab1</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -127,6 +135,7 @@
                     <value>tabs</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tabset</componentName>
+                <identifier>tabset</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -136,16 +145,19 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <identifier>incidentAudioPlayer</identifier>
                 <componentName>incidentAudioPlayer</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <identifier>incidentMap</identifier>
                 <componentName>incidentMap</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <identifier>activityPanel</identifier>
                 <componentName
                 >runtime_sales_activities:activityPanel</componentName>
             </componentInstance>

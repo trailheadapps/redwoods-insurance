@@ -38,6 +38,7 @@
                     <value>340</value>
                 </componentInstanceProperties>
                 <componentName>forceChatter:publisher</componentName>
+                <identifier>publisher</identifier>
             </componentInstance>
         </itemInstances>
         <name>utilityItems</name>
