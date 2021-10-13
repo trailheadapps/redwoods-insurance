@@ -46,7 +46,7 @@ jobs:
 
             # Lint LWC
             - name: 'Lint Lightning Web Components'
-              run: npm run lint:lwc
+              run: npm run lint
               working-directory: redwoods-insurance-salesforce
 
             # LWC unit tests
