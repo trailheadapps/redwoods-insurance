@@ -1,14 +1,24 @@
 import { createElement } from 'lwc';
 import IncidentImageCarousel from 'c/incidentImageCarousel';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getRelatedPictures } from '@salesforce/apex/IncidentController.findRelatedFiles';
 
 // Realistic data with two images.
 const mockTwoImages = require('./data/twoImages.json');
-// Register an Apex Wire adapter.
-const getRelatedPicturesAdapter =
-    registerApexTestWireAdapter(getRelatedPictures);
 const mockRecordId = '5001700000pJRRTAA4';
+
+// Mock findRelatedFiles Apex wire adapter
+jest.mock(
+    '@salesforce/apex/IncidentController.findRelatedFiles',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-incident-image-carousel', () => {
     afterEach(() => {
@@ -27,7 +37,7 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
-            expect(getRelatedPicturesAdapter.getLastConfig()).toEqual({
+            expect(getRelatedPictures.getLastConfig()).toEqual({
                 caseId: mockRecordId,
                 fileType: 'IMAGE'
             });
@@ -55,7 +65,8 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRelatedPicturesAdapter.emit(mockTwoImages);
+        getRelatedPictures.emit(mockTwoImages);
+        // getRelatedPicturesAdapter.emit(mockTwoImages);
 
         return Promise.resolve().then(() => {
             const imageEls = element.shadowRoot.querySelectorAll(
@@ -79,7 +90,7 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         // forcibly emit an object, instead of an array.
-        getRelatedPicturesAdapter.emit({});
+        getRelatedPictures.emit({});
 
         return Promise.resolve().then(() => {
             const labelElement = element.shadowRoot.querySelector('p');
@@ -97,7 +108,7 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRelatedPicturesAdapter.emit(mockTwoImages);
+        getRelatedPictures.emit(mockTwoImages);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
@@ -110,7 +121,7 @@ describe('c-incident-image-carousel', () => {
         document.body.appendChild(element);
 
         // forcibly emit an object, instead of an array.
-        getRelatedPicturesAdapter.emit({});
+        getRelatedPictures.emit({});
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

@@ -1,9 +1,7 @@
 import { createElement } from 'lwc';
 import IncidentMap from 'c/incidentMap';
 import { getRecord } from 'lightning/uiRecordApi';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
-const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
 const mockMapMarkers = require('./data/mockMapMarkers.json');
 const mockRecordId = '5001700000pJRRTAA4';
 
@@ -24,7 +22,7 @@ describe('c-incident-map', () => {
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
-            expect(getRecordAdapter.getLastConfig()).toEqual({
+            expect(getRecord.getLastConfig()).toEqual({
                 recordId: mockRecordId,
                 fields: [
                     'Case.Incident_Location__Latitude__s',
@@ -51,7 +49,7 @@ describe('c-incident-map', () => {
             is: IncidentMap
         });
         document.body.appendChild(element);
-        getRecordAdapter.emit(mockMapMarkers);
+        getRecord.emit(mockMapMarkers);
 
         return Promise.resolve().then(() => {
             const mapEl = element.shadowRoot.querySelector('lightning-map');
@@ -68,7 +66,7 @@ describe('c-incident-map', () => {
             is: IncidentMap
         });
         document.body.appendChild(element);
-        getRecordAdapter.error();
+        getRecord.error();
 
         const cardEl = element.shadowRoot.querySelector('lightning-card');
         expect(cardEl).toBe(null);
@@ -80,7 +78,7 @@ describe('c-incident-map', () => {
         });
 
         document.body.appendChild(element);
-        getRecordAdapter.emit(mockMapMarkers);
+        getRecord.emit(mockMapMarkers);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

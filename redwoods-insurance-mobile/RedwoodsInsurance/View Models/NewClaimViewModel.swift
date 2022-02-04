@@ -67,7 +67,7 @@ class NewClaimViewModel: NSObject, ObservableObject {
 
 extension NewClaimViewModel: CLLocationManagerDelegate {
 
-  //Delegate Methods
+  // Delegate Methods
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
     locationManager.startUpdatingLocation()
   }
@@ -78,7 +78,7 @@ extension NewClaimViewModel: CLLocationManagerDelegate {
     }
   }
 
-  //Private methods. Used to DRY code.
+  // Private methods. Used to DRY code.
   private func generateRegion(location: CLLocation) -> MKCoordinateRegion {
     let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     return MKCoordinateRegion(center: center, latitudinalMeters: 150, longitudinalMeters: 150)
@@ -88,7 +88,7 @@ extension NewClaimViewModel: CLLocationManagerDelegate {
 
 extension NewClaimViewModel {
 
-  //Salesforce uploading methods
+  // Salesforce uploading methods
   func uploadClaimToSalesforce() -> Future<Bool, Never> {
     return Future { promise in
     self.showActivityIndicator = true

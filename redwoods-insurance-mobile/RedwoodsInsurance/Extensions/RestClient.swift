@@ -11,11 +11,57 @@ import SalesforceSDKCore
 import Combine
 
 extension RestClient {
+
+  enum FetchError: Error {
+    case unknownError
+  }
+
   static let apiVersion = "v53.0"
 
   typealias JSONKeyValuePairs = [String: Any]
   typealias SalesforceRecord = [String: Any]
   typealias SalesforceRecords = [SalesforceRecord]
+
+  func asychFetchRequest(restRequest: RestRequest) async throws -> Data {
+    await withCheckedContinuation { continuation in
+      RestClient.shared.send(request: restRequest, { (result) in
+        switch result {
+          case .success(let response):
+            continuation.resume(returning: response.asData())
+          case .failure(let error):
+            print(error.localizedDescription)
+        }
+      })
+    }
+  }
+
+  func fetchSalesforceRecords<T: Decodable> (_ type: T.Type = T.self,
+                                     restRequest: RestRequest,
+                                     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+                                     dataDecodingStrategy: JSONDecoder.DataDecodingStrategy = .deferredToData,
+                                     dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate) async throws -> T {
+    let response = try await asychFetchRequest(restRequest: restRequest)
+
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = keyDecodingStrategy
+    decoder.dataDecodingStrategy = dataDecodingStrategy
+    decoder.dateDecodingStrategy = dateDecodingStrategy
+
+    do {
+      return try decoder.decode(T.self, from: response)
+    } catch DecodingError.keyNotFound(let key, let context) {
+      fatalError("Failed to decode due to missing key '\(key.stringValue)' not found – \(context.debugDescription)")
+    } catch DecodingError.typeMismatch(_, let context) {
+      fatalError("Failed to decode due to type mismatch – \(context.debugDescription) from Request \(restRequest)")
+    } catch DecodingError.valueNotFound(let type, let context) {
+      fatalError("Failed to decode due to missing \(type) value – \(context.debugDescription)")
+    } catch DecodingError.dataCorrupted(_) {
+      fatalError("Failed to decode because it appears to be invalid JSON")
+    } catch {
+      fatalError("Failed to decode: \(error.localizedDescription)")
+    }
+
+  }
 
   func fetchData(fromLayout named: String, for objectId: String) -> AnyPublisher<SalesforceRecords, Never> {
     let params: [String: Any] = ["layoutTypes": named]
