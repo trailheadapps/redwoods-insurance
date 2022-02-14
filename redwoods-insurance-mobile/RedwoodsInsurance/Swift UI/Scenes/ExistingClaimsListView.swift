@@ -15,7 +15,7 @@ struct ExistingClaimsListView: View {
 
   var body: some View {
     NavigationView {
-      List(viewModel.claims.records) { dataItem in
+      List(viewModel.claims) { dataItem in
         NavigationLink(destination: ClaimDetailsView(activeClaimId: dataItem.id)) {
           HStack {
             VStack(alignment: .leading, spacing: 3) {
@@ -31,7 +31,7 @@ struct ExistingClaimsListView: View {
       // Navigation bar button
       .navigationBarItems(
         leading: Button("Logout") {
-          self.viewModel.claims.records = []
+          self.viewModel.claims = []
           UserAccountManager.shared.logout()
         },
         trailing: NavigationLink(
@@ -42,9 +42,9 @@ struct ExistingClaimsListView: View {
           }
         }
       )
-      .onAppear {
+      .task {
         print("On Appear firing for ExistingClaims()")
-        self.viewModel.fetchDataFromSalesforce()
+        await self.viewModel.fetchDataFromSalesforce()
       }
       //        .onReceive(self.newClaim.completedPublisher) { _ in
       //          print("On Receive firing for existing claims")
@@ -60,7 +60,7 @@ struct ExistingClaimsListView: View {
 struct ExistingClaimsListView_Previews: PreviewProvider {
   static var previews: some View {
     let preview = ExistingClaimsListView()
-    preview.viewModel.claims.records = Claim.generateDemoClaims(numberOfClaims: 5)
+    preview.viewModel.claims = Claim.generateDemoClaims(numberOfClaims: 5)
     return preview
   }
 }

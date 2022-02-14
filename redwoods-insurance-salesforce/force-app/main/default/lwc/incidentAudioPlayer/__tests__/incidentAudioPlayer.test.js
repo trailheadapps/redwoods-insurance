@@ -1,12 +1,24 @@
 import { createElement } from 'lwc';
 import IncidentAudioPlayer from 'c/incidentAudioPlayer';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getAudio } from '@salesforce/apex/IncidentController.findRelatedFiles';
 
 const mockAudioFile = require('./data/mockAudioFile.json');
 const multipleMockAudioFiles = require('./data/multipleMockAudioFiles.json');
-const getRelatedAudioAdapter = registerApexTestWireAdapter(getAudio);
 const mockRecordId = '5001700000pJRRUAA4';
+
+// Mock findRelatedFiles Apex wire adapter
+jest.mock(
+    '@salesforce/apex/IncidentController.findRelatedFiles',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-incident-audio-player', () => {
     afterEach(() => {
@@ -25,7 +37,7 @@ describe('c-incident-audio-player', () => {
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
-            expect(getRelatedAudioAdapter.getLastConfig()).toEqual({
+            expect(getAudio.getLastConfig()).toEqual({
                 caseId: mockRecordId,
                 fileType: 'AUDIO'
             });
@@ -51,7 +63,7 @@ describe('c-incident-audio-player', () => {
         });
         document.body.appendChild(element);
 
-        getRelatedAudioAdapter.emit(mockAudioFile);
+        getAudio.emit(mockAudioFile);
 
         return Promise.resolve().then(() => {
             const audioPlayerEl = element.shadowRoot.querySelector('audio');
@@ -66,7 +78,7 @@ describe('c-incident-audio-player', () => {
         });
         document.body.appendChild(element);
 
-        getRelatedAudioAdapter.emit(multipleMockAudioFiles);
+        getAudio.emit(multipleMockAudioFiles);
 
         return Promise.resolve().then(() => {
             const audioPlayerEls = element.shadowRoot.querySelectorAll('audio');
@@ -89,7 +101,7 @@ describe('c-incident-audio-player', () => {
         document.body.appendChild(element);
 
         // force the wire adapter mock to emit an obj instead of an array
-        getRelatedAudioAdapter.emit({});
+        getAudio.emit({});
 
         return Promise.resolve().then(() => {
             const labelElement = element.shadowRoot.querySelector('p');
@@ -105,7 +117,7 @@ describe('c-incident-audio-player', () => {
         });
 
         document.body.appendChild(element);
-        getRelatedAudioAdapter.emit(multipleMockAudioFiles);
+        getAudio.emit(multipleMockAudioFiles);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
@@ -118,7 +130,7 @@ describe('c-incident-audio-player', () => {
         document.body.appendChild(element);
 
         // force the wire adapter mock to emit an obj instead of an array
-        getRelatedAudioAdapter.emit({});
+        getAudio.emit({});
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
